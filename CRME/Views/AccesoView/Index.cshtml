@@ -1,0 +1,189 @@
+﻿@model CRME.Models.LoginViewModel
+@{
+    ViewBag.Title = "Acceso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="containeradmin">
+    <div class="row margin-top-90">
+        <div class="col push-l3 offset-m3 s12 m6 l6">
+            @using (Html.BeginForm("Ingresar", "AccesoView", FormMethod.Post, new { id = "login", @class = "form-simple" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row top-login">
+                    <div class="col s12 m12 l12">
+                        <div class="form-general" >
+                            <div class="row">
+                                <div class="col s12 m12 l12 center-align">
+                                    <img class="responsive-img " src="~/Upload/Sistema/SIRE_FINAL.png" width="400"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m12 l12">
+                                    <h5 class="center-align blue-text text-darken-4">Bienvenido</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col push-l1 push-m1 push-s1 s10 m10 l10 ">
+                                    <div class="row">
+                                        <div class="col s1 m1 l1 hide-on-med-and-down">
+                                            <i class="mdi mdi-account prefix mdi-24px grey-text margin-top-icons" style=""></i>
+                                        </div>
+                                        <div class="input-field col s12 m12 l11 margin-0">
+                                            @Html.Label("Usuario", htmlAttributes: new { @class = "", @for = "Usuario" })
+                                            @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "validate", id = "Usuario", @type = "text", @Style = "margin-bottom:0px !important;", @maxlength = 50 } })
+                                            @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger center" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s1 m1 l1 hide-on-med-and-down">                                          
+                                            <i class="mdi mdi-lock prefix mdi-24px grey-text margin-top-icons"></i>
+                                        </div>
+                                        <div class="input-field col s12 m12 l11 margin-0">
+                                            @Html.Label("Contraseña", htmlAttributes: new { @class = "", @for = "Password" })
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "validate", id = "Password", @Type = "password", @Style = "margin-bottom:0px !important;" } })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger center" })
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-10">
+                                        <div class="right" style="margin-right: 25px;">
+                                            <button type="submit" class="btn btn-block waves-effect blue darken-4">Entrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row margin-top-0">
+                                    <div class="col s12 center-align">
+                                        <a href="javascript:void(0)"  id="recuperar" class="green-text"><b>¡Olvide mi contraseña!</b></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--- Modal Structure --->
+
+<div id="modal" class="modal col s12 m10 offset-m1 l4 offset-l4 size-modal" style="padding:20px;">
+    <i class="mdi mdi-close-outline mdi-24px right red-text modal-close" style="margin-top:-15px;"></i>
+    @using (Html.BeginForm("#", "#", FormMethod.Post, new {@class= "form-horizontal", id = "idFrmEnviar" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-content center">
+            <h6 class="center-align" style="margin-bottom: 80px">Recordar contraseña</h6>
+            <div class="row" style="margin-top:50px;">
+                <div class="input-field form-simple">
+                    @Html.TextBoxFor(model => model.Usuario, htmlAttributes: new { @placeholder = "Correo@ejemplo.com" })
+                </div>
+            </div>
+            <div class="row center-align">
+                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                <!-- mensaje de aprobacion -->
+                <div class="col s12 m10 offset-1 l8 offset-l2 input-form green darken-3 center-align" style="display: none; margin-top:10px;" id="send"><b class="white-text"></b></div>
+                <!-- mensaje de error-->
+                <div class="col s12 m10 offset-1 l8 offset-l2 input-form red center-align" style="display: none; margin-top:10px;" id="error"><b class="white-text"></b></div>
+            </div>
+            <div class="row"><img id="loadingRecuperar" class="hide" src="~/Upload/Sistema/Loading_02.gif" width="40" alt="Alternate Text" /></div>
+            <p class="center-align" style="color:#454545; margin-top:-30px">Por favor ingrese la cuenta de correo con la cual se realizó el registro del usuario </p>
+        </div>
+        <div class="">
+            <div class="col s12 m12 l12 center-align">
+                <a class="btn waves-effect blue darken-4" id="restablecer">Restablecer contraseña</a>
+            </div>
+        </div>
+    }
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#modal").modal();
+        })
+
+        $("#recuperar").click(function () {
+            $("#modal").modal('open');
+            $('#mensaje-error-model').text("");
+            $('.text-danger').text("");
+            $('#Remember').val("");
+        });
+
+        //evitar enter
+        $("#idFrmEnviar").on('keypress', "#Remember", function (e) {
+            if (e.which == 13) {
+                e.preventDefault();
+
+            }
+        });
+
+        $("#restablecer").on("click", function () {
+            $('#mensaje-error-model').text("");
+            showLoading($("#loadingRecuperar"));
+            var token = $('[name=__RequestVerificationToken]').val();
+            var FrmEnviar = $("#idFrmEnviar");
+            if ($("#Remember").val() != "") {
+                if (FrmEnviar.valid()) {
+                    var frmValues = FrmEnviar.serialize();
+
+                    $.ajax({
+                        url: '@Url.Action("Recuperar", "AccesoView")',
+                        data: frmValues,
+                        type: "POST",
+                        success: function (result) {
+                            hideLoading($("#loadingRecuperar"));
+                            if (result.success) {
+                                $('#mensaje-error-model').text(result.mensaje).removeClass('red-text').addClass("green-text");
+                                $('#Remember').val("");
+                                setTimeout(function () {
+                                    $('#mensaje-error-model').text("").removeClass('green-text').addClass("red-text");
+                                    $("#modal").modal('close');
+                                    $(":text").each(function () {
+                                        $($(this)).val('');
+                                    });
+                                }, 4500)
+
+                            } else {
+                                $('#mensaje-error-model').text(result.mensaje);
+                            }
+                        }
+                    });
+                } else {
+                    hideLoading($("#loadingRecuperar"));
+                }
+            } else {
+                $('#mensaje-error-model').text("Ingrese un correo para recuperar contraseña");
+                hideLoading($("#loadingRecuperar"));
+            }
+            
+        });/////////
+
+        $("#idFrmEnviar").on("click", ".modal-close", function () {
+            $('#mensaje-error-model').html("");
+            $('#ModalAlert').closeModal();
+        });
+
+        CargarReglasGeneralFormuario();
+        function CargarReglasGeneralFormuario() {
+            var formulario = $("#idFrmEnviar").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(formulario);
+
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+           // $('#Usuario').rules("remove")
+            //$('#Usuario').rules("add", {
+            //    required: true,
+            //    email: true,
+            //    regex: "[A-Za-z0-9._%+-]+@@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
+            //    messages: {
+            //        required: "El campo correo electrónico es requerido.",
+            //        email: "Por favor ingrese correo electrónico válido",
+            //        regex: "Por favor ingrese correo electrónico válido",
+            //    }
+            });
+        }
+    </script>
+    }

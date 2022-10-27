@@ -1,0 +1,247 @@
+﻿@model CRME.Models.AlumnoViewModel
+
+@{
+    ViewBag.Title = "";
+    var CountTel = 0;
+    var CountEmail = 0;
+}
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@*Datos Contacto*@
+<div class="row">
+    <div class="col s12 m6 s6">
+        <div class="row margin-0">
+            <div class="col s5 m5 l5">
+                <b class="lbl-form-candidato-edit">Teléfono</b>
+            </div>
+        </div>
+        <div class="col s12 m8 l9 margin-0 hide-on-med-and-down hidden-medium show-large">
+            <b class="col l4 m12 s12 lbl-form-candidato-edit">Tipo:</b><b class="lbl-form-candidato-edit col l5 m12 s12"> &nbsp;Número:</b>  <b class="col l3 m12 s12 lbl-form-candidato-edit">Ext:</b>
+        </div>
+
+        @{
+            var MediosContactos = Model.MediosContactos.ToList().OrderBy(x => x.idTipoMedioContacto);
+            <div class="col s8 m8 l9 margin-0 clonedInput padding-0" id="clontel">
+                @if (MediosContactos.Count() == 0)
+            {
+                    <div class="col l12 m12 s12 fila" style="" id="NuevoRegistroTel_0">
+                        <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down margin-top-10">Tipo:</b>
+                        <div class="col l4 m12 s12">
+                            <div class="input-field">
+                                @Html.DropDownList("MediosContactos[0].tpFormato", new SelectList(new List<Object> { new { Value = "Móvil", Text = "Móvil" }, new { Value = "Personal", Text = "Personal" }, new { Value = "Oficina", Text = "Oficina" }, new { Value = "Otro", Text = "Otro" } }, "Value", "Text"), "--TIPO--", htmlAttributes: new { @class = "select classic tipo" })
+                                @Html.ValidationMessage("MediosContactos[0].tpFormato", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down" style="margin-top:21px">Número:</b>
+                        <div class="col l5 m12 s12">
+                            <div class="input-field">
+                                @Html.Editor("MediosContactos[0].desMedioContacto", new { htmlAttributes = new { @class = "Validate form-simple descripcion entero", @placeholder = "INGRESE NÚMERO", @maxlength = "10", @minlength = "7", @pattern = "[0-9]" } })
+                                @Html.ValidationMessage("MediosContactos[0].desMedioContacto", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down">Extensión:</b>
+                        <div class="col l3 m12 s12">
+                            <div class="input-field">
+                                @Html.Editor("MediosContactos[0].numExtension", new { htmlAttributes = new { @class = "Validate form-simple ext entero", @placeholder = "INGRESE EXTENSIÓN", @maxlength = "6", @pattern = "[0-9]" } })
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    for (int i = 0; i < MediosContactos.Count(); i++)
+                    {
+                        <div class="col l12 m12 s12 fila" style="" id="NuevoRegistroTel_@i">
+                            <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down margin-top-10">Tipo:</b>
+                            <div class="col l4 m12 s12">
+                                <div class="input-field">
+                                    @Html.DropDownListFor(model => model.MediosContactos[i].tpFormato, new SelectList(new List<Object> { new { Value = "Móvil", Text = "Móvil" }, new { Value = "Personal", Text = "Personal" }, new { Value = "Oficina", Text = "Oficina" }, new { Value = "Otro", Text = "Otro" } }, "Value", "Text", Model.MediosContactos[i].tpFormato), "--SELECCIONAR--", htmlAttributes: new { @class = "select classic tipo" })
+                                    @Html.ValidationMessageFor(model => model.MediosContactos[i].tpFormato, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down" style="margin-top:21px">Número:</b>
+                            <div class="col l5 m12 s12">
+                                <div class="input-field">
+                                    @Html.EditorFor(model => model.MediosContactos[i].desMedioContacto, new { htmlAttributes = new { @class = "Validate form-simple descripcion entero", @placeholder = "INGRESE NÚMERO", @maxlength = "10", @minlength = "7", @pattern = "[0-9]" } })
+                                    @Html.ValidationMessageFor(model => model.MediosContactos[i].desMedioContacto, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down">Extensión:</b>
+                            <div class="col l3 m12 s12">
+                                <div class="input-field">
+                                    @Html.EditorFor(model => model.MediosContactos[i].numExtension, new { htmlAttributes = new { @class = "Validate form-simple ext entero", @placeholder = "INGRESE EXTENSIÓN", @maxlength = "6", @pattern = "[0-9]" } })
+                                </div>
+                            </div>
+                        </div>
+                        CountTel = i;
+                    }
+                }
+            </div>
+            <div class="col s4 m4 l3">
+                <div class="col s6 m6 l6">
+                    <div class="row margin-0 center">
+                        <button value="@CountTel" class="btn-floating waves-effect orange" type="button" id="btnAgregarTelefono" title="Agregar teléfono" style="cursor:pointer;"><i class="mdi mdi-plus"></i></button>
+                    </div>
+                </div>
+                <div class="col s6 m6 l6">
+                    <div class="row margin-0 center">
+                        <button value="@CountTel" class="btn-floating waves-effect red" type="button" id="btnQuitarTelefono" title="Quitar teléfono" style="cursor:pointer;"><i class="mdi mdi-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-0">
+                <div class="col s5 m5 l5">
+                    <b class="lbl-form-candidato-edit">Email:</b>
+                </div>
+            </div>
+
+            <div class="col s12 m8 l9 hide-on-med-and-down hidden-medium show-large">
+                <b class="col s12 m4 l5 lbl-form-candidato-edit">Tipo:</b><b class="col s12 m4 l7 lbl-form-candidato-edit" style="margin-left:-20px;">Descripción:</b>
+            </div>
+            var MediosContactos1 = Model.MediosContactos1.OrderBy(x => x.idTipoMedioContacto);
+
+            <div class="col s8 m8 l9 margin-0 clonedInput2 padding-0" id="clonEmail">
+                @if (MediosContactos1.Count() == 0)
+            {
+                    <div class="col l12" style="" id="NuevoRegistroEmail_0">
+                        <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down">Tipo:</b>
+                        <div class="col s12 m12 l4 margin-0">
+                            <div class="input-field">
+                                @Html.DropDownList("MediosContactos1[0].tpFormato", new SelectList(new List<Object> { new { Value = "Personal", Text = "Personal" }, new { Value = "Oficina", Text = "Oficina" }, new { Value = "Otro", Text = "Otro" } }, "Value", "Text"), "--TIPO--", htmlAttributes: new { @class = "select classic" })
+                                @Html.ValidationMessage("MediosContactos1[0].tpFormato", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down" style="margin-top:21px">Descripción:</div>
+                        <div class="col s12 m12 l8 margin-0">
+                            <div class="input-field">
+                                @Html.Editor("MediosContactos1[0].desMedioContacto", new { htmlAttributes = new { @class = "Validate form-simple", @placeholder = "INGRESE DIRECCIÓN DE EMAIL" } })
+                                @Html.ValidationMessage("MediosContactos1[0].desMedioContacto", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    for (int j = 0; j < MediosContactos1.Count(); j++)
+                    {
+                        <div class="col l12" style="" id="NuevoRegistroEmail_@j">
+
+                            @Html.HiddenFor(model => model.MediosContactos1[j].idMedioContacto)
+                            @Html.HiddenFor(model => model.MediosContactos1[j].idPersona)
+                            @Html.HiddenFor(model => model.MediosContactos1[j].idTipoMedioContacto)
+                            <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down"> Tipo:</b>
+                            <div class="col s12 m12 l4 margin-0">
+                                <div class="input-field">
+                                    @Html.DropDownListFor(model => model.MediosContactos1[j].tpFormato, new SelectList(new List<Object> { new { Value = "Personal", Text = "Personal" }, new { Value = "Oficina", Text = "Oficina" }, new { Value = "Otro", Text = "Otro" } }, "Value", "Text", @Model.MediosContactos1[j].tpFormato), "--TIPO--", htmlAttributes: new { @class = "select classic" })
+                                    @Html.ValidationMessageFor(model => model.MediosContactos1[j].tpFormato, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <b class="col l4 m12 s12 lbl-form-candidato-edit hide-on-med-and-up show-on-medium-and-down" style="margin-top:21px">Descripción:</b>
+                            <div class="col s12 m12 l8 margin-0">
+                                <div class="input-field">
+                                    @Html.EditorFor(model => model.MediosContactos1[j].desMedioContacto, new { htmlAttributes = new { @class = "Validate form-simple", @placeholder = "INGRESE DIRECCIÓN DE EMAIL" } })
+                                    @Html.ValidationMessageFor(model => model.MediosContactos1[j].desMedioContacto, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        CountEmail = j;
+                    }
+                }
+            </div>
+            <div class="col s4 m4 l3">
+                <div class="col s6 m6 l6">
+                    <div class="row margin-0 center">
+                        <button value="@CountEmail" class="btn-floating waves-effect orange" type="button" id="btnAgregarEmail" title="Agregar correo" style="cursor:pointer;"><i class="mdi mdi-plus"></i></button>
+                    </div>
+                </div>
+                <div class="col s6 m6 l6">
+                    <div class="row margin-0 center">
+                        <button value="@CountEmail" class="btn-floating waves-effect red" type="button" id="btnQuitarEmail" title="Quitar correo" style="cursor:pointer;"><i class="mdi mdi-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @*Datos Dirección*@
+    <div class="col s12 m6 l6 padding-0" style="margin-top:30px;">
+        <div class="row margin-0">
+            <div class="col s12 m12 l12">
+                <b>Dirección:</b>
+            </div>
+            <div class="col s12 m12 l12">
+                @Html.EditorFor(model => model.Alumnos.Direcciones.desDireccion, new { htmlAttributes = new { @class = "Validate form-simple", @placeholder = "INGRESE UNA DIRECCIÓN" } })
+                @Html.ValidationMessageFor(model => model.Alumnos.Direcciones.desDireccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12 margin-top-15">
+                    <B>País natal:</B>
+                </div>
+                <div class="col s12 m12 l12">
+                    @Html.DropDownListFor(model => model.Alumnos.Direcciones.nbPais, new SelectList(ViewBag.idPais, "Value", "Text"), "--PAÍS--", htmlAttributes: new { @class = "select classic" })
+                    @Html.ValidationMessageFor(model => model.Alumnos.Direcciones.nbPais, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="col s12 m12 l12">
+                <b>Codigo postal:</b>
+            </div>
+            <div class="col s12 m12 l12">
+                @Html.EditorFor(model => model.Alumnos.Direcciones.numCodigoPostal, new { htmlAttributes = new { @class = "Validate form-simple entero codigopostal", @placeholder = "INGRESE UN CODIGO POSTAL", @maxlength = "5" } })
+                @Html.ValidationMessageFor(model => model.Alumnos.Direcciones.numCodigoPostal, "", new { @class = "text-danger " })
+                <label id="mensaje-error-CodigoPostal" class="text-danger" style="font-size:15px"></label>
+            </div>
+        </div>
+        <div style="margin-bottom:15px;">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12 margin-top-15">
+                    <b>Estado:</b>
+                </div>
+                <div class="col s12 m12 l12">
+                    @Html.DropDownListFor(model => model.Alumnos.Direcciones.nbEstado, new SelectList(ViewBag.idEstado, "Value", "Text"), "--ESTADO--", htmlAttributes: new { @class = "select classic select-mex" })
+                    @Html.EditorFor(model => model.Alumnos.Direcciones.nbEstado, new { htmlAttributes = new { @class = "Validate form-simple select-otro", @placeholder = "INGRESE UN ESTADO", @Style = "display:none", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Alumnos.Direcciones.nbEstado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="col s12 m12 l12">
+                <b>Ciudad:</b>
+            </div>
+            <div class="col s12 m12 l12">
+                @Html.DropDownListFor(model => model.Alumnos.Direcciones.nbCiudad, new SelectList(ViewBag.idCiudad, "Value", "Text"), "--CIUDAD--", htmlAttributes: new { @class = "select classic select-mex" })
+                @Html.EditorFor(model => model.Alumnos.Direcciones.nbCiudad, new { htmlAttributes = new { @class = "Validate form-simple select-otro", @placeholder = "INGRSE UNA CIUDAD", @Style = "display:none", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.Alumnos.Direcciones.nbCiudad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row margin-0">
+            <div class="col s12 m12 l12 margin-top-15">
+                <b>Colonia:</b>
+            </div>
+            <div class="col s12 m12 l12">
+                @Html.DropDownListFor(model => model.Alumnos.Direcciones.nbColonia, new SelectList(ViewBag.idColonia, "Value", "Text"), "--CIUDAD--", htmlAttributes: new { @class = "select classic select-mex" })
+                @Html.EditorFor(model => model.Alumnos.Direcciones.nbColonia, new { htmlAttributes = new { @class = "Validate form-simple select-otro", @placeholder = "INGRSE UNA COLONIA", @Style = "display:none", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.Alumnos.Direcciones.nbColonia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                <button type="button" class="btn orange darken-4 waves-effect GuardarDatosContacto" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>

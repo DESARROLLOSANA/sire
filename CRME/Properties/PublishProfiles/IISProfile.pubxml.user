@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGV3i6Bsxakaj8VdzXt27rgAAAAACAAAAAAAQZgAAAAEAACAAAABUniilyP3CZEgeoJFnFoA5xE6qW5hWjP9nlkCfAQ7MvQAAAAAOgAAAAAIAACAAAAB5dQa/VKSVPa9VTRLSBR4uWpP9VE0zU35sIzviw8+DTyAAAABa0r/dI3zUm7PUKKJD3+/5m2D3krPc3HMtpLcUJnwSLEAAAACSRdhPMDEtCkkoAwttGo+rN18XBYhP9yrH3VTMryO9c2GP5TJJ2vHaIIoJLC1hULaCd755JClfhRQWYR67ivyp</EncryptedPassword>
+    <History>True|2022-10-14T18:46:28.1129559Z;False|2022-10-14T12:32:01.1234958-05:00;False|2022-10-14T12:19:35.5184634-05:00;False|2022-10-14T12:18:37.9185061-05:00;False|2022-10-14T12:16:57.7167105-05:00;</History>
+    <_PublishTargetUrl>C:\Users\Desarrollo-sana\OneDrive\Documentos\PUBLICACION</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>07/27/2017 11:51:17</publishTime>
+    </File>
+    <File Include="App_Browsers/qt.browser">
+      <publishTime>09/22/2022 08:48:46</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>07/27/2017 11:51:17</publishTime>
+    </File>
+    <File Include="bin/BCrypt.Net-Next.dll">
+      <publishTime>03/03/2022 10:10:20</publishTime>
+    </File>
+    <File Include="bin/CRME.dll">
+      <publishTime>10/14/2022 13:46:25</publishTime>
+    </File>
+    <File Include="bin/CRME.pdb">
+      <publishTime>10/14/2022 13:46:25</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.CrystalReports.Engine.dll">
+      <publishTime>05/16/2022 19:57:40</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.ReportAppServer.DataSetConversion.dll">
+      <publishTime>05/16/2022 19:57:42</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.ReportSource.dll">
+      <publishTime>05/16/2022 19:57:42</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Shared.dll">
+      <publishTime>05/16/2022 19:57:42</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Web.dll">
+      <publishTime>05/16/2022 19:57:42</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>07/27/2017 11:51:38</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>07/27/2017 11:51:38</publishTime>
+    </File>
+    <File Include="bin/EnvDTE.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/EnvDTE80.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>07/14/2016 16:57:38</publishTime>
+    </File>
+    <File Include="bin/es/EntityFramework.resources.dll">
+      <publishTime>03/02/2015 03:32:42</publishTime>
+    </File>
+    <File Include="bin/es/EntityFramework.SqlServer.resources.dll">
+      <publishTime>03/02/2015 03:32:42</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.AspNet.Identity.Core.resources.dll">
+      <publishTime>04/03/2015 11:09:40</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.AspNet.Identity.EntityFramework.resources.dll">
+      <publishTime>04/03/2015 11:09:40</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.AspNet.Identity.Owin.resources.dll">
+      <publishTime>04/03/2015 11:09:40</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.Host.SystemWeb.resources.dll">
+      <publishTime>02/13/2015 07:24:10</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.resources.dll">
+      <publishTime>02/13/2015 07:24:12</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.Security.Facebook.resources.dll">
+      <publishTime>02/13/2015 07:24:12</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.Security.Google.resources.dll">
+      <publishTime>02/13/2015 07:24:12</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.Security.MicrosoftAccount.resources.dll">
+      <publishTime>02/13/2015 07:24:14</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.Security.resources.dll">
+      <publishTime>02/13/2015 07:24:14</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Owin.Security.Twitter.resources.dll">
+      <publishTime>02/13/2015 07:24:14</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Helpers.resources.dll">
+      <publishTime>01/27/2015 22:04:36</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Mvc.resources.dll">
+      <publishTime>01/27/2015 22:02:24</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Optimization.resources.dll">
+      <publishTime>02/11/2014 09:28:40</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Razor.resources.dll">
+      <publishTime>01/27/2015 22:02:36</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>01/27/2015 22:04:36</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>01/27/2015 22:04:36</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.WebPages.resources.dll">
+      <publishTime>01/27/2015 22:04:36</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:36</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:37</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:37</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:37</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:37</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:37</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:37</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:39</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:39</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:39</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:39</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:39</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:39</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>01/06/2011 15:24:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>07/27/2017 11:51:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>07/27/2017 11:51:43</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>07/27/2017 11:51:45</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>07/27/2017 11:51:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>07/27/2017 11:51:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>07/27/2017 11:51:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>07/27/2017 11:51:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>07/27/2017 11:51:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>07/27/2017 11:51:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>07/27/2017 11:51:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>07/27/2017 11:51:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.MSXML.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>07/27/2017 11:51:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>07/27/2017 11:51:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>07/27/2017 11:51:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>07/27/2017 11:51:59</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>07/27/2017 11:51:59</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>07/27/2017 11:52:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>07/27/2017 11:52:01</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.Common.dll">
+      <publishTime>08/02/2017 10:34:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.DataVisualization.DLL">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.Design.DLL">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.DLL">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.WebDesign.DLL">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.WinForms.DLL">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.SqlServer.Types.dll">
+      <publishTime>08/02/2017 10:34:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.OLE.Interop.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Shell.Interop.8.0.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Shell.Interop.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.8.0.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/27/2017 11:52:02</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>07/27/2017 11:52:03</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>07/27/2017 11:52:05</publishTime>
+    </File>
+    <File Include="bin/PagedList.dll">
+      <publishTime>07/27/2017 11:52:05</publishTime>
+    </File>
+    <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>07/27/2017 11:52:05</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:40</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>07/27/2017 11:51:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>07/27/2017 11:51:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>07/27/2017 11:51:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>07/27/2017 11:51:57</publishTime>
+    </File>
+    <File Include="bin/Rotativa.dll">
+      <publishTime>09/29/2017 09:13:30</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:41</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:42</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:42</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:42</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:42</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:42</publishTime>
+    </File>
+    <File Include="bin/stdole.dll">
+      <publishTime>10/21/2021 12:42:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>07/27/2017 11:51:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>07/27/2017 11:51:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>07/27/2017 11:51:50</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>07/27/2017 11:51:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>07/27/2017 11:51:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>07/27/2017 11:51:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>07/27/2017 11:51:52</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>07/27/2017 11:52:05</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:45</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/Microsoft.ReportViewer.Common.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/Microsoft.ReportViewer.DataVisualization.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/Microsoft.ReportViewer.Design.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/Microsoft.ReportViewer.WebDesign.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/Microsoft.ReportViewer.WebForms.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/Microsoft.ReportViewer.WinForms.resources.dll">
+      <publishTime>08/02/2017 10:34:46</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/FileInput/fileinput.css">
+      <publishTime>07/27/2017 11:51:17</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/FileInput/FileInput.Site.css">
+      <publishTime>07/27/2017 11:51:17</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/JQueryUI/jquery-ui.min.css">
+      <publishTime>07/27/2017 11:51:18</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/css/materialize.css">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/css/materialize.min.css">
+      <publishTime>08/11/2017 19:54:39</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Bold.woff">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Bold.woff2">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Light.woff">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Light.woff2">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Medium.woff">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Medium.woff2">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Regular.woff">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Regular.woff2">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Thin.woff">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/fonts/roboto/Roboto-Thin.woff2">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/css/materialdesignicons.css">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/css/materialdesignicons.css.map">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/css/materialdesignicons.min.css">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/css/materialdesignicons.min.css.map">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/fonts/materialdesignicons-webfont.eot">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/fonts/materialdesignicons-webfont.ttf">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/fonts/materialdesignicons-webfont.woff">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/fonts/materialdesignicons-webfont.woff2">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/LICENSE">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/package.json">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/preview.html">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/README.md">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scripts/verify.js">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/materialdesignicons.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_animated.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_core.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_extras.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_functions.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_icons.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_path.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Materialize/Iconos/scss/_variables.scss">
+      <publishTime>07/19/2022 22:41:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/Modal/Modal.css">
+      <publishTime>08/30/2017 19:14:39</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/nouislider/nouislider.css">
+      <publishTime>07/28/2017 17:26:14</publishTime>
+    </File>
+    <File Include="Content/Aplicacion/nouislider/nouislider.min.css">
+      <publishTime>07/28/2017 17:26:14</publishTime>
+    </File>
+    <File Include="Content/PagedList.css">
+      <publishTime>07/27/2017 11:51:20</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>09/26/2022 17:20:01</publishTime>
+    </File>
+    <File Include="DataSets/Reportes.xsc">
+      <publishTime>08/02/2017 10:33:54</publishTime>
+    </File>
+    <File Include="DataSets/Reportes.xss">
+      <publishTime>08/30/2017 10:09:43</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>09/27/2022 12:31:12</publishTime>
+    </File>
+    <File Include="fonts/RetinaDisp-Black.otf">
+      <publishTime>08/29/2017 13:27:51</publishTime>
+    </File>
+    <File Include="fonts/RetinaDisp-Bold.otf">
+      <publishTime>08/29/2017 13:27:51</publishTime>
+    </File>
+    <File Include="fonts/RetinaDisp-Light.otf">
+      <publishTime>08/29/2017 13:27:51</publishTime>
+    </File>
+    <File Include="fonts/RetinaDisp-Semibold.otf">
+      <publishTime>08/29/2017 13:27:51</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>07/27/2017 11:51:21</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/26/2022 12:37:49</publishTime>
+    </File>
+    <File Include="Rotativa/help-wkhtmltoimage.txt">
+      <publishTime>09/22/2022 08:48:46</publishTime>
+    </File>
+    <File Include="Rotativa/help-wkhtmltopdf.txt">
+      <publishTime>09/22/2022 08:48:45</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltoimage.exe">
+      <publishTime>09/22/2022 08:48:45</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltopdf.exe">
+      <publishTime>09/22/2022 08:48:45</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.15.0-build58334.js">
+      <publishTime>07/27/2017 11:51:27</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.15.0-build58334.min.js">
+      <publishTime>07/27/2017 11:51:27</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Chart/Chart.bundle.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Chart/Chart.bundle.min.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Chart/Chart.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Chart/Chart.min.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/FileInput/fileinput.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/FileInput/fileinput_locale_es.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/JQueryUI/jquery-ui.min.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/JQueryUI/jquery.ui.touch-punch.min.js">
+      <publishTime>07/27/2017 11:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Mask/jquery.mask.js">
+      <publishTime>07/27/2017 11:51:23</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Mask/site.mask.js">
+      <publishTime>07/27/2017 11:51:23</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Materialize/js/materialize.js">
+      <publishTime>07/27/2017 11:51:23</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Materialize/js/materialize.min.js">
+      <publishTime>07/27/2017 11:51:23</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Modal/modal.js">
+      <publishTime>07/27/2017 11:51:23</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/Moment/moment.js">
+      <publishTime>07/27/2017 11:51:23</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/nouislider/nouislider.js">
+      <publishTime>07/28/2017 17:26:14</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/nouislider/nouislider.min.js">
+      <publishTime>07/28/2017 17:26:14</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/nouislider/wNumb.js">
+      <publishTime>07/28/2017 17:26:14</publishTime>
+    </File>
+    <File Include="Scripts/Aplicacion/site.js">
+      <publishTime>08/30/2017 21:01:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.min.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.min.map">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.slim.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.slim.min.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.slim.min.map">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>07/28/2017 11:10:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>07/28/2017 11:10:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>07/27/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>07/28/2017 11:10:53</publishTime>
+    </File>
+    <File Include="Templates/Vista.html">
+      <publishTime>08/03/2017 20:04:28</publishTime>
+    </File>
+    <File Include="Upload/ArchivosCorreos/default.png">
+      <publishTime>08/22/2017 16:36:47</publishTime>
+    </File>
+    <File Include="Upload/Empresa/default.png">
+      <publishTime>09/30/2022 11:39:24</publishTime>
+    </File>
+    <File Include="Upload/Plantillas/PlantillaCargaEgresados.xlsx">
+      <publishTime>08/21/2017 18:57:49</publishTime>
+    </File>
+    <File Include="Upload/Sistema/cicloAmb.png">
+      <publishTime>09/21/2022 13:42:45</publishTime>
+    </File>
+    <File Include="Upload/Sistema/default.png">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Upload/Sistema/ecolsur.png">
+      <publishTime>09/27/2022 14:35:23</publishTime>
+    </File>
+    <File Include="Upload/Sistema/favicon.png">
+      <publishTime>08/27/2019 20:10:20</publishTime>
+    </File>
+    <File Include="Upload/Sistema/fondo.jpeg">
+      <publishTime>07/28/2017 17:26:15</publishTime>
+    </File>
+    <File Include="Upload/Sistema/fondo.png">
+      <publishTime>08/22/2017 16:36:47</publishTime>
+    </File>
+    <File Include="Upload/Sistema/grafica1.png">
+      <publishTime>07/28/2017 17:26:15</publishTime>
+    </File>
+    <File Include="Upload/Sistema/grafica2.png">
+      <publishTime>07/28/2017 17:26:15</publishTime>
+    </File>
+    <File Include="Upload/Sistema/grafica3.png">
+      <publishTime>07/28/2017 17:26:15</publishTime>
+    </File>
+    <File Include="Upload/Sistema/IQS.jpg">
+      <publishTime>05/27/2019 11:18:16</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Loading_01.gif">
+      <publishTime>08/08/2017 19:26:29</publishTime>
+    </File>
+    <File Include="Upload/Sistema/Loading_02.gif">
+      <publishTime>08/08/2017 19:26:29</publishTime>
+    </File>
+    <File Include="Upload/Sistema/LOGO SAU.png">
+      <publishTime>10/10/2022 09:01:30</publishTime>
+    </File>
+    <File Include="Upload/Sistema/mdi-account-search.png">
+      <publishTime>08/10/2017 17:07:40</publishTime>
+    </File>
+    <File Include="Upload/Sistema/mdi-account.png">
+      <publishTime>08/10/2017 17:07:40</publishTime>
+    </File>
+    <File Include="Upload/Sistema/mdi-chart.png">
+      <publishTime>08/10/2017 17:07:40</publishTime>
+    </File>
+    <File Include="Upload/Sistema/mdi-logout.png">
+      <publishTime>08/14/2017 16:19:17</publishTime>
+    </File>
+    <File Include="Upload/Sistema/mdi-sync.png">
+      <publishTime>08/10/2017 17:07:40</publishTime>
+    </File>
+    <File Include="Upload/Sistema/sana.png">
+      <publishTime>09/26/2022 14:15:21</publishTime>
+    </File>
+    <File Include="Upload/Sistema/sana_azul.png">
+      <publishTime>05/23/2019 12:13:26</publishTime>
+    </File>
+    <File Include="Upload/Sistema/SIRE_FINAL.png">
+      <publishTime>08/27/2019 15:03:04</publishTime>
+    </File>
+    <File Include="Upload/Sistema/trash.png">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Upload/Temporales/default.png">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Upload/Usuarios/default.png">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/AccesoView/Confirmar.cshtml">
+      <publishTime>08/29/2017 10:18:17</publishTime>
+    </File>
+    <File Include="Views/AccesoView/Index.cshtml">
+      <publishTime>09/13/2022 14:18:23</publishTime>
+    </File>
+    <File Include="Views/Account/ConfirmEmail.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginFailure.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPassword.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPassword.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/SendCode.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/VerifyCode.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>07/27/2017 11:51:29</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/EditarAlumno.cshtml">
+      <publishTime>08/30/2017 21:14:18</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/Index.cshtml">
+      <publishTime>09/19/2022 11:13:33</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/Mensaje.cshtml">
+      <publishTime>08/28/2017 13:10:57</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioAnexo.cshtml">
+      <publishTime>08/14/2017 10:31:08</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioConocimientoInformatico.cshtml">
+      <publishTime>08/16/2017 18:39:05</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioDatosContacto.cshtml">
+      <publishTime>08/25/2017 16:09:49</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioDatosPersonales.cshtml">
+      <publishTime>12/15/2021 13:42:07</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioExperienciaProfesional.cshtml">
+      <publishTime>08/14/2017 20:20:19</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioFormacionAcademica.cshtml">
+      <publishTime>08/30/2017 10:57:01</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioFormacionComplementaria.cshtml">
+      <publishTime>08/31/2017 09:56:52</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_FormularioIdioma.cshtml">
+      <publishTime>08/16/2017 18:39:05</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaAlumnos.cshtml">
+      <publishTime>09/19/2022 11:12:38</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaAnexos.cshtml">
+      <publishTime>08/14/2017 16:19:17</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaConocimientosInformaticos.cshtml">
+      <publishTime>08/30/2017 19:36:28</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaExperienciasProfesionales.cshtml">
+      <publishTime>08/30/2017 19:14:36</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaFormacionAcademica.cshtml">
+      <publishTime>08/17/2017 10:10:36</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaFormacionesComplementarias.cshtml">
+      <publishTime>08/17/2017 12:19:54</publishTime>
+    </File>
+    <File Include="Views/AlumnoView/_TablaIdiomas.cshtml">
+      <publishTime>08/30/2017 19:14:36</publishTime>
+    </File>
+    <File Include="Views/CargaDescargaView/Index.cshtml">
+      <publishTime>08/30/2017 19:14:36</publishTime>
+    </File>
+    <File Include="Views/DepartamentosView/Index.cshtml">
+      <publishTime>10/04/2022 12:29:58</publishTime>
+    </File>
+    <File Include="Views/DepartamentosView/_Formulario.cshtml">
+      <publishTime>10/05/2022 17:16:16</publishTime>
+    </File>
+    <File Include="Views/DepartamentosView/_TablaDepartamento.cshtml">
+      <publishTime>10/03/2022 17:30:26</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/ComboDepartamento.cshtml">
+      <publishTime>10/10/2022 09:23:24</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/comboEmpresa.cshtml">
+      <publishTime>10/10/2022 08:14:16</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/ComboPuesto.cshtml">
+      <publishTime>10/10/2022 09:27:42</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/ComboSucursal.cshtml">
+      <publishTime>10/10/2022 08:15:06</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/Index.cshtml">
+      <publishTime>10/10/2022 09:36:11</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/_Formulario.cshtml">
+      <publishTime>10/10/2022 09:23:01</publishTime>
+    </File>
+    <File Include="Views/EmpleadosView/_TablaEmpleado.cshtml">
+      <publishTime>10/05/2022 17:24:52</publishTime>
+    </File>
+    <File Include="Views/EmpresasView/Index.cshtml">
+      <publishTime>09/30/2022 16:09:21</publishTime>
+    </File>
+    <File Include="Views/EmpresasView/_FormularioEmpresa.cshtml">
+      <publishTime>09/30/2022 13:22:41</publishTime>
+    </File>
+    <File Include="Views/EmpresasView/_TablaEmpresa.cshtml">
+      <publishTime>09/30/2022 15:54:23</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>07/27/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>07/27/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>08/07/2017 12:09:29</publishTime>
+    </File>
+    <File Include="Views/Manage/AddPhoneNumber.cshtml">
+      <publishTime>07/27/2017 11:51:31</publishTime>
+    </File>
+    <File Include="Views/Manage/ChangePassword.cshtml">
+      <publishTime>07/27/2017 11:51:31</publishTime>
+    </File>
+    <File Include="Views/Manage/Index.cshtml">
+      <publishTime>07/27/2017 11:51:31</publishTime>
+    </File>
+    <File Include="Views/Manage/ManageLogins.cshtml">
+      <publishTime>07/27/2017 11:51:31</publishTime>
+    </File>
+    <File Include="Views/Manage/SetPassword.cshtml">
+      <publishTime>07/27/2017 11:51:31</publishTime>
+    </File>
+    <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
+      <publishTime>07/27/2017 11:51:31</publishTime>
+    </File>
+    <File Include="Views/PanelInvView/index.cshtml">
+      <publishTime>09/29/2022 15:58:16</publishTime>
+    </File>
+    <File Include="Views/PanelView/Index.cshtml">
+      <publishTime>09/22/2022 15:55:41</publishTime>
+    </File>
+    <File Include="Views/PuestosView/ComboDepartamento.cshtml">
+      <publishTime>10/05/2022 15:22:59</publishTime>
+    </File>
+    <File Include="Views/PuestosView/ComboEmpresa.cshtml">
+      <publishTime>10/05/2022 11:12:29</publishTime>
+    </File>
+    <File Include="Views/PuestosView/ComboSucursal.cshtml">
+      <publishTime>10/05/2022 15:20:22</publishTime>
+    </File>
+    <File Include="Views/PuestosView/Index.cshtml">
+      <publishTime>10/12/2022 17:09:57</publishTime>
+    </File>
+    <File Include="Views/PuestosView/_Formulario.cshtml">
+      <publishTime>10/05/2022 16:55:06</publishTime>
+    </File>
+    <File Include="Views/PuestosView/_TablaPuesto.cshtml">
+      <publishTime>10/05/2022 16:40:58</publishTime>
+    </File>
+    <File Include="Views/ReporteView/Correos.cshtml">
+      <publishTime>08/30/2017 19:14:37</publishTime>
+    </File>
+    <File Include="Views/ReporteView/Index.cshtml">
+      <publishTime>12/21/2021 11:03:58</publishTime>
+    </File>
+    <File Include="Views/ReporteView/_FormularioAgregarBook.cshtml">
+      <publishTime>08/30/2017 10:09:42</publishTime>
+    </File>
+    <File Include="Views/ReporteView/_FormularioCampos.cshtml">
+      <publishTime>08/30/2017 10:09:42</publishTime>
+    </File>
+    <File Include="Views/ReporteView/_FormularioFiltros.cshtml">
+      <publishTime>08/30/2017 10:09:42</publishTime>
+    </File>
+    <File Include="Views/ReporteView/_FormularioGraficas.cshtml">
+      <publishTime>08/30/2017 10:09:42</publishTime>
+    </File>
+    <File Include="Views/ReporteView/_FormularioIndicadores.cshtml">
+      <publishTime>08/30/2017 10:09:42</publishTime>
+    </File>
+    <File Include="Views/ReporteView/_FormularioReporte.cshtml">
+      <publishTime>08/30/2017 10:09:42</publishTime>
+    </File>
+    <File Include="Views/ResguardosView/index.cshtml">
+      <publishTime>10/10/2022 10:10:30</publishTime>
+    </File>
+    <File Include="Views/ResguardosView/Report.cshtml">
+      <publishTime>09/26/2022 12:18:02</publishTime>
+    </File>
+    <File Include="Views/ResguardosView/VisualizarResguardo.cshtml">
+      <publishTime>10/14/2022 10:28:00</publishTime>
+    </File>
+    <File Include="Views/ResguardosView/_formularioResguardo.cshtml">
+      <publishTime>10/12/2022 13:23:42</publishTime>
+    </File>
+    <File Include="Views/ResguardosView/_TablaReguardos.cshtml">
+      <publishTime>09/27/2022 14:46:11</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Views/Shared/Lockout.cshtml">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>10/04/2022 12:55:26</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Views/SucursalesView/Index.cshtml">
+      <publishTime>10/03/2022 14:15:26</publishTime>
+    </File>
+    <File Include="Views/SucursalesView/_Fromulario.cshtml">
+      <publishTime>10/03/2022 14:08:44</publishTime>
+    </File>
+    <File Include="Views/SucursalesView/_TablaSucursal.cshtml">
+      <publishTime>10/03/2022 17:22:54</publishTime>
+    </File>
+    <File Include="Views/UsuarioView/Index.cshtml">
+      <publishTime>08/30/2017 18:36:18</publishTime>
+    </File>
+    <File Include="Views/UsuarioView/_Formulario.cshtml">
+      <publishTime>08/30/2017 18:23:29</publishTime>
+    </File>
+    <File Include="Views/UsuarioView/_TablaUsuarios.cshtml">
+      <publishTime>08/29/2017 11:00:48</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>07/27/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/14/2022 13:46:26</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

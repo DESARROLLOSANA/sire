@@ -1,0 +1,237 @@
+﻿@model CRME.Models.Alumnos
+
+@{
+
+}
+
+<div class="row padding-left-right-10">
+    <div class="col l4 m4 s11 titlecircle pnl-encabezado">
+        <b>Información personal</b>
+    </div>
+    <div class="col l8 m8 s1 separator hide-on-small-and-down">
+    </div>
+</div>
+
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmDatosPer" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idAlumno)
+    @* ----------------Datos de personales----------------*@
+    <div class="row">
+        <div class="col s12 m4 l4">
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <div class="col s12 center-align" style="border-radius:4px; padding:5px;">
+                        <b style="font-size:10px;">* Recuerda subir la foto para poder guardar</b> <span class="orange" style="border-radius:4px; padding:2px 3px;"><i class="mdi mdi-cloud-upload white-text"></i></span>
+                    </div>
+                    <div class="form-group">
+                        <div id="errorBlockResponsables"></div>
+                    </div>
+                    @Html.Editor("rutaPathImagen", new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                    @Html.HiddenFor(model => model.Personas.pathFoto, new { @class = "Validate" })
+                    <div class="center">
+                        @Html.ValidationMessageFor(model => model.Personas.pathFoto, "", new { @class = "text-danger valid-img" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m8 l8">
+            <div class="row">
+                <div class="col s12 m8 l8 input-field">
+                    <b class="">Nombre completo:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.Personas.nbCompleto, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese nombre completo", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.Personas.nbCompleto, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Fecha nacimiento</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.feNacimiento, new { htmlAttributes = new { @class = "Validate datepickerEdad", @Placeholder = "", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.feNacimiento, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Género</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.idAlumno == 0)
+                        {
+
+                            @Html.DropDownListFor(model => model.Personas.idGenero, new SelectList(ViewBag.idGenero, "Value", "Text"), "-- Género --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+
+                            @Html.DropDownListFor(model => model.Personas.idGenero, new SelectList(ViewBag.idGenero, "Value", "Text"), "-- Género --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Personas.idGenero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Tipo de sangre</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.idAlumno == 0)
+                        {
+                            @Html.DropDownListFor(model => model.idTipoSangre, new SelectList(ViewBag.idTipoSangre, "Value", "Text"), "-- Tipo de sangre --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.idTipoSangre, null, "-- Tipo de sangre --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.idTipoSangre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Religión</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.idAlumno == 0)
+                        {
+                            @Html.DropDownListFor(model => model.idReligion, new SelectList(ViewBag.idReligion, "Value", "Text"), "-- Religión --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.idReligion, null, "-- Religión --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.idReligion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Estado civil</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.idAlumno == 0)
+                        {
+                            @Html.DropDownListFor(model => model.idEstadoCivil, new SelectList(ViewBag.idEstadoCivil, "Value", "Text"), "-- Estado civil --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.idEstadoCivil, null, "-- Estado civil --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.idEstadoCivil, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Tipo de egresado</b>
+                    <div class="input-field margin-top-0">
+
+                        @if (@Model.idAlumno == 0)
+                        {
+                            @Html.DropDownListFor(model => model.tpEgresado, new SelectList(new List<Object> { new { Value = "T", Text = "Titulado" }, new { Value = "P", Text = "Pasante" } },"Value","Text"), "-- Tipo de egresado --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.tpEgresado, new SelectList(new List<Object> { new { Value = "T", Text = "Titulado" }, new { Value = "P", Text = "Pasante" } }, "Value", "Text"), "-- Tipo de egresado --", htmlAttributes: new { @class = "select classic" })
+                        }
+                            @Html.ValidationMessageFor(model => model.tpEgresado, "", new { @class = "text-danger" })
+                       </div>
+                 </div>
+            </div>
+               <div class="row">
+                <div class="col s12 m12 l12 input-field">
+                    @if(Auth.Usuario == null)
+                    { 
+                    <div class="col s12 m3 l3" style="display:none" >
+                        <p>
+                            @if (Model.fgFallecido == null || Model.fgFallecido == false)
+                            {
+                                <input type="checkbox" class="filled-in" id="check_fallecido" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="filled-in" id="check_fallecido" checked="checked" />
+                            }
+                            <label for="check_fallecido">Fallecido</label>
+                        </p>
+                        @Html.HiddenFor(model => model.fgFallecido, new { @class = "Validate" })
+                    </div>
+                    }
+                    else
+                    {
+                        <div class="col s12 m3 l3">
+                            <p>
+                                @if (Model.fgFallecido == null || Model.fgFallecido == false)
+                                {
+                                    <input type="checkbox" class="filled-in" id="check_fallecido" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" class="filled-in" id="check_fallecido" checked="checked" />
+                                }
+                                <label for="check_fallecido">Fallecido</label>
+                            </p>
+                            @Html.HiddenFor(model => model.fgFallecido, new { @class = "Validate" })
+                        </div>
+                    }
+                    <div class="col s12 m3 l3">
+                        <p>
+                            @if (Model.fgDonarSangre == null || Model.fgDonarSangre == false)
+                            {
+                                <input type="checkbox" class="filled-in"  id="check_donador" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="filled-in" id="check_donador"  checked="checked" />
+                                
+                            }
+                            <label for="check_donador">Donador</label>
+                           
+                        </p>
+                        @Html.HiddenFor(model => model.fgDonarSangre, new { @class = "Validate"})
+                    </div>
+                    <div class="col s12 m3 l3">
+                        <p>
+                            @if (Model.fgTrabajaActualmente == null || Model.fgTrabajaActualmente == false)
+                            {
+                                <input type="checkbox" class="filled-in" id="check_trabaja" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="filled-in" id="check_trabaja" checked="checked" />
+                            }
+                            <label for="check_trabaja">Trabaja actualmente</label>
+                        </p>
+                        @Html.HiddenFor(model => model.fgTrabajaActualmente, new { @class = "Validate" })
+                    </div>
+                    <div class="col s12 m3 l3">
+                        <p>
+                            @if (Model.fgLicencia == null || Model.fgLicencia == false)
+                            {
+                                <input type="checkbox" class="filled-in" id="check_licencia" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="filled-in" id="check_licencia" checked="checked" />
+                            }
+                            <label for="check_licencia">Con licencia de conducir</label>
+                        </p>
+                        @Html.HiddenFor(model => model.fgLicencia, new { @class = "Validate" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ----------------Datos de usuario----------------*@
+    <div class="row">
+        <div class="col s12 m12 l12">    
+        </div>
+    </div>
+
+    @* ---------------Botones----------------*@
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    @*<a class="btn red darken-4 waves-effect" href="@Url.Action("Index","UsuarioView")"><i class="mdi mdi-close hide-on-small-and-down"></i> CANCELAR</a>*@
+                    <button type="button" class="btn orange darken-4 waves-effect GuardarAlumnoS" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

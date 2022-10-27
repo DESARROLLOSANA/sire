@@ -1,0 +1,92 @@
+﻿@*@model List<CRME.Models.Alumnos>
+@using PagedList.Mvc
+
+
+<div class="row margin-10">
+    <div class="col l6 m6 s12 titlecircle pnl-encabezado">
+        <b>Lista de egresados</b>
+    </div>
+    <div class="col l6 m6 hide-on-small-and-down separator">
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col s12 m6 l6 input-field center-align">
+        <input type="text" name="busqueda" id="filtroBusquedaA" Value="@ViewBag.filtro" placeholder="Ingrese nombre del alumno, licenciatura o matricula" />
+    </div>
+    <div class="col s12 m2 l2 input-field center-align">
+        <input type="text" name="busquedaFe" id="filtroBusquedaFe" Value="@ViewBag.filtrofe" placeholder="Ingrese fecha" title="La busqueda por fecha mostrará la lista de alumnos que no han actualizado hasta la fecha seleccionada"/>
+    </div>
+    <div class="col s12 m4 l4 input-field">
+        <button class="btn orange darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+        <button class="btn orange darken-4 waves-effect limpiar" style="margin-left: 10px" title="Limpiar"><i class="mdi mdi-filter-remove"></i></button>
+    </div>
+</div>
+<div class="row margin-0">
+    <div class="col s12 m12 l12 input-field right-align">
+        <p>
+            <input type="checkbox" class="filled-in" id="check_selT" />
+            <label for="check_selT">Selecionar todos</label>
+        </p>
+    </div>
+
+</div>
+<div id="contentTablaAlumnos">
+    <div class="row" style="min-height:350px; max-height:350px; overflow-y:auto !important;">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight white">
+                <thead class="table-header-orange">
+                    <tr class="table-header-tr-orange">
+                        <td class="center">Nombre completo</td>
+                        <td class="center hide-on-med-and-down">Correo</td>
+                        <td class="center hide-on-med-and-down">Teléfono</td>
+                        <td class="center hide-on-med-and-down">Tipo de teléfono</td>
+                        <td class="center hide-on-med-and-down">Última actualización</td>
+                        <td class="center">Opciones</td>
+                        <td class="center">Enviar solicitud</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-orange">
+                    @if (Model.Count() == 0)
+                    {
+                    <tr class="table-body">
+                        <td colspan="7" class="center">
+                            <b>No se encontraron coincidencias</b>
+                        </td>
+                    </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            var email = (item.Personas.MediosContactos.FirstOrDefault(x => x.idTipoMedioContacto == 1) != null) ? item.Personas.MediosContactos.FirstOrDefault(x => x.idTipoMedioContacto == 1).desMedioContacto : "N/A";
+                            var telefono = (item.Personas.MediosContactos.FirstOrDefault(x => x.idTipoMedioContacto == 2) != null) ? item.Personas.MediosContactos.FirstOrDefault(x => x.idTipoMedioContacto == 2).desMedioContacto : "N/A";
+                            var tipo = (item.Personas.MediosContactos.FirstOrDefault(x => x.idTipoMedioContacto == 2) != null) ? item.Personas.MediosContactos.FirstOrDefault(x => x.idTipoMedioContacto == 2).tpFormato : "N/A";
+                            <tr class="table-body">
+                                <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.Personas.nbCompleto)</td>
+                                <td class="center hide-on-med-and-down" style="">@email</td>
+                                <td class="center hide-on-med-and-down" style="">@telefono</td>
+                                <td class="center hide-on-med-and-down" style="">@tipo</td>
+                                <td class="center hide-on-med-and-down" style="">@Html.DisplayFor(modelItem => item.feActualizacion)</td>
+                                <td class="center">
+                                <a class="editarPersona" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" href="@Url.Action("EditarAlumno","AlumnoView", new { tg = item.idAlumno})" id-vend=""><i class="mdi mdi-pencil mdi-24px orange-text"></i></a>
+                                 </td>
+                                <td class="center">
+                                <input type="checkbox" id="check_@item.idAlumno" class="filled-in chek" id-item="@item.idAlumno">
+                                <label for="check_@item.idAlumno"></label>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col push-l6 l6 push-m6 m6 s12 right-align input-field">
+            <button class="btn orange darken-4 waves-effect enviarSoli white-text"><i class="mdi mdi-send"></i> Enviar</button>
+        </div>
+    </div>
+</div>*@

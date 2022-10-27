@@ -1,0 +1,11 @@
+﻿
+
+<div class="row margin-0">
+    <div class="col s12 m12 l12">
+        <b>Título de búsqueda:</b>
+        @Html.Editor("nbBook", new { htmlAttributes = new { @class = "form-simple limpiar", @type = "text" } })
+        @Html.ValidationMessage("nbBook", "", new { @class = "text-danger" })
+    </div>
+    <label id="mensajeerror" class="text-danger col s12" style="font-size:15px"></label>
+</div>
+

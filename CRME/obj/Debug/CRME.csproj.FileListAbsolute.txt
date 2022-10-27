@@ -1,0 +1,695 @@
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ApplicationInsights.config
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\csc.exe
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\System.Collections.Immutable.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\System.Reflection.Metadata.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\vbc.exe
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\VBCSCompiler.exe
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\roslyn\VBCSCompiler.exe.config
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\CRME.dll.config
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\CRME.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\CRME.pdb
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Antlr3.Runtime.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\BCrypt.Net.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EntityFramework.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EntityFramework.SqlServer.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EPPlus.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.Agent.Intercept.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.DependencyCollector.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.Web.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.WindowsServer.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ApplicationInsights.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AspNet.Identity.Core.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Cookies.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Facebook.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Google.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.OAuth.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Twitter.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.Common.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.DataVisualization.DLL
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.Design.DLL
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.WebDesign.DLL
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.WebForms.DLL
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ReportViewer.WinForms.DLL
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.SqlServer.Types.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Web.Infrastructure.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Newtonsoft.Json.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Owin.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\PagedList.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\PagedList.Mvc.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Helpers.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Mvc.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Optimization.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Razor.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.WebPages.Deployment.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.WebPages.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.WebPages.Razor.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\WebGrease.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EnvDTE.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.14.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Design.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EnvDTE80.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Build.Framework.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\stdole.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.OLE.Interop.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.VSHelp.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Utilities.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Threading.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Imaging.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ImageCatalog.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Designer.Interfaces.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.Data.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.UI.Wpf.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.UI.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Package.LanguageService.14.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Language.Intellisense.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Build.Tasks.Core.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Data.Services.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\VSLangProj.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Data.Core.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\VSLangProj80.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.WCFReference.Interop.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Data.Framework.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Editor.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.GraphModel.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.CoreUtility.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.MSXML.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Build.Utilities.Core.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.Logic.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\VSLangProj2.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\BCrypt.Net.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EPPlus.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.DependencyCollector.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.Web.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AI.WindowsServer.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.ApplicationInsights.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Newtonsoft.Json.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\PagedList.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\PagedList.Mvc.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Helpers.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Mvc.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Optimization.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.Razor.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.WebPages.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.WebPages.Deployment.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\System.Web.WebPages.Razor.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Antlr3.Runtime.pdb
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EntityFramework.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\EntityFramework.SqlServer.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AspNet.Identity.Core.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Facebook.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Cookies.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.OAuth.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Google.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.Twitter.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.14.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Design.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.8.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.OLE.Interop.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Utilities.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Threading.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.9.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ProjectAggregator.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Imaging.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ImageCatalog.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Designer.Interfaces.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.Data.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.UI.Wpf.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.UI.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Package.LanguageService.14.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Language.Intellisense.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Data.Services.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.11.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Data.Core.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.10.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.ManagedInterfaces.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.WCFReference.Interop.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Data.Framework.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Editor.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.CoreUtility.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.Text.Logic.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.xml
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\de\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\it\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\de\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\it\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.Helpers.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.Mvc.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.Optimization.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.Razor.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.WebPages.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.WebPages.Deployment.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\System.Web.WebPages.Razor.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\EntityFramework.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\EntityFramework.SqlServer.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.Security.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.Security.Google.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\bin\es\Microsoft.VisualStudio.GraphModel.resources.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\obj\Debug\RdlCompile.cache
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\obj\Debug\RdlCompile.compiled
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\obj\Debug\CRME.dll
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\obj\Debug\CRME.pdb
+F:\131701CRME\Aplicacion\Sitio Web\CRME\CRME\obj\Debug\CRME.csprojResolveAssemblyReference.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ApplicationInsights.config
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\csc.exe
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\vbc.exe
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\VBCSCompiler.exe
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\CRME.dll.config
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\CRME.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\CRME.pdb
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Antlr3.Runtime.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\BCrypt.Net.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EntityFramework.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EntityFramework.SqlServer.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EPPlus.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.Web.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.DataVisualization.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.Design.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.WebDesign.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.WinForms.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Newtonsoft.Json.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Owin.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\PagedList.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\PagedList.Mvc.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Helpers.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Mvc.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Optimization.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Razor.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.WebPages.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.WebPages.Razor.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\WebGrease.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EnvDTE.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.14.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Design.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EnvDTE80.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Build.Framework.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\stdole.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Utilities.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Threading.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Imaging.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.ImageCatalog.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Designer.Interfaces.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.CoreUtility.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.MSXML.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\BCrypt.Net.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EPPlus.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.Web.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Newtonsoft.Json.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\PagedList.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\PagedList.Mvc.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Helpers.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Mvc.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Optimization.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.Razor.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.WebPages.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\System.Web.WebPages.Razor.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Antlr3.Runtime.pdb
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EntityFramework.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\EntityFramework.SqlServer.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.14.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Design.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Utilities.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Threading.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.9.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.ProjectAggregator.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Imaging.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.ImageCatalog.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Designer.Interfaces.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.CoreUtility.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.Razor.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\EntityFramework.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\bin\es\Microsoft.VisualStudio.GraphModel.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.CoreCompileInputs.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.CopyComplete
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\obj\Debug\CRME.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\CRME 8\CRME 8\CRME\CRME\obj\Debug\CRME.pdb
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ApplicationInsights.config
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\csc.exe
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\vbc.exe
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\VBCSCompiler.exe
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CRME.dll.config
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CRME.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CRME.pdb
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Antlr3.Runtime.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\BCrypt.Net-Next.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CrystalDecisions.ReportSource.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CrystalDecisions.Shared.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\CrystalDecisions.Web.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EntityFramework.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EntityFramework.SqlServer.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EPPlus.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\log4net.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.Web.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.DataVisualization.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.Design.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.WebDesign.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ReportViewer.WinForms.DLL
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Newtonsoft.Json.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Owin.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\PagedList.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\PagedList.Mvc.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Rotativa.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Helpers.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Mvc.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Optimization.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Razor.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.WebPages.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.WebPages.Razor.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\WebGrease.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EnvDTE.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EnvDTE80.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\stdole.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.MSXML.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\BCrypt.Net-Next.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EPPlus.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\log4net.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.Web.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Newtonsoft.Json.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\PagedList.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\PagedList.Mvc.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Helpers.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Mvc.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Optimization.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.Razor.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.WebPages.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\System.Web.WebPages.Razor.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Antlr3.Runtime.pdb
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EntityFramework.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\EntityFramework.SqlServer.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.Razor.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\EntityFramework.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.columnas.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.columna.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.columna1.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.columnap.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.columnaVe.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.columaem.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.modificacionpue.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.nivel.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.niveles.resources
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.GenerateResource.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\RdlCompile.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\RdlCompile.compiled
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.CoreCompileInputs.cache
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.csproj.CopyComplete
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.dll
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.pdb
+C:\Users\Desarrollo-sana\OneDrive\Documentos\web\sire mvc\CRME 8\CRME\CRME\obj\Debug\CRME.Migrations.requerido.resources

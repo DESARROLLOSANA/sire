@@ -1,0 +1,128 @@
+﻿@model CRME.Models.ExperienciasProfesionales
+
+@{
+    ViewBag.Title = "_FormularioExperienciaProfesional";
+}
+
+<div class="row">
+    <div class="col s12 m12 l12" >
+        @Html.HiddenFor(model => model.idExperienciaProfesional)
+
+        <div style="margin-top:-5px;">
+            <div class="row margin-0">
+                <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                    <b>Fecha de inicio:</b>
+                </div>
+                <div class="input-field col s12 m12 l12 margin-0">
+                    @Html.EditorFor(model => model.feInicioLaboral, new { htmlAttributes = new { @class = "Validate form-simple datepicker1 limpiar", @type = "text", @Style = "margin-bottom:0px !important;", @Placeholder = "SELECCIONE FECHA DE INICIO" } })
+                    @Html.ValidationMessageFor(model => model.feInicioLaboral, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Fecha de terminación:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.feFinalLaboral, new { htmlAttributes = new { @class = "Validate form-simple datepicker2 limpiar", @type = "text", @Style = "margin-bottom:0px !important;", @Placeholder = "SELECCIONE FECHA DE TERMINACIÓN" } })
+                @Html.ValidationMessageFor(model => model.feFinalLaboral, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Empresa:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.nbEmpresa, new { htmlAttributes = new { @class = "Validate form-simple limpiar", @type = "text", @Style = "margin-bottom:0px !important;", @Placeholder = "INGRESE NOMBRE DE LA EMPRESA" } })
+                @Html.ValidationMessageFor(model => model.nbEmpresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Tipo de empresa:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.DropDownListFor(model => model.idTipoEmpresa, null, "--TIPO DE EMPRESA--", htmlAttributes: new { @class = "select classic limpiar" })
+                @Html.ValidationMessageFor(model => model.idTipoEmpresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Descripción del puesto:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.nbPuesto, new { htmlAttributes = new { @class = "Validate form-simple limpiar", @type = "text", @Style = "margin-bottom:0px !important;", @Placeholder = "INGRESE NOMBRE DEL PUESTO" } })
+                @Html.ValidationMessageFor(model => model.nbPuesto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0  margin-top-15">
+                <b>Personal a cargo:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.numPersonalCargo, new { htmlAttributes = new { @class = "Validate form-simple limpiar entero", @type = "number", @min = "0", @pattern = "[0-9]", @onkeypress = "return justNumbers(event);", @Placeholder = "INGRESE NÚMERO DE PERSONAL A CARGO" } })
+                @Html.ValidationMessageFor(model => model.numPersonalCargo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="row" style="margin:-40px 0px 8px 0px;">
+            <div class="input-field col s12 m12 l12 margin-0">
+                <b>Nivel de puesto:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.tpPuesto, new { htmlAttributes = new { @class = "Validate form-simple limpiar", @Style = "margin-bottom:0px !important;", @Placeholder="INGRESE TIPO DE PUESTO" } })
+                @*@Html.DropDownListFor(model => model.tpPuesto, new SelectList(ViewBag.idTipoPuesto, "Value", "Text"), "--Seleccionar--", htmlAttributes: new { @class = "select classic limpiar" })*@
+                @Html.ValidationMessageFor(model => model.tpPuesto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0">
+                <b>Área:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.DropDownListFor(model => model.idArea, null, "--Área--", htmlAttributes: new { @class = "select classic limpiar" })
+                @Html.ValidationMessageFor(model => model.idArea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Sector:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.DropDownListFor(model => model.idSector, null, "--Sector--", htmlAttributes: new { @class = "select classic limpiar" })
+                @Html.ValidationMessageFor(model => model.idSector, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Salario:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.decSalario, new { htmlAttributes = new { @class = " form-simple limpiar monto", @type = "text"  } })                
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0">
+                <b>Comentarios:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.TextAreaFor(model => model.desComentario, htmlAttributes : new { @class = "Validate form-simple", @type = "text", @style = "min-height:120px !important; resize:none !important;", @rows = "3", @Placeholder = "INGRESE COMENTARIOS" } )                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12  center-align">
+                <label id="mensaje-error-model2" class="text-danger" style="font-size:15px"></label>
+            </div>
+        </div>
+    </div>
+</div>
+

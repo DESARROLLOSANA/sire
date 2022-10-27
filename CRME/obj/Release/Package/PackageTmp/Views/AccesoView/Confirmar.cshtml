@@ -1,0 +1,118 @@
+﻿@model CRME.Models.SetPasswordViewModel
+
+@{
+    ViewBag.Title = "Recuperar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="">
+    <div class="row">
+        <div class="col l6 offset-l3 m6 offset-m3 s12 z-depth-2 white margin-top-50" style="padding:50px 20px;">
+            @*<div class="row center-align">
+                    <img src="@Url.Content("~/Upload/Sistema/logo.png")" alt="" style="width: 100px" />
+                </div>*@
+            @using (Html.BeginForm("Confirmar", "AccesoView", FormMethod.Post, new { id = "FrmRecuperar", @class = "form-simple" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("op1", null, htmlAttributes: new { @Value = @ViewBag.Id })
+                <div class="row margin-0">
+                    <div class="input-field col s1 m1 l1 hide-on-med-and-down">
+                        <i class="mdi mdi-account prefix mdi-24px grey-text margin-top-icons" style="margin-top:-5px;"></i>
+                    </div>
+                    <div class="input-field col s12 m11 l11">
+                        @Html.Label("Usuario", htmlAttributes: new { @class = "", @for = "Usuario" })
+                        @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "validate", id = "Usuario", @Value = ViewBag.usuario, @disabled = "disabled" } })
+                    </div>
+                </div>
+                <div class="row margin-0">
+                    <div class="input-field col s1 m1 l1 hide-on-med-and-down">
+                        <i class="mdi mdi-lock prefix mdi-24px grey-text margin-top-icons" style="margin-top:-5px;"></i>
+                    </div>
+                    <div class="input-field col s12 m11 l11">
+                        @Html.Label("Nueva contraseña", htmlAttributes: new { @class = "", @for = "NewPassword" })
+                        @*@Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "hide", id = "NewPassword", @Type = "password", autocomplete = "off", disabled = "disabled" } })*@
+                        @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "validate", id = "NewPassword", @Type = "password", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row margin-0">
+                    <div class="input-field col s1 m1 l1 hide-on-med-and-down">
+                        <i class="mdi mdi-lock prefix mdi-24px grey-text margin-top-icons" style="margin-top:-5px;"></i>
+                    </div>
+                    <div class="input-field col s12 m11 l11">
+                        @Html.Label("Confirmar contraseña", htmlAttributes: new { @class = "", @for = "ConfirmPassword" })
+                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "validate", id = "ConfirmPassword", @Type = "password" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col l12 m12 s12 input-field center">
+                    <button class="btn white-text orange darken-4" id="submit" type="button">Actualizar contraseña</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="ModalAlert" class="modal modal-fixed-footer size-modal" style="height:300px !important;">
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    $(document).ready(function () {
+        $("#footer").addClass('hide');
+        $("#ModalAlert").modal();
+        scriptRecuperar();
+        $("#NewPassword").val("");
+    })
+
+    function scriptRecuperar() {
+        $("#submit").off("click");
+        $("#submit").on("click", function (e) {
+            e.preventDefault();
+            var frm = $("#FrmRecuperar");
+            console.log($("#op1").val());
+            if ($("#NewPassword").val() != "" && $("#ConfirmPassword").val() != "") {
+                if ($("#FrmRecuperar").valid()) {
+                    var form = frm.serialize();
+                    var id = $("#op1").val();
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        headers: { "__RequestVerificationToken": token },
+                        url: "@Url.Action("Confirmar", "AccesoView")",
+                        type: "POST",
+                        data: form + "&op1=" + id,
+                        success: function (response) {
+                            if (response.success) {
+                                ConfigModal($("#ModalAlert"), "Confirmación", "la contraseña ha sido actualizada con éxito", 1);
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                                $(".md-accept").click(function () {
+                                    document.location.href = "@Url.Action("Index", "AccesoView")";
+                                });
+                            } else if (!response.success) {
+                                ConfigModal($("#ModalAlert"), "Alerta", "La nueva contraseña no puede ser igual a la anterior", 3);
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    })
+                }
+            } else {
+                ConfigModal($("#ModalAlert"), "ALERTA", "Llene los datos solicitados para poder actualizar su contraseña", 3);
+                $("#ModalAlert").modal('open');
+            }
+
+        })
+    }
+
+    </script>
+}

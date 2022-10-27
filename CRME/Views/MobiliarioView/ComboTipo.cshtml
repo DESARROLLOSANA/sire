@@ -1,0 +1,9 @@
+﻿@model CRME.Models.inventario_tipo_mobiliario
+
+@*<div class="col s12 m12 l12">*@
+<b class="">Tipo mobiliario:</b>
+
+@Html.DropDownListFor(model => model.tipo_mobiliario_ID, new SelectList(ViewBag.tipo_mobiliario_ID, "Value", "Text"), "-- Tipo mobiliario --", htmlAttributes: new { @class = "select classic" })
+
+@*</div>*@
+

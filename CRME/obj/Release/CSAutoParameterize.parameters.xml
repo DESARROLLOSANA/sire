@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="SIRE_Context1-Web.config Connection String" description="SIRE_Context1 Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="data source=192.168.15.1;initial catalog=bd_adminsistemas;persist security info=True;user id=sa;password=SC688c132016;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Desarrollo-sana\\OneDrive\\Documentos\\web\\sire\ mvc\\CRME\ 8\\CRME\\CRME\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SIRE_Context1']/@connectionString" />
+  </parameter>
+</parameters>

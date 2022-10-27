@@ -1,0 +1,8 @@
+﻿@model CRME.Models.Empresa
+
+@*<div class="col s12 m12 l12">*@
+    <b class="">Empresa</b>
+
+        @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa, "Value", "Text"), "-- Empresas --", htmlAttributes: new { @class = "select classic" })
+ 
+@*</div>*@

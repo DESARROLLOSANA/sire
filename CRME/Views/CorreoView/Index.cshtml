@@ -1,0 +1,25 @@
+﻿@model CRME.Models.Correos
+@using CustomHelpers
+@{
+    ViewBag.Title = "Enviar Correos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:200px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/Red_Anahuac_Blanco.png" style="width:80px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+
+
+    }

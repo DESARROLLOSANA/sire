@@ -1,0 +1,6 @@
+﻿@model CRME.Models.Sucursal
+
+@*<div class="col s12 m4 l4 input-field">*@
+    <b class="">Sucursal</b>
+    @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.Sc_Cve_Sucursal, "Value", "Text"), "-- Sucursales --", htmlAttributes: new { @class = "select classic" })
+@*</div>*@

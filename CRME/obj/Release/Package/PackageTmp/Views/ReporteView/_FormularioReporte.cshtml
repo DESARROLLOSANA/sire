@@ -1,0 +1,31 @@
+﻿<div class="row form-general margin-top-10">
+    <div class="col s12">
+        <div class="row margin-10">
+            <div class="col l4 m4 s11 titlecircle pnl-encabezado">
+                <b>Generar Reporte</b>
+            </div>
+            <div class="col l8 m8 s1 hide-on-small-and-down separator">
+            </div>
+        </div>
+        <div class="row padding-left-right-10">
+            <ul class="collapsible white" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header content-badge1"><span class="badge1 badge-grey-circle margin-left-right-10">@*<i class="mdi mdi-image-filter-drama orange-text"></i>*@1</span><span class="grey-text">SELECCIONE LOS FILTROS DE BÚSQUEDA</span> </div>
+                    <div class="collapsible-body">
+                        <div id="FormularioBook">
+                            @Html.Action("_FormularioFiltros", "ReporteView")
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header content-badge2"><span class="badge2 badge-grey-circle-not margin-left-right-10">@*<i class="mdi mdi-image-filter-drama orange-text"></i>*@2</span><span class="grey-text">SELECCIONE LOS CAMPOS DEL REPORTE</span> </div>
+                    <div class="collapsible-body">
+                        <div id="FormularioCampos">
+                           @Html.Action("_FormularioCampos", "ReporteView", new { tipo = 2 })
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

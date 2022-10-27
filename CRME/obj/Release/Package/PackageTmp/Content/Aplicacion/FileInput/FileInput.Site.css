@@ -1,0 +1,15 @@
+.file-drop-zone-title {
+    color: grey;
+    font-size: 25px;
+    height: 125px;
+    padding: 25px 10px;
+}
+
+.file-preview-image { 
+        width: 100% !important;
+        /*height: 80px !important;*/
+}
+
+.file-caption-name {
+    display: none !important;
+}

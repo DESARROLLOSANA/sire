@@ -1,0 +1,67 @@
+﻿@model CRME.Models.Idiomas
+@{
+    ViewBag.Title = "_FormularioIdiomas";
+}
+
+<div class="row">
+    <div class="col s12 m12 l12">
+        @Html.HiddenFor(model => model.idIdioma)
+
+       
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12">
+                <b class="lbl-form-candidato-edit">Idioma:</b>
+            </div>
+            <div class="col s12 m12 l12 input-field margin-0">
+                @Html.DropDownListFor(model => model.nbIdioma, new SelectList(ViewBag.Idiomas, "Value", "Text",Model.nbIdioma), "--Seleccionar--", htmlAttributes: new { @class = "select classic limpiar", @Style = "margin-bottom:0px !important;" })
+                @Html.ValidationMessageFor(model => model.nbIdioma, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b class="lbl-form-candidato-edit">Lectura:</b>
+            </div>
+            <div class="col s12 m12 l12 input-field margin-0">
+                @Html.DropDownListFor(model => model.idNivelLectura, new SelectList(ViewBag.idNIvelConocimiento, "Value", "Text", @Model.idNivelLectura), "--Nivel--", htmlAttributes: new { @class = "select classic limpiar", @Style = "margin-bottom:0px !important;" })
+                @Html.ValidationMessageFor(model => model.idNivelLectura, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b class="lbl-form-candidato-edit">Escritura:</b>
+            </div>
+            <div class="col s12 m12 l12 input-field margin-0">
+                @Html.DropDownListFor(model => model.idNivelEscritura, new SelectList(ViewBag.idNIvelConocimiento, "Value", "Text", @Model.idNivelEscritura), "--Nivel--", htmlAttributes: new { @class = "select classic limpiar", @Style = "margin-bottom:0px !important;" })
+                @Html.ValidationMessageFor(model => model.idNivelEscritura, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b class="lbl-form-candidato-edit">Conversación:</b>
+            </div>
+            <div class="col s12 m12 l12 input-field margin-0">
+                @Html.DropDownListFor(model => model.idNivelConversacion, new SelectList(ViewBag.idNIvelConocimiento, "Value", "Text", @Model.idNivelConversacion), "--Nivel--", htmlAttributes: new { @class = "select classic limpiar", @Style = "margin-bottom:0px !important;" })
+                @Html.ValidationMessageFor(model => model.idNivelConversacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b class="lbl-form-candidato-edit">Comentarios:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.TextAreaFor(model => model.desComentarios, htmlAttributes : new { @class = "Validate form-simple", @type = "text", @style = "min-height:120px !important; resize:none !important;", @rows = "3" })                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12  center-align">
+                <label id="mensaje-error-model3" class="text-danger" style="font-size:15px"></label>
+            </div>
+        </div>
+    </div>
+</div>
+

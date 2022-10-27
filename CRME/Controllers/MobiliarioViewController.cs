@@ -117,6 +117,7 @@ namespace CRME.Controllers
             {
                 try
                 {
+
                     //Puestos pue = db.Puestos.Find(puesto.Pu_Cve_Puesto);
                     //pue.Pu_Descripcion = puesto.Pu_Descripcion;
                     //pue.Dp_Cve_Departamento = puesto.Dp_Cve_Departamento;

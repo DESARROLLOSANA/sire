@@ -11,7 +11,7 @@
     <div class="col l6 m6 s1 separator">
     </div>
 </div>
-<div id="tblPersonas">
+<div id="TablaEmpresas">
     @*<div class="row">
             <div class="col s12 m6 l6 input-field form-simple center-align">
                 <input type="text" name="busqueda" id="filtroBusqueda" onkeypress="if (event.keyCode == 13) Buscar()" Value="@ViewBag.filtro" placeholder="Ingrese Razon social" />
@@ -82,7 +82,7 @@
                     }, new AjaxOptions()
                     {
                         HttpMethod = "POST",
-                        UpdateTargetId = "TablaPersonas",
+                        UpdateTargetId = "TablaEmpresas",
                         OnComplete = "FltOnCompletePer",
                         OnBegin = "FltOnBeginPer"
                     }

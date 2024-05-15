@@ -32,28 +32,40 @@ else
     @* ----------------Datos de personales----------------*@
     <div class="row">
         <div class="col s12 m12 l12">
+
+            @if (ViewBag.edit == 1)
+            {
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                            <button type="button" class="btn green darken-4 waves-effect devolverResguardo" style="margin-left: 10px"><i class="mdi mdi-backup-restore hide-on-small-and-down"></i> Devolver</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
             <div class="row">
                 @if (ViewBag.edit != 1)
                 {
-                <div class="col s12 m4 l4 input-field">
-                    <b class="">Serie:</b>
-                    <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese la serie", @maxlength = 100, @Style = "margin-bottom:0px !important;"} })
-                        @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
-                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Serie:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese la serie", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                            @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
                     </div>
-                </div>
                 }
                 else
                 {
-                <div class="col s12 m4 l4 input-field">
-                    <b class="">Serie:</b>
-                    <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese la serie", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
-                        @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
-                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Serie:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese la serie", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
                     </div>
-                </div>
                 }
                 <div class="col s12 m4 l4 input-field">
                     <b class="">Marca</b>
@@ -71,7 +83,7 @@ else
             <div class="row">
                 <div class="col s12 m12 l12 input-field">
                     <b class="">Descripcion:</b>
-                    @Html.TextAreaFor(model => model.descripcion, new { @class = "Validate form-simple", @Placeholder = "Ingrese la descripcion",  @Style = "margin-bottom:0px !important;", @readonly = "readonly" } )
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "Validate form-simple", @Placeholder = "Ingrese la descripcion", @Style = "margin-bottom:0px !important;", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
                     <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                 </div>

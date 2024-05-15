@@ -75,12 +75,12 @@ else
                         @if (@Model.Sc_Cve_Sucursal == 0)
                         {
 
-                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa1, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
                         }
                         else
                         {
 
-                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa1, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
                         }
                         @Html.ValidationMessageFor(model => model.Em_Cve_Empresa, "", new { @class = "text-danger" })
                     </div>

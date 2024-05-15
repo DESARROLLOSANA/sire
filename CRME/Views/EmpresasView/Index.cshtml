@@ -542,5 +542,19 @@
         //}
 
 
+
+        //====================== PAGINACIONES ===========================
+        //paginación personas
+
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contenttblPersonas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contenttblPersonas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
+
     </script>
 }

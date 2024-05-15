@@ -1,4 +1,4 @@
-﻿@model CRME.Models.UsuariosPersonas
+﻿@model CRME.Models.cat_sistemas
 @*@model CRME.Models.Personas*@
 
 @{
@@ -28,20 +28,20 @@ else
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.idUsuario)
+    @Html.HiddenFor(model => model.sistemas_ID)
     @* ----------------Datos de personales----------------*@
     <div class="row">
         <div class="col s12 m4 l4">
             <div class="row">
                 <div class="col l12 m12 s12">
                     <div class="col s12 center-align" style="border-radius:4px; padding:5px;">
-                        <b style="font-size:10px;">* Recuerda subir la foto para poder guardar</b> <span class="orange" style="border-radius:4px; padding:2px 3px;"><i class="mdi mdi-cloud-upload white-text"></i></span>
+                        <b style="font-size:10px;">* Recuerda subir la foto para poder guardar</b> <span class="blue" style="border-radius:4px; padding:2px 3px;"><i class="mdi mdi-cloud-upload white-text"></i></span>
                     </div>
                     <div class="form-group">
                         <div id="errorBlockResponsables"></div>
                     </div>
                     @Html.Editor("rutaPathImagen", new { htmlAttributes = new { @class = "form-control", @type = "file", @title="Agregar archivo" } })
-                    @Html.HiddenFor(model => model.Personas.pathFoto, new { @class = "Validate" })
+                    @Html.HiddenFor(model => model.foto, new { @class = "Validate" })
                     <div class="center">
                         @Html.ValidationMessage("rutaPathImagen", "", new { @class = "text-danger" })
                     </div>
@@ -51,10 +51,28 @@ else
         <div class="col s12 m8 l8">
             <div class="row">
                 <div class="col s12 m12 l12 input-field">
-                    <b class="">Nombre completo:</b>
+                    <b class="">Nombre(s):</b>
                     <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.Personas.nbCompleto, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese nombre completo", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
-                        @Html.ValidationMessageFor(model => model.Personas.nbCompleto, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese nombre(s)", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Apellido paterno:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.apellido_paterno, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese apellido paterno", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.apellido_paterno, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Apellido materno:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.apellido_materno, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese apellido materno", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.apellido_materno, "", new { @class = "text-danger" })
                         <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                     </div>
                 </div>
@@ -63,41 +81,31 @@ else
                 <div class="col s12 m6 l6 input-field">
                     <b class="">Estatus</b>
                     <div class="input-field margin-top-0">
-                        @if (@Model.idUsuario == 0)
+                        @if (@Model.sistemas_ID == 0)
                         {
-                            @Html.DropDownListFor(model => model.idEstatus, new SelectList(ViewBag.idEstatus, "Value", "Text"), "-- Estatus --", htmlAttributes: new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.estatus_ID, new SelectList(ViewBag.idEstatus, "Value", "Text"), "-- Estatus --", htmlAttributes: new { @class = "select classic" })
                         }
                         else
                         {
-                            @Html.DropDownListFor(model => model.idEstatus, null, "-- Estatus --", htmlAttributes: new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.estatus_ID, new SelectList(ViewBag.idEstatus, "Value", "Text"), "-- Estatus --", htmlAttributes: new { @class = "select classic" })
                         }
-                        @Html.ValidationMessageFor(model => model.idEstatus, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.estatus_ID, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col s12 m6 l6 input-field">
-                    <b class="">Género</b>
+                    <b class="">Perfil</b>
                     <div class="input-field margin-top-0">
-                        @if (@Model.idUsuario == 0)
+                        @if (@Model.perfil_ID == 0)
                         {
-                           
-                            @Html.DropDownListFor(model => model.Personas.idGenero, new SelectList(ViewBag.idGenero, "Value", "Text"), "-- Género --", htmlAttributes: new { @class = "select classic" })
+
+                            @Html.DropDownListFor(model => model.perfil_ID, new SelectList(ViewBag.idPerfil, "Value", "Text"), "-- Perfil --", htmlAttributes: new { @class = "select classic" })
                         }
                         else
                         {
 
-                            @Html.DropDownListFor(model => model.Personas.idGenero, new SelectList(ViewBag.idGenero, "Value", "Text"), "-- Género --", htmlAttributes: new { @class = "select classic" })
+                            @Html.DropDownListFor(model => model.perfil_ID, new SelectList(ViewBag.idPerfil, "Value", "Text"), "-- Perfil --", htmlAttributes: new { @class = "select classic" })
                         }
-                        @Html.ValidationMessageFor(model => model.Personas.idGenero, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m6 l6 input-field">
-                    <b class="">Fecha vigencia</b>
-                    <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.feVigencia, new { htmlAttributes = new { @class = "Validate datepicker", @Placeholder = "", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
-                        @Html.ValidationMessageFor(model => model.feVigencia, "", new { @class = "text-danger" })
-                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        @Html.ValidationMessageFor(model => model.perfil_ID, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -111,16 +119,16 @@ else
                 <div class="col s12 m4 l4">
                     <b class="">Nombre usuario:</b>
                     <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.nbUsuario, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese correo", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
-                        @Html.ValidationMessageFor(model => model.nbUsuario, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese nombre de usuario", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                         <div id="Mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                     </div>
                 </div>
                 <div class="col s12 m4 l4">
                     <b class="">Contraseña:</b>
                     <div class="input-field margin-top-0">
-                        @Html.EditorFor(model => model.pwdContrasenia, new { htmlAttributes = new { @class = "Validate form-simple", @type = "password", @Placeholder = "Ingrese contraseña", @minlength = 8, @maxlength = 100, @Style = "margin-bottom:0px !important;", @onkeydown = "return validar(event)" } })
-                        @Html.ValidationMessageFor(model => model.pwdContrasenia, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "Validate form-simple", @type = "password", @Placeholder = "Ingrese contraseña", @minlength = 8, @maxlength = 100, @Style = "margin-bottom:0px !important;", @onkeydown = "return validar(event)" } })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                         <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                         <div id="mensaje-error-pass" class="text-danger margin-top-25" style="font-size:15px"></div>
                         <div id="mensaje-success-pass" class="orange-text margin-top-25"></div>
@@ -129,7 +137,7 @@ else
                 <div class="col s12 m4 l4">
                     <b class="">Confirmar contraseña:</b>
                     <div class="input-field margin-top-0">
-                        @Html.Editor("pwdContrasenia1", new { htmlAttributes = new { @class = "Validate form-simple", @type = "password", @Placeholder = "Repetir contraseña", @minlength = 8, @maxlength = 50, @Style = "margin-bottom:0px !important;", @onkeydown = "return validar(event)", @Value = Model.pwdContrasenia } })
+                        @Html.Editor("pwdContrasenia1", new { htmlAttributes = new { @class = "Validate form-simple", @type = "password", @Placeholder = "Repetir contraseña", @minlength = 8, @maxlength = 50, @Style = "margin-bottom:0px !important;", @onkeydown = "return validar(event)", @Value = Model.password } })
                         @Html.ValidationMessage("pwdContrasenia1", "", new { @class = "text-danger" })
                         <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                         <div id="mensaje-error-pass" class="text-danger margin-top-25" style="font-size:15px"></div>
@@ -146,7 +154,7 @@ else
             <div class="row">
                 <div class="col push-l6 l6 push-m4 m8 s12 right-align">
                     <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","UsuarioView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
-                    <button type="button" class="btn orange darken-4 waves-effect guardarPersona" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                    <button type="button" class="btn blue darken-4 waves-effect guardarPersona" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
                 </div>
             </div>
         </div>

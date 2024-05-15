@@ -1,4 +1,4 @@
-﻿@using CustomHelpers;
+﻿@using CustomHelpers
 
 @{
     ViewBag.Title = "Usuarios";
@@ -291,7 +291,7 @@
             function pass() {
                 if ($("#idUsuario").val() == 0) {
                     $("#nbUsuario").val("");
-                    $("#pwdContrasenia").val("");
+                    $("#password").val("");
                 }
             }
 
@@ -302,8 +302,8 @@
             validatePass();
             function validatePass() {
 
-                $("#pwdContrasenia").on("change", function () {
-                    var pwd = $("#pwdContrasenia").val();
+                $("#password").on("change", function () {
+                    var pwd = $("#password").val();
                     var pwd1 = $("#pwdContrasenia1").val();
                     if (pwd == pwd1 && pwd !="") {
                         $("#mensaje-success-pass").text("Contraseña valida");
@@ -320,7 +320,7 @@
                 });
 
                 $("#pwdContrasenia1").on("change", function () {
-                    var pwd = $("#pwdContrasenia").val();
+                    var pwd = $("#password").val();
                     var pwd1 = $("#pwdContrasenia1").val();
                     if (pwd == pwd1 && pwd !="") {
                         $("#mensaje-success-pass").text("Contraseña valida");
@@ -387,21 +387,17 @@
                     }
                 });
 
-                var foto = $("#Personas_pathFoto").val();
-                if ( foto == "")
-                {
+                var foto = $("#foto").val();
+                if (foto == "") {
                     $('#rutaPathImagen').rules("remove")
                     $('#rutaPathImagen').rules("add", {
                         required: true,
-                        //email: true,
-                        //regex: "[A-za'-'\s]*$",
                         messages: {
-                            required: "La foto de perfil es requerida.",
-                            //email: "Por favor ingrese correo electrónico válido",
-                            //regex: "Por favor ingrese nombre completo",
+                            required: "El foto de perfil es requerida.",
                         }
                     });
                 }
+            
                
                
 
@@ -422,19 +418,19 @@
             function ConfigPictures() {
                 ////PATH IMAGENES
 
-                if ($("#Personas_pathFoto").val() == null || $("#Personas_pathFoto").val() == "") {
+                if ($("#foto").val() == null || $("#foto").val() == "") {
                     //$("#ModelosFotos_0__pathFoto").val("~/Upload/Articulos/default.png");
                     img1 = "~/Upload/Usuarios/default.png";
                     imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                 } else {
-                    img1 = $("#Personas_pathFoto").val();
+                    img1 = $("#foto").val();
                     imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                 }
 
 
                 $("#rutaPathImagen").fileinput({
-                    maxImageWidth: 600,
-                    maxImageHeight: 600,
+                    maxImageWidth: 3000,
+                    maxImageHeight: 3000,
                     language: "es",
                     uploadUrl: '@Url.Action("CargarLogo", "UsuarioView")', // server upload action
                     uploadAsync: true,
@@ -457,7 +453,7 @@
                     removeClass: "btn btn1 btn-floating btn-danger red eliminarfoto",
                     removeLabel: "",
                     removeIcon: '<i class="mdi mdi-delete"></i>',
-                    uploadClass: "btn btn1 btn-floating btn-success orange padding-0",
+                    uploadClass: "btn btn1 btn-floating btn-success blue padding-0",
                     uploadLabel: "",
                     uploadIcon: '<i class="mdi mdi-cloud-upload"></i>',
                     msgFilesTooMany: 'Excede el límite máximo permitido</b>.',
@@ -515,7 +511,7 @@
 
 
                 $('#rutaPathImagen').on('fileuploaded', function (event, data, previewId, index) {
-                    $("#Personas_pathFoto").val(JSON.stringify(data.response.savedFileName));
+                    $("#foto").val(JSON.stringify(data.response.savedFileName));
                     $(".valid-img").html("");
                 });
                 // $('#rutaPathImagen').on('filepreupload', function (event, data, previewId, index) {
@@ -531,7 +527,7 @@
                         img1 = "~/Upload/Usuarios/default.png";
                         imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                     } else {
-                        img1 = $("#Personas_pathFoto").val();
+                        img1 = $("#foto").val();
                         imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                     }
                     $('#rutaPathImagen').fileinput('refresh', {
@@ -558,14 +554,14 @@
 
                 $("#New_UpdatePersona").on("click", ".eliminarfoto", function (e) {
                     e.preventDefault();
-                    var path = $("#Personas_pathFoton").val();
+                    var path = $("#foto").val();
                     $.ajax({
                         url: '@Url.Action("EliminarLogo", "UsuarioView")',
                         data: { path},
                         type: "POST",
                         success: function (result) {
                             $("#rutaPathImagen").val("");
-                            $("#Personas_pathFoto").val("");
+                            $("#foto").val("");
                         }
                     });
 

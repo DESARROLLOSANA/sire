@@ -525,21 +525,20 @@
         //    });
         //}
 
+
         //====================== PAGINACIONES ===========================
         //paginación personas
-        //function FltOnBeginPer(obj) {
-        //    $("#TablaResguardoLaptop #contentTablaResguardos").addClass("loading-background");
-        //    var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
-        //    ordenar();
-        //    Buscar();
-        //}
 
-        //function FltOnCompletePer(obj) {
-        //    $("#TablaResguardoLaptop #contentTablaResguardos").removeClass("loading-background");
-        //    var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
-        //    ordenar();
-        //    Buscar();
-        //}
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
+
 
 
     </script>

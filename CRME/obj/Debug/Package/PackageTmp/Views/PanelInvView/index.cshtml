@@ -19,7 +19,7 @@
             </div>
             <div class="row">               
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioLaptopsView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadLap <i class="small mdi mdi-laptop"></i></h4>
@@ -33,9 +33,10 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioMonitoresView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
+
                                 <h4>@ViewBag.CantidadMoni <i class="small mdi mdi-monitor"></i></h4>
                             </div>
                         </div>
@@ -47,7 +48,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioEnsamblesView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadCpu <i class="small mdi mdi-desktop-tower-monitor"></i></h4>
@@ -63,10 +64,12 @@
             </div>
             <div class="row">
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href= "@Url.Action("Index", "InventarioLineasView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
-                                <h4>@ViewBag.CantidadLin <i class="small mdi mdi-headset"></i></h4>
+                                <!--<h4>@ViewBag.CantidadLin <i class="small mdi mdi-headset"></i></h4>-->
+                                <h4>@ViewBag.CantidadLin <i class="small mdi mdi-sim"></i></h4>
+
                             </div>
                         </div>
                         <div class="row">
@@ -77,7 +80,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioMovilesView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadMov <i class="small mdi mdi-cellphone"></i></h4>
@@ -91,7 +94,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioImpresorasView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadImp <i class="small mdi mdi-printer"></i></h4>
@@ -121,7 +124,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioTipoMobiliarioView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadTMo <i class="small mdi mdi-format-list-bulleted"></i></h4>
@@ -135,7 +138,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioMobiliarioView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadMob <i class="small mdi mdi-desk"></i></h4>
@@ -151,7 +154,7 @@
             </div>
             <div class="row">
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioVehiculosView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadVeh <i class="small mdi mdi-car"></i></h4>
@@ -165,7 +168,7 @@
                     </a>
                 </div>
                 <div class="col s12 m4 l4">
-                    <a href="#">
+                    <a href="@Url.Action("Index", "InventarioUnidadesView")">
                         <div class="row">
                             <div class="col l12 m12 s12 center-align">
                                 <h4>@ViewBag.CantidadUni <i class="small mdi mdi-truck"></i></h4>

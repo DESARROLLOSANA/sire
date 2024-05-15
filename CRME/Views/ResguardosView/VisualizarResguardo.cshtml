@@ -112,6 +112,44 @@
                 });
         }
 
+        DevolverResguardo();
+            function DevolverResguardo() {
+                    $("#FrmDatosResguardo").off('click', '.devolverResguardo');
+                $("#FrmDatosResguardo").on("click", ".devolverResguardo", function (e) {
+                    e.preventDefault();
+                    if ($("#FrmDatosResguardo").valid()) {
+                        var frmValues = $("#FrmDatosResguardo").serialize();
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Devolver", "ResguardosView")',
+                            cache: false,
+                            data: frmValues,
+                            success: function (result) {
+                                if (result.success) {
+                                    //$('#mensaje-error-model').text("");
+                                    //$('#modal1').modal('close');
+
+                                    ConfigModal($('#ModalAlert'), "", " se regreso con éxito.", 1)//para crear la ventana flotante
+                                    $("#ModalAlert").modal({
+                                        dismissible: false,
+                                    });
+                                    $("#ModalAlert").modal('open');
+                                    Response.redirect('@Url.Action("Index", "ResguardosView")');
+                                } else if (result.mensajefound != "") {
+                                    ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                                    $("#ModalAlert").modal({
+                                        dismissible: false,
+                                    });
+                                    $("#ModalAlert").modal('open');
+                                }
+                            }
+                        });
+                    }
+                });
+        }
+
+
+
         guardar();
         function guardar() {
             $("#FrmDatosResguardo").off('click', '.guardarResguardo');
@@ -135,8 +173,11 @@
                                 $("#ModalAlert").modal({
                                     dismissible: false,
                                 });
-                                $("#ModalAlert").modal('open');                                
-                               Response.redirect('@Url.Action("index", "ResguardosView")');
+
+                                $("#ModalAlert").modal('open');
+
+
+
                             } else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
                                 $("#ModalAlert").modal({
@@ -144,7 +185,11 @@
                                 });
                                 $("#ModalAlert").modal('open');
                             }
+
+                            window.open('@Url.Action("Index", "ResguardosView")');
                         }
+
+
 
                     });
                 }

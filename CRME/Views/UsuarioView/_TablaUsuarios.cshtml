@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc
-@model PagedList.IPagedList<CRME.Models.UsuariosPersonas>
+@model PagedList.IPagedList<CRME.Models.cat_sistemas>
 @{
 
 }
@@ -17,18 +17,20 @@
             <input type="text" name="busqueda" id="filtroBusqueda" onkeypress="if (event.keyCode == 13) Buscar()" Value="@ViewBag.filtro" placeholder="Ingrese nombre" />
         </div>
         <div class="col s12 m6 l6 input-field">  
-                <button class="btn orange darken-4 waves-effect buscarSoli white-text" ><i class="mdi mdi-magnify"></i> Buscar</button>
-                <button class="btn orange darken-4 waves-effect limpiar" style="margin-left: 10px" title="LIMPIAR"><i class="mdi mdi-filter-remove"></i></button>          
+                <button class="btn light-blue darken-4 waves-effect buscarSoli white-text" ><i class="mdi mdi-magnify"></i> Buscar</button>
+                <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 10px" title="LIMPIAR"><i class="mdi mdi-filter-remove"></i></button>          
         </div>
     </div>
     <div class="row"> 
         <div class="col l12 m12 s12">
-            <table class="striped highlight white">
-                <thead class="table-header-orange">
-                    <tr class="table-header-tr-orange">
-                        <td class="center">Nombre completo</td>
-                        <td class="center hide-on-small-only">Vigencia</td>
-                        <td class="center hide-on-small-only">Estatus</td>
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Nombre</td>
+                        <td class="center">Apelido paterno</td>
+                        <td class="center">Apellido materno</td>
+                        @*<td class="center hide-on-small-only">Vigencia</td>*@
+                        @*<td class="center hide-on-small-only">Estatus</td>*@
                         <td class="center">Opciones</td>
                     </tr>
                 </thead>
@@ -46,13 +48,15 @@
                         foreach (var item in Model)
                         {
                             <tr class="table-body">
-                                <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.Personas.nbCompleto)</td>
-                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feVigencia)</td>
-                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Estatus.desEstatus)</td>
+                                <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.nombre)</td>
+                                <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.apellido_paterno)</td>
+                                <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.apellido_materno)</td>
+                                @*<td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.feVigencia)</td>*@
+                                @*<td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.Estatus.desEstatus)</td>*@
                                 <td class="center">
-                                    <a href="#ancla" class="editarPersona" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.idUsuario" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
-                                    <a  class="eliminarPersona" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.idUsuario" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
-                                    
+                                    <a href="#ancla" class="editarPersona" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.sistemas_ID" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                                    <a class="eliminarPersona" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.sistemas_ID" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+
                                 </td>
                             </tr>
                         }

@@ -1,7 +1,7 @@
 ﻿@using CustomHelpers
 
 @{
-    ViewBag.Title = "Resguardos";
+    ViewBag.Title = "Mobiliario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -10,8 +10,8 @@
     <div class="col l12 m12 s12">
         <div class="row">
             <div class="col l12 m12 s12">
-                <div id="TablaResguardoLaptop">
-                    @Html.Action("_TablaReguardos", "ResguardosView")
+                <div id="TablaResguardoMobiliario">
+                    @Html.Action("_TablaResguardos", "ResguardoMobiliarioView")
                 </div>
             </div>
         </div>
@@ -43,8 +43,9 @@
         ordenar();
         function ordenar() {
             $(".permiteOrdenar").click(function (){
-               var orden = $(this).data("order");
-                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { orden }, function (response, status, xhr) {
+                var orden = $(this).data("order");
+                @* falla en el texto del codigo revisar *@
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaResguardos", "ResguardoMobiliarioView")', { orden }, function (response, status, xhr) {
                     ordenar();
                     });
                 });
@@ -53,9 +54,9 @@
         // ---- BUSCAR ----
        limpiar();
         function limpiar() {
-            $("#TablaResguardoLaptop").off('click', ".limpiar");
-            $("#TablaResguardoLaptop").on('click', ".limpiar", function (e) {
-                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', function (response, status, xhr) {
+            $("#TablaResguardoMobiliario").off('click', ".limpiar");
+            $("#TablaResguardoMobiliario").on('click', ".limpiar", function (e) {
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaResguardos", "ResguardoMobiliarioView")', function (response, status, xhr) {
                     if (status == "success") {
                         Buscar();
                         ordenar();
@@ -68,20 +69,20 @@
 
         exportar();
         function exportar() {
-            $("#TablaResguardoLaptop").off('click', ".excel");
-            $("#TablaResguardoLaptop").on('click', ".excel", function (e) {
+            $("#TablaResguardoMobiliario").off('click', ".excel");
+            $("#TablaResguardoMobiliario").on('click', ".excel", function (e) {
                 e.preventDefault();
             //$(".loading-descargar").css("display", "block");
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("ExportarExcel", "ResguardosView")',
+                url: '@Url.Action("ExportarExcel", "ResguardoMobiliarioView")',
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (result) {
                     //$(".loading-descargar").css("display", "none");
                     if (result.success) {
-                        window.location.href = '@Url.Action("ExportarExcel", "ResguardosView")' + '/?Creado=' + 1;;
+                        window.location.href = '@Url.Action("ExportarExcel", "ResguardoMobiliarioView")' + '/?Creado=' + 1;;
                     }
                     //} else {
                     //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
@@ -127,7 +128,7 @@
             $("#filtroBusquedaA").keyup(function (e) {
                 if (e.keyCode == 13) {
                     var filtro = $("#filtroBusquedaA").val();
-                    $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { filtro }, function (response, status, xhr) {
+                    $("#TablaResguardoMobiliario").load('@Url.Action("_TablaResguardos", "ResguardoMobiliarioView")', { filtro }, function (response, status, xhr) {
                         if (status == "success") {
                             Buscar();
                             ordenar();
@@ -137,11 +138,11 @@
                 }
             });
 
-            $("#TablaResguardoLaptop").off("click", ".buscarSoli");
-            $("#TablaResguardoLaptop").on("click", ".buscarSoli", function (e) {
+            $("#TablaResguardoMobiliario").off("click", ".buscarSoli");
+            $("#TablaResguardoMobiliario").on("click", ".buscarSoli", function (e) {
 
                 var filtro = $("#filtroBusquedaA").val();
-                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { filtro }, function (response, status, xhr) {
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaResguardos", "ResguardoMobiliarioView")', { filtro }, function (response, status, xhr) {
                         if (status == "success") {
                             Buscar();
                             ordenar();
@@ -222,14 +223,14 @@
         //====================== PAGINACIONES ===========================
         //paginación personas
         function FltOnBeginPer(obj) {
-            $("#TablaResguardoLaptop #contentTablaResguardos").addClass("loading-background");
+            $("#TablaResguardoMobiliario #contentTablaResguardosMobiliario").addClass("loading-background");
             var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
             ordenar();
             Buscar();
         }
 
         function FltOnCompletePer(obj) {
-            $("#TablaResguardoLaptop #contentTablaResguardos").removeClass("loading-background");
+            $("#TablaResguardoMobiliario #contentTablaResguardosMobiliario").removeClass("loading-background");
             var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
             ordenar();
             Buscar();
@@ -238,4 +239,3 @@
 
     </script>
 }
-

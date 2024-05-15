@@ -61,38 +61,54 @@ else
                 </div>
             </div>
             <div class="row">
-                <div class="col s12 m6 l6 input-field">
-                    <b class="">Sucursal:</b>
-                    <div class="input-field margin-top-0">
-                        @if (@Model.Sc_Cve_Sucursal == 0)
-                        {
-
-                            @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.Sc_Cve_Sucursal, "Value", "Text"), "-- Sucursal --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        else
-                        {
-
-                            @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.Sc_Cve_Sucursal, "Value", "Text"), "-- Sucursal --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        @Html.ValidationMessageFor(model => model.Sc_Cve_Sucursal, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col s12 m6 l6 input-field">
+                <div class="col s12 m4 l4 input-field">
                     <b class="">Empresa:</b>
                     <div class="input-field margin-top-0">
                         @if (@Model.Sc_Cve_Sucursal == 0)
                         {
-
                             @Html.DropDownListFor(model => model.Em_Cve_Sucursal, new SelectList(ViewBag.Em_Cve_Empresa, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
                         }
                         else
                         {
-
                             @Html.DropDownListFor(model => model.Em_Cve_Sucursal, new SelectList(ViewBag.Em_Cve_Empresa, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
                         }
                         @Html.ValidationMessageFor(model => model.Em_Cve_Sucursal, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Sucursal:</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.Sc_Cve_Sucursal == 0)
+                        {
+                            @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.Sc_Cve_Sucursal1, "Value", "Text"), "-- Sucursal --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.Sc_Cve_Sucursal1, "Value", "Text"), "-- Sucursal --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Sc_Cve_Sucursal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">CECO:</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.Ceco_ID == 0)
+                        {
+
+                            @Html.DropDownListFor(model => model.Ceco_ID, new SelectList(ViewBag.cat_ceco, "Value", "Text"), "-- Ceco --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+
+                            @Html.DropDownListFor(model => model.Ceco_ID, new SelectList(ViewBag.cat_ceco, "Value", "Text"), "-- Ceco --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Ceco_ID, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
             </div>
             @*<div class="row">
                     <div class="col s12 m12 l12 input-field">

@@ -23,7 +23,7 @@
             <nav class="white">
                 <div class="nav-wrapper">
                     @if (Auth.Usuario != null)
-                    {
+                    {                     
                         <a href="#" data-activates="slide-out" id="menu" data-tooltip="Menú">
                             <img class="img-layout" src="~/Upload/Sistema/sire_final.png" style="width:125px;" />
                         </a>
@@ -32,35 +32,168 @@
             </nav>
         </div>
         <ul id="slide-out" class="side-nav">
-            <li>
+            <li >
                 <div class="user-view">
-                    <a href="#!user"><img class="circle" style="border:solid" src="~/Upload/Sistema/default.png"></a>
-                    <span class="blue-text name">John Doe</span>
-                    <a href="@Url.Action("Salir","AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                    @if (Auth.Usuario.foto != null)
+                    {
+                        <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~","")"></a>
+                        <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
+                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                    }
+                    else
+                    {
+                        <a href="#!user"><img class="circle" style="border:solid" src="~/Upload/Sistema/default.png"></a>
+                        <span class="blue-text name">John Doe</span>
+                        <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                    }
+                    
                 </div>
             </li>
-            <li class="active"><a href="@Url.Action("Index", "PanelView")"><i class=" small mdi mdi-home-outline"></i><span>Inicio</span></a></li>
-            <li class="active" style="overflow:hidden"><a href="@Url.Action("Index","ResguardosView")"><i class="small mdi mdi-laptop"></i><span>laptops</span></a></li>
-            <li class="active" style="overflow:hidden"><a href="#"><i class="small mdi mdi-desktop-tower-monitor"></i><span>emsables</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-cellphone"></i><span>Móviles</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-printer"></i><span>Impresoras</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-battery-50"></i><span>Cargadores</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-desk"></i><span>Mobiliario</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-car"></i><span>Vehiculo</span></a></li>
-            <li class="active" style="overflow:hidden"><a href="#"><i class="small mdi mdi-tools"></i><span>Mantenimiento vehiculo</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-truck"></i><span>Unidades</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-handshake"></i><span>Proveedores</span></a></li>
-            <li class="active"><a href="@Url.Action("Index", "PanelInvView")"><i class="small mdi mdi-dolly"></i><span>Inventario</span></a></li>
-            <li class="active"><a href="@Url.Action("Index", "EmpresasView")"><i class="small mdi mdi-office-building"></i><span>Empresa</span></a></li>
-            <li class="active"><a href="@Url.Action("Index", "SucursalesView")"><i class="small mdi mdi-store"></i><span>Sucursales</span></a></li>
-            <li class="active"><a href="@Url.Action("Index", "DepartamentosView")"><i class="small mdi mdi-account-group"></i><span>Departamentos</span></a></li>
-            <li class="active"><a href="@Url.Action("Index", "PuestosView")"><i class="small mdi mdi-clipboard-account-outline"></i><span>Puestos</span></a></li>
-            <li class="active"><a href="@Url.Action("Index", "EmpleadosView")"><i class="small mdi mdi-account-tie"></i><span>Empleados</span></a></li>
-            <li class="active"><a href="#"><i class="small mdi mdi-account"></i><span>Usuarios</span></a></li>
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li class="active"><a href="@Url.Action("Index", "PanelView")"><i class=" small mdi mdi-home-outline"></i><span>Inicio</span></a></li>
+
+                    @if (Auth.Usuario.perfil_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID != 4)
+                        {
+                            if (Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Sistemas<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="overflow: hidden; background-color: rgba(0,0,0,0.05);"><a href="@Url.Action("Index","ResguardosView")"><i class="small mdi mdi-laptop"></i><span style="color: black">laptops</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoEnsamblesView")"><i class="small mdi mdi-desktop-classic"></i><span style="color: black">Ensambles</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoMovilesView")"><i class="small mdi mdi-cellphone"></i><span style="color: black">Móviles</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoImpresorasView")"><i class="small mdi mdi-printer"></i><span style="color: black">Impresoras</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoLineasView")"><i class="small mdi mdi-sim"></i><span style="color: black">Lineas</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+
+                    @if (Auth.Usuario.perfil_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID != 4)
+                        {
+                            if (Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Operaciones<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoMobiliarioView")"><i class="small mdi mdi-desk"></i><span style="color: black">Mobiliario</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoVehiculosView")"><i class="small mdi mdi-car"></i><span style="color: black">Vehículos</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardoUnidadesView")"><i class="small mdi mdi-truck"></i><span style="color: black">Unidades</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+
+                    @if (Auth.Usuario.perfil_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID != 4)
+                        {
+                            if (Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Recursos Humanos<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "EmpresasView")"><i class="small mdi mdi-office-building"></i><span style="color: black">Empresa</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "SucursalesView")"><i class="small mdi mdi-store"></i><span style="color: black">Sucursales</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "DepartamentosView")"><i class="small mdi mdi-account-group"></i><span style="color: black">Departamentos</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "PuestosView")"><i class="small mdi mdi-clipboard-account-outline"></i><span style="color: black">Puestos</span></a></li>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "NuevoEmpleadosView")"><i class="small mdi mdi-account-tie"></i><span style="color: black">Empleados</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                    <li>
+                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Mantenimiento<i class="mdi mdi-chevron-down"></i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "EdificiosView")"><i class="small mdi mdi-office-building-plus"></i><span style="color: black">Registro</span></a></li>
+
+                                @if (Auth.Usuario.perfil_ID != 3)
+                                {
+                                    if (Auth.Usuario.perfil_ID != 5)
+                                    {
+                                        <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "AutorizacionView")"><i class="small mdi mdi-office-building-cog"></i><span style="color: black">Autorización</span></a></li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Equipo menor<i class="mdi mdi-chevron-down"></i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "HerramientasView")"><i class="small mdi mdi-tools"></i><span style="color: black">Inventario E.M.</span></a></li>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "FamiliaView")"><i class="small mdi mdi-family-tree"></i><span style="color: black">Familia</span></a></li>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "SubFamiliaView")"><i class="small mdi mdi-file-tree"></i><span style="color: black">Subfamilia</span></a></li>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CondicionView")"><i class="small mdi mdi-list-status"></i><span style="color: black">Condicion</span></a></li>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "MedidasView")"><i class="small mdi mdi-ruler"></i><span style="color: black">Medida</span></a></li>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UnidadMedidaView")"><i class="small mdi mdi-tape-measure"></i><span style="color: black">Unidad de medida</span></a></li>
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ResguardosHeramientas")"><i class="small mdi mdi-file-check"></i><span style="color: black">Resguardos</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    @if (Auth.Usuario.perfil_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID != 4)
+                        {
+                            if (Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li>
+                                    <a class="collapsible-header" style="background-color: rgba(0,0,0,0.05) " tabindex="0">Configuracion<i class="mdi mdi-chevron-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "UsuarioView")"><i class="small mdi mdi-account-cog-outline"></i><span style="color: black">Usuarios</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+
+                    @if (Auth.Usuario.perfil_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID != 4)
+                        {
+                            if (Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "PanelInvView")"><i class="small mdi mdi-dolly"></i><span style="color: black">Inventario</span></a></li>
+                            }
+                        }
+                    }
+
+                    <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "ProveedoresView")"><i class="small mdi mdi-cart-outline"></i><span style="color: black">Proveedor</span></a></li>
+
+
+
+                    @if (Auth.Usuario.perfil_ID != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID != 4)
+                        {
+                            if (Auth.Usuario.perfil_ID != 5)
+                            {
+                                <li class="active" style="background-color: rgba(0,0,0,0.05)"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-account-cash-outline"></i><span style="color: black">Ce_cos</span></a></li>
+                            }
+                        }
+                    }
+                </ul>
+            </li>
         </ul>        
     }
-
-
     <div class="container body-content">
         @RenderBody()
     </div>
@@ -80,7 +213,7 @@
         // Initialize collapse button
         $("#menu").sideNav();
         // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-        //$('.collapsible').collapsible();
+        $('.collapsible').collapsible();
         $('#menu').sideNav({
             menuWidth: 300, // Default is 300
             edge: 'left', // Choose the horizontal origin

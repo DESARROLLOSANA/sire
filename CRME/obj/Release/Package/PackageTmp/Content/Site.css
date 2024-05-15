@@ -362,11 +362,11 @@ select.classic {
 }
 /*Diseño picker*/
 .picker__date-display {
-    background-color: #F8981D !important;
+    background-color: #42a5f5 !important;
 }
 
 .picker__weekday-display {
-    background-color: #F8981D !important;
+    background-color: #42a5f5 !important;
     font-size: 1rem;
     font-weight: 200;
     margin-bottom: 15px;
@@ -374,18 +374,18 @@ select.classic {
 }
 
 .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
-    background-color: #F8981D !important;
+    background-color: #42a5f5 !important;
     border-radius: 50%;
     color: #ffffff;
     transform: scale(0.9);
 }
 
 .picker__day.picker__day--today {
-    color: #c9302c;
+    color: #42a5f5;
 }
 
 .picker__close, .picker__today {
-    color: #c9302c;
+    color: #42a5f5;
     font-size: 1.1rem;
     padding: 0 1rem;
 }

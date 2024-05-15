@@ -1,0 +1,42 @@
+﻿@model CRME.Models.Calendario
+
+@{
+    ViewBag.Title = "Requerimientos";
+}
+
+<div class="row">
+    <div class="col s12 m12 l12">
+        @Html.HiddenFor(model => model.Id_Calendario)
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Descripcion:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "Validate form-simple", @type = "text", @maxlength = "200", @Style = "margin-bottom:0px !important;", @Placeholder = "Ingrese descripcion" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                <div id="mensaje-error-egre" class="text-danger" style="font-size:15px"></div>
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Fecha inicio:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.inicio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.inicio, "", new { @class = "date" })
+            </div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="input-field col s12 m12 l12 margin-0 margin-top-15">
+                <b>Fecha fin:</b>
+            </div>
+            <div class="input-field col s12 m12 l12 margin-0">
+                @Html.EditorFor(model => model.Fin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fin, "", new { @class = "date" })
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,462 @@
+﻿@model CRME.Models.Books
+
+<div class="row margin-0">
+    <div class="col s12 m3 l3" style="border-right: 1px solid #F8981D; min-height:350px; max-height:350px; overflow-y:auto !important;">
+        <p>
+            @if (Model.feInicio == null && Model.feFinal == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_Cumple" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Cumple" checked="checked" />
+            }
+            <label for="check_Cumple">Cumpleaños</label>
+        </p>
+        <p>
+            @if (Model.numEdadMaxima == null && Model.numEdadMinima == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_Edad" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Edad" checked="checked" />
+            }
+            <label for="check_Edad">Edad</label>
+        </p>
+        <p>
+            @if (Model.idGenero == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_Sexo" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Sexo" checked="checked" />
+            }
+            <label for="check_Sexo">Género</label>
+
+        </p>
+        <p>
+            @if (Model.idEstadoCivil == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_Civil" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Civil" checked="checked" />
+            }
+            <label for="check_Civil">Estado Civil</label>
+        </p>
+        <p>
+            @if (Model.idTipoSangre == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_TipoSangre" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_TipoSangre" checked="checked" />
+            }
+            <label for="check_TipoSangre">Tipo de Sangre</label>
+        </p>
+        <p>
+            @if (Model.fgTrabajaActualmente == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_Trabajo" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Trabajo" checked="checked" />
+            }
+            <label for="check_Trabajo">Trabaja</label>
+        </p>
+        <p>
+            @if (Model.fgFallecido == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_fgFallecido" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_fgFallecido" checked="checked" />
+            }
+            <label for="check_fgFallecido">Fallecido</label>
+        </p>
+        <p>
+            @if (Model.fgLicencia == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_fgLicencia" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_fgLicencia" checked="checked" />
+            }
+            <label for="check_fgLicencia">Licencia</label>
+        </p>
+        <p>
+            @if (Model.tpEgresado == null)
+            {
+                <input type="checkbox" class="filled-in" id="check_tpEgresado" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_tpEgresado" checked="checked" />
+            }
+            <label for="check_tpEgresado">Tipo de Egresado</label>
+        </p>
+        <p>
+            @if (Model.RelBookLicenciaturas.Count() == 0)
+            {
+                <input type="checkbox" class="filled-in" id="check_Lic" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Lic" checked="checked" />
+            }
+            <label for="check_Lic">Licenciatura</label>
+        </p>
+        <p>
+            @if (Model.RelBookReligiones.Count() == 0)
+            {
+                <input type="checkbox" class="filled-in" id="check_Religion" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Religion" checked="checked" />
+            }
+            <label for="check_Religion">Religión</label>
+        </p>
+        <p>
+            @if (Model.RelBookEstados.Count() == 0)
+            {
+                <input type="checkbox" class="filled-in" id="check_Estados" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="check_Estados" checked="checked" />
+            }
+            <label for="check_Estados">Estados</label>
+        </p>
+    </div>
+    <div class="col s12 m9 l9">
+        <div class="row">
+            <div class="col s12 m4 l4 input-field">
+                <b>   Seleccionar un Book </b>
+            </div>
+            <div class="col s12 m6 l6 input-field">
+                @Html.DropDownListFor(model => model.idBook, new SelectList(ViewBag.idBook, "Value", "Text"), "-- Book --", htmlAttributes: new { @class = "select classic" })
+            </div>
+        </div>
+        <div class="row margin-0 grey lighten-2 padding-left-right-10" style="min-height:300px;">
+            @{
+                var Display_Cumple = (Model.feInicio == null && Model.feFinal == null) ? "display_none" : "display_show";
+                var Display_Edad = (Model.numEdadMinima == null && Model.numEdadMaxima == null) ? "display_none" : "display_show";
+                var Display_Sexo = (Model.idGenero == null) ? "display_none" : "display_show";
+                var Display_TipoSangre = (Model.idTipoSangre == null) ? "display_none" : "display_show";
+                var Display_Civil = (Model.idEstadoCivil == null) ? "display_none" : "display_show";
+                var Display_Trabajo = (Model.fgTrabajaActualmente == null) ? "display_none" : "display_show";
+                var Display_Fallecido = (Model.fgFallecido == null) ? "display_none" : "display_show";
+                var Display_tpEgresado = (Model.tpEgresado == null) ? "display_none" : "display_show";
+                var Display_Licencia = (Model.fgLicencia == null) ? "display_none" : "display_show";
+                var Display_Lic = (Model.RelBookLicenciaturas.Count() == 0) ? "display_none" : "display_show";
+                var Display_Reli = (Model.RelBookReligiones.Count() == 0) ? "display_none" : "display_show";
+                var Display_Edos = (Model.RelBookEstados.Count() == 0) ? "display_none" : "display_show";
+            }
+
+            <div class="col s12 @Display_Cumple" id="ResultCumple">
+                <div class="row" style="padding-top:20px;">
+                    <div class="row margin-0" style="margin-left:20px !important;">
+                        <b>Cumpleaños: </b>
+                    </div>
+                    <div class="row margin-0">
+                        @*<div class="col s12 center margin-bottom-15">
+                            Seleccione rango de días y meses
+                        </div>*@
+                        <div class="col s12 m6 l6 form-simple">
+                            @*<b>Día y mes inicio</b>*@
+                            <div class="col s12">
+                                <b>Día y mes inicial:</b> 
+                            </div>
+                            <div class="col s12">
+                                @Html.EditorFor(model=>model.feInicio, new { htmlAttributes = new { @class = "Validate form-simple conactslash", @Placeholder = "dd/mm", @maxlength = 5, @Style = "margin-bottom:0px !important;", @onkeypress = "return validateCode(event);" } })
+                                @Html.ValidationMessageFor(model => model.feInicio, "", new { @class = "text-danger" })
+                            </div> <div id="mensaje-error-model1" class="text-danger col s12" style="font-size:15px"></div>
+                        </div>
+                        <div class="col s12 m6 l6 form-simple">
+                            @*<b>Día y mes final</b>*@
+                            <div class="col s12">
+                                <b>Día y mes final:</b> 
+                            </div>
+                            <div class="col s12">
+                                @Html.EditorFor(model => model.feFinal, new { htmlAttributes = new { @class = "Validate form-simple conactslash", @Placeholder = "dd/mm", @maxlength = 5, @Style = "margin-bottom:0px !important;", @onkeypress = "return validateCode(event);" } })
+                                @Html.ValidationMessageFor(model => model.feFinal, "", new { @class = "text-danger" })
+                            </div>
+                            <div id="mensaje-error-model2" class="text-danger col s12" style="font-size:15px"></div>
+                        </div>
+                        <div id="mensaje-error-model3" class="text-danger center col s12" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Edad" id="ResultEdad">
+                <div class="row" style="padding-top:40px;">
+                    <div class="col s12 m2 l2">
+                        <b>Edad: </b>
+                    </div>
+                    <div class="col s12 m10 l10">
+                        <div id="keypress"></div>
+                        <div class="row margin-0">
+                            <div class="input-field col s6 form-simple">
+                                <input type="text" id="numEdadMinima" class="form-simple" Value="@Model.numEdadMinima" hidden>
+                            </div>
+                            <div class="input-field col s6 form-simple">
+                                <input type="text" id="numEdadMaxima" class="form-simple" Value="@Model.numEdadMaxima" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Sexo" id="ResultSexo">
+                <div class="row">
+                    <div class="input-field col s12 m2 l2">
+                        <b>Género: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        @Html.DropDownListFor(model => model.idGenero, null, "-- Género --", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Civil" id="ResultCivil">
+                <div class="row">
+                    <div class="col s12 m2 l2 input-field">
+                        <b>Estado civil: </b>
+                    </div>
+                    <div class="col s12 m3 l3 input-field">
+                        @Html.DropDownListFor(model => model.idEstadoCivil, null, "--Estado civil--", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_TipoSangre" id="ResultSangre">
+                <div class="row">
+                    <div class="input-field col s12 m2 l2">
+                        <b>Tipo de Sangre: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        @Html.DropDownListFor(model => model.idTipoSangre, null, "-- Tipo de sangre --", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                    <div class="input-field col s6 m2 l2">
+                        <b>Dona Sangre: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        <div class="col s4 m4 l4">
+                            <div class="switch" style="margin-top:-20px !important;">
+                                <div class="input-field">
+                                    <label>
+                                        @if (Model.fgDonarSangre == null)
+                                        {
+                                            <input type="checkbox" id="fgDonarSangre" class="">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="fgDonarSangre" class="" checked="checked">
+                                        }
+                                        <span class="lever" style="margin-left:-2px !important;"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m2 l2">
+                        <div class="switch">
+                            <div class="input-field">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Trabajo" id="ResultTrabajo">
+                <div class="row">
+                    <div class="col s12 m3 l3 input-field">
+                        <b>Trabaja actualmente: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        <div class="col s4 m4 l4">
+                            <div class="switch" style="margin-top:-20px !important;">
+                                <div class="input-field">
+                                    <label>
+                                        @if (Model.fgTrabajaActualmente == null)
+                                        {
+                                            <input type="checkbox" id="fgTrabajaActualmente" class="">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="fgTrabajaActualmente" class="" checked="checked">
+                                        }
+                                        <span class="lever" style="margin-left:-2px !important;"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Fallecido" id="ResultFallecido">
+                <div class="row">
+                    <div class="col s12 m3 l3 input-field">
+                        <b>Fallecido: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        <div class="col s4 m4 l4">
+                            <div class="switch" style="margin-top:-20px !important;">
+                                <div class="input-field">
+                                    <label>
+                                        @if (Model.fgFallecido == null)
+                                        {
+                                            <input type="checkbox" id="fgFallecido" class="">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="fgFallecido" class="" checked="checked">
+                                        }
+                                        <span class="lever" style="margin-left:-2px !important;"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Licencia" id="ResultLicencia">
+                <div class="row">
+                    <div class="col s12 m3 l3 input-field">
+                        <b>Licencia de conducir: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        <div class="col s4 m4 l4">
+                            <div class="switch" style="margin-top:-20px !important;">
+                                <div class="input-field">
+                                    <label>
+                                        @if (Model.fgLicencia == null)
+                                        {
+                                            <input type="checkbox" id="fgLicencia" class="">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="fgLicencia" class="" checked="checked">
+                                        }
+                                        <span class="lever" style="margin-left:-2px !important;"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_tpEgresado" id="ResulEgresado">
+                <div class="row">
+                    <div class="input-field col s12 m2 l2">
+                        <b>Tipo de egresado: </b>
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                        @Html.DropDownListFor(model => model.tpEgresado, new SelectList(new List<Object> { new { Value = "T", Text = "Titulado" }, new { Value = "P", Text = "Pasante" } }, "Value", "Text"), "-- Tipo de egresado --", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Lic" id="ResultLic">
+                <div class="row">
+                    <div class="col s12 m2 l2 input-field">
+                        <b> Licenciaturas: </b>
+                    </div>
+                    <div class="col s12 m2 l3 input-field">
+                        @Html.DropDownList("Licenciaturas", null, "-- Licenciatura --", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                    <div class="col s12 m7 l7 background-gris-border margin-top-15 padding-10" style="min-height:100px;" id="ContentChipLic">
+                        @{
+                            var CountLic = 0;
+                        }
+                        @Html.Hidden("CountLic", "", htmlAttributes: new { @Value = Model.RelBookReligiones.Count(), @id = "CountLic" })
+                        <div class="col s12 center indigo-text text-darken-4 mdi-10px" id="text-major"></div>
+                        @if (Model.RelBookLicenciaturas.Count() == 0)
+                        {
+                            <div class="col s12 center indigo-text text-darken-4 mdi-10px" id="text-major-lic">Aquí aparecerán las Licenciaturas que vaya seleccionando.</div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.RelBookLicenciaturas)
+                            {
+                                CountLic++;
+                                <div class="ChipsEstructura chipcreado" id="@item.idLicenciatura">
+                                    <input type="hidden" Value="@item.idLicenciatura" id="valor_@CountLic" />
+                                    <a class="ChipsTexto" id="@item.idLicenciatura">@item.Licenciaturas.nbLicenciatura</a><span class="eliminarLic ChipBtnCerrar" id="@item.idLicenciatura">&times;</span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 @Display_Reli" id="ResultReligion">
+                <div class="row">
+                    <div class="col s12 m2 l2 input-field">
+                        <b>   Religiones: </b>
+                    </div>
+                    <div class="col s12 m3 l3 input-field">
+                        @Html.DropDownList("Religiones", null, "--Religión --", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                    <div class="col s12 m7 l7 background-gris-border margin-top-15 padding-10" style="min-height:100px;" id="ContentChipReli">
+                        @{
+                            var CountReli = 0;
+                        }
+                        @Html.Hidden("CountReli", "", htmlAttributes: new { @Value = Model.RelBookReligiones.Count(), @id = "CountReli" })
+                        <div class="col s12 center indigo-text text-darken-4 mdi-10px" id="text-major"></div>
+                        @if (Model.RelBookReligiones.Count() == 0)
+                        {
+                            <div class="col s12 center indigo-text text-darken-4 mdi-10px" id="text-major-reli">Aquí aparecerán las Religiones que vaya seleccionando.</div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.RelBookReligiones)
+                            {
+                                CountReli++;
+                                <div class="ChipsEstructura chipcreado" id="@item.idReligion">
+                                    <input type="hidden" Value="@item.idReligion" id="valor_@CountReli" />
+                                    <a class="ChipsTexto" id="@item.idReligion">@item.CatReligion.nbReligion</a><span class="eliminarReli ChipBtnCerrar" id="@item.idReligion">&times;</span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <div class="col s12 @Display_Edos" id="ResultEstados">
+                <div class="row">
+                    <div class="col s12 m2 l2 input-field">
+                        <b>   Estados: </b>
+                    </div>
+                    <div class="col s12 m3 l3 input-field">
+                        @Html.DropDownList("Estados", null, "-- Estado --", htmlAttributes: new { @class = "select classic" })
+                    </div>
+                    <div class="col s12 m7 l7 background-gris-border margin-top-15 padding-10" style="min-height:100px;" id="ContentChipEdos">
+                        @{
+                            var CountEdos = 0;
+                        }
+                        @Html.Hidden("CountEstados", "", htmlAttributes: new { @Value = Model.RelBookEstados.Count(), @id = "CountEstados" })
+                        <div class="col s12 center indigo-text text-darken-4 mdi-10px" id="text-major"></div>
+                        @if (Model.RelBookEstados.Count() == 0)
+                        {
+                            <div class="col s12 center indigo-text text-darken-4 mdi-10px" id="text-major-edos">Aquí aparecerán los estados que vaya seleccionando.</div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.RelBookEstados)
+                            {
+                                CountEdos++;
+                                <div class="ChipsEstructura chipcreado" id="@item.idEstado">
+                                    <input type="hidden" Value="@item.idEstado" id="valor_@CountEdos" />
+                                    <a class="ChipsTexto" id="@item.idEstado">@item.CatEstados.nbEstado</a><span class="eliminarEdo ChipBtnCerrar" id="@item.idEstado">&times;</span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

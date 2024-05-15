@@ -1,0 +1,270 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Solicitud_Mtto>
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+<div class="row margin-10">
+    <div class="col l6 m6 s11 titlecircle">
+        <b>Lista de Solicitudes</b>
+    </div>
+    <div class="col l6 m6 s1 separator">
+    </div>
+</div>
+<div id="tblEdificiosAuth">
+    <div class="row">
+        <div class="col s12 m6 l6 input-field form-simple center-align">
+            <input type="text" name="busqueda" id="filtroBusqueda" onkeypress="if (event.keyCode == 13) Buscar()" Value="@ViewBag.filtro" placeholder="buscar por descripcion" />
+        </div>
+        <div class="col s12 m6 l6 input-field">
+            <button class="btn light-blue darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+            <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 10px" title="LIMPIAR"><i class="mdi mdi-filter-remove"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Usuario</td>
+                        <td class="center">Empresa</td>
+                        <td class="center">Sucursal</td>
+                        <td class="center">Descripcion</td>
+                        <td class="center">Tipo solicitud</td>
+                        <td class="center">Estado</td>
+                        <td class="center">Visualizar evidencia</td>
+                        <td class="center hide-on-med-and-down">Visualizar requerimientos</td>
+                        <td class="center hide-on-med-and-down">Visualizar calendario</td>
+                        <td class="center hide-on-med-and-down">agregar requerimiento</td>
+                        <td class="center hide-on-med-and-down">agregar calendario</td>
+                        @*<td class="center hide-on-med-and-down">asignar tecnico</td>*@
+                        @* VA CONDICIONADO *@
+                        @if (Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
+                        {
+                            <td class="center">Opciones</td>
+                        }
+
+
+                    </tr>
+                </thead>
+                <tbody class="table-body-orange">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="12" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                <tr class="table-body">
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @{
+                            var usuario = db.cat_sistemas.Find(db.Auditoria.Where(x => x.idregistro == item.Id_Solicitud && x.accion.ToUpper() == "REGISTRO" && x.tabla == "solicitud_Mtto").Select(x => x.idusuario).FirstOrDefault());
+                            var nombreUsuario = usuario != null ? usuario.nombre + " " + usuario.apellido_paterno + " " + usuario.apellido_materno : string.Empty;
+                        }
+                        @Html.DisplayFor(modelItem => nombreUsuario)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Empresa.Find(item.Em_Cve_Empresa).Em_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Sucursal.Find(item.Sc_Cve_Sucursal).Sc_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.Sm_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Tipo_Solicitud.Find(item.Id_Tipo_Sol).Ts_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Estados.Find(item.Id_Estado).descripcion)
+                    </td>
+                    @if (item.Id_Tipo_Sol == 2)
+                    {
+                        <td class="center-align">
+                            <a class="verevidencia" data-position="bottom" data-delay="50" title="Ver evidencia" data-tooltip="Ver evidencia" style="cursor:pointer;" href="@Url.Action("VisualizarEvidencia","AutorizacionView", new { Id_Solicitud = item.Id_Solicitud})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
+                        </td>
+                    }
+
+                    @if (item.Id_Estado == 3)
+                    {
+                        if (item.Id_Tipo_Sol == 2)
+                        {
+                            <td class="center-align">
+                                <a class="verreque" data-position="bottom" data-delay="50" title="Ver requerimento" data-tooltip="Ver requerimiento" style="cursor:pointer;" href="@Url.Action("VisualizarRequerimientos","AutorizacionView", new { Id_Solicitud = item.Id_Solicitud})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
+                            </td>
+                            <td class="center-align">
+                            </td>
+                        }
+                    }
+
+                    @if (item.Id_Estado == 3)
+                    {
+                        if (item.Id_Tipo_Sol == 1 || item.Id_Tipo_Sol == 3)
+                        {
+                            <td colspan="2" class="center-align">
+                            </td>
+                            <td class="center-align">
+                                <a class="vercalen" data-position="bottom" data-delay="50" title="Ver Calendario" data-tooltip="Ver calendario" style="cursor:pointer;" href="@Url.Action("VisualizarCalendario","AutorizacionView", new { Id_Solicitud = item.Id_Solicitud})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        @*<td colspan="2" class="center-align">
+            </td>*@
+                        <td class="center-align">
+                        </td>
+                    }
+
+                    @if (item.Id_Estado == 3)
+                    {
+                        if (item.Id_Tipo_Sol == 2)
+                        {
+
+                            <td class="center">
+                                <a href="#ancla" class="agregareq" data-position="bottom" data-delay="50" title="Agregar requemiento" data-tooltip="Agregar requemiento" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-plus-box-multiple mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                            </td>
+                            <td class="center-align">
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        if (item.Id_Tipo_Sol == 2)
+                        {
+                            <td class="center-align">
+                            </td>
+                        }
+                        else
+                        {
+
+                            <td class="center-align">
+                            </td>
+                        }
+
+
+                    }
+
+                    @if (item.Id_Estado == 3)
+                    {
+                        if (item.Id_Tipo_Sol == 1 || item.Id_Tipo_Sol == 3)
+                        {
+                            <td class="center-align">
+                            </td>
+                            <td class="center">
+                                <a href="#ancla" class="agregacalen" data-position="bottom" data-delay="50" title="Agregar calendario" data-tooltip="Agregar calendario" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-plus-box-multiple mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        <td class="center-align">
+                        </td>
+                        <td class="center-align">
+                        </td>
+                    }
+
+                    @if (item.Id_Estado == 3)
+                    {
+                        if (item.Id_Tipo_Sol == 2)
+                        {
+
+                            <!--<td class="center">
+                                <div class="col s12 m4 l4 input-field">-->
+                                    @* <b class="">Empresa</b>*@
+                                    <!--<div class="input-field margin-top-0">
+
+                                        @Html.DropDownListFor(Model => item.Em_Cve_Empresa, new SelectList(ViewBag.tecnico, "Value", "Text"), "-- Seleccione una tecnico --", htmlAttributes: new { @class = "select classic" })
+
+                                    </div>
+                                </div>-->
+                                @*<a href="#ancla" class="agregareq" data-position="bottom" data-delay="50" title="Agregar requemiento" data-tooltip="Agregar requemiento" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-plus-box-multiple mdi-24px green-text"></i></a>&nbsp;&nbsp;*@
+                            <!--</td>-->
+
+                        }
+                        else
+                        {
+                            @*<td class="center-align">
+                            </td>*@
+                        }
+                    }
+                    else
+                    {
+                        if (item.Id_Tipo_Sol == 2)
+                        {
+                            @*<td class="center-align">
+                            </td>*@
+                        }
+                        else
+                        {
+
+                            @*<td class="center-align">
+                            </td>
+                            <td class="center-align">
+                            </td>*@
+                        }
+
+
+                    }
+
+                    @if (item.Id_Estado != 3)
+                    {
+                        if (Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
+                        {
+                            <td class="center">
+                                <a href="#ancla" class="Autoriza" data-position="bottom" data-delay="50" title="Autorizar" data-tooltip="Autorizar" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-check-circle mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                                <a class="Cancelar" data-position="bottom" data-delay="50" title="Cancelar" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend="">
+                                    <i class="mdi mdi-close-circle mdi-24px red-text"></i>
+                                </a>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        if (Auth.Usuario.perfil_ID == 1 || Auth.Usuario.perfil_ID == 2)
+                        {
+                            <td class="center">
+                                <a href="#ancla" class="realizado" data-position="bottom" data-delay="50" title="Realizado" data-tooltip="Realizado" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-check-all mdi-24px black-text"></i></a>&nbsp;&nbsp;
+                            </td>
+                        }
+                    }
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaEdificiosAuth", new { page, filtroBusqueda = @ViewBag.filtro })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "TablaEdificiosAuth", // cambiar
+                        OnComplete = "FltOnCompletePer", // cambiar
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+</div>

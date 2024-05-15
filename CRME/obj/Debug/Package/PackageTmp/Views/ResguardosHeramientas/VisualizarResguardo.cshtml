@@ -1,0 +1,396 @@
+﻿@*@model CRME.Models.Resguardos_Lista_Mobiliario*@
+
+@using CustomHelpers
+@{
+    ViewBag.Title = "Visualizar resguardo Mobiliario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Tab Structure -->
+<div class="row form-general margin-top-30 padding-20">
+    <div class="col s12">
+        <div class="row">
+            @using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmDatosResguardo" }))
+            {
+                <div class="col s12 margin-top-25">
+                    <div id="New_UpdatePersona">
+                        @Html.Action("_formularioResguardo", "ResguardosHeramientas")
+                    </div>
+                </div>
+            }
+        </div>
+        @*  *@
+    </div>
+</div>
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+
+
+        });
+
+      $("#Nombres").autocomplete({
+            source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("BuscarRecibe", "ResguardosHeramientas")",
+                       // type: "post",
+                        dataType: "json",
+                        data: { cad: request.term },
+                        success: function (data) {
+                           // console.log(data);
+                            response(data);
+                        },
+                    })
+            },
+            select: function (event, elemento) {
+                document.getElementById("id_recibe").value = elemento.item.idRecibe;
+            }
+        });
+
+        $("#nombresco").autocomplete({
+            source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("BuscarRecibe", "ResguardosHeramientas")",
+                       // type: "post",
+                        dataType: "json",
+                        data: { cad: request.term },
+                        success: function (data) {
+                           // console.log(data);
+                            response(data);
+                        },
+                    })
+            },
+            select: function (event, elemento) {
+                document.getElementById("id_recibeCo").value = elemento.item.idRecibe;
+            }
+        });
+
+        $("#entrega").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("BuscarEntrega", "ResguardosHeramientas")",
+                    dataType: "json",
+                    data: { cad: request.term },
+                    success: function (data) {
+                        //console.log(data);
+                        response(data);
+                    },
+                })
+            },
+            select: function (event, elemento) {
+                document.getElementById("Id_entrega").value = elemento.item.identrega;
+                }
+            });
+        //presenta error aqui
+        $("#Cod_inventario").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("BuscarSerie", "ResguardosHeramientas")",
+                        dataType: "json",
+                        data: { cad: request.term },
+                        success: function (data) {
+                           // console.log(data);
+                            response(data);
+                        },
+                    })
+            },
+            select: function (event, elemento) {
+                document.getElementById("Mobiliario").value = elemento.item.Mobiliario;
+                document.getElementById("Color").value = elemento.item.Color;
+                //console.log(elemento.item.Caracteristicas);
+                document.getElementById("Caracteristicas").value = elemento.item.Caracteristicas;
+                document.getElementById("Precio").value = elemento.item.Precio;
+                document.getElementById("Ubicacion").value = elemento.item.Ubicacion;
+                //console.log(elemento.item.fecha_folio);
+                document.getElementById("fecha_folio").value = elemento.item.fecha_folio;
+                document.getElementById("Proveedor").value = elemento.item.Proveedor;
+                }
+            });
+
+
+        GenerarPdf();
+            function GenerarPdf() {
+                $("#FrmDatosResguardo").off('click', '.generarPdf');
+                $("#FrmDatosResguardo").on("click", ".generarPdf", function (e) {
+                    //var id = $("#Resguardo_ID").val();
+                    var id = $("#Resguardo_Mobiliario_ID").val();
+                    var url = "@Url.Action("Print", "ResguardosHeramientas")?id=" + id;
+                    window.open(url);
+                });
+        }
+
+         DevolverResguardo();
+        function DevolverResguardo() {
+                $("#FrmDatosResguardo").off('click', '.devolverResguardo');
+            $("#FrmDatosResguardo").on("click", ".devolverResguardo", function (e) {
+                e.preventDefault();
+                if ($("#FrmDatosResguardo").valid()) {
+                    var frmValues = $("#FrmDatosResguardo").serialize();
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Devolver", "ResguardosHeramientas")',
+                        cache: false,
+                        data: frmValues,
+                        success: function (result) {
+                            if (result.success) {
+                                //$('#mensaje-error-model').text("");
+                                //$('#modal1').modal('close');
+
+                                ConfigModal($('#ModalAlert'), "", " se regreso con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+
+                                //if ($("#ModalAlert").modal('close')) {
+                                    window.location = "/ResguardosHeramientas/index";
+                                //}
+                               
+                            } else if (result.mensajefound != "") {
+                                ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+
+        ComboSucursal();
+        function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Em_Cve_Empresa", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetSucursalesByEmpresa", "ResguardosHeramientas")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+
+        ComboDepartamento();
+function ComboDepartamento() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Sc_Cve_Sucursal", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetdepartamentosBySucursal", "ResguardosHeramientas")',
+                    type: 'GET',
+                    data: { Sc_Cve_Sucursal: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Dp_Cve_Departamento").empty();
+                        $("#Dp_Cve_Departamento").append('<option value=""> -- Seleccione un area -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Dp_Cve_Departamento").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+
+        cargar();
+        function cargar() {
+            $("#FrmDatosResguardo").off('click', '.cargadatos');
+            $("#FrmDatosResguardo").on('click', '.cargadatos', function (e) {
+                if ($("#Dp_Cve_Departamento").val() != "") {
+                var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento }, function (response, status, xhr) {
+                    if (status == "success") {
+                        selTodos();
+                        }
+                    });
+                }
+                else {
+                    ConfigModal($('#ModalAlert'), "ALERTA", "Debe seleccionar una area", 3)
+                    $("#ModalAlert").modal({
+                        dismissible: false,
+                    });
+                    $("#ModalAlert").modal('open');
+                }
+            });
+        }
+
+        selTodos();
+        function selTodos() {
+            $("#check_selT").change(function () {
+                if ($(this).is(':checked')) {
+                    $("input[type=checkbox]").prop('checked', true); //todos los check
+                    //$(".chek").prop('checked', true); //solo los del objeto #diasHabilitados
+                    agrega();
+                } else {
+                    //$("input[type=checkbox]").prop('checked', false);//todos los check
+                    $(".chek").prop('checked', false);//solo los del objeto #diasHabilitados
+                    quita();
+                }
+            });
+        }
+
+       
+        var idem = "";
+
+        var idAlumno = [];
+        $("#TablaResguardoMobiliario").on("change", ".chek", function () {
+            var id = $(this).attr("id-item");
+            var chek = $(this).is(':checked');
+            if (chek) {
+                idem = idem + "<ID>" + id + "</ID>";
+                idAlumno.push(id)
+            }
+            else {
+
+                var alumno = idAlumno.indexOf(id);
+
+                idAlumno.splice(alumno, 1);
+            }
+
+        });
+      
+        agrega();
+        function agrega() {
+            $("#TablaResguardoMobiliario .chek:checked").each(function () {
+               // var id = $(this).attr("id-item");
+                //for (var i = 0; i <= idAlumno.length; i++) {
+                var id = $(this).attr("id-item");                                            
+                //    if (idAlumno[i] == id) {
+                //        $(this).prop("checked", true);
+                //    }
+                //}
+                idAlumno.push(id)
+            });
+            
+        }
+        
+        quita();
+        function quita() {
+            $("#TablaResguardoMobiliario .chek:not(:checked)").each(function () {
+                // var id = $(this).attr("id-item");
+                //for (var i = 0; i <= idAlumno.length; i++) {
+                var id = $(this).attr("id-item");
+                //    if (idAlumno[i] == id) {
+                //        $(this).prop("checked", true);
+                //    }
+                //}
+                var alumno = idAlumno.indexOf(id);
+
+                idAlumno.splice(alumno, 1);
+            });
+        }
+
+        
+        
+
+        guardar();
+        function guardar() {           
+            $("#FrmDatosResguardo").off('click', '.guardarResguardo');
+            $("#FrmDatosResguardo").on('click', '.guardarResguardo', function (e) {
+                e.preventDefault();
+                if ($("#FrmDatosResguardo").valid()) {
+                    var frmValues = $("#FrmDatosResguardo").serialize();
+                    var id_recibe = $("#id_recibe").val();
+                    var id_recibeco = $("#id_recibeCo").val();
+                    var Id_entrega = $("#Id_entrega").val();
+
+                    if (idAlumno == 0) {
+                        ConfigModal($('#ModalAlert'), "ALERTA", "Debe al menos seleccionar un registro", 3)
+                        $("#ModalAlert").modal({
+                            dismissible: false,
+                        });
+                        $("#ModalAlert").modal('open');
+                    }
+                    else {                       
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("SaveResguardo", "ResguardosHeramientas")',
+                            cache: false,
+                            //data: id_recibe + "&Id_entrega=" + Id_entrega + "&id_recibeco=" + id_recibeco + "&idAlumno=" + idAlumno,// "&idAlumno=" + idAlumno,
+                            data: { id_recibe ,Id_entrega, id_recibeco ,idAlumno},// "&idAlumno=" + idAlumno,
+                            //data: JSON.stringify({ id_recibe: id_recibe, idAlumno: idAlumno }),
+                            //contentType: "application/json; charset=utf-8",
+                            success: function (result) {
+                            if (result.success) {
+                                //$('#mensaje-error-model').text("");
+                                //$('#modal1').modal('close');
+
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                              
+                                window.location = "/ResguardosHeramientas/index";
+                            } else if (result.mensajefound != "") {
+                                ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        } //Response.redirect('@Url.Action("Index", "ResguardosHeramientas")');
+
+                    });
+                    }
+                }
+            });
+        }
+
+
+
+        chekear();
+        function chekear() {
+            $("#TablaResguardoMobiliario .chek").each(function () {
+                for (var i = 0; i <= idAlumno.length; i++) {
+                    var id = $(this).attr("id-item");
+                    if (idAlumno[i] == id) {
+                        $(this).prop("checked", true);
+                    }
+                }
+            });
+        }
+
+
+
+
+    </script>
+}
+

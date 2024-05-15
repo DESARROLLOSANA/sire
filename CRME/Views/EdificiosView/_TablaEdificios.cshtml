@@ -1,0 +1,159 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Solicitud_Mtto>
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+<div class="row margin-10">
+    <div class="col l6 m6 s11 titlecircle">
+        <b>Lista de Solicitudes</b>
+    </div>
+    <div class="col l6 m6 s1 separator">
+    </div>
+</div>
+<div id="tblEdificios">
+    <div class="row">
+        <div class="col s12 m6 l6 input-field form-simple center-align">
+            <input type="text" name="busqueda" id="filtroBusqueda" onkeypress="if (event.keyCode == 13) Buscar()" Value="@ViewBag.filtro" placeholder="buscar por descripcion" />
+        </div>
+        <div class="col s12 m6 l6 input-field">
+            <button class="btn light-blue darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+            <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 10px" title="LIMPIAR"><i class="mdi mdi-filter-remove"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Usuario</td>
+                        <td class="center">Empresa</td>
+                        <td class="center">Sucursal</td>
+                        <td class="center">Descripcion</td>
+                        <td class="center">Agregar evidencia</td>
+                        <td class="center">Motivo cancelacion</td>
+                        <td class="center">Estado</td>
+                        <td class="center">Opciones</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-orange">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="8" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                <tr class="table-body">
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @{
+                            var usuario = db.cat_sistemas.Find(db.Auditoria.Where(x => x.idregistro == item.Id_Solicitud && x.accion.ToUpper() == "REGISTRO" && x.tabla == "solicitud_Mtto").Select(x => x.idusuario).FirstOrDefault());
+                            var nombreUsuario = usuario != null ? usuario.nombre : string.Empty;
+                        }
+                        @Html.DisplayFor(modelItem => nombreUsuario)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Empresa.Find(item.Em_Cve_Empresa).Em_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Sucursal.Find(item.Sc_Cve_Sucursal).Sc_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.Sm_Descripcion)
+                    </td>
+
+                    @if (item.Id_Estado == 1 && item.Id_Tipo_Sol == 2)
+                    {
+                        <td class="center">
+                            <a href="#ancla" class="agregarevi" data-position="bottom" data-delay="50" title="Agregar evidencia" data-tooltip="Agregar evidencia" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-plus-box-multiple mdi-24px green-text"></i></a>&nbsp;&nbsp;
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="center-align" style="text-transform: uppercase;">
+                        </td>
+                    }
+
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.Motivo)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Estados.Find(item.Id_Estado).descripcion)
+                    </td>
+                    @if (item.Id_Estado == 1)
+                    {
+                        <td class="center">
+
+                            <a href="#ancla" class="editarEdificio" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                            <a class="eliminarEdificio" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend="">
+                                <i class="mdi mdi-close-outline mdi-24px red-text"></i>
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        if (item.Id_Estado == 4 )
+                        {
+                            <td class="center">
+
+                                <a href="#ancla" class="cerrarSoli" data-position="bottom" data-delay="50" title="Cerrar" data-tooltip="Cerrar" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-lock mdi-24px black-text"></i></a>&nbsp;&nbsp;
+                            </td>
+                        }
+                        else
+                        {
+                            if (item.Id_Estado == 2)
+                            {
+                                <td class="center">
+
+                                    <a href="#ancla" class="cerrarSoliB" data-position="bottom" data-delay="50" title="Cerrar" data-tooltip="Cerrar" style="cursor:pointer;" id-item="@item.Id_Solicitud" id-vend=""><i class="mdi mdi-lock mdi-24px black-text"></i></a>&nbsp;&nbsp;
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="center">
+                                </td>
+                            }
+
+                        }
+
+                    }
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaEdificios", new { page, filtroBusqueda = @ViewBag.filtro })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "TablaEdificios",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+</div>

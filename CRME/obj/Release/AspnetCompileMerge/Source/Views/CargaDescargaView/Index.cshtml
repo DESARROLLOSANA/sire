@@ -1,0 +1,214 @@
+﻿@using CustomHelpers
+@{
+    ViewBag.Title = "Carga y descarga";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row form-general margin-top-10" style="min-height:500px !important;">
+    <div class="col s12">
+        <div class="row margin-10">
+            <div class="col l6 m6 s11 titlecircle pnl-encabezado">
+                <b>Carga y descarga de datos</b>
+            </div>
+            <div class="col l6 m6 s1 hide-on-small-and-down separator">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s12 m4 l3 right">
+                        <a class="up-plantilla right-align" id="DescargarPlantilla" style="cursor:pointer;"><i class="mdi mdi-inbox-arrow-down mdi-18px"></i> <span>Plantilla de Carga de Egresados</span></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="input-field col s12 ">
+                            <b>Cargar información de egresados</b>
+                        </div>
+                        <div class="row margin-0">
+                            <div class="col s12 m12 l7 file-field input-field">
+                                <div class="btn orange darken-4">
+                                    <i class="mdi mdi-folder-open"></i> EXAMINAR
+                                    <input type="file" id="fileInputArchivo" accept=".xlsx">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input id="nbArchivo" class="file-path validate" type="text">
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l3 input-field">
+                                <button type="button" class="btn orange darken-4 btn-block" id="CargarArchivo"><i class="mdi mdi-cloud-upload load-icon"></i> CARGAR</button>
+                            </div>
+                            <div class="col s12 m12 l2 input-field">
+                                <div class="loading loading-subir">
+                                    <div class="row center">
+                                        @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label id="mensaje-error-model" class="text-danger" style="font-size:15px"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="input-field col s12">
+                            <b>Descargar información de egresados</b>
+                        </div>
+                        <div class="row margin-0">
+                            <div class="input-field col s12 m6 l4">
+                                <button type="button" class="btn orange darken-4 btn-block DescargarEgresados"><i class="mdi mdi-file-excel"></i> <span>DESCARGAR</span></button>
+                            </div>
+                            <div class="col s12 m2 l2 input-field">
+                                <div class="loading loading-descargar" id="loadin">
+                                    <div class="row center">
+                                        @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center loading-size" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal modal-fixed-footer size-modal-gen" @*style="width:300px; height:200px;"*@>
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="ModalAlert1" class="modal modal-fixed-footer size-modal-gen" @*style="width:320px; height:250px;"*@>
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts
+    {
+    <script>
+
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+            $("#ModalAlert1").modal();
+        });
+
+
+        //subir archivo excel
+        $("#CargarArchivo").click(function (e) {
+            e.preventDefault();
+            var formdata = new FormData();
+            var fileInput = document.getElementById('fileInputArchivo');
+            var archivo = $('#fileInputArchivo').val();
+            var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            if (fileInput.value.trim() == "") {
+                ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }
+            else if (extension != ".xlsx") {
+                $('#fileInputArchivo').val("");
+                $("#nbArchivo").val("");
+                ConfigModal($('#ModalAlert1'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
+                $("#ModalAlert1").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert1").modal('open');
+            }else {
+
+                for (i = 0; i < fileInput.files.length; i++) {
+                    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                }
+
+                $(".loading-subir").css('display', 'block')
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '@Url.Action("CargarEgresados", "CargaDescargaView")');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function (result) {
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var obj = JSON.parse(xhr.responseText);
+
+                        if (obj.success) {
+                            $("#nbArchivo").val("");
+                            ConfigModal($('#ModalAlert'), "Acción", obj.mensaje, 1)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                        else if (obj.success == false && obj.mensaje != "") {
+                            ConfigModal($('#ModalAlert1'), "Información", obj.mensaje, 3)//para crear la ventana flotante
+                            $("#ModalAlert1").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert1").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                    }
+                    $(".loading-subir").css('display', 'none')
+                }
+            }
+
+            return false;
+
+        })
+
+        //descargar Plantilla
+        $("#DescargarPlantilla").click(function (e) {
+            e.preventDefault();
+            window.location.href = '@Url.Action("DescargarPlantilla", "CargaDescargaView")';
+
+        });
+
+        //descargar Egresados
+        $(".DescargarEgresados").click(function (e) {
+            e.preventDefault();
+            $(".loading-descargar").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DescargarEgresados", "CargaDescargaView")',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    $(".loading-descargar").css("display", "none");
+                    if (result.success) {
+                        window.location.href = '@Url.Action("DescargarEgresados", "CargaDescargaView")' + '/?Creado=' + 1;;
+                    } else {
+                        ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
+                        $("#ModalAlert").modal({
+                            dismissible: false,
+                        });
+                        $("#ModalAlert").modal('open');
+                    }
+                }
+            });
+        });
+    </script>
+}

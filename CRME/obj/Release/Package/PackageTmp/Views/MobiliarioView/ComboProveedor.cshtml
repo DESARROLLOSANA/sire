@@ -1,0 +1,9 @@
+﻿@model CRME.Models.cat_proveedores
+
+@*<div class="col s12 m12 l12">*@
+<b class="">Proveedor:</b>
+
+@Html.DropDownListFor(model => model.proveedor_ID, new SelectList(ViewBag.proveedor_ID, "Value", "Text"), "-- Proveedores --", htmlAttributes: new { @class = "select classic" })
+
+@*</div>*@
+

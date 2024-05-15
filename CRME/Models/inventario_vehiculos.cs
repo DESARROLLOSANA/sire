@@ -69,6 +69,13 @@ namespace CRME.Models
 
         public int? precio { get; set; }
 
+
+        [StringLength(10)]
+        public string empresa_gps { get; set; }
+
+        [StringLength(15)]
+        public string imei_gps { get; set; }
+
         public int? estatus_ID { get; set; }
 
         public int Em_Cve_Empresa { get; set; }

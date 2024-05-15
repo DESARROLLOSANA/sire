@@ -1,0 +1,125 @@
+﻿@using CustomHelpers
+<div class="row margin-0">
+    <div class="col s12 m3 l3" style="border-right:1px solid #F8981D;" >
+        @*<div class="row">
+            <div class="input-field form-simple col s12 margin-0">
+                @Html.Editor("Filtro", new { htmlAttributes = new { @class = "Validate datepicker", @Placeholder = "Buscar", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+            </div>
+        </div>*@
+        <div class="col s12 cm-panel grey lighten-2" id-item="1" style="min-height:350px; max-height:350px; overflow-y:auto !important;">
+            <div class="drop-container">
+                @if (ViewBag.tipo == 2)
+                {
+                    <button class="cm-campo btn white margin-10 grey-text Campo_1" value="1" style="min-width:150px;">
+                        Nombre
+                    </button>
+                }
+                
+                <button class="cm-campo btn white margin-10 grey-text Campo_2" value="2" style="min-width:150px;">
+                    Estado Civil
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_3" value="3" style="min-width:150px;">
+                    Edad
+                </button>
+                @if (ViewBag.tipo == 2)
+                {
+                    <button class="cm-campo btn white margin-10 grey-text Campo_4" value="4" style="min-width:150px;">
+                        Telefono
+                    </button>
+                }
+                
+                @if (ViewBag.tipo == 2)
+                {
+                    <button class="cm-campo btn white margin-10 grey-text Campo_5" value="5" style="min-width:150px;">
+                        Correo
+                    </button>
+                }
+                @if (ViewBag.tipo == 2)
+                {
+                    <button class="cm-campo btn white margin-10 grey-text Campo_15" value="15" style="min-width:150px;">
+                        Cumpleaños
+                    </button>
+                }
+                <button class="cm-campo btn white margin-10 grey-text Campo_6" value="6" style="min-width:150px;">
+                    Género
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_7" value="7" style="min-width:150px;">
+                    Licenciatura
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_8" value="8" style="min-width:150px;">
+                    Religión
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_9" value="9" style="min-width:150px;">
+                    Estado
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_10" value="10" style="min-width:150px;">
+                    Trabajo
+                </button> 
+                <button class="cm-campo btn white margin-10 grey-text Campo_11" value="11" style="min-width:150px;">
+                    Sangre
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_12" value="12" style="min-width:150px;">
+                    Licencia
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_13" value="13" style="min-width:150px;">
+                    Egresado
+                </button>
+                <button class="cm-campo btn white margin-10 grey-text Campo_14" value="14" style="min-width:150px;">
+                    Fallecido
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m9 l9 padding-left-right-10">
+        <div class="row">
+            @if (ViewBag.tipo == 2)
+            {
+                <div class="col s12 right-align">
+                    <div class="col s12 m7 l7 input-field">
+                        <div class="" id="girar" hidden>
+                            <div class="row right-align">
+                                @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center", @Style= "width:60px !important; margin-top:-25px !important;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m5 l5">
+                        <button type="button" class="btn orange darken-4 waves-effect GenerarReporte"><i class="mdi mdi-chevron-double-right"></i> Generar reporte</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col s12 right-align">
+                    <div class="col s12 m7 l7 input-field ">
+                        <div class="" id="girar" hidden>
+                            <div class="row right-align">
+                                @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center", @Style = "width:60px !important; margin-top:-25px !important;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m5 l5">
+                        <button type="button" class="btn orange darken-4 waves-effect GenerarIndicador"><i class="mdi mdi-chevron-double-right"></i> Generar indicador</button>
+                    </div>
+                </div>
+            }
+   
+        </div>
+        <div class="row cm-panel grey lighten-2" style="min-height:300px; margin-left:5px !important;" id-item="2">
+            <div class="drop-container">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6 left-align">
+                <input type="checkbox" class="filled-in" id="check_Book" />
+                <label for="check_Book">Agregar  a Books</label>
+            </div>
+            @if(ViewBag.tipo==2){
+
+            <div class="col s6 right-align display_none CorreoValidate">
+                <a class="btn orange darken-4 GenerarCorreo"><i class="mdi mdi-email"></i> Generar correo</a>
+            </div>
+            }
+        </div>
+    </div>
+</div>

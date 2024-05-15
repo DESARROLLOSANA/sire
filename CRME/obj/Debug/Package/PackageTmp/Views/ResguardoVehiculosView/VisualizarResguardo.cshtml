@@ -1,0 +1,207 @@
+﻿@*@model CRME.Models.Resguardos_Lista_Mobiliario*@
+
+@using CustomHelpers
+@{
+    ViewBag.Title = "Visualizar resguardo Vehiculos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Tab Structure -->
+<div class="row form-general margin-top-30 padding-20">
+    <div class="col s12">
+        <div class="row">
+            @using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmDatosResguardo" }))
+            {
+                <div class="col s12 margin-top-25">
+                    <div id="New_UpdatePersona">
+                        @Html.Action("_formularioResguardo", "ResguardoVehiculosView")
+                    </div>
+                </div>
+            }
+        </div>
+        @*  *@
+    </div>
+</div>
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+
+
+        });
+
+
+        $("#Nombres").autocomplete({
+            source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("BuscarRecibe", "ResguardoVehiculosView")",
+                       // type: "post",
+                        dataType: "json",
+                        data: { cad: request.term },
+                        success: function (data) {
+                           // console.log(data);
+                            response(data);
+                        },
+                    })
+            },
+            select: function (event, elemento) {
+                document.getElementById("id_recibe").value = elemento.item.idRecibe;
+            }
+        });
+
+
+        $("#entrega").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("BuscarEntrega", "ResguardoVehiculosView")",
+                    dataType: "json",
+                    data: { cad: request.term },
+                    success: function (data) {
+                        //console.log(data);
+                        response(data);
+                    },
+                })
+            },
+            select: function (event, elemento) {
+                document.getElementById("Id_entrega").value = elemento.item.identrega;
+                }
+            });
+        //presenta error aqui
+        $("#Numero_economico").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("BuscarSerie", "ResguardoVehiculosView")",
+                        dataType: "json",
+                        data: { cad: request.term },
+                        success: function (data) {
+                           // console.log(data);
+                            response(data);
+                        },
+                    })
+            },
+            select: function (event, elemento) {
+                document.getElementById("Serie_motor").value = elemento.item.Serie_motor;
+                document.getElementById("Cuadro_chasis").value = elemento.item.Cuadro_chasis;
+                document.getElementById("Marca").value = elemento.item.Marca;
+                document.getElementById("Anio").value = elemento.item.Anio;
+                document.getElementById("Color").value = elemento.item.Color;
+                document.getElementById("Modelo").value = elemento.item.Modelo;
+                document.getElementById("Placas").value = elemento.item.Placas;
+                document.getElementById("Poliza_seguro").value = elemento.item.Poliza_seguro;
+                document.getElementById("Inciso").value = elemento.item.Inciso;
+                document.getElementById("Vigencia_del").value = elemento.item.Vigencia_del;
+                document.getElementById("Vigencia_al").value = elemento.item.Vigencia_al;
+                //console.log(elemento.item.fecha_folio);
+                document.getElementById("Folio").value = elemento.item.Folio;
+                document.getElementById("Tarjeta_circulacion").value = elemento.item.Tarjeta_circulacion;
+                document.getElementById("Vigencia_tarjeta").value = elemento.item.Vigencia_tarjeta;
+                }
+            });
+
+
+        GenerarPdf();
+            function GenerarPdf() {
+                $("#FrmDatosResguardo").off('click', '.generarPdf');
+                $("#FrmDatosResguardo").on("click", ".generarPdf", function (e) {
+                    //var id = $("#Resguardo_ID").val();
+                    var id = $("#Resguardo_vehiculo_ID").val();
+                    var url = "@Url.Action("Print", "ResguardoVehiculosView")?id=" + id;
+                    window.open(url);
+                });
+        }
+
+
+
+     DevolverResguardo();
+        function DevolverResguardo() {
+                $("#FrmDatosResguardo").off('click', '.devolverResguardo');
+            $("#FrmDatosResguardo").on("click", ".devolverResguardo", function (e) {
+                e.preventDefault();
+                if ($("#FrmDatosResguardo").valid()) {
+                    var frmValues = $("#FrmDatosResguardo").serialize();
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Devolver", "ResguardoVehiculosView")',
+                        cache: false,
+                        data: frmValues,
+                        success: function (result) {
+                            if (result.success) {
+                                //$('#mensaje-error-model').text("");
+                                //$('#modal1').modal('close');
+
+                                ConfigModal($('#ModalAlert'), "", " se regreso con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                                Response.redirect('@Url.Action("Index", "ResguardoVehiculosView")');
+                            } else if (result.mensajefound != "") {
+                                ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        guardar();
+        function guardar() {
+            $("#FrmDatosResguardo").off('click', '.guardarResguardo');
+            $("#FrmDatosResguardo").on('click', '.guardarResguardo', function (e) {
+                e.preventDefault();
+                if ($("#FrmDatosResguardo").valid()) {
+                    var frmValues = $("#FrmDatosResguardo").serialize();
+                    var id_recibe = $(this).attr("id_recibe");
+                    var Id_entrega = $(this).attr("Id_entrega");
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("SaveResguardo", "ResguardoVehiculosView")',
+                        cache: false,
+                        data: frmValues + "&id_recibe=" + id_recibe + "&Id_entrega=" + Id_entrega,
+                        success: function (result) {
+                            if (result.success) {
+                                //$('#mensaje-error-model').text("");
+                                //$('#modal1').modal('close');
+
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                               Response.redirect('@Url.Action("Index", "ResguardoVehiculosView")');
+                            } else if (result.mensajefound != "") {
+                                ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+
+                    });
+                }
+            });
+        }
+
+
+
+
+    </script>
+}
+

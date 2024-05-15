@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Notificación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="row">
+        <div class="col l8 offset-l2 m8 offset-m2 s12 z-depth-2 white margin-top-50" style="padding:50px 20px;">
+            @using (Html.BeginForm("Redireccion", "AlumnoView", FormMethod.Post, new { id = "FrmRecuperar", @class = "form-simple" }))
+            {
+                
+            <div class="row">
+                <div class="col s12 m12 l12 center-align">
+                    <img class="responsive-img waves-effect" src="~/Upload/Sistema/logo-anahuac.png" width="400" />
+                </div>
+                <div>
+                    <div class="col s12 m12 l12">
+                       <p>
+                           <b>
+                                Su enlace ha expirado, se le recomienda contactar con el administrador al siguiente correo <u>soporte@dwmedios.com</u>
+                                para generar un nuevo enlace y actualizar sus datos.
+                            </b>
+                        </p>
+                        <p class="center"><b>¡Gracias por utilizar CRME!</b></p>                      
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+

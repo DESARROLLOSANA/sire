@@ -1,0 +1,189 @@
+﻿@model CRME.Models.LoginViewModel
+
+@using CustomHelpers
+
+@{
+    ViewBag.Title = "Inventarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container ">
+    <div class="row form-general margin-top-30">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="row margin-10">
+                    <div class="col l12 m12 s12 titlecircle">
+                        <b>Inventarios disponibles<i class="small mdi mdi-dolly"></i></b>
+                    </div>
+                </div>
+            </div>
+            <div class="row">               
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioLaptopsView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadLap <i class="small mdi mdi-laptop"></i></h4>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">LAPTOP</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="#">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+
+                                <h4>@ViewBag.CantidadMoni <i class="small mdi mdi-monitor"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">MONITORES</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="#">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadCpu <i class="small mdi mdi-desktop-tower-monitor"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">CPU</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <a href= "@Url.Action("Index", "InventarioLineasView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <!--<h4>@ViewBag.CantidadLin <i class="small mdi mdi-headset"></i></h4>-->
+                                <h4>@ViewBag.CantidadLin <i class="small mdi mdi-sim"></i></h4>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">LINEAS</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioMovilesView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadMov <i class="small mdi mdi-cellphone"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">MOVILES</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioImpresorasView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadImp <i class="small mdi mdi-printer"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">IMPRESORAS</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <a href="#">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadCar <i class="small mdi mdi-battery-50"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">CARGADORES</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioTipoMobiliarioView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadTMo <i class="small mdi mdi-format-list-bulleted"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">TIPOS DE MOBILIARIO</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioMobiliarioView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadMob <i class="small mdi mdi-desk"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">MOBILIARIO</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioVehiculosView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadVeh <i class="small mdi mdi-car"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">VEHICULOS</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a href="@Url.Action("Index", "InventarioUnidadesView")">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <h4>@ViewBag.CantidadUni <i class="small mdi mdi-truck"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12 center-align">
+                                <b class="borderbutton">UNIDADES</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

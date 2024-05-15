@@ -1,0 +1,132 @@
+﻿
+@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Resguardos_Lista_Lineas>
+@{ string strorden = ""; string iconorder = "";}
+
+
+<div class="row margin-10">
+    <div class="col l6 m6 s12 titlecircle pnl-encabezado">
+        <b>Resguardos de Lineas</b>
+    </div>
+    <div class="col l6 m6 hide-on-small-and-down separator">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m6 l6 input-field center-align">
+        <input type="text" name="busqueda" id="filtroBusquedaA" Value="@ViewBag.filtro" placeholder="Telefono, Plan, Costo, Cuenta, Ubicación, Departamento" />
+    </div>
+    <div class="col s12 m4 l4 input-field">
+        <button class="btn light-blue darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+        <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 25px" title="Limpiar filtro"><i class="mdi mdi-filter-remove"></i></button>
+    </div>
+    <div class="col s12 m2 l2 input-field">
+        <button class="btn light-blue darken-4 waves-effect excel" title="Exportar a excel"><i class="mdi mdi-file-excel"></i></button>
+    </div>
+</div>
+<div id="contentTablaResguardos">
+    <div class="row" style="min-height:350px; max-height:350px; overflow-y:auto !important;">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        @*mdi-arrow-down*@
+                        @{ strorden = ViewBag.order == "Inv_linea_ID" ? "Inv_linea_IDdesc" : "Inv_linea_ID";
+                            iconorder = ViewBag.order == "Inv_linea_ID" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Inv_linea_IDdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>"; }
+                        <td class="center permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) #</td>
+                        @*Fecha de inicio*@
+                        @{ strorden = ViewBag.order == "Fecha_inicio" ? "Fecha_iniciodesc" : "Fecha_inicio";
+                            iconorder = ViewBag.order == "Fecha_inicio" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Fecha_iniciodesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Fecha de inicio</td>
+                        @*Telefono*@
+                        @{ strorden = ViewBag.order == "Telefono" ? "Telefonodesc" : "Telefono";
+                            iconorder = ViewBag.order == "Telefono" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Telefonodesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Telefono</td>                      
+                        @*Nombre del plan*@
+                        @{ strorden = ViewBag.order == "Nombre_plan" ? "Nombre_plandesc" : "Nombre_plan";
+                            iconorder = ViewBag.order == "Nombre_plan" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Nombre_plandesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Nombre del Plan</td>
+                        @*Renta sin iva*@
+                        @{ strorden = ViewBag.order == "Renta_sin_iva" ? "Renta_sin_ivadesc" : "Renta_sin_iva";
+                            iconorder = ViewBag.order == "Renta_sin_iva" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Renta_sin_ivadesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Renta sin iva</td>
+                        @*ubicacion*@
+                        @{ strorden = ViewBag.order == "Ubicacion" ? "Ubicaciondesc" : "Ubicacion";
+                            iconorder = ViewBag.order == "Ubicacion" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Ubicaciondesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Ubicacion</td>
+                        @*departamento*@
+                        @{ strorden = ViewBag.order == "Departamento" ? "Departamentodesc" : "Departamento";
+                            iconorder = ViewBag.order == "Departamento" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Departamentodesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Departamento</td>
+                        @*numero de cuenta*@
+                        @{ strorden = ViewBag.order == "Cuenta" ? "Cuentadesc" : "Cuenta";
+                            iconorder = ViewBag.order == "Cuenta" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Cuentadesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Cuenta</td>
+
+
+                        <td class="center hide-on-med-and-down">Estado</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-blue">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="10" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            @*Se edito esta parte *@
+                <tr class="table-body">
+                    <td class="right-align">@item.Inv_linea_ID.</td>
+                    <td class="left-align">@item.fecha_inicio.ToShortDateString()</td>
+                    <td class="left-align">@item.Telefono</td>
+                    <td class="left-align">@item.Nombre_plan</td>
+                    <td class="left-align">@item.Renta_sin_iva</td>
+                    <td class="left-align">@item.Ubicacion</td>
+                    <td class="left-align">@item.Departamento</td>
+                    <td class="left-align">@item.Cuenta</td>
+                    @*apartir de aqui se añaden los nuevos *@
+
+                    <td class="left-align">@item.Estatus</td>
+                    <!-- <td class="left-align" style="color: #0000FF">@item.Estatus</td>-->
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaResguardos", new { page, strorden })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        //UpdateTargetId = "TablaResguardoMobiliario",
+                        UpdateTargetId = "TablaResguardoLineas",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+
+</div>

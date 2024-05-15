@@ -89,6 +89,20 @@ namespace CRME.Models
 
         public DateTime created_time_actuales { get; set; }
 
+        [StringLength(500)]
+        public string url_pdf_tarjeta { get; set; }
+
+        [StringLength(10)]
+        public string type_tarjeta { get; set; }
+
+        [StringLength(500)]
+        public string url_pdf_poliza { get; set; }
+
+        [StringLength(10)]
+        public string type_poliza { get; set; }
+
+
+
         public int? estatus_ID { get; set; }
 
         public int Em_Cve_Empresa { get; set; }

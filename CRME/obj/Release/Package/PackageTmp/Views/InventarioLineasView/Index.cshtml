@@ -1,0 +1,213 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Inventario Lineas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Inventario de Lineas</h5>
+            </div>
+        </div>
+
+        <div id="New_UpdateEmpresa">
+            @Html.Action("_FormularioEmpresa", "InventarioLineasView")
+        </div>
+
+        <div id="TablaEmpresas">
+            @Html.Action("_TablaLineas", "InventarioLineasView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+        });
+
+         guardarpersona();
+        function guardarpersona() {
+
+            $("#FrmEmpresa").off('click', '.guardarEmpresa');
+            $("#FrmEmpresa").on("click", ".guardarEmpresa", function (e) {
+                //alert(" ");
+                e.preventDefault();
+                $(".guardarEmpresa").attr("disabled", true);
+                CargarReglasGeneralFormuario();
+                if ($("#FrmEmpresa").valid()) {
+                    var frmValues = $("#FrmEmpresa").serialize();
+                    $.ajax({
+                        url: '@Url.Action("SaveEmpresa", "InventarioLineasView")',
+                        data: frmValues,
+                        type: "POST",
+                        success: function (result) {//obtiene el resultado json
+                            $(".guardarEmpresa").attr("disabled", false);
+                            if (result.success) {//si es true el resultado
+                                $('#mensaje-error-model').text("");
+                                $("#New_UpdateEmpresa").load('@Url.Action("_FormularioEmpresa", "InventarioLineasView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                        guardarpersona();
+                                        //ConfigPictures();
+                                        //limpiar();
+                                    }
+                                });
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                                $("#TablaEmpresas").load('@Url.Action("_TablaLineas", "InventarioLineasView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else if (result.mensajefound != "") {                                
+                                ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                } else {
+                    $(".guardarEmpresa").attr("disabled", false);
+                }
+            });
+        }
+
+        //--- EDITAR PERSONA ---
+        $("#TablaEmpresas").off('click', '.editarEmpresa');
+        $("#TablaEmpresas").on('click', '.editarEmpresa', function (e) {
+            e.preventDefault();
+            var inv_linea_ID = $(this).attr("id-item");
+            //var Em_Cve_Empresa = $(this).attr("id-item");
+            $('#New_UpdateEmpresa').load('@Url.Action("_FormularioEmpresa", "InventarioLineasView")', { inv_linea_ID }, function (response, status, xhr) {
+                if (status == "success") {
+                    guardarpersona();
+                    //date();
+                    //validatePass();
+                    //ConfigPictures();
+                    //limpiar();
+
+                }
+            });
+            ancla = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(ancla).offset().top
+            }, 1000);
+        });
+
+
+        $("#TablaEmpresas").off('click', '.eliminarEmpresa');
+        $("#TablaEmpresas").on('click', '.eliminarEmpresa', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var inv_linea_ID = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteUsuario", "InventarioLineasView")',
+                        data: { inv_linea_ID },
+                        //data: { Em_Cve_Empresa },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEmpresas").load('@Url.Action("_TablaLineas", "InventarioLineasView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                guardarpersona();
+                date();
+                //validatePass();
+                //ConfigPictures();
+                limpiar();
+            });
+
+        function CargarReglasGeneralFormuario() {
+            var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(formulario);
+
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+        }
+
+
+        //====================== PAGINACIONES ===========================
+        //paginación personas
+
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contentTablaEmpresas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
+
+    </script>
+}

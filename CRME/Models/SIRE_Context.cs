@@ -54,7 +54,31 @@ namespace CRME.Models
         public virtual DbSet<inventario_vehiculos> inventario_vehiculos { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
         public virtual DbSet<Sucursal> Sucursal { get; set; }
+        public virtual DbSet<Ce_cos> Ce_cos { get; set; }
+        public virtual DbSet<Auditoria> Auditoria { get; set; }
+        public virtual DbSet<Cat_Estatus> Cat_Estatus { get; set; }
         public virtual DbSet<NivelAcademico> NivelAcademico { get; set; }
+
+        // neuvas tablas mtto solicitud
+        public virtual DbSet<Solicitud_Mtto> Solicitud_Mtto { get; set; }
+        public virtual DbSet<Tipo_Solicitud> Tipo_Solicitud { get; set; }
+        public virtual DbSet<Estados> Estados { get; set; }
+        public virtual DbSet<Archivos> Archivos { get; set; }
+        public virtual DbSet<Requerimiento> Requerimiento { get; set; }
+        public virtual DbSet<Programacion> Programacion { get; set; }
+        public virtual DbSet<Calendario> Calendario { get; set; }
+
+        // nuevas tablas herramientas
+
+        public virtual DbSet<Equipo_Menor> Equipo_Menor { get; set; }
+        public virtual DbSet<Familia> Familia { get; set; }
+        public virtual DbSet<Subfamilia> Subfamilia { get; set; }
+        public virtual DbSet<Condicion> Condicion { get; set; }
+        public virtual DbSet<Medida> Medida { get; set; }
+        public virtual DbSet<cat_resguardo_herramientas> cat_resguardo_herramientas { get; set; }
+        public virtual DbSet<Unidad_Medida> Unidad_Medida { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,0 +1,210 @@
+﻿@model CRME.Models.Resguardos_Lista_Unidades
+@*@model CRME.Models.Personas*@
+
+@{
+
+}
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nuevo Resguardo de Unidades</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Visualizar unidades</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmResguardo" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Resguardo_unidad_ID)
+    @* ----------------Datos de personales----------------*@
+
+    <div class="row">
+        <div class="col s12 m12 l12">
+
+            @if (ViewBag.edit == 1)
+            {
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                            <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                                <button type="button" class="btn green darken-4 waves-effect devolverResguardo" style="margin-left: 10px"><i class="mdi mdi-backup-restore hide-on-small-and-down"></i> Devolver Unidad</button>
+                            </div>
+                    </div>
+                </div>
+            }
+            <div class="row">
+                @if (ViewBag.edit != 1)
+                {
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Numero economico:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Numero_economico, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el Numero economico", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                            @Html.ValidationMessageFor(model => model.Numero_economico, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Numero economico:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Numero_economico, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el numero economico", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Numero_economico, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
+                    </div>
+                }
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Marca del vehículo</b>
+                    @Html.EditorFor(model => model.Marca_chasis, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Marca del vehiculo", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Marca_chasis, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Año modelo</b>
+                    @Html.EditorFor(model => model.Anio_chasis, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Año modelo", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Anio_chasis, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Modelo adaptación:</b>
+                    @Html.EditorFor(model => model.Numero_serie_adaptacion, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Modelo de adaptacion", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Numero_serie_adaptacion, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+                <div class="col s14 m2 l4 input-field">
+                    <b class="">serie del motor:</b>
+                    @Html.EditorFor(model => model.Numero_motor, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "$", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Numero_motor, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Serie de caja compactadora:</b>
+                    @Html.EditorFor(model => model.Numero_serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Serie de caja compactadora", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Numero_serie, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+
+                @if (ViewBag.edit != 1)
+                {
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Area:</b>
+                        <div class="input-field margin-top-0">
+                            @if (ViewBag.edit != 1)
+                            {
+
+                                @Html.DropDownListFor(model => model.Area, new SelectList(ViewBag.tabla_areas, "Value", "Text"), "--Selecciona el area --", htmlAttributes: new { @class = "select classic" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.Area, new SelectList(ViewBag.tabla_areas, "Value", "Text"), Model.Area, htmlAttributes: new { @class = "select classic" })
+                            }
+                            @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+
+                else
+                {
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Area:</b>
+                        @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "area", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    @* ----------------Datos de usuario----------------*@
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="row">
+            </div>
+            @if (ViewBag.edit != 1)
+            {
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien recibe:</b>
+                        @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien recibe", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        <input type="hidden" id="id_recibe" name="id_recibe">
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien entrega:</b>
+                        @Html.EditorFor(model => model.entrega, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien entrega", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.entrega, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        <input type="hidden" id="Id_entrega" name="Id_entrega">
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien reibe:</b>
+                        @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien recibe", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien entrega:</b>
+                        @Html.EditorFor(model => model.entrega, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien entrega", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.entrega, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    @*---------------Botones----------------*@
+    if (ViewBag.edit != 1)
+    {
+
+        // este se activa cuando se va hacer un nuevo resguardo
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                        <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","ResguardoUnidadesView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                        <button type="button" class="btn blue darken-4 waves-effect guardarResguardo" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                        <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","ResguardoUnidadesView")"><i class="mdi mdi-arrow-left hide-on-small-and-down"></i> volver</a>
+                        <button type="button" class="btn blue darken-4 waves-effect generarPdf" style="margin-left: 10px"><i class="mdi mdi-file-pdf-box hide-on-small-and-down"></i> Generar pdf</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

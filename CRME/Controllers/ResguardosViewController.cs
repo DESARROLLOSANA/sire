@@ -50,21 +50,24 @@ namespace CRME.Controllers
             string mensajefound = "";
             try
             {
-                var empresaequipo = db.inventario_laptop.FirstOrDefault(x => x.serie == resguardo.Serie).Em_Cve_Empresa;
+                #region verificacion
+                //var empresaequipo = db.inventario_laptop.FirstOrDefault(x => x.serie == resguardo.Serie).Em_Cve_Empresa;
 
-                var puesto = db.cat_usuarios.FirstOrDefault(c => c.usuario_ID == id_recibe).Pu_Cve_Puesto;
-                var dpto = db.Puestos.FirstOrDefault(b => b.Pu_Cve_Puesto == puesto).Dp_Cve_Departamento;
-                var sucur = db.Departamentos.FirstOrDefault(a => a.Dp_Cve_Departamento == dpto).Sc_Cve_Sucursal;
-                var empresa = db.Sucursal.FirstOrDefault(x => x.Sc_Cve_Sucursal == sucur).Em_Cve_Empresa;
-                var empresarecibe = db.Empresa.FirstOrDefault(e=> e.Em_Cve_Empresa ==empresa ).Em_Cve_Empresa;
+                //var puesto = db.cat_usuarios.FirstOrDefault(c => c.usuario_ID == id_recibe).Pu_Cve_Puesto;
+                //var dpto = db.Puestos.FirstOrDefault(b => b.Pu_Cve_Puesto == puesto).Dp_Cve_Departamento;
+                //var sucur = db.Departamentos.FirstOrDefault(a => a.Dp_Cve_Departamento == dpto).Sc_Cve_Sucursal;
+                //var empresa = db.Sucursal.FirstOrDefault(x => x.Sc_Cve_Sucursal == sucur).Em_Cve_Empresa;
+                //var empresarecibe = db.Empresa.FirstOrDefault(e=> e.Em_Cve_Empresa ==empresa ).Em_Cve_Empresa;
 
-                if (empresaequipo != empresarecibe)
-                {
-                    mensajefound = "La empresa del equipo no coincide con la del usuario que recibe";                    
-                }
-                else
-                {
-                    cat_resguardos_equipos resguar = new cat_resguardos_equipos();
+                //if (empresaequipo != empresarecibe)
+                //{
+                // mensajefound = "La empresa del equipo no coincide con la del usuario que recibe";                    
+                //}
+                //else
+                //{
+                #endregion
+
+                cat_resguardos_equipos resguar = new cat_resguardos_equipos();
                     resguar.fecha = DateTime.Now;
                     resguar.inv_laptop_ID = db.inventario_laptop.FirstOrDefault(x => x.serie == resguardo.Serie).inv_laptop_ID;
                     resguar.recibe_usuario_ID = id_recibe;
@@ -84,7 +87,7 @@ namespace CRME.Controllers
                     {
                         success = true;
                     }
-                }               
+               // }               
             }
             catch(Exception ex)
             {
@@ -93,6 +96,40 @@ namespace CRME.Controllers
             
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
+
+
+        //metodo para regresar el equipo y sus caracteristicas
+        public ActionResult Devolver(Resguardos_Lista_laptos id)
+        {
+            var serializerCat = new JavaScriptSerializer();
+            bool success = false;
+            string mensajefound = "";
+            try
+            {
+                cat_resguardos_equipos resuni = db.cat_resguardos_equipos.Find(db.cat_resguardos_equipos.FirstOrDefault(x => x.resguardo_ID == id.Resguardo_ID).resguardo_ID);
+                resuni.estatus_ID = 1;//cambiar el estatus del resguardo en la tabla
+                db.Entry(resuni).State = EntityState.Modified;
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+
+                inventario_laptop invmob = db.inventario_laptop.Find(db.inventario_laptop.FirstOrDefault(x => x.inv_laptop_ID == resuni.inv_laptop_ID).inv_laptop_ID);
+                invmob.estatus_ID = 1;   //cambiar el estatus del inventario en la tabla
+                db.Entry(invmob).State = EntityState.Modified;
+                if (db.SaveChanges() > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                mensajefound = ex.Message;
+            }
+            return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult _TablaReguardos(int? page, string orden, string filtro)
         {
             const int pageSize = 10;
@@ -299,14 +336,14 @@ namespace CRME.Controllers
         public ActionResult Print(int ? id)
         {
             //RespoonsivaSana responsiva = new RespoonsivaSana();
-            var idequipoLAP = db.cat_resguardos_equipos.Find(id).inv_laptop_ID;
-            var LAP = db.inventario_laptop.Find(idequipoLAP);
+            //var idequipoLAP = db.cat_resguardos_equipos.Find(id).inv_laptop_ID;
+            //var LAP = db.inventario_laptop.Find(idequipoLAP);
 
-            int empresa = LAP.Em_Cve_Empresa;
+            //int empresa = LAP.Em_Cve_Empresa;
             var reporte = new ReportClass();
             //if(empresa == 1)
             //{
-                reporte.FileName = Server.MapPath("/Reportes/RespoonsivaEcolsur.rpt");
+                reporte.FileName = Server.MapPath("~/Reportes/RespoonsivaSana.rpt");
             //}
             //else if(empresa == 2)
             //{
@@ -317,7 +354,7 @@ namespace CRME.Controllers
             //    reporte.FileName = Server.MapPath("/Reportes/RespoonsivaSau.rpt");
             //}
            
-            var rutafoto = Server.MapPath("/Upload/Sistema/ecolsur.png"); 
+            //var rutafoto = Server.MapPath("/Upload/Sistema/ecolsur.png"); 
             reporte.Load();
 
             reporte.SetParameterValue("@Id_resguardo", id);

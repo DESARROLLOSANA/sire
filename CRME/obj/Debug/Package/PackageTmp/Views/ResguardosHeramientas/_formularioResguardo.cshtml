@@ -1,0 +1,185 @@
+﻿@model CRME.Models.Resguardos_lista_Em
+@*@model CRME.Models.Personas*@
+
+@{
+
+}
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nuevo Resguardo de equipo menor</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Visualizar resguardo de equipo menor</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmResguardo" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(Model => Model.Resguardo_Mobiliario_ID)
+    @* ----------------Datos de personales----------------*@
+    <div class="row">
+        <div class="col s12 m12 l12">
+
+            @if (ViewBag.edit == 1)
+            {
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                            <button type="button" class="btn green darken-4 waves-effect devolverResguardo" style="margin-left: 10px"><i class="mdi mdi-backup-restore hide-on-small-and-down"></i> Devolver</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    @if (ViewBag.edit != 1)
+                    {
+                        <div class="row">
+                            <div class="col s12 m4 l4">
+                                <b class="">Persona quien recibe:</b>
+                                @Html.EditorFor(Model => Model.Nombres, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien recibe", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                                @Html.ValidationMessageFor(Model => Model.Nombres, "", new { @class = "text-danger" })
+                                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                                <input type="hidden" id="id_recibe" name="id_recibe">
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <b class="">Persona co-responsable:</b>
+                                @Html.EditorFor(Model => Model.nombresco, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Co-responsable", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                                @Html.ValidationMessageFor(Model => Model.nombresco, "", new { @class = "text-danger" })
+                                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                                <input type="hidden" id="id_recibeCo" name="id_recibeCo">
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <b class="">Persona quien entrega:</b>
+                                @Html.EditorFor(Model => Model.entrega, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien entrega", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                                @Html.ValidationMessageFor(Model => Model.entrega, "", new { @class = "text-danger" })
+                                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                                <input type="hidden" id="Id_entrega" name="Id_entrega">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col s12 m4 l4">
+                                <b class="">Persona quien recibe:</b>
+                                @Html.EditorFor(Model => Model.Nombres, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien recibe", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(Model => Model.Nombres, "", new { @class = "text-danger" })
+                                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                                <input type="hidden" id="id_recibe" name="id_recibe">
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <b class="">Persona co-responsable:</b>
+                                @Html.EditorFor(Model => Model.nombresco, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Co-responsable", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(Model => Model.nombresco, "", new { @class = "text-danger" })
+                                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                                <input type="hidden" id="id_recibeCo" name="id_recibeCo">
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <b class="">Persona quien entrega:</b>
+                                @Html.EditorFor(Model => Model.entrega, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien entrega", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(Model => Model.entrega, "", new { @class = "text-danger" })
+                                <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                                <input type="hidden" id="Id_entrega" name="Id_entrega">
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            @*---------------Botones----------------*@
+            @if (ViewBag.edit != 1)
+            {
+
+                // este se activa cuando se va hacer un nuevo resguardo
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="row">
+                            <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                                <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","ResguardosHeramientas")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                                <button type="button" class="btn blue darken-4 waves-effect guardarResguardo" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="row">
+                            <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                                <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","ResguardosHeramientas")"><i class="mdi mdi-arrow-left hide-on-small-and-down"></i> volver</a>
+                                <button type="button" class="btn blue darken-4 waves-effect generarPdf" style="margin-left: 10px"><i class="mdi mdi-file-pdf-box hide-on-small-and-down"></i> Generar pdf</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (ViewBag.edit != 1)
+            {
+                <div class="row">
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Empresa:</b>
+                        <div class="input-field margin-top-0">                            
+                                @Html.DropDownList("Em_Cve_Empresa", new SelectList(ViewBag.empresa, "Value", "Text"), "-- Seleccione una empresa --", htmlAttributes: new { @class = "select classic" })                           
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Sucursal:</b>
+                        <div class="input-field margin-top-0">                      
+                             @Html.DropDownList("Sc_Cve_Sucursal", new SelectList(ViewBag.sucursal, "Value", "Text"), "-- Seleccione una sucursal --", htmlAttributes: new { @class = "select classic" })                         
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">Area:</b>
+                        <div class="input-field margin-top-0">                         
+                           @Html.DropDownList("Dp_Cve_Departamento", new SelectList(ViewBag.departamento, "Value", "Text"), "-- Seleccione un area --", htmlAttributes: new { @class = "select classic" })                                                        
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="row">
+                            <div class="col push-l6 l6 push-m4 m8 s12 right-align">                                
+                                <button type="button" class="btn blue darken-4 waves-effect cargadatos" style="margin-left: 10px"><i class="mdi mdi-database hide-on-small-and-down"></i>Cargar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            }
+
+            <div class="row">
+                <div class="row">
+                    <div id="TablaResguardoMobiliario">
+                        @if (ViewBag.edit != 1)
+                        {
+
+                            @Html.Action("_TablaHerramientas", "ResguardosHeramientas", Model.Resguardo_Mobiliario_ID)
+                        }
+                        else
+                        {
+                            @Html.Action("_TablaHerramientas", "ResguardosHeramientas")
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

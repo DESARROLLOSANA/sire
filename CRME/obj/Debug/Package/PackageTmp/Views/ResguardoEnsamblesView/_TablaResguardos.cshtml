@@ -1,0 +1,161 @@
+﻿
+@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Resguardos_Lista_Ensambles>
+
+
+@{ string strorden = ""; string iconorder = "";}
+
+
+<div class="row margin-10">
+    <div class="col l6 m6 s12 titlecircle pnl-encabezado">
+        <b>Resguardos de Ensambles</b>
+    </div>
+    <div class="col l6 m6 hide-on-small-and-down separator">
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m4 l4 input-field">
+        <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("VisualizarResguardo","ResguardoEnsamblesView")"><i class="mdi mdi-plus"></i> Nuevo resguardo</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m6 l6 input-field center-align">
+        <input type="text" name="busqueda" id="filtroBusquedaA" Value="@ViewBag.filtro" placeholder="Nombre, Codigo CPU,Codigo Monitor, Marca, Modelo, Serie" />
+    </div>
+    <div class="col s12 m4 l4 input-field">
+        <button class="btn light-blue darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+        <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 25px" title="Limpiar Filtro"><i class="mdi mdi-filter-remove"></i></button>
+    </div>
+    <div class="col s12 m2 l2 input-field">
+        <button class="btn light-blue darken-4 waves-effect excel" title="Exportar a excel"><i class="mdi mdi-file-excel"></i></button>
+    </div>
+</div>
+<div id="contentTablaResguardos">
+    <div class="row" style="min-height:350px; max-height:350px; overflow-y:auto !important;">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        @*mdi-arrow-down*@
+                        @{ strorden = ViewBag.order == "Resguardo_ID" ? "Resguardo_IDdesc" : "Resguardo_ID";
+                            iconorder = ViewBag.order == "Resguardo_ID" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Resguardo_IDdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>"; }
+                        <td class="center permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) #</td>
+                        @* Fecha *@
+                        @{ strorden = ViewBag.order == "Fecha" ? "Fechadesc" : "Fecha";
+                            iconorder = ViewBag.order == "Fecha" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Fechadesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Fecha Resguardo</td>
+                        @* Codigo inventario *@
+                        @{ strorden = ViewBag.order == "Cod_inventario_ensamble" ? "Cod_inventario_ensambledesc" : "Cod_inventario_ensamble";
+                            iconorder = ViewBag.order == "Cod_inventario_ensamble" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Cod_inventario_ensambledesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) código inventario CPU</td>
+                        @* serie CPU *@
+                        @{ strorden = ViewBag.order == "Serie_CPU" ? "Serie_CPUdesc" : "Serie_CPU";
+                            iconorder = ViewBag.order == "Serie_CPU" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Serie_CPUdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Numero de serie CPU</td>
+                        @* Marca_ensamble *@
+                        @{ strorden = ViewBag.order == "Marca_Ensamble" ? "Marca_ensambledesc" : "Marca_ensamble";
+                            iconorder = ViewBag.order == "Marca_ensamble" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Marca_ensambledesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Marca</td>
+                        @* Modelo Ensamble *@
+                        @{ strorden = ViewBag.order == "Modelo_ensamble" ? "Modelo_ensambledesc" : "Modelo_ensamble";
+                            iconorder = ViewBag.order == "Modelo_ensamble" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Modelo_ensambledesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Modelo </td>
+                        @* Codigo inventario Monitor *@
+                        @{ strorden = ViewBag.order == "Codigo_inventario_monitor" ? "Codigo_inventario_monitordesc" : "Codigo_inventario_monitor";
+                            iconorder = ViewBag.order == "Codigo_inventario_monitor" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Codigo_inventario_monitordesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Codigo inventario Monitor </td>
+                        @* Serie Monitor*@
+                        @{ strorden = ViewBag.order == "Serie_monitor" ? "Serie_monitordesc" : "Serie_monitor";
+                            iconorder = ViewBag.order == "Serie_monitor" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Serie_monitordesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Numero de serie monitor </td>
+                        @* Marca *@
+                        @{ strorden = ViewBag.order == "Marca_monitor" ? "Marca_monitordesc" : "Marca_monitor";
+                            iconorder = ViewBag.order == "Marca_monitor" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Marca_monitordesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Marca</td>
+                        @* Modelo *@
+                        @{ strorden = ViewBag.order == "Modelo_monitor" ? "Modelo_monitordesc" : "Modelo_monitor";
+                            iconorder = ViewBag.order == "Modelo_monitor" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Modelo_monitordesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Modelo </td>
+                        @*Asignado a: *@
+                        @{ strorden = ViewBag.order == "Nombres" ? "Nombresdesc" : "Nombres";
+                            iconorder = ViewBag.order == "Nombres" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Nombresdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Asignado a:</td>
+
+
+                        <td class="center hide-on-med-and-down">Detalles</td>
+                        <td class="center hide-on-med-and-down">Estado</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-blue">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="10" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            @*Editar esta parte *@
+                <tr class="table-body">
+                    <td class="right-align">@item.Resguardo_ID</td>
+                    <td class="left-align">@item.Fecha.ToShortDateString()</td>
+                    <td class="left-align">@item.Codigo_inventario_ensamble</td>
+                    <td class="left-align">@item.Serie_CPU</td>
+                    <td class="left-align">@item.Marca_ensamble</td>
+                    <td class="left-align">@item.Modelo_ensamble</td>
+                    <td class="left-align">@item.Codigo_inventario_monitor</td>
+                    <td class="left-align">@item.Serie_monitor</td>
+                    <td class="left-align">@item.Marca_monitor</td>
+                    <td class="left-align">@item.Modelo_monitor</td>
+                    <td class="left-align">@item.Nombres</td>
+                    
+
+                    <td class="center-align">
+                        <a class="editarPersona" data-position="bottom" data-delay="50" title="Ver resguardo # @item.Resguardo_ID" data-tooltip="Ver Resguardo # @item.Resguardo_ID" style="cursor:pointer;" href="@Url.Action("VisualizarResguardo","ResguardoEnsamblesView", new { idresguardo = item.Resguardo_ID})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
+                    </td>
+                    <td class="left-align">@item.Estatus</td>
+                    <!-- <td class="left-align" style="color: #0000FF"></td>-->
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaResguardos", new { page, strorden })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        //UpdateTargetId = "TablaResguardoMobiliario",
+                        UpdateTargetId = "TablaResguardoMoviles",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+    @*<div class="row">
+            <div class="col push-l6 l6 push-m6 m6 s12 right-align input-field">
+                <button class="btn orange darken-4 waves-effect enviarSoli white-text"><i class="mdi mdi-send"></i> Enviar</button>
+            </div>
+        </div>*@
+</div>

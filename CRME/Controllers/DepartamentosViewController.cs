@@ -42,12 +42,14 @@ namespace CRME.Controllers
             ViewBag.HiddenMenu = 1;
             return View();
         }
+
         public ActionResult SaveDepartamento(Departamentos departamento)
         {
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.Departamentos.FirstOrDefault(x => x.Dp_Descripcion == departamento.Dp_Descripcion);
+            var found = db.Departamentos.FirstOrDefault(x => x.Dp_Descripcion == departamento.Dp_Descripcion 
+            && x.Em_Cve_Sucursal == departamento.Em_Cve_Sucursal && x.Sc_Cve_Sucursal == departamento.Sc_Cve_Sucursal );
 
             if (found != null)
             {
@@ -63,6 +65,7 @@ namespace CRME.Controllers
                         depa.Dp_Descripcion = departamento.Dp_Descripcion;
                         depa.Sc_Cve_Sucursal = departamento.Sc_Cve_Sucursal;
                         depa.Em_Cve_Sucursal = departamento.Em_Cve_Sucursal; // es empresa
+                        depa.Ceco_ID = departamento.Ceco_ID;
                         depa.Fecha_Alta = DateTime.Now;
                         depa.Oper_Alta = Auth.Usuario.username;
                         depa.Fecha_Ult_Modf = DateTime.Now;
@@ -101,6 +104,8 @@ namespace CRME.Controllers
                         depa.Dp_Descripcion = departamento.Dp_Descripcion;
                         depa.Sc_Cve_Sucursal = departamento.Sc_Cve_Sucursal;
                         depa.Em_Cve_Sucursal = departamento.Em_Cve_Sucursal;
+                        depa.Ceco_ID = departamento.Ceco_ID;
+
                         depa.Fecha_Ult_Modf = DateTime.Now;
                         depa.Oper_Ult_Modf = Auth.Usuario.username;
 
@@ -141,11 +146,11 @@ namespace CRME.Controllers
                 departamentos = db.Departamentos.Find(Dp_Cve_Departamento);
                 if(departamentos.Sc_Cve_Sucursal != null)
                 {
-                    ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.ToList(), "Em_Cve_Empresa", "Em_Descripcion", departamentos.Sc_Cve_Sucursal);
+                    ViewBag.Sc_Cve_Sucursal1 = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", departamentos.Sc_Cve_Sucursal);
                 }
                 else
                 {
-                    ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
+                    ViewBag.Sc_Cve_Sucursal1 = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
                 }
                 if(departamentos.Em_Cve_Sucursal != null)
                 {
@@ -154,12 +159,26 @@ namespace CRME.Controllers
                 else
                 {
                     ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
-                }                                                
+                }
+
+                if (departamentos.Ceco_ID != null)
+                {
+                    ViewBag.cat_ceco = new SelectList(db.Ce_cos.OrderBy(x => x.Ceco_Cve_Ceco).Where(x=> x.Estatus == true).ToList(), "Ceco_ID", "Ceco_Descripcion", departamentos.Ceco_ID);
+                }
+                else
+                {
+                    ViewBag.cat_ceco = new SelectList(db.Ce_cos.OrderBy(x => x.Ceco_Cve_Ceco).Where(x => x.Estatus == true).ToList(), "Ceco_ID", "Ceco_Descripcion");
+                }
+
+
+                //ViewBag.cat_ceco = new SelectList(db.Ce_cos.ToList(), "Ceco_ID", "Ceco_Descripcion", departamentos.Ceco_ID);
+
             }
             else
             {
-                ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
+                ViewBag.Sc_Cve_Sucursal1 = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
                 ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.cat_ceco = new SelectList(db.Ce_cos.OrderBy(x=> x.Ceco_Cve_Ceco).Where(x => x.Estatus == true).ToList(), "Ceco_ID", "Ceco_Descripcion");
             }
 
             return PartialView(departamentos);

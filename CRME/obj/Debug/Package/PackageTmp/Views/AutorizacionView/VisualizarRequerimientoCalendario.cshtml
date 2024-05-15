@@ -1,0 +1,212 @@
+﻿
+@using CustomHelpers
+
+@{
+    ViewBag.Title = "Requerimientos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Requerimientos</h5>
+            </div>
+        </div>
+
+        @*<div id="New_UpdateEdificio">
+                @Html.Action("_Formulario", "EdificiosView")
+            </div>*@
+
+        <div id="TablaRequerimiento">
+            @Html.Action("_TablaRequerimientoCalendario", "AutorizacionView", new { Id_Calendario = ViewBag.Id_Calendario })
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure Agregar formacion Profesional-->
+<div id="modal1" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Motivo cancelacion</b>
+    <div class="headline"></div>
+    <form class="form-simple" id="frmMotivo">
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="motivofrm">
+                <span>Motivo cancelación</span>
+                <input type="text" name="motivo" id="motivo" placeholder="Motivo cancelación" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Cancelar</a>
+                    <button type="submit" class="btn light-blue waves-effect margin-right-5 saveMotivo"><i class="mdi mdi-check"></i>Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal  modal-fixed-footer" style="width:600px; height:400px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title ">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            ComboSucursal();
+            $("#ModalAlert").modal();
+            var img1 = "";
+            var imagen1 = " ";
+            $('.datepicker').val("");
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+
+            pass();
+            validatePass();
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo descripcion debe llevar mínimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+            date();
+        });
+
+
+
+
+        $("#TablaRequerimiento").off('click', '.Autoriza');
+        $("#TablaRequerimiento").on('click', '.Autoriza', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea autorizar el requerimiento?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("AutorizarReq", "AutorizacionView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaRequerimiento").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+
+        $("#TablaRequerimiento").off('click', '.Cancelar');
+        $("#TablaRequerimiento").on('click', '.Cancelar', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea cancelar el requerimiento?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                    url: '@Url.Action("CancelarReq", "AutorizacionView")',
+                        data: { Id_Solicitud } ,
+                    type: "POST",
+                    success: function (result) {
+                        if (result.success) {
+                            $("#TablaRequerimiento").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                                if (status == "success") {
+                                }
+                            });
+                        }
+                        else {
+                            $(".md-accept").addClass("md-btn-success");
+                            ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                            $("#ModalAlert").modal('open');
+                            $('#ModalAlert').off("click", ".md-accept");
+                            $('#ModalAlert').on("click", ".md-accept", function () {
+                                $("#ModalAlert").modal('close');
+                            })
+                        }
+                    }
+                });
+
+
+
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+
+            function CargarReglasGeneralFormuario() {
+                var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse(formulario);
+
+                jQuery.extend(jQuery.validator.messages, {
+                    minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                    maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+                });
+
+        }
+
+
+            //====================== PAGINACIONES ===========================
+            //paginación personas
+            function FltOnBeginPer(obj) {
+                $("#TablaRequerimiento #tblrequeri").addClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+            }
+
+            function FltOnCompletePer(obj) {
+                $("#TablaRequerimiento #tblrequeri").removeClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+            }
+
+    </script>
+}
+

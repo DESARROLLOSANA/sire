@@ -1,0 +1,29 @@
+﻿@model List<CRME.Models.Archivos>
+
+@using CustomHelpers
+@{
+    ViewBag.Title = "Visualizar Evidencia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Tab Structure -->
+<div class="row form-general margin-top-30 padding-20">
+    <div class="col s12">
+        <div class="row">
+            @using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmVisualizar" }))
+            {
+                <div class="col s12 margin-top-25">
+                    <div id="New_UpdatePersona">
+                        @foreach (var item in Model)
+                        {
+                            <img style="width:300px;height:300px" src="@item.Ruta.Replace("~/", "/")" />
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        @*  *@
+    </div>
+</div>
+
+

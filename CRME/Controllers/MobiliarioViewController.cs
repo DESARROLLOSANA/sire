@@ -36,6 +36,11 @@ namespace CRME.Controllers
 
         public ActionResult Index()
         {
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Index", "AccesoView");
+            //}
+            //ViewBag.HiddenMenu = 1;
             return View();
         }          
         public ActionResult _Formulario(long? inv_mobiliario_ID)
@@ -170,6 +175,7 @@ namespace CRME.Controllers
             }
             catch (Exception ex)
             {
+                //cambiar por error al dar de baja al mobiliario
                 mensajefound = "Ocurrio un error al dar baja la empresa";
             }
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);

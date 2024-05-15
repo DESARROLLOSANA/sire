@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,40 +49,29 @@
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net35\BCrypt.Net-Next.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.Engine.13.0.4001\lib\net40\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.ClientDoc.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.CommLayer.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.CommonControls.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.CommonObjectModel.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.Controllers.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.CubeDefModel.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.DataDefModel.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.DataSetConversion.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.ReportAppServer.ObjectFactory.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -91,22 +81,14 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.ReportDefModel.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportAppServer.XmlSerialize.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.ReportSource.13.0.4001\lib\net40\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.Shared.13.0.4001\lib\net40\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <HintPath>..\packages\CrystalReports.Web.13.0.4001\lib\net40\CrystalDecisions.Web.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
       <Private>True</Private>
@@ -196,6 +178,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -203,12 +186,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -249,6 +229,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -315,20 +296,49 @@
     <Compile Include="Controllers\AccesoViewController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoViewController.cs" />
+    <Compile Include="Controllers\AutorizacionViewController.cs" />
     <Compile Include="Controllers\CargaDescargaViewController.cs" />
+    <Compile Include="Controllers\CecosViewController.cs" />
+    <Compile Include="Controllers\CondicionViewController.cs" />
     <Compile Include="Controllers\DepartamentosViewController.cs" />
+    <Compile Include="Controllers\EdificiosViewController.cs" />
     <Compile Include="Controllers\EmpleadosViewController.cs" />
     <Compile Include="Controllers\EmpresasViewController.cs" />
+    <Compile Include="Controllers\FamiliaViewController.cs" />
     <Compile Include="Controllers\GeneralViewController.cs" />
+    <Compile Include="Controllers\HerramientasViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventarioEnsamblesViewController.cs" />
+    <Compile Include="Controllers\InventarioImpresorasViewController.cs" />
+    <Compile Include="Controllers\InventarioLaptopsViewController.cs" />
+    <Compile Include="Controllers\InventarioLineasViewController.cs" />
+    <Compile Include="Controllers\InventarioMobiliarioViewController.cs" />
+    <Compile Include="Controllers\InventarioMonitoresViewController.cs" />
+    <Compile Include="Controllers\InventarioMovilesViewController.cs" />
+    <Compile Include="Controllers\InventarioTipoMobiliarioViewController.cs" />
+    <Compile Include="Controllers\InventarioUnidadesViewController.cs" />
+    <Compile Include="Controllers\InventarioVehiculosViewController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedidasViewController.cs" />
     <Compile Include="Controllers\MobiliarioViewController.cs" />
+    <Compile Include="Controllers\NuevoEmpleadosViewController.cs" />
     <Compile Include="Controllers\PanelInvViewController.cs" />
     <Compile Include="Controllers\PanelViewController.cs" />
+    <Compile Include="Controllers\ProveedoresViewController.cs" />
     <Compile Include="Controllers\PuestosViewController.cs" />
     <Compile Include="Controllers\ReporteViewController.cs" />
+    <Compile Include="Controllers\ResguardoEnsamblesViewController.cs" />
+    <Compile Include="Controllers\ResguardoImpresorasViewController.cs" />
+    <Compile Include="Controllers\ResguardoLineasViewController.cs" />
+    <Compile Include="Controllers\ResguardoMobiliarioViewController.cs" />
+    <Compile Include="Controllers\ResguardoMovilesViewController.cs" />
+    <Compile Include="Controllers\ResguardosHeramientasController.cs" />
     <Compile Include="Controllers\ResguardosViewController.cs" />
+    <Compile Include="Controllers\ResguardoUnidadesViewController.cs" />
+    <Compile Include="Controllers\ResguardoVehiculosViewController.cs" />
+    <Compile Include="Controllers\SubfamiliaViewController.cs" />
     <Compile Include="Controllers\SucursalesViewController.cs" />
+    <Compile Include="Controllers\UnidadMedidaViewController.cs" />
     <Compile Include="Controllers\UsuarioViewController.cs" />
     <Compile Include="DataSets\Reportes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -341,48 +351,100 @@
     <Compile Include="Helpers\CssFixRewriteUrlTransform.cs" />
     <Compile Include="Helpers\CustomHelpers.cs" />
     <Compile Include="Helpers\HelpersController.cs" />
-    <Compile Include="Migrations\202209282229576_columnas.cs" />
-    <Compile Include="Migrations\202209282229576_columnas.Designer.cs">
-      <DependentUpon>202209282229576_columnas.cs</DependentUpon>
+    <Compile Include="Migrations\202304281620481_actualiza base.cs" />
+    <Compile Include="Migrations\202304281620481_actualiza base.Designer.cs">
+      <DependentUpon>202304281620481_actualiza base.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202209291421438_columna.cs" />
-    <Compile Include="Migrations\202209291421438_columna.Designer.cs">
-      <DependentUpon>202209291421438_columna.cs</DependentUpon>
+    <Compile Include="Migrations\202306022333090_columnafoto.cs" />
+    <Compile Include="Migrations\202306022333090_columnafoto.Designer.cs">
+      <DependentUpon>202306022333090_columnafoto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202209291424051_columna1.cs" />
-    <Compile Include="Migrations\202209291424051_columna1.Designer.cs">
-      <DependentUpon>202209291424051_columna1.cs</DependentUpon>
+    <Compile Include="Migrations\202306051604486_dropcolum.cs" />
+    <Compile Include="Migrations\202306051604486_dropcolum.Designer.cs">
+      <DependentUpon>202306051604486_dropcolum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202209291428294_columnap.cs" />
-    <Compile Include="Migrations\202209291428294_columnap.Designer.cs">
-      <DependentUpon>202209291428294_columnap.cs</DependentUpon>
+    <Compile Include="Migrations\202306052150245_columnausu.cs" />
+    <Compile Include="Migrations\202306052150245_columnausu.Designer.cs">
+      <DependentUpon>202306052150245_columnausu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202209291454558_columnaVe.cs" />
-    <Compile Include="Migrations\202209291454558_columnaVe.Designer.cs">
-      <DependentUpon>202209291454558_columnaVe.cs</DependentUpon>
+    <Compile Include="Migrations\202306052152148_columusu.cs" />
+    <Compile Include="Migrations\202306052152148_columusu.Designer.cs">
+      <DependentUpon>202306052152148_columusu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202209291643148_columaem.cs" />
-    <Compile Include="Migrations\202209291643148_columaem.Designer.cs">
-      <DependentUpon>202209291643148_columaem.cs</DependentUpon>
+    <Compile Include="Migrations\202306052243444_auditoria.cs" />
+    <Compile Include="Migrations\202306052243444_auditoria.Designer.cs">
+      <DependentUpon>202306052243444_auditoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210041402171_modificacionpue.cs" />
-    <Compile Include="Migrations\202210041402171_modificacionpue.Designer.cs">
-      <DependentUpon>202210041402171_modificacionpue.cs</DependentUpon>
+    <Compile Include="Migrations\202306061905296_catalogoestatus.cs" />
+    <Compile Include="Migrations\202306061905296_catalogoestatus.Designer.cs">
+      <DependentUpon>202306061905296_catalogoestatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210061522093_nivel.cs" />
-    <Compile Include="Migrations\202210061522093_nivel.Designer.cs">
-      <DependentUpon>202210061522093_nivel.cs</DependentUpon>
+    <Compile Include="Migrations\202307062021024_tablas_solicitud_mtto.cs" />
+    <Compile Include="Migrations\202307062021024_tablas_solicitud_mtto.Designer.cs">
+      <DependentUpon>202307062021024_tablas_solicitud_mtto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210061524211_niveles.cs" />
-    <Compile Include="Migrations\202210061524211_niveles.Designer.cs">
-      <DependentUpon>202210061524211_niveles.cs</DependentUpon>
+    <Compile Include="Migrations\202307062024055_tablas_mtto.cs" />
+    <Compile Include="Migrations\202307062024055_tablas_mtto.Designer.cs">
+      <DependentUpon>202307062024055_tablas_mtto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210251346119_requerido.cs" />
-    <Compile Include="Migrations\202210251346119_requerido.Designer.cs">
-      <DependentUpon>202210251346119_requerido.cs</DependentUpon>
+    <Compile Include="Migrations\202308011525030_columnamotivo.cs" />
+    <Compile Include="Migrations\202308011525030_columnamotivo.Designer.cs">
+      <DependentUpon>202308011525030_columnamotivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308022252161_colunasolicitudid.cs" />
+    <Compile Include="Migrations\202308022252161_colunasolicitudid.Designer.cs">
+      <DependentUpon>202308022252161_colunasolicitudid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308101547443_tablaCalendario.cs" />
+    <Compile Include="Migrations\202308101547443_tablaCalendario.Designer.cs">
+      <DependentUpon>202308101547443_tablaCalendario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308101912227_delcalen.cs" />
+    <Compile Include="Migrations\202308101912227_delcalen.Designer.cs">
+      <DependentUpon>202308101912227_delcalen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308101914220_addcalen.cs" />
+    <Compile Include="Migrations\202308101914220_addcalen.Designer.cs">
+      <DependentUpon>202308101914220_addcalen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308101932011_delcale.cs" />
+    <Compile Include="Migrations\202308101932011_delcale.Designer.cs">
+      <DependentUpon>202308101932011_delcale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308101933091_addcale.cs" />
+    <Compile Include="Migrations\202308101933091_addcale.Designer.cs">
+      <DependentUpon>202308101933091_addcale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308102324428_columnaidcalen.cs" />
+    <Compile Include="Migrations\202308102324428_columnaidcalen.Designer.cs">
+      <DependentUpon>202308102324428_columnaidcalen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308111620504_delreq.cs" />
+    <Compile Include="Migrations\202308111620504_delreq.Designer.cs">
+      <DependentUpon>202308111620504_delreq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308111621566_addreq.cs" />
+    <Compile Include="Migrations\202308111621566_addreq.Designer.cs">
+      <DependentUpon>202308111621566_addreq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309082002431_resultadocolum.cs" />
+    <Compile Include="Migrations\202309082002431_resultadocolum.Designer.cs">
+      <DependentUpon>202309082002431_resultadocolum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401082217055_tablash.cs" />
+    <Compile Include="Migrations\202401082217055_tablash.Designer.cs">
+      <DependentUpon>202401082217055_tablash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401082239408_tablasem.cs" />
+    <Compile Include="Migrations\202401082239408_tablasem.Designer.cs">
+      <DependentUpon>202401082239408_tablasem.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Archivos.cs" />
+    <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\Calendario.cs" />
+    <Compile Include="Models\Cat_Estatus.cs" />
     <Compile Include="Models\cat_estatus_inv.cs" />
     <Compile Include="Models\cat_fechamodificado_cargador.cs" />
     <Compile Include="Models\cat_fechamodificado_ensamble.cs" />
@@ -404,8 +466,38 @@
     <Compile Include="Models\cat_resguardos_nobreaks.cs" />
     <Compile Include="Models\cat_resguardos_unidades.cs" />
     <Compile Include="Models\cat_resguardos_vehiculos.cs" />
+    <Compile Include="Models\cat_resguardo_herramientas.cs" />
     <Compile Include="Models\cat_sistemas.cs" />
     <Compile Include="Models\cat_usuarios.cs" />
+    <Compile Include="Models\Ce_cos.cs" />
+    <Compile Include="Models\Condicion.cs" />
+    <Compile Include="Models\Cuestionario.cs" />
+    <Compile Include="Models\Equipo_Menor.cs" />
+    <Compile Include="Models\Estados.cs" />
+    <Compile Include="Models\Familia.cs" />
+    <Compile Include="Models\Inventario_Lista_Excel.cs" />
+    <Compile Include="Models\Inventario_Lista_Laptops_Excel.cs" />
+    <Compile Include="Models\Inventario_Lista_Lineas_Excel.cs" />
+    <Compile Include="Models\Inventario_Lista_Monitores_Excel.cs" />
+    <Compile Include="Models\Inventario_Lista_Moviles_Excel.cs" />
+    <Compile Include="Models\Inventario_Lista_Unidades_Excel.cs" />
+    <Compile Include="Models\Inventario_lista_vehiculos.cs" />
+    <Compile Include="Models\listaExcelEM.cs" />
+    <Compile Include="Models\Lista_Cecos.cs" />
+    <Compile Include="Models\lista_Inv_Unidades_excel.cs" />
+    <Compile Include="Models\Medida.cs" />
+    <Compile Include="Models\periodo_medicion.cs" />
+    <Compile Include="Models\Programacion.cs" />
+    <Compile Include="Models\Requerimiento.cs" />
+    <Compile Include="Models\Resguardos_lista_Em.cs" />
+    <Compile Include="Models\Resguardos_Lista_Ensambles.cs" />
+    <Compile Include="Models\Resguardos_Lista_Ensambles_Excel.cs" />
+    <Compile Include="Models\Resguardos_Lista_Impresoras.cs" />
+    <Compile Include="Models\Resguardos_Lista_Impresoras_Excel.cs" />
+    <Compile Include="Models\Resguardos_Lista_Lineas_Excel.cs" />
+    <Compile Include="Models\Resguardos_Lista_Lineas.cs" />
+    <Compile Include="Models\Resguardos_Lista_Lineas_Moviles.cs" />
+    <Compile Include="Models\Resguardos_Lista_mobiliario_excel.cs" />
     <Compile Include="Models\Departamentos.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\events.cs" />
@@ -430,10 +522,66 @@
     <Compile Include="Models\Puestos.cs" />
     <Compile Include="Models\Resguardos_Lista_laptos.cs" />
     <Compile Include="Models\resguardos_lista_laptos_excel.cs" />
+    <Compile Include="Models\Resguardos_Lista_Mobiliario.cs" />
+    <Compile Include="Models\Resguardos_Lista_Monitor.cs" />
+    <Compile Include="Models\Resguardos_Lista_Moviles.cs" />
+    <Compile Include="Models\Resguardos_Lista_Moviles_Excel.cs" />
+    <Compile Include="Models\Resguardos_Lista_Unidades.cs" />
+    <Compile Include="Models\Resguardos_Lista_Unidades_excel.cs" />
+    <Compile Include="Models\Resguardos_Lista_Vehiculos.cs" />
+    <Compile Include="Models\Resguardos_Lista_Vehiculos_Excel.cs" />
+    <Compile Include="Models\Resguardo_Lista_Ensambles.cs" />
+    <Compile Include="Models\Resguardo_Lista_Unidades_excel.cs" />
     <Compile Include="Models\SIRE_Context.cs" />
+    <Compile Include="Models\Solicitud_Mtto.cs" />
+    <Compile Include="Models\Subfamilia.cs" />
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\Tipo_Solicitud.cs" />
+    <Compile Include="Models\Unidad_Medida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\MttoEporadico.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MttoEporadico.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\ReportesConexion.cs" />
+    <Compile Include="Reportes\ResponsivaEmsambles.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsivaEmsambles.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaImpSana1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsivaImpSana.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaLinSana.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsivaLinSana.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaEm.cs">
+      <DependentUpon>ResponsivaEm.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaMobSana.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsivaMobSana.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaUnidadesSana.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaVehSana.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\RespoonsivaEcolsur.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -524,7 +672,10 @@
     <Content Include="fonts\RetinaDisp-Light.otf" />
     <Content Include="fonts\RetinaDisp-Semibold.otf" />
     <None Include="Properties\PublishProfiles\CRME.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile1.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\Aplicacion\Chart\Chart.bundle.js" />
     <Content Include="Scripts\Aplicacion\Chart\Chart.bundle.min.js" />
@@ -566,6 +717,8 @@
     <Content Include="Upload\Empresa\default.png" />
     <Content Include="Upload\Sistema\default.png" />
     <Content Include="Upload\Sistema\ecolsur.png" />
+    <Content Include="Upload\Sistema\evidencia\Captura.png" />
+    <Content Include="Upload\Sistema\evidencia\descarga.jpg" />
     <Content Include="Upload\Sistema\favicon.png" />
     <Content Include="Upload\Sistema\fondo.jpeg" />
     <Content Include="Upload\Sistema\fondo.png" />
@@ -575,6 +728,7 @@
     <Content Include="Upload\Sistema\IQS.jpg" />
     <Content Include="Upload\Sistema\Loading_01.gif" />
     <Content Include="Upload\Sistema\Loading_02.gif" />
+    <Content Include="Upload\Sistema\loadingciclo.gif" />
     <Content Include="Upload\Sistema\LOGO SAU.png" />
     <Content Include="Upload\Sistema\mdi-account-search.png" />
     <Content Include="Upload\Sistema\mdi-account.png" />
@@ -692,10 +846,119 @@
     <Content Include="Views\MobiliarioView\ComboTipo.cshtml" />
     <Content Include="Views\MobiliarioView\ComboProveedor.cshtml" />
     <Content Include="Views\MobiliarioView\ComboEmpresa.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\Index.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\_TablaResguardos.cshtml" />
+    <Content Include="Views\ResguardoLineasView\Index.cshtml" />
+    <Content Include="Views\ResguardoLineasView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoLineasView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoLineasView\_TablaResguardos.cshtml" />
+    <Content Include="Views\ResguardoMovilesView\Index.cshtml" />
+    <Content Include="Views\ResguardoMovilesView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoMovilesView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoMovilesView\_TablaResguardos.cshtml" />
+    <Content Include="Views\CecosView\Index.cshtml" />
+    <Content Include="Views\CecosView\_Formulario.cshtml" />
+    <Content Include="Views\CecosView\_TablaCecos.cshtml" />
+    <Content Include="Views\InventarioImpresorasView\Index.cshtml" />
+    <Content Include="Views\InventarioImpresorasView\_FormularioImpresoras.cshtml" />
+    <Content Include="Views\InventarioImpresorasView\_TablaImpresoras.cshtml" />
+    <Content Include="Views\InventarioLaptopsView\Index.cshtml" />
+    <Content Include="Views\InventarioLaptopsView\_FormularioLaptops.cshtml" />
+    <Content Include="Views\InventarioLaptopsView\_TablaLaptops.cshtml" />
+    <Content Include="Views\InventarioLineasView\Index.cshtml" />
+    <Content Include="Views\InventarioLineasView\_FormularioEmpresa.cshtml" />
+    <Content Include="Views\InventarioLineasView\_TablaLineas.cshtml" />
+    <Content Include="Views\InventarioMobiliarioView\Index.cshtml" />
+    <Content Include="Views\InventarioMobiliarioView\_FormularioMobiliario.cshtml" />
+    <Content Include="Views\InventarioMobiliarioView\_TablaMobiliario.cshtml" />
+    <Content Include="Views\InventarioMovilesView\Index.cshtml" />
+    <Content Include="Views\InventarioMovilesView\_FormularioMoviles.cshtml" />
+    <Content Include="Views\InventarioMovilesView\_TablaMoviles.cshtml" />
+    <Content Include="Views\InventarioTipoMobiliarioView\Index.cshtml" />
+    <Content Include="Views\InventarioTipoMobiliarioView\_FormularioEmpresa.cshtml" />
+    <Content Include="Views\InventarioTipoMobiliarioView\_TablaLineas.cshtml" />
+    <Content Include="Views\InventarioUnidadesView\Index.cshtml" />
+    <Content Include="Views\InventarioUnidadesView\_FormularioEmpresa.cshtml" />
+    <Content Include="Views\InventarioUnidadesView\_TablaLineas.cshtml" />
+    <Content Include="Views\InventarioVehiculosView\Index.cshtml" />
+    <Content Include="Views\InventarioVehiculosView\_FormularioVehiculos.cshtml" />
+    <Content Include="Views\InventarioVehiculosView\_TablaVehiculos.cshtml" />
+    <Content Include="Views\ResguardoImpresorasView\Index.cshtml" />
+    <Content Include="Views\ResguardoImpresorasView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoImpresorasView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoImpresorasView\_TablaResguardos.cshtml" />
+    <Content Include="Views\ResguardoUnidadesView\Index.cshtml" />
+    <Content Include="Views\ResguardoUnidadesView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoUnidadesView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoUnidadesView\_TablaResguardos.cshtml" />
+    <Content Include="Views\ResguardoVehiculosView\Index.cshtml" />
+    <Content Include="Views\ResguardoVehiculosView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoVehiculosView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoVehiculosView\_TablaResguardos.cshtml" />
+    <Content Include="Views\NuevoEmpleadosView\Index.cshtml" />
+    <Content Include="Views\NuevoEmpleadosView\_FormularioEmpresa.cshtml" />
+    <Content Include="Views\NuevoEmpleadosView\_TablaLineas.cshtml" />
+    <Content Include="Views\ProveedoresView\Index.cshtml" />
+    <Content Include="Views\ProveedoresView\_FormularioEmpresa.cshtml" />
+    <Content Include="Views\ProveedoresView\_TablaLineas.cshtml" />
+    <Content Include="Views\ResguardoEnsamblesView\Index.cshtml" />
+    <Content Include="Views\ResguardoEnsamblesView\VisualizarResguardo.cshtml" />
+    <Content Include="Views\ResguardoEnsamblesView\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardoEnsamblesView\_TablaResguardos.cshtml" />
+    <Content Include="Views\EdificiosView\index.cshtml" />
+    <Content Include="Views\EdificiosView\_Formulario.cshtml" />
+    <Content Include="Views\EdificiosView\_TablaEdificios.cshtml" />
+    <Content Include="Views\InventarioEnsamblesView\Index.cshtml" />
+    <Content Include="Views\InventarioEnsamblesView\_FormularioEnsambles.cshtml" />
+    <Content Include="Views\InventarioEnsamblesView\_TablaEnsambles.cshtml" />
+    <Content Include="Views\InventarioMonitoresView\Index.cshtml" />
+    <Content Include="Views\InventarioMonitoresView\_FormularioMonitores.cshtml" />
+    <Content Include="Views\InventarioMonitoresView\_TablaMonitores.cshtml" />
+    <Content Include="Views\AutorizacionView\Index.cshtml" />
+    <Content Include="Views\AutorizacionView\_TablaEdificiosAuth.cshtml" />
+    <Content Include="Views\AutorizacionView\VisualizarEvidencia.cshtml" />
+    <Content Include="Views\AutorizacionView\VisualizarRequerimientos.cshtml" />
+    <Content Include="Views\AutorizacionView\VisualizarCalendario.cshtml" />
+    <Content Include="Views\AutorizacionView\_FormularioCalendario.cshtml" />
+    <Content Include="Views\AutorizacionView\_FormularioRequerimiento.cshtml" />
+    <Content Include="Views\AutorizacionView\_FormularioCalendarioRequerimiento.cshtml" />
+    <Content Include="Views\AutorizacionView\_TablaRequerimiento.cshtml" />
+    <Content Include="Views\AutorizacionView\_TablaCalendario.cshtml" />
+    <Content Include="Views\AutorizacionView\_TablaRequerimientoCalendario.cshtml" />
+    <Content Include="Views\AutorizacionView\VisualizarRequerimientoCalendario.cshtml" />
+    <Content Include="Views\EdificiosView\VisualizarReporte.cshtml" />
+    <Content Include="Views\CondicionView\Index.cshtml" />
+    <Content Include="Views\CondicionView\_FormularioCondicion.cshtml" />
+    <Content Include="Views\CondicionView\_TablaCondicion.cshtml" />
+    <Content Include="Views\FamiliaView\_FormularioFamilia.cshtml" />
+    <Content Include="Views\FamiliaView\_TablaFamilia.cshtml" />
+    <Content Include="Views\FamiliaView\Index.cshtml" />
+    <Content Include="Views\MedidasView\_FormularioMedidas.cshtml" />
+    <Content Include="Views\MedidasView\_TablaMedidas.cshtml" />
+    <Content Include="Views\MedidasView\Index.cshtml" />
+    <Content Include="Views\SubfamiliaView\_FormularioSubfamilia.cshtml" />
+    <Content Include="Views\SubfamiliaView\_TablaSubfamilia.cshtml" />
+    <Content Include="Views\SubfamiliaView\Index.cshtml" />
+    <Content Include="Views\ResguardosHeramientas\_formularioResguardo.cshtml" />
+    <Content Include="Views\ResguardosHeramientas\_TablaResguardos.cshtml" />
+    <Content Include="Views\ResguardosHeramientas\Index.cshtml" />
+    <Content Include="Views\ResguardosHeramientas\VisualizarResguardo.cshtml" />
+    <Content Include="Views\HerramientasView\Index.cshtml" />
+    <Content Include="Views\HerramientasView\_Formulario.cshtml" />
+    <Content Include="Views\HerramientasView\_TablaEdificios.cshtml" />
+    <Content Include="Views\HerramientasView\VisualizarReporte.cshtml" />
+    <Content Include="Views\HerramientasView\filtros.cshtml" />
+    <Content Include="Views\UnidadMedidaView\_FormularioMedidas.cshtml" />
+    <Content Include="Views\UnidadMedidaView\_TablaMedidas.cshtml" />
+    <Content Include="Views\UnidadMedidaView\Index.cshtml" />
+    <Content Include="Views\ResguardosHeramientas\_TablaHerramientas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\App_Start\" />
+    <Folder Include="Upload\Sistema\files\" />
     <Folder Include="Upload\Temporales\Descargas\" />
     <Folder Include="Upload\Temporales\Egresados\" />
   </ItemGroup>
@@ -704,40 +967,108 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209282229576_columnas.resx">
-      <DependentUpon>202209282229576_columnas.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202304281620481_actualiza base.resx">
+      <DependentUpon>202304281620481_actualiza base.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202209291421438_columna.resx">
-      <DependentUpon>202209291421438_columna.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306022333090_columnafoto.resx">
+      <DependentUpon>202306022333090_columnafoto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202209291424051_columna1.resx">
-      <DependentUpon>202209291424051_columna1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306051604486_dropcolum.resx">
+      <DependentUpon>202306051604486_dropcolum.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202209291428294_columnap.resx">
-      <DependentUpon>202209291428294_columnap.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306052150245_columnausu.resx">
+      <DependentUpon>202306052150245_columnausu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202209291454558_columnaVe.resx">
-      <DependentUpon>202209291454558_columnaVe.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306052152148_columusu.resx">
+      <DependentUpon>202306052152148_columusu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202209291643148_columaem.resx">
-      <DependentUpon>202209291643148_columaem.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306052243444_auditoria.resx">
+      <DependentUpon>202306052243444_auditoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210041402171_modificacionpue.resx">
-      <DependentUpon>202210041402171_modificacionpue.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306061905296_catalogoestatus.resx">
+      <DependentUpon>202306061905296_catalogoestatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210061522093_nivel.resx">
-      <DependentUpon>202210061522093_nivel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202307062021024_tablas_solicitud_mtto.resx">
+      <DependentUpon>202307062021024_tablas_solicitud_mtto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210061524211_niveles.resx">
-      <DependentUpon>202210061524211_niveles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202307062024055_tablas_mtto.resx">
+      <DependentUpon>202307062024055_tablas_mtto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210251346119_requerido.resx">
-      <DependentUpon>202210251346119_requerido.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202308011525030_columnamotivo.resx">
+      <DependentUpon>202308011525030_columnamotivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308022252161_colunasolicitudid.resx">
+      <DependentUpon>202308022252161_colunasolicitudid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308101547443_tablaCalendario.resx">
+      <DependentUpon>202308101547443_tablaCalendario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308101912227_delcalen.resx">
+      <DependentUpon>202308101912227_delcalen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308101914220_addcalen.resx">
+      <DependentUpon>202308101914220_addcalen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308101932011_delcale.resx">
+      <DependentUpon>202308101932011_delcale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308101933091_addcale.resx">
+      <DependentUpon>202308101933091_addcale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308102324428_columnaidcalen.resx">
+      <DependentUpon>202308102324428_columnaidcalen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308111620504_delreq.resx">
+      <DependentUpon>202308111620504_delreq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308111621566_addreq.resx">
+      <DependentUpon>202308111621566_addreq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309082002431_resultadocolum.resx">
+      <DependentUpon>202309082002431_resultadocolum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401082217055_tablash.resx">
+      <DependentUpon>202401082217055_tablash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401082239408_tablasem.resx">
+      <DependentUpon>202401082239408_tablasem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\IndicadoresGraficaLineas.rdlc" />
     <EmbeddedResource Include="Reportes\IndicadoresGraficaBarras.rdlc" />
     <EmbeddedResource Include="Reportes\IndicadoresGraficaPastel.rdlc" />
+    <EmbeddedResource Include="Reportes\MttoEporadico.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MttoEporadico.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Reportes.rdlc" />
+    <EmbeddedResource Include="Reportes\ResponsivaEmsambles.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaEmsambles.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaImpSana.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaImpSana1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaLinSana.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaLinSana.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaEm.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaEm.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaMobSana.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaMobSana.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaUnidadesSana.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaUnidadesSana1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaVehSana.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaVehSana1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RespoonsivaEcolsur.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RespoonsivaEcolsur.cs</LastGenOutput>
@@ -760,6 +1091,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

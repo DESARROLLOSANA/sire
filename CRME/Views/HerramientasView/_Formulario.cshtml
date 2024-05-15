@@ -1,0 +1,235 @@
+﻿@model CRME.Models.Equipo_Menor
+
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nueva Herramienta</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Editar Herramienta</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmEdificio" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <!-- ----------------Datos personales---------------- -->
+<div class="row">
+    <div class="col s12 m12 l12 input-field">
+        <b class="">Descripción:</b>
+        <div class="input-field margin-top-0">
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "Validate form-simple", placeholder = "Ingrese la Descripcion", maxlength = 100, style = " !important;" })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Familia</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Id_Familia == 0)
+            {
+                @Html.DropDownListFor(model => model.Id_Familia, new SelectList(ViewBag.Familia, "Value", "Text"), "-- Seleccione una familia --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Id_Familia, new SelectList(ViewBag.Familia, "Value", "Text"), "-- Seleccione una familia --", new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Id_Familia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Subfamilia</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Id_Sub_fam == 0)
+            {
+                @Html.DropDownListFor(model => model.Id_Sub_fam, (SelectList)ViewBag.Subfamilia, "-- Seleccione una subfamilia --", htmlAttributes: new { @class = "select classic " })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Id_Sub_fam, (SelectList)ViewBag.Subfamilia, new { @class = "select classic sucursal-dropdown" })
+            }
+
+            @Html.ValidationMessageFor(model => model.Id_Sub_fam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Condicion fisica:</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Id_condicion == 0)
+            {
+                @Html.DropDownListFor(model => model.Id_condicion, new SelectList(ViewBag.tiposolicitud, "Value", "Text"), "-- Seleccione una condicion fisica --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Id_condicion, new SelectList(ViewBag.tiposolicitud, "Value", "Text"), new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Id_condicion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Medida:</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Id_medida == 0)
+            {
+                @Html.DropDownListFor(model => model.Id_medida, new SelectList(ViewBag.medida, "Value", "Text"), "-- Seleccione una medida --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Id_medida, new SelectList(ViewBag.medida, "Value", "Text"), new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Id_medida, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Unidad de medida:</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Id_UM == 0)
+            {
+                @Html.DropDownListFor(model => model.Id_UM, new SelectList(ViewBag.UM, "Value", "Text"), "-- Seleccione una Unidad de medida --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Id_UM, new SelectList(ViewBag.UM, "Value", "Text"), new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Id_UM, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Color:</b>
+        <div class="input-field margin-top-0">
+            @Html.TextBoxFor(model => model.Color, new { @class = "Validate form-simple", placeholder = "Ingrese el color", maxlength = 100, style = " !important;" })
+            @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+    </div>
+    <div class="col s12 m3 l3 input-field">
+        <b class="">marca:</b>
+        <div class="input-field margin-top-0">
+            @Html.TextBoxFor(model => model.marca, new { @class = "Validate form-simple", placeholder = "Ingrese la marca", maxlength = 100, style = " !important;" })
+            @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+    </div>
+
+    <div class="col s12 m3 l3 input-field">
+        <b class="">modelo:</b>
+        <div class="input-field margin-top-0">
+            @Html.TextBoxFor(model => model.modelo, new { @class = "Validate form-simple", placeholder = "Ingrese el modelo", maxlength = 100, style = " !important;" })
+            @Html.ValidationMessageFor(model => model.modelo, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Empresa:</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Em_Cve_Empresa == 0)
+            {
+                @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.empresa, "Value", "Text"), "-- Seleccione una empresa --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.empresa, "Value", "Text"), new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Em_Cve_Empresa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Sucursal:</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Sc_Cve_Sucursal == 0)
+            {
+                @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.sucursal, "Value", "Text"), "-- Seleccione una sucursal --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Sc_Cve_Sucursal, new SelectList(ViewBag.sucursal, "Value", "Text"), new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Sc_Cve_Sucursal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col s12 m3 l3 input-field">
+        <b class="">Area:</b>
+        <div class="input-field margin-top-0">
+            @if (Model.Dp_Cve_Departamento == 0)
+            {
+                @Html.DropDownListFor(model => model.Dp_Cve_Departamento, new SelectList(ViewBag.departamento, "Value", "Text"), "-- Seleccione un area --", htmlAttributes: new { @class = "select classic" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Dp_Cve_Departamento, new SelectList(ViewBag.departamento, "Value", "Text"), new { @class = "select classic" })
+            }
+            @Html.ValidationMessageFor(model => model.Dp_Cve_Departamento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col s12 m2 l2 input-field">
+        <b class="">serie:</b>
+        <div class="input-field margin-top-0">
+            @Html.TextBoxFor(model => model.serie, new { @class = "Validate form-simple", placeholder = "Ingrese la serie", maxlength = 100, style = " !important;" })
+            @Html.ValidationMessageFor(model => model.serie, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+    </div>
+    <div class="col s12 m1 l1">
+        <p>
+            @if (Model.EPI == null || Model.EPI == false)
+            {
+                <input type="checkbox" class="filled-in" id="EPI" />
+            }
+            else
+            {
+                <input type="checkbox" class="filled-in" id="EPI" checked="checked" />
+
+            }
+            <label for="EPI">EPI</label>
+
+        </p>
+        @Html.HiddenFor(model => model.EPI, new { @class = "Validate" })
+    </div>
+</div>
+    <!-- ---------------Botones---------------- -->
+    <!--<div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col l12  m12 s12 left-align">
+                    <a class="btn green darken-4 waves-effect" style="cursor:pointer;" id="agregaevi"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</a>-->
+    @*<button type="submit" class="btn green darken-4 waves-effect agregaevi" style="margin-left: 10px"><i class="mdi mdi-plus-box-multiple hide-on-small-and-down"></i> Agregar evidencia</button>*@
+    <!--</div>
+            </div>
+        </div>
+    </div>-->
+    <!-- ---------------Botones---------------- -->
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index", "HerramientasView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <button type="submit" class="btn blue darken-4 waves-effect guardarEdificio" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }

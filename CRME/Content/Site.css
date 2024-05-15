@@ -240,7 +240,7 @@ page-footer {
 
     .form-general input, select, textarea {
         border: 1px solid #ccc !important;
-        border-radius: 5px !important;
+        border-radius: 10px !important;
         box-sizing: border-box !important;
         font-size: 13px !important;
         height: 35px !important;
@@ -400,7 +400,7 @@ select.classic {
 }
 /*Diseño encabezado*/
 .headline h2, .headline h3, .headline h4, .headline h5, .headline h6 {
-    border-bottom: 3px solid #F8981D;
+    border-bottom: 3px solid #3399FF;
     display: inline-block;
     margin: 5px 0 -2px;
     padding-bottom: 5px;

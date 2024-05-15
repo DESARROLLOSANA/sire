@@ -1,0 +1,138 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Equipo_Menor>
+@{
+    CRME.Models.SIRE_Context db = new CRME.Models.SIRE_Context();
+}
+
+
+<div id="tblEdificios">
+    @*<div class="row">
+        <div class="col s12 m6 l6 input-field form-simple center-align">
+            <input type="text" name="busqueda" id="filtroBusqueda" onkeypress="if(event.keyCode == 13) Buscar()" Value="@ViewBag.filtro" placeholder="buscar por descripcion" />
+        </div>
+        <div class="col s12 m6 l6 input-field">
+            <button class="btn light-blue darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+            <button class="btn light-blue darken-4 waves-effect exportar green-text" title="EXPORTAR"><i class="mdi mdi-file-excel"></i></button>
+            <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 10px" title="LIMPIAR"><i class="mdi mdi-filter-remove"></i></button>
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        <td class="center">Clave</td>
+                        <td class="center">Empresa</td>
+                        <td class="center">Sucursal</td>
+                        <td class="center">Area</td>
+                        <td class="center">Descripcion</td>
+                        <td class="center">Unidad de medida</td>
+                        <td class="center">Medida</td>
+                        <td class="center">Marca</td>
+                        <td class="center">Serie</td>
+                        <td class="center">Modelo</td>
+                        <td class="center">Condicion fisica</td>
+                        <td class="center">E.P.I.</td>
+                        <td class="center">Opciones</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-orange">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="11" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                <tr class="table-body">
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.Cod_Inventario)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Empresa.Find(item.Em_Cve_Empresa).Em_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Sucursal.Find(item.Sc_Cve_Sucursal).Sc_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Departamentos.Find(item.Dp_Cve_Departamento).Dp_Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Unidad_Medida.Find(item.Id_UM).Abreviacion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Medida.Find(item.Id_medida).Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.marca)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.serie)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => item.modelo)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @Html.DisplayFor(modelItem => db.Condicion.Find(item.Id_condicion).Descripcion)
+                    </td>
+                    <td class="center-align" style="text-transform: uppercase;">
+                        @{
+                            string dato;
+                            if (item.EPI == false)
+                            {
+                                dato = "NO";
+                            }
+                            else
+                            {
+                                dato = "SI";
+                            }
+                        }
+                        @Html.DisplayFor(modelItem => dato)
+                    </td>
+                    <td class="center">
+                        <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.Id" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;
+                        <a class="eliminarEmpresa" data-position="bottom" data-delay="50" title="Eliminar" style="cursor:pointer;" id-item="@item.Id" id-vend=""><i class="mdi mdi-close-outline mdi-24px red-text"></i></a>
+
+                    </td>
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaEdificios", new { page, ViewBag.Em_Cve_Empresa, ViewBag.Sc_Cve_Sucursal, ViewBag.Dp_Cve_Departamento, ViewBag.Id_condicion,ViewBag.Id_medida, ViewBag.Id_UM,ViewBag.nom})
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "tblEdificios",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+</div>

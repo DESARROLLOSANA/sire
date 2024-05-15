@@ -1,0 +1,192 @@
+﻿@model CRME.Models.Resguardos_Lista_Impresoras
+@*@model CRME.Models.Personas*@
+
+@{
+
+}
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nuevo Resguardo de Impresora</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Visualizar resguardo</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmResguardo" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Resguardo_Impresora_ID)
+    @* ----------------Datos de personales----------------*@
+    <div class="row">
+        <div class="col s12 m12 l12">
+            @if (ViewBag.edit == 1)
+            {
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                            <button type="button" class="btn green darken-4 waves-effect devolverResguardo" style="margin-left: 10px"><i class="mdi mdi-backup-restore hide-on-small-and-down"></i> Devolver</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="row">
+                @if (ViewBag.edit != 1)
+                {
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">No de serie:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el numero de serie", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                            @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col s12 m4 l4 input-field">
+                        <b class="">No de serie:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el numero de serie", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
+                    </div>
+                }
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Marca</b>
+                    @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Marca de la impresora", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+                <div class="col s12 m4 l4 input-field">
+                    <b class="">Modelo</b>
+                    @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Modelo de la impresora", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Modelo, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m5 l5">
+                    <b class="">Parte:</b>
+                    @Html.EditorFor(model => model.Parte, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Parte", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Parte, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+                <div class="col s12 m2 l2">
+                    <b class="">Precio:</b>
+                    @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "$", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+                <div class="col s12 m5 l5">
+                    <b class="">Codigo de inventario:</b>
+                    @Html.EditorFor(model => model.Cod_inventario, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Codigo de inventario", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Cod_inventario, "", new { @class = "text-danger" })
+                    <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <b class="">Folio y fecha de factura:</b>
+            @Html.EditorFor(model => model.fecha_folio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Folio y fecha de factura", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.fecha_folio, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+        <div class="col s12 m6 l6">
+            <b class="">Proveedor:</b>
+            @Html.EditorFor(model => model.Proveedor, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el proveedor", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Proveedor, "", new { @class = "text-danger" })
+            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            @if (ViewBag.edit != 1)
+            {
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien recibe:</b>
+                        @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien recibe", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        <input type="hidden" id="id_recibe" name="id_recibe">
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien entrega:</b>
+                        @Html.EditorFor(model => model.entrega, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien entrega", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.entrega, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        <input type="hidden" id="Id_entrega" name="Id_entrega">
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien reibe:</b>
+                        @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien recibe", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <b class="">Persona quien entrega:</b>
+                        @Html.EditorFor(model => model.entrega, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Quien entrega", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.entrega, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    @*---------------Botones----------------*@
+    if (ViewBag.edit != 1)
+    {
+
+    // este se activa cuando se va hacer un nuevo resguardo
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                        <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","ResguardoImpresorasView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                        <button type="button" class="btn blue darken-4 waves-effect guardarResguardo" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                        <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","ResguardoImpresorasView")"><i class="mdi mdi-arrow-left hide-on-small-and-down"></i> volver</a>
+                        <button type="button" class="btn blue darken-4 waves-effect generarPdf" style="margin-left: 10px"><i class="mdi mdi-file-pdf-box hide-on-small-and-down"></i> Generar pdf</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

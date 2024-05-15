@@ -142,10 +142,10 @@ namespace CRME.Controllers
                 var sucursal = db.Sucursal.FirstOrDefault(x => x.Sc_Cve_Sucursal == departamento.Sc_Cve_Sucursal);
                 var empresa = db.Empresa.FirstOrDefault(x => x.Em_Cve_Empresa == sucursal.Em_Cve_Empresa || x.Em_Cve_Empresa == departamento.Em_Cve_Sucursal);
 
-                //ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true && x.Em_Cve_Empresa == empresa.Em_Cve_Empresa).ToList(), "Em_Cve_Empresa", "Em_Descripcion");
-                //ComboEmpresa(empresa.Em_Cve_Empresa);
-                //ComboSucursal(null,sucursal.Sc_Cve_Sucursal);
-                //ComboDepartamento(null, null , puestos.Dp_Cve_Departamento);
+                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true && x.Em_Cve_Empresa == empresa.Em_Cve_Empresa).ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ComboEmpresa(empresa.Em_Cve_Empresa);
+                ComboSucursal(empresa.Em_Cve_Empresa, sucursal.Sc_Cve_Sucursal);
+                ComboDepartamento(empresa.Em_Cve_Empresa, sucursal.Sc_Cve_Sucursal, puestos.Dp_Cve_Departamento);
             }            
 
             return PartialView(puestos);
@@ -164,7 +164,7 @@ namespace CRME.Controllers
         {
             if(Em_Cve_Empresa != null)
             {
-                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true).ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true).ToList(), "Em_Cve_Empresa", "Em_Descripcion", Em_Cve_Empresa);
             }
             else
             {
@@ -177,7 +177,7 @@ namespace CRME.Controllers
         {
             if (Sc_Cve_Sucursal != null)
             {
-                ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal).ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
+                ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal).ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Sc_Cve_Sucursal);
             }
             else
             {
@@ -187,21 +187,21 @@ namespace CRME.Controllers
         }
         public ActionResult ComboDepartamento(int? Em_Cve_Empresa, int? Sc_Cve_Empresa, int? Dp_cve_Departamento)
         {
-            if(Dp_cve_Departamento != null)
-            {
-                ViewBag.Dp_cve_Departamento = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Dp_Cve_Departamento == Dp_cve_Departamento).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
-            }
-            else
-            {
+            //if(Dp_cve_Departamento != null)
+            //{
+            //    ViewBag.Dp_cve_Departamento = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Dp_Cve_Departamento == Dp_cve_Departamento).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+            //}
+            //else
+            //{
                 if (Em_Cve_Empresa != null && Sc_Cve_Empresa != null)
                 {
-                    ViewBag.Dp_cve_Departamento = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Em_Cve_Sucursal == Em_Cve_Empresa && x.Sc_Cve_Sucursal == Sc_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+                    ViewBag.depa = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Em_Cve_Sucursal == Em_Cve_Empresa && x.Sc_Cve_Sucursal == Sc_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Dp_cve_Departamento);
                 }
                 else
                 {
-                    ViewBag.Dp_cve_Departamento = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Em_Cve_Sucursal == Em_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+                    ViewBag.depa = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Em_Cve_Sucursal == Em_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
                 }
-            }
+           // }
            
             return View();
         }

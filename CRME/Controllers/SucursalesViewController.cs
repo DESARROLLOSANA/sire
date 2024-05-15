@@ -144,12 +144,12 @@ namespace CRME.Controllers
             {
                 ViewBag.edit = 1;
                 sucursal = db.Sucursal.Find(Sc_Cve_Sucursal);
-                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", sucursal.Em_Cve_Empresa);
+                ViewBag.Em_Cve_Empresa1 = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", sucursal.Em_Cve_Empresa);
                 
             }
             else
             {
-                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");                
+                ViewBag.Em_Cve_Empresa1 = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");                
 
             }
 

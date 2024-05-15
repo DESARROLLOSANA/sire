@@ -1,0 +1,436 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Calendario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Calendario</h5>
+            </div>
+        </div>
+
+        @*<div id="New_UpdateEdificio">
+                @Html.Action("_Formulario", "EdificiosView")
+            </div>*@
+
+        <div id="TablaCalendario">
+            @Html.Action("_TablaCalendario", "AutorizacionView", new { Id_Solicitud = ViewBag.Id_Solicitud })
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure Agregar formacion Profesional-->
+<div id="modal1" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Motivo cancelacion</b>
+    <div class="headline"></div>
+    <form class="form-simple" id="frmMotivo">
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="motivofrm">
+                <span>Motivo cancelación</span>
+                <input type="text" name="motivo" id="motivo" placeholder="Motivo cancelación" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Cancelar</a>
+                    <button type="submit" class="btn light-blue waves-effect margin-right-5 saveMotivo"><i class="mdi mdi-check"></i>Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="modal3" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Requerimiento</b>
+    <div class="headline"></div>
+    @using (Html.BeginForm("SaveRequerimiento", "AutorizacionView", FormMethod.Post, new { @class = "form-simple", id = "FrmRequerimiento" }))
+    {
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="AgregarRequerimiento">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Cancelar</a>
+                    <button type="submit" class="btn green waves-effect margin-right-5 saveRequ" id-solicitud="@ViewBag.Id_Solicitud"><i class="mdi mdi-content-save"></i>Guardar</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal  modal-fixed-footer" style="width:600px; height:400px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title ">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var Id_Calendario = "";
+        $(document).ready(function () {
+            ComboSucursal();
+            $("#ModalAlert").modal();
+            var img1 = "";
+            var imagen1 = " ";
+            $('.datepicker').val("");
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+
+            pass();
+            validatePass();
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo descripcion debe llevar mínimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+            date();
+        });
+
+
+        //--- EDITAR PERSONA ---
+        @*$("#TablaEdificiosAuth").off('click', '.Autoriza');
+        $("#TablaEdificiosAuth").on('click', '.Autoriza', function (e) {
+            e.preventDefault();
+            var Id_Solicitud = $(this).attr("id-item");
+            $('#New_UpdateEdificio').load('@Url.Action("_Formulario", "EdificiosView")', { Id_Solicitud }, function (response, status, xhr) {
+                if (status == "success") {
+                    guardaredificio();
+                    ComboSucursal();
+                    limpiar();
+
+                }
+            });
+            ancla = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(ancla).offset().top
+            }, 1000);
+        });*@
+
+
+
+        limpiar();
+        Buscar();
+        function limpiar() {
+            $("#TablaEdificiosAuth").off('click', ".limpiar");
+            $("#TablaEdificiosAuth").on('click', ".limpiar", function (e) {
+                $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                    if (status == "success") {
+                        Buscar();
+                    }
+
+                });
+            });
+        }
+
+
+        Buscar();
+        function Buscar() {
+            $("#filtroBusqueda").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                    $(".loading-personas").addClass("loading-show").removeClass("loading");
+                    var filtroBusqueda = $("#filtroBusqueda").val();
+                    $("#TablaEdificios").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', { filtroBusqueda }, function (response, status, xhr) {
+                        if (status == "success") {
+                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                            $(".loading-personas").addClass("loading").removeClass("loading-show");
+                        }
+                    });
+                }
+            });
+            $("#TablaEdificios").off("click", ".buscarSoli");
+            $("#TablaEdificios").on("click", ".buscarSoli", function (e) {
+                $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                $(".loading-personas").addClass("loading-show").removeClass("loading");
+                    var filtroBusqueda = $("#filtroBusqueda").val();
+                $("#TablaEdificios").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', { filtroBusqueda }, function (response, status, xhr) {
+                        if (status == "success") {
+                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                            $(".loading-personas").addClass("loading").removeClass("loading-show");
+                        }
+                    });
+            });
+
+        }
+
+        $("#FrmRequerimiento").off("click", "#CargarArchivo");
+        $("#FrmRequerimiento").on("click", "#CargarArchivo", function (e) {
+            e.preventDefault();
+            var formdata = new FormData();
+            var fileInput = document.getElementById('fileInputArchivo');
+            var archivo = $('#fileInputArchivo').val();
+            var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            if (fileInput.value.trim() == "") {
+                ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }
+            else if (extension != ".pdf") {
+                $('#ruta').val("");
+                $("#nbArchivo").val("");
+                ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }else {
+
+                for (i = 0; i < fileInput.files.length; i++) {
+                    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                }
+
+                $(".loading-subir").css('display', 'block')
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '@Url.Action("Cargarfile", "AutorizacionView")');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function (result) {
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var obj = JSON.parse(xhr.responseText);
+
+                        if (obj.success) {
+                            $("#nbArchivo").val("");
+                            ConfigModal($('#ModalAlert'), "Acción", obj.mensaje, 1)//para crear la ventana flotante
+                            $("#ruta").val(obj.FileT);
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                        else if (obj.success == false && obj.mensaje != "") {
+                            ConfigModal($('#ModalAlert'), "Información", obj.mensaje, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                    }
+                    $(".loading-subir").css('display', 'none')
+                }
+            }
+
+            return false;
+
+        })
+
+                //-------------------- requerimiento ------------------------
+
+        $("#TablaCalendario").off('click', '.agregareq');
+        $("#TablaCalendario").on('click', '.agregareq', function (e) {
+            e.preventDefault();
+            Id_Calendario = $(this).attr("id-item");
+            $('#AgregarRequerimiento').load('@Url.Action("_FormularioCalendarioRequerimiento", "AutorizacionView")', function (response, status, xhr) {
+                    if (status == "success") {
+
+                    }
+                });
+                $("#modal3").modal({
+                    dismissible: false,
+                });
+                $("#modal3").modal('open');
+        });
+
+        $("#FrmRequerimiento").off('click', '.saveRequ');
+        $("#FrmRequerimiento").on('click', '.saveRequ', function (e) {
+            e.preventDefault();
+            if ($("#FrmRequerimiento").valid()) {
+                EliminarComaMontosFormulario($("#FrmRequerimiento"));
+                var frmValues = $("#FrmRequerimiento").serialize();
+                var ruta = $("#ruta").val();
+                //var idAlumno = $(this).attr("id-alumno");
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveRequerimientoCal", "AutorizacionView")',
+                    cache: false,
+                    data: frmValues + "&ruta=" + ruta + "&Id_Calendario=" + Id_Calendario,
+                    success: function (result) {
+                        if (result.success) {
+                            $('#mensaje-error-model1').text("");
+                            $('#modal3').modal('close');
+                            ConfigModal($('#ModalAlert1'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
+                            $("#ModalAlert1").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert1").modal('open');
+                            ConfiguracionFecha();
+                        } else {
+                            $('#mensaje-error-model1').text(result.mensajefound);
+                        }
+                    }
+
+                });
+            }
+
+
+        });
+
+        $("#TablaCalendario").off('click', '.Autoriza');
+        $("#TablaCalendario").on('click', '.Autoriza', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea autorizar el requerimiento?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("AutorizarCal", "AutorizacionView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaCalendario").load('@Url.Action("_TablaCalendario", "AutorizacionView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+
+        $("#TablaCalendario").off('click', '.Cancelar');
+        $("#TablaCalendario").on('click', '.Cancelar', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea cancelar la actividad?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                    url: '@Url.Action("CancelarCal", "AutorizacionView")',
+                        data: { Id_Solicitud } ,
+                    type: "POST",
+                    success: function (result) {
+                        if (result.success) {
+                            $("#TablaCalendario").load('@Url.Action("_TablaCalendario", "AutorizacionView")', function (response, status, xhr) {
+                                if (status == "success") {
+                                }
+                            });
+                        }
+                        else {
+                            $(".md-accept").addClass("md-btn-success");
+                            ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                            $("#ModalAlert").modal('open');
+                            $('#ModalAlert').off("click", ".md-accept");
+                            $('#ModalAlert').on("click", ".md-accept", function () {
+                                $("#ModalAlert").modal('close');
+                            })
+                        }
+                    }
+                });
+
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+
+            function CargarReglasGeneralFormuario() {
+                var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse(formulario);
+
+                jQuery.extend(jQuery.validator.messages, {
+                    minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                    maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+                });
+
+        }
+
+        function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Em_Cve_Empresa", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetSucursalesByEmpresa", "EdificiosView")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+            //====================== PAGINACIONES ===========================
+            //paginación personas
+            function FltOnBeginPer(obj) {
+                $("#TablaCalendario #tblCalendario").addClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+            }
+
+            function FltOnCompletePer(obj) {
+                $("#TablaCalendario #tblCalendario").removeClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+            }
+
+    </script>
+}
+

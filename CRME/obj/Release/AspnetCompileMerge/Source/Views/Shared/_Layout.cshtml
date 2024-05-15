@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Upload/Sistema/favicon.png" type="image/png">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/JQueryUI")
+    @Styles.Render("~/Content/Materialize")
+    @Styles.Render("~/Content/Iconos")
+    @Styles.Render("~/Content/Fileinput")
+    @Styles.Render("~/Content/Modal")
+    @Styles.Render("~/Content/nouislider")
+
+</head>
+<body>
+    @if (@ViewBag.HiddenMenu == 1)
+    {
+        <div class="navbar-fixed margin-bottom-15">
+
+            <nav class="white">
+                <div class="nav-wrapper">
+                    @if (Auth.Usuario != null)
+                    {
+                        <a href="#" data-activates="slide-out" id="menu" data-tooltip="Menú">
+                            <img class="img-layout" src="~/Upload/Sistema/sire_final.png" style="width:125px;" />
+                        </a>
+                    }
+                </div>
+            </nav>
+        </div>
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <div class="user-view">
+                    <a href="#!user"><img class="circle" style="border:solid" src="~/Upload/Sistema/default.png"></a>
+                    <span class="blue-text name">John Doe</span>
+                    <a href="@Url.Action("Salir","AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                </div>
+            </li>
+            <li class="active"><a href="@Url.Action("Index", "PanelView")"><i class=" small mdi mdi-home-outline"></i><span>Inicio</span></a></li>
+            <li class="active" style="overflow:hidden"><a href="@Url.Action("Index","ResguardosView")"><i class="small mdi mdi-laptop"></i><span>laptops</span></a></li>
+            <li class="active" style="overflow:hidden"><a href="#"><i class="small mdi mdi-desktop-tower-monitor"></i><span>emsables</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "ResguardoMovilesView")"><i class="small mdi mdi-cellphone"></i><span>Móviles</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "ResguardoImpresorasView")"><i class="small mdi mdi-printer"></i><span>Impresoras</span></a></li>
+            <li class="active"><a href="#"><i class="small mdi mdi-battery-50"></i><span>Cargadores</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "ResguardoLineasView")"><i class="small mdi mdi-sim"></i><span>Lineas</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "ResguardoMobiliarioView")"><i class="small mdi mdi-desk"></i><span>Mobiliario</span></a></li>
+
+            <li class="active"><a href="@Url.Action("Index", "ResguardoVehiculosView")"><i class="small mdi mdi-car"></i><span>Vehículos</span></a></li>
+            <li class="active" style="overflow:hidden"><a href="#"><i class="small mdi mdi-tools"></i><span>Mantenimiento vehiculo</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "ResguardoUnidadesView")"><i class="small mdi mdi-truck"></i><span>Unidades</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "PanelInvView")"><i class="small mdi mdi-dolly"></i><span>Inventario</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "EmpresasView")"><i class="small mdi mdi-office-building"></i><span>Empresa</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "SucursalesView")"><i class="small mdi mdi-store"></i><span>Sucursales</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "DepartamentosView")"><i class="small mdi mdi-account-group"></i><span>Departamentos</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "PuestosView")"><i class="small mdi mdi-clipboard-account-outline"></i><span>Puestos</span></a></li>
+
+            
+            <li class="active"><a href="@Url.Action("Index", "CecosView")"><i class="small mdi mdi-account-cash-outline"></i><span>Ce_cos</span></a></li>
+            <li class="active"><a href="@Url.Action("Index", "EmpleadosView")"><i class="small mdi mdi-account-tie"></i><span>Empleados</span></a></li>
+            <li class="active"><a href="#"><i class="small mdi mdi-account"></i><span>Usuarios</span></a></li>
+        </ul>        
+    }
+
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryUnobtrusive")
+    @Scripts.Render("~/bundles/nouislider")
+    @Scripts.Render("~/bundles/JQueryUI")
+    @Scripts.Render("~/bundles/Materialize")
+    @Scripts.Render("~/bundles/Fileinput")
+    @Scripts.Render("~/bundles/Modal")
+    @Scripts.Render("~/bundles/Mask")
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        // Initialize collapse button
+        $("#menu").sideNav();
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        //$('.collapsible').collapsible();
+        $('#menu').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
+            onOpen: function (el) { /* Do Stuff*/ },  // A function to be called when sideNav is
+            openedonClose: function (el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
+        }
+        );
+    </script>
+</body>
+</html>

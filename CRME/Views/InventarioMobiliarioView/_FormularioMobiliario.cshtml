@@ -1,0 +1,231 @@
+﻿@model CRME.Models.inventario_mobiliario
+
+
+
+@*@model CRME.Models.Personas @model CRME.Models.Empresa *@
+
+
+
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nuevo Mobiliario</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Editar Mobiliario</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmEmpresa" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.inv_mobiliario_ID)
+    @*   @Html.HiddenFor(model => model.Em_Cve_Empresa) *@
+
+    @* ----------------Datos linea----------------*@
+    <div class="row">
+        <div class="col s12 m12 l12">
+
+            <div class="row">
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Tipo de Mobiliario:</b>
+
+                    <div class="input-field margin-top-0">
+                        @if (Model.tipo_mobiliario_ID != 0)
+                        {
+                            @Html.DropDownListFor(model => model.tipo_mobiliario_ID, new SelectList(ViewBag.tipo_mobiliario, "Value", "Text"), "-- Tipo de mobiliario --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.tipo_mobiliario_ID, new SelectList(ViewBag.tipo_mobiliario, "Value", "Text"), "-- Elige el tipo de mobiliario --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.tipo_mobiliario_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col s12 m6 l6 input-field">
+                    @if (ViewBag.edit == 1)
+                    {
+                        <b class="">Código de inventario:</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.cod_inventario, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Este es el codigo de inventario", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.cod_inventario, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Color:</b>
+                    <div class="input-field margin-top-0">
+
+
+                        @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingresa el color del mobiliario", @maxlength = 20, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Características:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese las caracteristicas", @maxlength = 1000, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "textarea" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Precio</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "$", @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Proveedor:</b>
+                    <div class="input-field margin-top-0">
+                        @if (ViewBag.edit != 1)
+                        {
+                            @Html.DropDownListFor(model => model.proveedor_ID, new SelectList(ViewBag.proveedor, "Value", "Text"), "-- Selecciona un proveedor --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.proveedor_ID, new SelectList(ViewBag.proveedor, "Value", "Text"), "-- Selecciona un proveedor --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.proveedor_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Folio de factura:</b>
+                    <div class="input-field margin-top-0">
+
+
+                        @Html.EditorFor(model => model.folio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingresa el folio de factura", @maxlength = 10, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.folio, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Fecha del folio de factura:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.fecha_folio, new { htmlAttributes = new { @class = "form-control datepicker w-100" } })
+                        @Html.ValidationMessageFor(model => model.fecha_folio, "", new { @class = "date" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Ubicación:</b>
+                    <div class="input-field margin-top-0">
+                        @if (ViewBag.edit != 1)
+                        {
+
+                            @Html.DropDownListFor(model => model.ubicacion, new SelectList(ViewBag.ubicacion1, "Value", "Text"), "-- Selecciona la Ubicacion --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.ubicacion, new SelectList(ViewBag.ubicacion1, "Value", "Text"), "--ubicacion--", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.ubicacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Departamento:</b>
+                    <div class="input-field margin-top-0">
+
+                        @if (ViewBag.edit != 1)
+                        {
+
+                            @Html.DropDownListFor(model => model.departamento, new SelectList(ViewBag.departamento1, "Value", "Text"), "--Selecciona el departamento --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.departamento, new SelectList(ViewBag.departamento1, "Value", "Text"), "--Selecciona el departamento --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Empresa:</b>
+                    <div class="input-field margin-top-0">
+
+                        @if (ViewBag.edit != 1)
+                        {
+
+                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.lista_empresa, "Value", "Text"), "--Selecciona la empresa a la que pertenecera el mobiliario --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.lista_empresa, "Value", "Text"), "--Selecciona la empresa a la que pertenecera el mobiliario --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Em_Cve_Empresa, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l6 input-field">
+                    <div class="input-field margin-top-0">
+                        @if (ViewBag.edit == 1)
+                        {
+                            <b class="">Estatus:</b>
+                            @Html.DropDownListFor(model => model.estatus_ID, new SelectList(ViewBag.estatus, "Value", "Text"), "-- Elige un estatus --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.estatus_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","InventarioMobiliarioView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <button type="button" class="btn blue darken-4 waves-effect guardarEmpresa" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

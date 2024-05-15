@@ -1,0 +1,1129 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.tipo == 1)
+{
+    var tipo = ViewBag.tipo;
+    <div class="row" id="FmrIndicadores">
+        @Html.Partial("_FormularioIndicadores", "ReporteView")
+    </div>
+
+}
+else if(ViewBag.tipo == 2)
+{
+    var tipo = ViewBag.tipo;
+    <div class="row" id="FmrIndicadores">
+       @Html.Partial("_FormularioReporte", "ReporteView")
+    </div>
+    
+}
+
+<!-- Modal Structure Agregar Book-->
+<div id="ModalFrmGuardarBook" class="modal" style="width:600px; background-color:#fff; border:1px solid #ff6a00; max-height:80% !important; margin-top:20px;">
+    <b class="center-align orange-text margin-left-right-10">Agregar a Book</b>
+    <div class="headline">
+    </div>
+    @using (Html.BeginForm("GuardarBook", "Curriculum", FormMethod.Post, new { @class = "form-simple", id = "FrmBook" }))
+    {
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div id="AgregarBook">
+                @Html.Partial("_FormularioAgregarBook","ReporteView")
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l9">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;">Cancelar</a>
+                    <button type="submit" class="btn guardarbook orange waves-effect">Guardar</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:350px; height:225px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:130px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message" style="font-size:15px !important;">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        var img1 = "";
+        var imagen1 = " ";
+        $("#ModalFrmGuardarBook").modal();
+        $("#ModalAlert").modal();
+
+        // Open
+        $('.collapsible').collapsible('open', 0);
+        $(".badge1").addClass("badge-grey-circle");
+        $(".badge1").removeClass("badge-grey-circle-not");
+
+        Slide();
+    });
+
+
+    function Slide() {
+        var min = $("#numEdadMinima").val();
+        var max = $("#numEdadMaxima").val();
+        var keypressSlider = document.getElementById('keypress');
+        var input0 = document.getElementById('numEdadMinima');
+        var input1 = document.getElementById('numEdadMaxima');
+        var inputs = [input0, input1];
+        if(min!="" &&max!=""){
+            noUiSlider.create(keypressSlider, {
+                start: [min, max],
+                connect: true,
+                tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
+                range: {
+                    'min': [18, 1],
+                    'max': [80, 1]
+                }
+            });
+        } else {
+            noUiSlider.create(keypressSlider, {
+                start: [18, 80],
+                connect: true,
+                tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
+                range: {
+                    'min': [18, 1],
+                    'max': [80, 1]
+                }
+            });
+        }
+        
+
+        keypressSlider.noUiSlider.on('update', function (values, handle) {
+            inputs[handle].value = values[handle];
+        });
+
+        function setSliderHandle(i, value) {
+            var r = [null, null];
+            r[i] = value;
+            keypressSlider.noUiSlider.set(r);
+        }
+
+        // Listen to keydown events on the input field.
+        inputs.forEach(function (input, handle) {
+
+            input.addEventListener('change', function () {
+                setSliderHandle(handle, this.value);
+            });
+
+            input.addEventListener('keydown', function (e) {
+
+                var values = keypressSlider.noUiSlider.get();
+                var value = Number(values[handle]);
+
+                // [[handle0_down, handle0_up], [handle1_down, handle1_up]]
+                var steps = keypressSlider.noUiSlider.steps();
+
+                // [down, up]
+                var step = steps[handle];
+
+                var position;
+
+                // 13 is enter,
+                // 38 is key up,
+                // 40 is key down.
+                switch (e.which) {
+
+                    case 13:
+                        setSliderHandle(handle, this.value);
+                        break;
+
+                    case 38:
+
+                        // Get step to go increase slider value (up)
+                        position = step[1];
+
+                        // false = no step is set
+                        if (position === false) {
+                            position = 1;
+                        }
+
+                        // null = edge of slider
+                        if (position !== null) {
+                            setSliderHandle(handle, value + position);
+                        }
+
+                        break;
+
+                    case 40:
+
+                        position = step[0];
+
+
+                        if (position === false) {
+                            position = 1;
+                        }
+
+                        if (position !== null) {
+                            setSliderHandle(handle, value - position);
+                        }
+
+                        break;
+                }
+            });
+        });
+    }
+    configColapse();
+    function configColapse(){
+        $(".content-badge1").off("click");
+        $(".content-badge1").on("click", function () {
+            $(".badge1").addClass("badge-grey-circle");
+            $(".badge1").removeClass("badge-grey-circle-not");
+            $(".badge2").addClass("badge-grey-circle-not");
+            $(".badge2").removeClass("badge-grey-circle");
+            $(".badge3").addClass("badge-grey-circle-not");
+            $(".badge3").removeClass("badge-grey-circle");
+
+        });
+
+        $(".content-badge2").off("click");
+        $(".content-badge2").on("click", function () {
+            $(".badge1").addClass("badge-grey-circle-not");
+            $(".badge1").removeClass("badge-grey-circle");
+            $(".badge2").addClass("badge-grey-circle");
+            $(".badge2").removeClass("badge-grey-circle-not");
+            $(".badge3").addClass("badge-grey-circle-not");
+            $(".badge3").removeClass("badge-grey-circle");
+        });
+
+        $(".content-badge3").off("click");
+        $(".content-badge3").on("click", function () {
+            $(".badge2").addClass("badge-grey-circle-not");
+            $(".badge2").removeClass("badge-grey-circle");
+            $(".badge1").addClass("badge-grey-circle-not");
+            $(".badge1").removeClass("badge-grey-circle");
+            $(".badge3").addClass("badge-grey-circle");
+            $(".badge3").removeClass("badge-grey-circle-not");
+
+        });
+
+
+    }
+
+    $(".radioGrafica").on("change", function () {
+            var tipo = 1;
+            $("#FormularioCampos").load('@Url.Action("_FormularioCampos", "ReporteView")', { tipo }, function (response, status, xhr) {
+                if (status == "success") {
+                    Draggable();
+                }
+            });
+    });
+
+        RecargarFiltros();
+   function RecargarFiltros() {
+ 
+    $("#check_Edad").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultEdad").addClass("display_show");
+            $("#ResultEdad").removeClass("display_none");
+
+        }else{
+            $("#ResultEdad").addClass("display_none");
+            $("#ResultEdad").removeClass("display_show");
+        }
+    });
+
+    $("#check_Cumple").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultCumple").addClass("display_show");
+            $("#ResultCumple").removeClass("display_none");
+
+        } else {
+            $("#ResultCumple").addClass("display_none");
+            $("#ResultCumple").removeClass("display_show");
+        }
+    });
+
+    $("#check_Sexo").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultSexo").addClass("display_show");
+            $("#ResultSexo").removeClass("display_none");
+
+        } else {
+            $("#ResultSexo").addClass("display_none");
+            $("#ResultSexo").removeClass("display_show");
+            $("#idGenero").val("");
+        }
+    });
+
+    $("#check_Civil").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultCivil").addClass("display_show");
+            $("#ResultCivil").removeClass("display_none");
+
+        } else {
+            $("#ResultCivil").addClass("display_none");
+            $("#ResultCivil").removeClass("display_show");
+            $("#idEstadoCivil").val("");
+        }
+    });
+
+    $("#check_TipoSangre").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultSangre").addClass("display_show");
+            $("#ResultSangre").removeClass("display_none");
+
+        } else {
+            $("#ResultSangre").addClass("display_none");
+            $("#ResultSangre").removeClass("display_show");
+            $("#idTipoSangre").val("");
+        }
+    });
+
+    $("#check_Trabajo").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultTrabajo").addClass("display_show");
+            $("#ResultTrabajo").removeClass("display_none");
+
+        } else {
+            $("#ResultTrabajo").addClass("display_none");
+            $("#ResultTrabajo").removeClass("display_show");
+        }
+    });
+
+    $("#check_fgFallecido").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultFallecido").addClass("display_show");
+            $("#ResultFallecido").removeClass("display_none");
+
+        } else {
+            $("#ResultFallecido").addClass("display_none");
+            $("#ResultFallecido").removeClass("display_show");
+        }
+    });
+
+    $("#check_fgLicencia").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultLicencia").addClass("display_show");
+            $("#ResultLicencia").removeClass("display_none");
+
+        } else {
+            $("#ResultLicencia").addClass("display_none");
+            $("#ResultLicencia").removeClass("display_show");
+        }
+    });
+
+    $("#check_tpEgresado").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResulEgresado").addClass("display_show");
+            $("#ResulEgresado").removeClass("display_none");
+
+        } else {
+            $("#ResulEgresado").addClass("display_none");
+            $("#ResulEgresado").removeClass("display_show");
+            $("#tpEgresado").val("");
+        }
+    });
+
+    $("#check_Lic").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultLic").addClass("display_show");
+            $("#ResultLic").removeClass("display_none");
+
+        } else {
+            $("#ResultLic").addClass("display_none");
+            $("#ResultLic").removeClass("display_show");
+            LicAlmacenados = [];
+        }
+    });
+
+    $("#check_Religion").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultReligion").addClass("display_show");
+            $("#ResultReligion").removeClass("display_none");
+
+        } else {
+            $("#ResultReligion").addClass("display_none");
+            $("#ResultReligion").removeClass("display_show");
+            ReliAlmacenados = [];
+        }
+    });
+
+    $("#check_Estados").on("change", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#ResultEstados").addClass("display_show");
+            $("#ResultEstados").removeClass("display_none");
+
+        } else {
+            $("#ResultEstados").addClass("display_none");
+            $("#ResultEstados").removeClass("display_show");
+            EstadosAlmacenados = [];
+        }
+    });
+        }
+
+    //CHIP LICENCIATURAS
+    var LicAlmacenados = [];
+    configchipLic();
+    function configchipLic() {
+        LicAlmacenados = [];
+        var CountLic1 = $('#CountLic').val();
+        var CountLic = 0;
+        if (CountLic1 > 0) {
+            //CountLic = CountLic1;
+            for (var x = 1; x <= CountLic1; x++) {
+                var iditem = $('#valor_' + x).val();
+                LicAlmacenados.push(iditem);
+            }
+        }
+
+        $("#Licenciaturas").change(function () {
+            if ($(this).val() != 0) {
+
+                var textoseleccionadoLic = $("#Licenciaturas option:selected").text();
+                var valortextoseleccionadoLic = $("#Licenciaturas option:selected").val();
+
+                $.each(LicAlmacenados, function (index, val) {
+
+                    if (val == valortextoseleccionadoLic) {
+
+                        CountLic++;
+                    }
+                });
+
+                var html = "";
+
+                html += '<div class="ChipsEstructura chipcreado" id="' + valortextoseleccionadoLic + '">'
+                html += '<a class = "ChipsTexto" id="' + valortextoseleccionadoLic + '">' + textoseleccionadoLic + '</a><span class="eliminarLic ChipBtnCerrar" id="' + valortextoseleccionadoLic + '">&times;</span>'
+                html += '</div>'
+
+
+                if (CountLic == 0) {
+                    $('#ContentChipLic').append(html);
+
+                    LicAlmacenados.push(valortextoseleccionadoLic);
+                    if (LicAlmacenados.length > 0) {
+                        $('#ContentChipLic #text-major-lic').text("");
+                    }
+
+                }
+                CountLic = 0;
+            }
+
+        });
+
+        $("#ContentChipLic").off("click", ".eliminarLic");
+        $("#ContentChipLic").on("click", ".eliminarLic", function (e) { //click en eliminar campo
+
+            var id = $(this).attr('id');
+
+            IdEliminar = LicAlmacenados.indexOf(id);
+
+            LicAlmacenados.splice(IdEliminar, 1);
+
+            $(this).parent('div').remove();
+            if (LicAlmacenados.length == 0) {
+                $('#text-major-lic').text("Aquí aparecerán las Licenciaturas que vaya seleccionando.");
+            }
+        });
+    }
+
+    //CHIP RELIGIONES
+    var ReliAlmacenados = [];
+    configchipReli();
+    function configchipReli() {
+        ReliAlmacenados = [];
+        var CountReli1 = $('#CountReli').val();
+        var CountReli = 0;
+        if (CountReli1 > 0) {
+            //CountLic = CountLic1;
+            for (var x = 1; x <= CountReli1; x++) {
+                var iditem = $('#valor_' + x).val();
+                ReliAlmacenados.push(iditem);
+            }
+        }
+
+        $("#Religiones").change(function () {
+            if ($(this).val() != 0) {
+
+                var textoseleccionadoReli = $("#Religiones option:selected").text();
+                var valortextoseleccionadoReli = $("#Religiones option:selected").val();
+
+                $.each(ReliAlmacenados, function (index, val) {
+
+                    if (val == valortextoseleccionadoReli) {
+
+                        CountReli++;
+                    }
+                });
+
+                var html = "";
+
+                html += '<div class="ChipsEstructura chipcreado" id="' + valortextoseleccionadoReli + '">'
+                html += '<a class = "ChipsTexto" id="' + valortextoseleccionadoReli + '">' + textoseleccionadoReli + '</a><span class="eliminarReli ChipBtnCerrar" id="' + valortextoseleccionadoReli + '">&times;</span>'
+                html += '</div>'
+
+
+                if (CountReli == 0) {
+                    $('#ContentChipReli').append(html);
+
+                    ReliAlmacenados.push(valortextoseleccionadoReli);
+                    if (ReliAlmacenados.length > 0) {
+                        $('#ContentChipReli #text-major-reli').text("");
+                    }
+
+                }
+                CountReli = 0;
+            }
+
+        });
+
+        $("#ContentChipReli").off("click", ".eliminarReli");
+        $("#ContentChipReli").on("click", ".eliminarReli", function (e) { //click en eliminar campo
+
+            var id = $(this).attr('id');
+
+            IdEliminar = ReliAlmacenados.indexOf(id);
+
+            ReliAlmacenados.splice(IdEliminar, 1);
+
+            $(this).parent('div').remove();
+            if (ReliAlmacenados.length == 0) {
+                $('#text-major-reli').text("Aquí aparecerán las Religiones que vaya seleccionando.");
+            }
+        });
+    }
+
+    //CHIP ESTADOS
+    var EstadosAlmacenados = [];
+    configchipEdos();
+    function configchipEdos() {
+        EstadosAlmacenados = [];
+        var CountEdo1 = $('#CountEstados').val();
+        var CountEdo = 0;
+        if (CountEdo1 > 0) {
+            //CountLic = CountLic1;
+            for (var x = 1; x <= CountEdo1; x++) {
+                var iditem = $('#valor_' + x).val();
+                EstadosAlmacenados.push(iditem);
+            }
+        }
+
+        $("#Estados").change(function () {
+            if ($(this).val() != 0) {
+
+                var textoseleccionadoEstado = $("#Estados option:selected").text();
+                var valortextoseleccionadoEstado = $("#Estados option:selected").val();
+
+                $.each(EstadosAlmacenados, function (index, val) {
+
+                    if (val == valortextoseleccionadoEstado) {
+
+                        CountEdo++;
+                    }
+                });
+
+                var html = "";
+
+                html += '<div class="ChipsEstructura chipcreado" id="' + valortextoseleccionadoEstado + '">'
+                html += '<a class = "ChipsTexto" id="' + valortextoseleccionadoEstado + '">' + textoseleccionadoEstado + '</a><span class="eliminarEdo ChipBtnCerrar" id="' + valortextoseleccionadoEstado + '">&times;</span>'
+                html += '</div>'
+
+
+                if (CountEdo == 0) {
+                    $('#ContentChipEdos').append(html);
+
+                    EstadosAlmacenados.push(valortextoseleccionadoEstado);
+                    if (EstadosAlmacenados.length > 0) {
+                        $('#ContentChipEdos #text-major-edos').text("");
+                    }
+
+                }
+                CountEdo = 0;
+            }
+
+        });
+
+        $("#ContentChipEdos").off("click", ".eliminarEdo");
+        $("#ContentChipEdos").on("click", ".eliminarEdo", function (e) { //click en eliminar campo
+
+            var id = $(this).attr('id');
+
+            IdEliminar = EstadosAlmacenados.indexOf(id);
+
+            EstadosAlmacenados.splice(IdEliminar, 1);
+
+            $(this).parent('div').remove();
+            if (EstadosAlmacenados.length == 0) {
+                $('#text-major-edos').text("Aquí aparecerán los estados que vaya seleccionando.");
+            }
+        });
+    }
+
+    var CamposAlmacenados = [];
+    Draggable();
+    function Draggable() {
+        CamposAlmacenados = [];
+        /*Configuración de draggable*/
+        $(".cm-campo").draggable({
+            cancel: "a.ui-icon",
+            revert: "invalid",
+            containment: "document",
+            helper: "clone",
+            cursor: "move"
+        });
+
+
+        $(".cm-panel").droppable({
+            accept: ".cm-campo",
+            classes: {
+                "ui-droppable-active": "ui-state-highlight"
+            },
+            drop: function (event, ui) {
+                var item = $(ui.draggable);
+                var panel = $(this);
+                var origen = item.closest('.cm-panel').attr('id-item');
+                var destino = panel.attr('id-item');
+                var Value = item.val();
+                if (destino == 2) {
+                    CamposAlmacenados.push(Value);
+                    if ($('input:radio[name=group1]:checked').val() == 1) {
+                        if (CamposAlmacenados.length == 1) {
+                            for (var i = 1; i < 15; i++) {
+                                if (i != Value) {
+                                    $(".Campo_" + i).draggable("disable");
+                                }
+                            }
+                        }
+
+                    } else if ($('input:radio[name=group1]:checked').val() == 2 || $('input:radio[name=group1]:checked').val() == 3) {
+                        if (CamposAlmacenados.length == 2) {
+                            for (var i = 1; i < 15; i++) {
+                                if (i != Value) {
+                                    $(".Campo_" + i).draggable("disable");
+                                }
+                            }
+                        }
+                    }
+                    for (var i = 0; i < CamposAlmacenados.length; i++) {
+                        if (CamposAlmacenados[i] == 5) {
+                            $(".CorreoValidate").addClass("display_show");
+                            $(".CorreoValidate").removeClass("display_none");
+                        }
+                    }
+                    AddItem(item, panel);
+                } else if (destino == 1) {
+                    for (var i = 0; i < CamposAlmacenados.length; i++) {
+                        if (CamposAlmacenados[i] != 5) {
+                            $(".CorreoValidate").addClass("display_none");
+                            $(".CorreoValidate").removeClass("display_show");
+                        } else {
+                            $(".CorreoValidate").addClass("display_show");
+                            $(".CorreoValidate").removeClass("display_none");
+                        }
+                    }
+                    IdEliminar = CamposAlmacenados.indexOf(Value);
+                    CamposAlmacenados.splice(IdEliminar, 1);
+                    if ($('input:radio[name=group1]:checked').val() == 1) {
+                        if (CamposAlmacenados.length < 1) {
+                            $(".cm-campo").draggable({
+                                drag: function (event, ui) { }
+                            });
+                            $(".cm-campo").draggable("enable");
+                        }
+
+                    } else if ($('input:radio[name=group1]:checked').val() == 2 || $('input:radio[name=group1]:checked').val() == 3) {
+                        if (CamposAlmacenados.length < 2) {
+                            $(".cm-campo").draggable({
+                                drag: function (event, ui) { }
+                            });
+                            $(".cm-campo").draggable("enable");
+                        }
+                    }
+
+                    AddItem(item, panel);
+                }
+            }
+        });
+        function AddItem($item, $panel) {
+            $item.fadeOut(function () {
+
+                /*Clonar*/
+                $item.appendTo($panel.find('.drop-container')).fadeIn();
+            });
+        }
+
+    }
+
+        //MODAL GUARDAR BOOK
+    $("#FormularioCampos").off("change", "#check_Book");
+    $("#FormularioCampos").on("change", "#check_Book", function () {
+        var option = $(this);
+        var id = $(this).attr("id-item");
+        var check = $(this).is(':checked');
+        if (check) {
+            $("#nbBook").val("");
+            $("#mensajeerror").text("");
+            $('#ModalFrmGuardarBook').modal('open');
+            setTimeout(function () {
+                $("#check_Book").prop('checked', false);
+            }, 5000);
+            //CargarReglasGeneral();
+        } else {
+        }
+    });
+
+        //RECARGAR CAMPOS BOOK
+    $('#FormularioBook').off("change", "#idBook");
+    $('#FormularioBook').on("change", "#idBook", function () {
+        //alert("");
+        var idBook = $(this).val();
+        @*$('#FormularioBook').load('@Url.Action("_FormularioFiltros", "ReporteView")', { idBook });*@
+        $('#FormularioBook').load('@Url.Action("_FormularioFiltros", "ReporteView")', { idBook }, function (response, status, xhr) {
+            if (status == "success") {
+                Slide();
+                RecargarFiltros();
+            }
+        });
+    });
+
+
+    //GUARDAR BOOK
+    $("#FrmBook").off('click', '.guardarbook');
+    $("#FrmBook").on('click', ".guardarbook", function (event) {
+        event.preventDefault();
+        //CargarReglasGeneral();
+        var nbBook = $("#nbBook").val();
+        var chekTipoSangre = $("#check_TipoSangre").is(':checked');
+        var check_fgFallecido = $("#check_fgFallecido").is(':checked');
+        var check_fgLicencia = $("#check_fgLicencia").is(':checked');
+        var check_Trabajo = $("#check_Trabajo").is(':checked');
+        var check_Edad = $("#check_Edad").is(':checked');
+        var check_Cumple = $("#check_Cumple").is(':checked');
+        var numEdadMinima = null;
+        var numEdadMaxima = null;
+        if (check_Edad) {
+            numEdadMinima = $(".noUi-handle-lower").attr("aria-valuetext").replace(".00", "");
+            numEdadMaxima = $(".noUi-handle-upper").attr("aria-valuetext").replace(".00", "");
+        }
+        var feInicio = "";
+        var feFinal = "";
+        if (check_Cumple == true && boolfe1 == true && boolfe2 == true) {
+            feInicio = $("#feInicio").val();
+            feFinal = $("#feFinal").val();
+        }
+        var idGenero = $("#idGenero").val();
+        var idEstadoCivil = $("#idEstadoCivil").val();
+        var idTipoSangre = $("#idTipoSangre").val();
+        var fgTrabajaActualmente = null;
+        var fgFallecido = null;
+        var fgDonarSangre = null;
+        var fgLicencia = null;
+        if (chekTipoSangre) {
+            fgDonarSangre = $("#fgDonarSangre").is(':checked');
+        }
+        if (check_fgFallecido) {
+            fgFallecido = $("#fgFallecido").is(':checked');
+        }
+        if (check_fgLicencia) {
+            fgLicencia = $("#fgLicencia").is(':checked');
+        }
+        if (check_Trabajo) {
+            fgTrabajaActualmente = $("#fgTrabajaActualmente").is(':checked');
+        }
+        var tpEgresado = $("#tpEgresado").val();
+        var idsLicenciaturas =LicAlmacenados;
+        var idsReligiones =ReliAlmacenados;
+        var idsEstados = EstadosAlmacenados;
+        
+
+        if (nbBook != "") {
+            if ((numEdadMaxima != null && numEdadMinima != null) || idGenero != "" || idEstadoCivil != "" || idTipoSangre != "" || (feInicio!="" && feFinal!="") || fgFallecido != null || fgDonarSangre != null || fgLicencia != null || tpEgresado != "" || fgTrabajaActualmente != null || idsLicenciaturas.length>0 || idsReligiones.length>0 || idsEstados.length>0) {
+                $("#mensajeerror").text("");
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GuardarBook", "ReporteView")',
+                    cache: false,
+                    data: { nbBook, numEdadMinima, numEdadMaxima, idGenero, idEstadoCivil, idTipoSangre, feInicio, feFinal, fgFallecido, fgDonarSangre, fgLicencia, tpEgresado, fgTrabajaActualmente, idsLicenciaturas, idsReligiones, idsEstados },
+                    success: function (result) {
+                        $("#check_Book").prop('checked', false);
+                        if (result.success) {
+                            $("#mensajeerror").text("");
+                            $('#ModalFrmGuardarBook').modal('close');
+                            ConfigModal($('#ModalAlert'), "Acción", result.msj, 1)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open'); $("#ModalAlert").modal('open');
+                            $('#FormularioBook').load('@Url.Action("_FormularioFiltros", "ReporteView")', function (response, status, xhr) {
+                                if (status == "success") {
+                                    Slide();
+                                    RecargarFiltros();
+                                }
+                            });
+                        } else if (result.msj != "" && result == false) {
+                            $("#mensajeerror").text(result.msj);
+                            //ConfigModal($('#ModalAlert'), "", result.msj, 3)//para crear la ventana flotante
+                            //$("#ModalAlert").modal({
+                            //    dismissible: false,
+                            //});
+                            //$("#ModalAlert").modal('open'); $("#ModalAlert").modal('open');
+                        }
+                    }
+                });
+            } else {
+                $("#mensajeerror").text("debes seleccionar al menos un filtro para poder guardar el Book!!");
+            }
+          
+        } else {
+            $("#mensajeerror").text("El campo nombre es requerido");
+        }
+    });
+
+
+        $("#FormularioCampos").off("click", ".GenerarIndicador");
+        $("#FormularioCampos").on("click", ".GenerarIndicador", function (e) {
+            e.preventDefault();
+            //alert("");
+            var tpGrafica = $('input:radio[name=group1]:checked').val();
+            var chekTipoSangre = $("#check_TipoSangre").is(':checked');
+            var check_fgFallecido = $("#check_fgFallecido").is(':checked');
+            var check_fgLicencia = $("#check_fgLicencia").is(':checked');
+            var check_Trabajo = $("#check_Trabajo").is(':checked');
+            var check_Edad = $("#check_Edad").is(':checked');
+            var check_Cumple = $("#check_Cumple").is(':checked');
+            var numEdadMinima = null;
+            var numEdadMaxima = null;
+            if (check_Edad) {
+                numEdadMinima = $(".noUi-handle-lower").attr("aria-valuetext").replace(".00", "");
+                numEdadMaxima = $(".noUi-handle-upper").attr("aria-valuetext").replace(".00", "");
+            }
+            var feInicio = "";
+            var feFinal = "";
+            if (check_Cumple == true && boolfe1 == true && boolfe2 == true) {
+                feInicio = $("#feInicio").val();
+                feFinal = $("#feFinal").val();
+            }
+            var idGenero = $("#idGenero").val();
+            var idEstadoCivil = $("#idEstadoCivil").val();
+            var idTipoSangre = $("#idTipoSangre").val();
+            var fgTrabajaActualmente = null;
+            var fgFallecido = null;
+            var fgDonarSangre = null;
+            var fgLicencia = null;
+            if (chekTipoSangre) {
+                fgDonarSangre = $("#fgDonarSangre").is(':checked');
+            }
+            if (check_fgFallecido) {
+                fgFallecido = $("#fgFallecido").is(':checked');
+            }
+            if (check_fgLicencia) {
+                fgLicencia = $("#fgLicencia").is(':checked');
+            }
+            if (check_Trabajo) {
+                fgTrabajaActualmente = $("#fgTrabajaActualmente").is(':checked');
+            }
+            var tpEgresado = $("#tpEgresado").val();
+            var idsLicenciaturas = JSON.stringify(LicAlmacenados);
+            var idsReligiones = JSON.stringify(ReliAlmacenados);
+            var idsEstados = JSON.stringify(EstadosAlmacenados);
+            var Campos = JSON.stringify(CamposAlmacenados);
+            var CamposValidar = CamposAlmacenados;
+            if (tpGrafica == "" || tpGrafica == undefined) {
+                ConfigModal($('#ModalAlert'), "Información", "Selecciona un tipo de gráfica", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            } else if (CamposValidar.length < 1 && tpGrafica == "1") {
+                ConfigModal($('#ModalAlert'), "Información", "Selecciona un campo del reporte para continuar", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');   $("#ModalAlert").modal('open');
+            } else if (CamposValidar.length < 2 && (tpGrafica == "2" || tpGrafica == "3")) {
+                ConfigModal($('#ModalAlert'), "Información", "Selecciona dos campos del reporte para continuar", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+
+            } else {
+                if (tpGrafica == 1 || tpGrafica == 2) {
+                    //$("#FormularioCampos #girar").css('display', 'block');
+                    //$("#FormularioCampos .GenerarIndicador").prop("disabled", true);
+                    document.location.href = '@Url.Action("GenerarIndicador", "ReporteView")' + '/?numEdadMinima=' + numEdadMinima + "&numEdadMaxima=" + numEdadMaxima + "&tpGrafica=" + tpGrafica + "&idGenero=" + idGenero + "&idEstadoCivil=" + idEstadoCivil + "&idTipoSangre=" + idTipoSangre + "&feInicio=" + feInicio + "&feFinal=" + feFinal + "&fgTrabajaActualmente=" + fgTrabajaActualmente + "&fgFallecido=" + fgFallecido + "&fgDonarSangre=" + fgDonarSangre + "&fgLicencia=" + fgLicencia + "&tpEgresado=" + tpEgresado + "&idsLicenciaturas=" + idsLicenciaturas + "&idsReligiones=" + idsReligiones + "&idsEstados=" + idsEstados + "&Campos=" + Campos;
+                    setTimeout(function () {
+                        var tipo = 1;
+                        $("#FormularioCampos").load('@Url.Action("_FormularioCampos", "ReporteView")', { tipo}, function (response, status, xhr) {
+                            if (status == "success") {
+                                Draggable();
+                            }
+                        });
+                    }, 5000);
+                    //$("#FormularioCampos #girar").css('display', 'none');
+                    //$("#FormularioCampos .GenerarIndicador").prop("disabled", false);
+                } else if (tpGrafica == 3) {
+                    //$("#FormularioCampos #girar").css('display', 'block');
+                    //$("#FormularioCampos .GenerarIndicador").prop("disabled", true);
+                    document.location.href = '@Url.Action("GenerarIndicador3", "ReporteView")' + '/?numEdadMinima=' + numEdadMinima + "&numEdadMaxima=" + numEdadMaxima + "&tpGrafica=" + tpGrafica + "&idGenero=" + idGenero + "&idEstadoCivil=" + idEstadoCivil + "&idTipoSangre=" + idTipoSangre + "&feInicio=" + feInicio + "&feFinal=" + feFinal + "&fgTrabajaActualmente=" + fgTrabajaActualmente + "&fgFallecido=" + fgFallecido + "&fgDonarSangre=" + fgDonarSangre + "&fgLicencia=" + fgLicencia + "&tpEgresado=" + tpEgresado + "&idsLicenciaturas=" + idsLicenciaturas + "&idsReligiones=" + idsReligiones + "&idsEstados=" + idsEstados + "&Campos=" + Campos;
+
+                    setTimeout(function () {
+                        var tipo=1;
+                        $("#FormularioCampos").load('@Url.Action("_FormularioCampos", "ReporteView")', { tipo}, function (response, status, xhr) {
+                            if (status == "success") {
+                                Draggable();
+                            }
+                        });
+                    }, 5000);
+                    //$("#FormularioCampos #girar").css('display', 'none');
+                    //$("#FormularioCampos .GenerarIndicador").prop("disabled", false);
+                }
+             }
+
+        });
+
+
+        $("#FormularioCampos").off("click", ".GenerarReporte");
+        $("#FormularioCampos").on("click", ".GenerarReporte", function (e) {
+            e.preventDefault();
+            var chekTipoSangre = $("#check_TipoSangre").is(':checked');
+            var check_fgFallecido = $("#check_fgFallecido").is(':checked');
+            var check_fgLicencia = $("#check_fgLicencia").is(':checked');
+            var check_Trabajo = $("#check_Trabajo").is(':checked');
+            var check_Edad = $("#check_Edad").is(':checked');
+            var check_Cumple = $("#check_Cumple").is(':checked');
+            var numEdadMinima = null;
+            var numEdadMaxima = null;
+            if (check_Edad) {
+                numEdadMinima = $(".noUi-handle-lower").attr("aria-valuetext").replace(".00", "");
+                numEdadMaxima = $(".noUi-handle-upper").attr("aria-valuetext").replace(".00", "");
+            }
+            var feInicio = "";
+            var feFinal = "";
+            if(check_Cumple==true && boolfe1==true && boolfe2== true){
+
+                feInicio = $("#feInicio").val();
+                feFinal = $("#feFinal").val();
+            }
+            var idGenero = $("#idGenero").val();
+            var idEstadoCivil = $("#idEstadoCivil").val();
+            var idTipoSangre = $("#idTipoSangre").val();
+            var fgTrabajaActualmente = null;
+            var fgFallecido = null;
+            var fgDonarSangre = null;
+            var fgLicencia = null;
+            if (chekTipoSangre) {
+                fgDonarSangre = $("#fgDonarSangre").is(':checked');
+            }
+            if (check_fgFallecido) {
+                fgFallecido = $("#fgFallecido").is(':checked');
+            }
+            if (check_fgLicencia) {
+                fgLicencia = $("#fgLicencia").is(':checked');
+            }
+            if (check_Trabajo) {
+                fgTrabajaActualmente = $("#fgTrabajaActualmente").is(':checked');
+            }
+            var tpEgresado = $("#tpEgresado").val();
+            var idsLicenciaturas = JSON.stringify(LicAlmacenados);
+            var idsReligiones = JSON.stringify(ReliAlmacenados);
+            var idsEstados = JSON.stringify(EstadosAlmacenados);
+            var Campos = JSON.stringify(CamposAlmacenados);
+            var CamposValidar = CamposAlmacenados;
+            if (CamposValidar.length < 1) {
+                ConfigModal($('#ModalAlert'), "Información", "Selecciona al menos un campo del reporte para continuar", 3)//para crear la ventana flotante
+            $("#ModalAlert").modal({
+                dismissible: false,
+            });
+            $("#ModalAlert").modal('open');
+
+            } else {
+                document.location.href = '@Url.Action("GenerarReporte", "ReporteView")' + '/?numEdadMinima=' + numEdadMinima + "&numEdadMaxima=" + numEdadMaxima + "&idGenero=" + idGenero + "&idEstadoCivil=" + idEstadoCivil + "&idTipoSangre=" + idTipoSangre + "&feInicio=" + feInicio + "&feFinal=" + feFinal + "&fgTrabajaActualmente=" + fgTrabajaActualmente + "&fgFallecido=" + fgFallecido + "&fgDonarSangre=" + fgDonarSangre + "&fgLicencia=" + fgLicencia + "&tpEgresado=" + tpEgresado + "&idsLicenciaturas=" + idsLicenciaturas + "&idsReligiones=" + idsReligiones + "&idsEstados=" + idsEstados + "&Campos=" + Campos;
+            }
+
+        });
+
+        //Generar Correo
+        $(".GenerarCorreo").on('click', function (event) {
+           // alert("");
+            event.preventDefault();
+            var chekTipoSangre = $("#check_TipoSangre").is(':checked');
+            var check_fgFallecido = $("#check_fgFallecido").is(':checked');
+            var check_fgLicencia = $("#check_fgLicencia").is(':checked');
+            var check_Trabajo = $("#check_Trabajo").is(':checked');
+            var check_Edad = $("#check_Edad").is(':checked');
+            var numEdadMinima = null;
+            var numEdadMaxima = null;
+            if (check_Edad) {
+                numEdadMinima = $(".noUi-handle-lower").attr("aria-valuetext").replace(".00", "");
+                numEdadMaxima = $(".noUi-handle-upper").attr("aria-valuetext").replace(".00", "");
+            }
+            var idGenero = $("#idGenero").val();
+            var idEstadoCivil = $("#idEstadoCivil").val();
+            var idTipoSangre = $("#idTipoSangre").val();
+            var feInicio = $("#feInicio").val();
+            var feFinal = $("#feFinal").val();
+            var fgTrabajaActualmente = null;
+            var fgFallecido = null;
+            var fgDonarSangre = null;
+            var fgLicencia = null;
+            if (chekTipoSangre) {
+                fgDonarSangre = $("#fgDonarSangre").is(':checked');
+            }
+            if (check_fgFallecido) {
+                fgFallecido = $("#fgFallecido").is(':checked');
+            }
+            if (check_fgLicencia) {
+                fgLicencia = $("#fgLicencia").is(':checked');
+            }
+            if (check_Trabajo) {
+                fgTrabajaActualmente = $("#fgTrabajaActualmente").is(':checked');
+            }
+            var tpEgresado = $("#tpEgresado").val();
+            var idsLicenciaturas = JSON.stringify(LicAlmacenados);
+            var idsReligiones = JSON.stringify(ReliAlmacenados);
+            var idsEstados = JSON.stringify(EstadosAlmacenados);
+
+            document.location.href = '@Url.Action("ObtenerCorreos", "ReporteView")' + '/?numEdadMinima=' + numEdadMinima + "&numEdadMaxima=" + numEdadMaxima + "&idGenero=" + idGenero + "&idEstadoCivil=" + idEstadoCivil + "&idTipoSangre=" + idTipoSangre + "&feInicio=" + feInicio + "&feFinal=" + feFinal + "&fgTrabajaActualmente=" + fgTrabajaActualmente + "&fgFallecido=" + fgFallecido + "&fgDonarSangre=" + fgDonarSangre + "&fgLicencia=" + fgLicencia + "&tpEgresado=" + tpEgresado + "&idsLicenciaturas=" + idsLicenciaturas + "&idsReligiones=" + idsReligiones + "&idsEstados=" + idsEstados;
+
+        });
+
+
+        //function CargarReglasGeneral() {
+        //    var formulario = $("#FrmBook").removeData("validator").removeData("unobtrusiveValidation");
+        //    $.validator.unobtrusive.parse(formulario);
+
+        //        $('#nbBook').rules("remove");
+        //        $('#nbBook').rules("add", {
+        //            required: true,
+        //            messages: {
+        //                required: "El campo nombre del book es requerido.",
+        //            }
+        //        });
+        //}
+
+        var boolfe1 = false;
+        var boolfe2 = false;
+        $("#feInicio").off("blur");
+        $("#feInicio").on("blur", function () {
+            var expreg = /^([0][1-9]|[12][0-9]|3[01])(\/|-)([0][1-9]|[1][0-2])$/;
+            var cadena = $(this).val();
+            var fe1 = cadena.split('/');
+            var feInicio = "2017"+ fe1[1] + fe1[0];
+            var cadena2 = $("#feFinal").val();
+            if(cadena2!=""){
+                var fe2 = cadena2.split('/');
+                var feFinal = "2017"+ fe2[1] + fe2[0];
+                if (feInicio > feFinal) {
+                    $("#feFinal").val("");
+                    $("#mensaje-error-model3").text("el día y mes inicial no pueden ser mayor que el final");
+                } else {
+                    $("#mensaje-error-model3").text("");
+                }
+            }
+            
+            if (expreg.test(cadena)) {
+                $("#mensaje-error-model1").text("");
+                boolfe1 = true;
+                //alert("Aceptar: " + cadena);
+            } else {
+                if(cadena!=""){
+                    //alert("¡ Error !\n\nRechazar: " + cadena);
+                    $("#mensaje-error-model1").text("Formato incorrecto");
+                }
+                
+            }
+        });
+
+        $("#feFinal").off("blur");
+        $("#feFinal").on("blur", function () {
+            var expreg = /^([0][1-9]|[12][0-9]|3[01])(\/|-)([0][1-9]|[1][0-2])$/;
+            var cadena2 = $(this).val();
+            var fe2 = cadena2.split('/');
+            var feFinal = "2017" +fe2[1] + fe2[0];
+            var cadena = $("#feInicio").val();
+            if (cadena != "") {
+                var fe1 = cadena.split('/');
+                var feInicio = "2017"+fe1[1] + fe1[0];
+                if (feFinal < feInicio) {
+                    $("#feFinal").val("");
+                    $("#mensaje-error-model3").text("el día y mes final no pueden ser menor que el inicial");
+                } else {
+                    $("#mensaje-error-model3").text("");
+                }
+            }
+            if (expreg.test(cadena2)) {
+                $("#mensaje-error-model2").text("");
+                boolfe2 = true;
+                //alert("Aceptar: " + cadena);
+            } else {
+                if (cadena2!="") {
+                    //alert("¡ Error !\n\nRechazar: " + cadena);
+                    $("#mensaje-error-model2").text("Formato incorrecto");
+                }
+                
+            }
+        });
+
+        function validateCode(e) {
+            var keynum = window.event ? window.event.keyCode : e.which;
+            var keyChar = window.event ? window.event.charCode : e.which;
+            if (keynum == 37) {
+                alert(keynum);
+            }
+            if ((keyChar > 45 && keyChar < 58) || keynum == 16 || keynum== 8 || keynum==13 || keynum==37 || keynum==38 || keynum==39 || keynum==40) {
+                return true;
+            }
+            return /\d/.test(String.fromCharCode(keyChar));
+        }
+
+    </script>
+    }

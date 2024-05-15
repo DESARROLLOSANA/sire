@@ -39,5 +39,7 @@ namespace CRME.Models
         public DateTime? Fecha_Baja { get; set; }
 
         public bool Estatus { get; set; }
+
+        public int? Ceco_ID { get; set; }
     }
 }

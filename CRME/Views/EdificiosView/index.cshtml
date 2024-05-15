@@ -1,0 +1,607 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Edificios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Solicitudes de mantenimiento</h5>
+            </div>
+        </div>
+
+        <div id="New_UpdateEdificio">
+            @Html.Action("_Formulario", "EdificiosView")
+        </div>
+
+        <div id="TablaEdificios">
+            @Html.Action("_TablaEdificios", "EdificiosView")
+        </div>
+    </div>
+</div>
+
+<div id="modal1" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Evidencia</b>
+    <div class="headline"></div>
+    <form class="form-simple" id="frmMotivo">
+        <div class="modal-content">            
+            <div id="motivofrm">
+                <span>Evidencia</span>
+                <div class="col s12 m4 l4">
+                    <div class="row">
+                        <div class="col l12 m12 s12">
+                            <div class="form-group">
+                                <div id="errorBlockResponsables"></div>
+                            </div>
+                            <input type="file" id="photo" />
+                            <input type="hidden" id="foto" />
+                        </div>                     
+                    </div>                   
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger guardaevi modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Aceptar</a>                    
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:400px; height:200px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //boton agrear evidencia class = agregaevi
+        var Id_Solicitud = "";
+        $(document).ready(function () {
+            ComboSucursal();
+            $("#ModalAlert").modal();
+            var img1 = "";
+            var imagen1 = " ";
+            $('.datepicker').val("");
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+
+            pass();
+            validatePass();
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo descripcion debe llevar mínimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+            date();
+        });
+
+        agregafoto();
+        function agregafoto() {
+            $("#TablaEdificios").off('click', '.agregarevi');
+            $("#TablaEdificios").on("click", ".agregarevi", function (e) {
+                e.preventDefault();
+                Id_Solicitud = $(this).attr("id-item");
+                $("#modal1").modal({
+                    dismissible: false,
+                });
+                $("#modal1").modal('open');
+
+            });
+        }
+
+
+         ConfigPictures();
+        function ConfigPictures() {
+            ////PATH IMAGENES
+
+            if ($("#foto").val() == null || $("#foto").val() == "") {
+                img1 = "~/Upload/Empresa/default.png";
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            } else {
+                img1 = $("#foto").val();
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            }
+
+
+            $("#photo").fileinput({
+                language: "es",
+                uploadUrl: '@Url.Action("CargarLogo", "EdificiosView")', // server upload action
+                uploadAsync: true,
+                showCaption: false,
+                maxFileCount: 1,
+                maxFilesNum: 1,
+                validateInitialCount: true,
+                overwriteInitial: false,
+                autoReplace: true,
+                showPreview: true,
+                allowedFileExtensions: ["png", "jpg"],
+                initialPreview: [
+                    '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                ],
+                dropZoneTitle: "Seleccione el archivo",
+                elErrorContainer: "#errorBlockResponsables",
+                browseClass: "btn btn1 btn-floating green padding-0",
+                browseLabel: '',
+                browseIcon: '<i class="mdi mdi-plus mdi-24px" > </i>',
+                removeClass: "btn btn1 btn-floating btn-danger red eliminarfoto",
+                removeLabel: "",
+                removeIcon: '<i class="mdi mdi-delete"></i>',
+                uploadClass: "btn btn1 btn-floating btn-success blue padding-0",
+                uploadLabel: "",
+                uploadIcon: '<i class="mdi mdi-cloud-upload"></i>',
+                msgFilesTooMany: 'Excede el límite máximo permitido</b>.',
+                fileActionSettings: {
+                    indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                    indicatorSuccessTitle: 'Subido',
+                    indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                    indicatorErrorTitle: 'Subir Error',
+                    indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                    indicatorLoadingTitle: 'Subiendo ...',
+                    removeIcon: '<i class="mdi mdi-delete"></i>',
+                    removeClass: 'btn btn-danger',
+                    removeTitle: 'Quitar Archivo',
+                },
+                layoutTemplates: {
+                    footer: '<div class="file-thumbnail-footer">\n' +
+                        '    <div class="file-caption-name" style="width:{width}">{caption}</div>\n' +
+                        '    {actions}\n' +
+                        '</div>',
+                    main2: '<div class="col s12 m12 l12">' +
+                        '{preview}' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4">' +
+                        ' {browse} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 center">' +
+                        ' {upload} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 right-align">' +
+                        ' {remove} ' +
+                        '</div>',
+                    preview: '<div class="file-preview {class}">' +
+                        '    <div class="{dropClass}">' +
+                        '    <div class="file-preview-thumbnails">' +
+                        '    </div>' +
+                        '    <div class="clearfix"></div>' +
+                        '    <div class="file-preview-status text-center text-success"></div>' +
+                        '    <div class="kv-fileinput-error" style="cursor:pointer;"></div>' +
+                        '    </div>' +
+                        '</div>',
+                    btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Eliminar Archivo" >{icon}{label}</button>',
+                    btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Cargar Archivo" >{icon}{label}</a>',
+                    btnBrowse: '<div tabindex="500" class="{css} "  title="{title}" title="Agregar Archivo"  >{icon}{label}</div>',
+                    actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>',
+                    actionDelete: '<button type="button" class="kv-file-remove {removeClass} "  title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                    actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n'
+                }
+
+            });
+
+
+            $('#photo').on('fileuploaded', function (event, data, previewId, index) {
+                $("#foto").val(JSON.stringify(data.response.savedFileName));
+                $(".valid-img").html("");
+            });
+            $("#photo").on("change", function (e) {
+                e.preventDefault();
+                img1 = "";
+                imagen1 = ""
+                if ($("#foto").val() == null || $("#foto").val() == "") {
+                    img1 = "~/Upload/Empresa/default.png";
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                } else {
+                    img1 = $("#foto").val();
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                }
+                $('#photo').fileinput('refresh', {
+                    initialPreview: [
+                        '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                    ],
+                    fileActionSettings: {
+                        indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                        indicatorSuccessTitle: 'Subido',
+                        indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                        indicatorErrorTitle: 'Subir Error',
+                        indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                        indicatorLoadingTitle: 'Subiendo ...',
+                        removeIcon: '<i class="mdi mdi-delete"></i>',
+                        removeClass: 'btn btn-danger',
+                        removeTitle: 'Quitar Archivo',
+                    }
+
+                });
+                $("#photo").val("");
+            });
+        }
+
+
+
+        guardaevidencia();
+        function guardaevidencia() {
+            $("#frmMotivo").off('click', '.guardaevi');
+            $("#frmMotivo").on("click", ".guardaevi", function (e) {
+                e.preventDefault();
+                var ruta = $("#foto").val();
+
+                $.ajax({
+                    url: '@Url.Action("SaveEvidencia", "EdificiosView")',
+                    data: { ruta, Id_Solicitud },
+                    type: "POST",
+                    success: function (result) {//obtiene el resultado json
+                        $(".guardarEdificio").attr("disabled", false);
+                        if (result.success) {//si es true el resultado
+                            $('#mensaje-error-model').text("");
+                            $("#New_UpdateEdificio").load('@Url.Action("_Formulario", "EdificiosView")', function (response, status, xhr) {
+                                if (status == "success") {
+                                    guardaredificio();
+                                    ComboSucursal();
+                                    limpiar();
+                                    $('.datepicker').val("");
+                                }
+                            });
+                            ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', function (response, status, xhr) {
+                                if (status == "success") {
+                                }
+                            });
+                        }
+                        else if (result.mensajefound != "") {
+                            //$("#ModalAlert").text(result.mensajefound);
+                            ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                        }
+                    }
+                });
+            });
+
+           }
+
+        //--- GUARDAR PERSONA ---
+        guardaredificio();
+        function guardaredificio() {
+
+            $("#FrmEdificio").off('click', '.guardarEdificio');
+            $("#FrmEdificio").on("click", ".guardarEdificio", function (e) {
+                //alert(" ");
+                e.preventDefault();
+                $(".guardarEdificio").attr("disabled", true);
+                CargarReglasGeneralFormuario();
+                if ($("#FrmEdificio").valid()) {
+                    var frmValues = $("#FrmEdificio").serialize();
+                    $.ajax({
+                        url: '@Url.Action("SaveEdificios", "EdificiosView")',
+                        data: frmValues,
+                        type: "POST",
+                        success: function (result) {//obtiene el resultado json
+                            $(".guardarEdificio").attr("disabled", false);
+                            if (result.success) {//si es true el resultado
+                                $('#mensaje-error-model').text("");
+                                $("#New_UpdateEdificio").load('@Url.Action("_Formulario", "EdificiosView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                        guardaredificio();
+                                        ComboSucursal();
+                                        limpiar();
+                                        $('.datepicker').val("");
+                                    }
+                                });
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else if (result.mensajefound != "") {
+                                //$("#ModalAlert").text(result.mensajefound);
+                                ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                } else {
+                    $(".guardarEdificio").attr("disabled", false);
+                }
+            });
+        }
+
+        //--- EDITAR PERSONA ---
+        $("#TablaEdificios").off('click', '.editarEdificio');
+        $("#TablaEdificios").on('click', '.editarEdificio', function (e) {
+            e.preventDefault();
+            var Id_Solicitud = $(this).attr("id-item");
+            $('#New_UpdateEdificio').load('@Url.Action("_Formulario", "EdificiosView")', { Id_Solicitud }, function (response, status, xhr) {
+                if (status == "success") {
+                    guardaredificio();
+                    ComboSucursal();
+                    limpiar();
+
+                }
+            });
+            ancla = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(ancla).offset().top
+            }, 1000);
+        });
+
+
+
+        limpiar();
+        Buscar();
+        function limpiar() {
+            $("#TablaEdificios").off('click', ".limpiar");
+            $("#TablaEdificios").on('click', ".limpiar", function (e) {
+                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', function (response, status, xhr) {
+                    if (status == "success") {
+                        Buscar();
+                    }
+
+                });
+            });
+        }
+
+
+        Buscar();
+        function Buscar() {
+            $("#filtroBusqueda").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                    $(".loading-personas").addClass("loading-show").removeClass("loading");
+                    var filtroBusqueda = $("#filtroBusqueda").val();
+                    $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', { filtroBusqueda }, function (response, status, xhr) {
+                        if (status == "success") {
+                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                            $(".loading-personas").addClass("loading").removeClass("loading-show");
+                        }
+                    });
+                }
+            });
+            $("#TablaEdificios").off("click", ".buscarSoli");
+            $("#TablaEdificios").on("click", ".buscarSoli", function (e) {
+                $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                $(".loading-personas").addClass("loading-show").removeClass("loading");
+                    var filtroBusqueda = $("#filtroBusqueda").val();
+                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', { filtroBusqueda }, function (response, status, xhr) {
+                        if (status == "success") {
+                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                            $(".loading-personas").addClass("loading").removeClass("loading-show");
+                        }
+                    });
+            });
+
+        }
+
+
+        $("#TablaEdificios").off('click', '.eliminarEdificio');
+        $("#TablaEdificios").on('click', '.eliminarEdificio', function (e) {
+                //alert(" ");
+                e.preventDefault();
+            var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteEdificios", "EdificiosView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                guardarpersona();
+                limpiar();
+        });
+
+         $("#TablaEdificios").off('click', '.cerrarSoliB');
+        $("#TablaEdificios").on('click', '.cerrarSoliB', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea finalizar la solicitud?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("CerrarSolicitud", "EdificiosView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', function (response, status, xhr) {
+                                    if (status == "success") {                                      
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+        $("#TablaEdificios").off('click', '.cerrarSoli');
+        $("#TablaEdificios").on('click', '.cerrarSoli', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea finalizar la solicitud?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("CerrarSolicitud", "EdificiosView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "EdificiosView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                        GenerarPdf(Id_Solicitud);
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })                
+                limpiar();
+            });
+
+
+            function GenerarPdf(id) {                
+                    var url = "@Url.Action("Print", "EdificiosView")?id=" + id;
+                    window.open(url);              
+        }
+
+
+            function CargarReglasGeneralFormuario() {
+                var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse(formulario);
+
+                jQuery.extend(jQuery.validator.messages, {
+                    minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                    maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+                });
+
+        }
+
+function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Em_Cve_Empresa", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetSucursalesByEmpresa", "EdificiosView")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+            //====================== PAGINACIONES ===========================
+            //paginación personas
+            function FltOnBeginPer(obj) {
+                $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+            }
+
+            function FltOnCompletePer(obj) {
+                $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+            }
+
+    </script>
+}

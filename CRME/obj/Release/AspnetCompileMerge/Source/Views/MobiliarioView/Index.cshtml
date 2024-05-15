@@ -1,0 +1,580 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Departamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Administración de mobiliario</h5>
+            </div>
+        </div>
+
+        <div id="New_UpdateEmpresa">
+            @Html.Action("_Formulario", "MobiliarioView")
+        </div>
+
+        <div id="TablaEmpresas">
+            @Html.Action("_TablaMobiliario", "MobiliarioView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ModalAlert").modal();
+            /*$('.datepicker').val("");*/
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+            date();
+ 
+        });
+
+        //function date() {
+        //    //$('.datepicker').datepicker({                
+        //    //});
+        //    $('.datepicker').pickadate({                
+        //        selectMonths: true,
+        //        selectYears: 100,
+        //        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        //        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        //        weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        //        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        //        weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+        //        today: '',
+        //        clear: 'Limpiar',
+        //        close: 'Cerrar',
+        //        format: 'dd/mm/yyyy',
+        //        onStart: function () {
+        //            //this.set('select', $('#Pp_FechaInicio').val()); //Value por defecto al cargar el picker.
+        //            $('.datepicker').val($('.datepicker').val());
+        //        }
+        //    });
+
+        //}
+
+         guardarpersona();
+        function guardarpersona() {
+
+            $("#FrmEmpresa").off('click', '.guardarEmpresa');
+            $("#FrmEmpresa").on("click", ".guardarEmpresa", function (e) {
+                //alert(" ");
+                e.preventDefault();
+                $(".guardarEmpresa").attr("disabled", true);
+                CargarReglasGeneralFormuario();
+                if ($("#FrmEmpresa").valid()) {
+                    var frmValues = $("#FrmEmpresa").serialize();
+                    var tipo_mobiliario_ID = ("#tipo_mobiliario_ID").val;
+                    var proveedor_ID = ("#proveedor_ID").val;
+                    var Em_Cve_Empresa = ("#Em_Cve_Empresa").val;
+                    $.ajax({
+                        url: '@Url.Action("SaveMobiliario", "MobiliarioView")',
+                        data: frmValues + "&tipo_mobiliario_ID=" + tipo_mobiliario_ID + "&proveedor_ID=" + proveedor_ID + "&Em_Cve_Empresa=" + Em_Cve_Empresa,
+                        type: "POST",
+                        success: function (result) {//obtiene el resultado json
+                            $(".guardarEmpresa").attr("disabled", false);
+                            if (result.success) {//si es true el resultado
+                                $('#mensaje-error-model').text("");
+                                $("#New_UpdateEmpresa").load('@Url.Action("_Formulario", "MobiliarioView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                        guardarpersona();
+                                        //ConfigPictures();
+                                        //limpiar();
+                                    }
+                                });
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+
+                                $("#TablaEmpresas").load('@Url.Action("_TablaMobiliario", "MobiliarioView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else if (result.mensajefound != "") {
+                                ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                } else {
+                    $(".guardarEmpresa").attr("disabled", false);
+                }
+            });
+        }
+
+        //--- EDITAR PERSONA ---
+        $("#TablaEmpresas").off('click', '.editarmobiliario');
+        $("#TablaEmpresas").on('click', '.editarmobiliario', function (e) {
+            e.preventDefault();
+            var inv_mobiliario_ID = $(this).attr("id-item");
+            $('#New_UpdateEmpresa').load('@Url.Action("_Formulario", "MobiliarioView")', { inv_mobiliario_ID }, function (response, status, xhr) {
+                if (status == "success") {
+                    guardarpersona();
+                    //date();
+                    //validatePass();
+                    //ConfigPictures();
+                    //limpiar();
+
+                }
+            });
+            ancla = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(ancla).offset().top
+            }, 1000);
+        });
+
+        $("#TablaEmpresas").off('click', '.eliminarMobiliario');
+        $("#TablaEmpresas").on('click', '.eliminarMobiliario', function (e) {
+                //alert(" ");
+                e.preventDefault();
+            var inv_mobiliario_ID = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteMobiliario", "MobiliarioView")',
+                        data: { inv_mobiliario_ID },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEmpresas").load('@Url.Action("_TablaMobiliario", "MobiliarioView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                guardarpersona();
+                //date();
+                //validatePass();
+                //ConfigPictures();
+                limpiar();
+        });
+
+       
+        function CargarReglasGeneralFormuario() {
+            var formulario = $("#FrmEmpresa").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(formulario);
+
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+            ////var foto = $("#Personas_pathFoto").val();
+            ////if (foto == "") {
+            ////    $('#rutaPathImagen').rules("remove")
+            ////    $('#rutaPathImagen').rules("add", {
+            ////        required: true,
+            ////        messages: {
+            ////            required: "El logo de la empresa es requerida.",
+            ////        }
+            ////    });
+            ////}
+        }
+
+         @*ConfigPictures();
+            function ConfigPictures() {
+                ////PATH IMAGENES
+
+                if ($("#Em_logo").val() == null || $("#Em_logo").val() == "") {
+                    img1 = "~/Upload/Empresa/default.png";
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                } else {
+                    img1 = $("#Em_logo").val();
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                }
+
+
+                $("#rutaPathImagen").fileinput({
+                    maxImageWidth: 600,
+                    maxImageHeight: 600,
+                    language: "es",
+                    uploadUrl: '@Url.Action("CargarLogo", "EmpresasView")', // server upload action
+                    uploadAsync: true,
+                    showCaption: false,
+                    maxFileCount: 1,
+                    maxFilesNum: 1,
+                    validateInitialCount: true,
+                    overwriteInitial: false,
+                    autoReplace: true,
+                    showPreview: true,
+                    allowedFileExtensions: ["png", "jpg"],
+                    initialPreview: [
+                      '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                    ],
+                    dropZoneTitle: "Seleccione el archivo",
+                    elErrorContainer: "#errorBlockResponsables",
+                    browseClass: "btn btn1 btn-floating green padding-0",
+                    browseLabel: '',
+                    browseIcon: '<i class="mdi mdi-plus mdi-24px" > </i>',
+                    removeClass: "btn btn1 btn-floating btn-danger red eliminarfoto",
+                    removeLabel: "",
+                    removeIcon: '<i class="mdi mdi-delete"></i>',
+                    uploadClass: "btn btn1 btn-floating btn-success blue padding-0",
+                    uploadLabel: "",
+                    uploadIcon: '<i class="mdi mdi-cloud-upload"></i>',
+                    msgFilesTooMany: 'Excede el límite máximo permitido</b>.',
+                    fileActionSettings: {
+                        indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                        indicatorSuccessTitle: 'Subido',
+                        indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                        indicatorErrorTitle: 'Subir Error',
+                        indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                        indicatorLoadingTitle: 'Subiendo ...',
+                        removeIcon: '<i class="mdi mdi-delete"></i>',
+                        removeClass: 'btn btn-danger',
+                        removeTitle: 'Quitar Archivo',
+                    },
+                    layoutTemplates: {
+                        footer: '<div class="file-thumbnail-footer">\n' +
+                        '    <div class="file-caption-name" style="width:{width}">{caption}</div>\n' +
+                        '    {actions}\n' +
+                        '</div>',
+                        main2: '<div class="col s12 m12 l12">' +
+                        '{preview}' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4">' +
+                        ' {browse} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 center">' +
+                        ' {upload} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 right-align">' +
+                        ' {remove} ' +
+                        '</div>',
+                        preview: '<div class="file-preview {class}">' +
+                        '    <div class="{dropClass}">' +
+                        '    <div class="file-preview-thumbnails">' +
+                        '    </div>' +
+                        '    <div class="clearfix"></div>' +
+                        '    <div class="file-preview-status text-center text-success"></div>' +
+                        '    <div class="kv-fileinput-error" style="cursor:pointer;"></div>' +
+                        '    </div>' +
+                        '</div>',
+                        btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Eliminar Archivo" >{icon}{label}</button>',
+                        btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Cargar Archivo" >{icon}{label}</a>',
+                        btnBrowse: '<div tabindex="500" class="{css} "  title="{title}" title="Agregar Archivo"  >{icon}{label}</div>',
+                        actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>',
+                        actionDelete: '<button type="button" class="kv-file-remove {removeClass} "  title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                        actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n'
+                    }
+
+                });
+
+
+                $('#rutaPathImagen').on('fileuploaded', function (event, data, previewId, index) {
+                    $("#Em_logo").val(JSON.stringify(data.response.savedFileName));
+                    $(".valid-img").html("");
+                });
+                $("#rutaPathImagen").on("change", function (e) {
+                    e.preventDefault();
+                    img1 = "";
+                    imagen1 = ""
+                    if ($("#Em_logo").val() == null || $("#Em_logo").val() == "") {
+                        img1 = "~/Upload/Empresa/default.png";
+                        imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                    } else {
+                        img1 = $("#Em_logo").val();
+                        imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                    }
+                    $('#rutaPathImagen').fileinput('refresh', {
+                        initialPreview: [
+                          '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                        ],
+                        fileActionSettings: {
+                            indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                            indicatorSuccessTitle: 'Subido',
+                            indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                            indicatorErrorTitle: 'Subir Error',
+                            indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                            indicatorLoadingTitle: 'Subiendo ...',
+                            removeIcon: '<i class="mdi mdi-delete"></i>',
+                            removeClass: 'btn btn-danger',
+                            removeTitle: 'Quitar Archivo',
+                        }
+
+                    });
+                    $("#pathImagen").val("");
+                });
+
+                //...............eliminar imagen del servidor........
+
+                $("#New_UpdateEmpresa").on("click", ".eliminarfoto", function (e) {
+                    e.preventDefault();
+                    var path = $("#Em_logo").val();
+                    $.ajax({
+                        url: '@Url.Action("EliminarLogo", "EmpresasView")',
+                        data: { path},
+                        type: "POST",
+                        success: function (result) {
+                            $("#rutaPathImagen").val("");
+                            $("#Em_logo").val("");
+                        }
+                    });
+
+                    img1 = "~/Upload/Empresa/default.png";
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+
+                    $('#rutaPathImagen').fileinput('refresh', {
+                        initialPreview: [
+                          '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                        ],
+                        fileActionSettings: {
+                            indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                            indicatorSuccessTitle: 'Subido',
+                            indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                            indicatorErrorTitle: 'Subir Error',
+                            indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                            indicatorLoadingTitle: 'Subiendo ...',
+                            removeIcon: '<i class="mdi mdi-delete"></i>',
+                            removeClass: 'btn btn-danger',
+                            removeTitle: 'Quitar Archivo',
+                        }
+
+                    });
+                });
+
+            }*@
+
+        @*ordenar();
+        function ordenar() {
+            $(".permiteOrdenar").click(function (){
+               var orden = $(this).data("order");
+                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { orden }, function (response, status, xhr) {
+                    ordenar();
+                    });
+                });
+            }
+
+        // ---- BUSCAR ----
+       limpiar();
+        function limpiar() {
+            $("#TablaResguardoLaptop").off('click', ".limpiar");
+            $("#TablaResguardoLaptop").on('click', ".limpiar", function (e) {
+                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', function (response, status, xhr) {
+                    if (status == "success") {
+                        Buscar();
+                        ordenar();
+                    }
+                });
+
+            });
+
+        }
+
+        exportar();
+        function exportar() {
+            $("#TablaResguardoLaptop").off('click', ".excel");
+            $("#TablaResguardoLaptop").on('click', ".excel", function (e) {
+                e.preventDefault();
+            //$(".loading-descargar").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ExportarExcel", "ResguardosView")',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    //$(".loading-descargar").css("display", "none");
+                    if (result.success) {
+                        window.location.href = '@Url.Action("ExportarExcel", "ResguardosView")' + '/?Creado=' + 1;;
+                    }
+                    //} else {
+                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
+                    //    $("#ModalAlert").modal({
+                    //        dismissible: false,
+                    //    });
+                    //    $("#ModalAlert").modal('open');
+                    //}
+                }
+            });
+
+            });
+
+        }
+
+        Buscar();
+        function Buscar() {
+            $("#filtroBusquedaA").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var filtro = $("#filtroBusquedaA").val();
+                    $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { filtro }, function (response, status, xhr) {
+                        if (status == "success") {
+                            Buscar();
+                            ordenar();
+
+                        }
+                    });
+                }
+            });
+
+            $("#TablaResguardoLaptop").off("click", ".buscarSoli");
+            $("#TablaResguardoLaptop").on("click", ".buscarSoli", function (e) {
+
+                var filtro = $("#filtroBusquedaA").val();
+                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { filtro }, function (response, status, xhr) {
+                        if (status == "success") {
+                            Buscar();
+                            ordenar();
+                        }
+                    });
+            });
+
+        }*@
+
+        //document.getElementById("#filtroBusquedaFe").title = "New tooltip"
+
+        @*enviar();
+        function enviar()
+        {
+            $("#TablaAlumnos").off("click", ".enviarSoli");
+            $("#TablaAlumnos").on("click", ".enviarSoli", function (e) {
+                var idAlumno = [];
+                $(".chek:checked").each(function () {
+                        var id = $(this).attr("id-item");
+                        idAlumno.push(id)
+                    });
+                if (idAlumno == 0) {
+                    ConfigModal($('#ModalAlert'), "ALERTA", "Debe al menos seleccionar un alumno", 3)
+                    $("#ModalAlert").modal({
+                        dismissible: false,
+                    });
+                    $("#ModalAlert").modal('open');
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Action("EnviarSolicitud", "AlumnoView")',
+                        data: { idAlumno },
+                        type: "POST",
+                        success: function (result) {//obtiene el resultado json
+
+                            if (result.success) {//si es true el resultado
+
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                            else {
+                                ConfigModal($('#ModalAlert'), "ALERTA", "Ocurrio un error al guardar los datos", 3)
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                }
+            });
+        }*@
+        //date();
+        //function date() {
+        //    $('#filtroBusquedaFe').pickadate({
+        //        selectMonths: true,
+        //        selectYears: 100,
+        //        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        //        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        //        weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        //        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        //        weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+        //        today: '',
+        //        clear: 'Limpiar',
+        //        close: 'Cerrar',
+        //        format: 'dd/mm/yyyy',
+        //        onStart: function () {
+        //            //this.set('select', $('#Pp_FechaInicio').val()); //Value por defecto al cargar el picker.
+        //            $('#filtroBusquedaFe').val($('#filtroBusquedaFe').val());
+        //        },
+        //       // min: new Date()
+        //    });
+        //}
+
+        //====================== PAGINACIONES ===========================
+        //paginación personas
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #tblPersonas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+            //ordenar();
+            //Buscar();
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #tblPersonas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+            //ordenar();
+            //Buscar();
+        }
+
+
+    </script>
+}
+
+
+
+

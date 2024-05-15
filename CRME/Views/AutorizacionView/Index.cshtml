@@ -1,0 +1,1165 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Autorizacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Administracion y Autorizacion de mantenimiento</h5>
+            </div>
+        </div>
+
+        @*<div id="New_UpdateEdificio">
+                @Html.Action("_Formulario", "EdificiosView")
+            </div>*@
+
+        <div id="TablaEdificiosAuth">
+            @Html.Action("_TablaEdificiosAuth", "AutorizacionView")
+        </div>
+    </div>
+</div>
+
+<div id="modal1" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Motivo cancelacion</b>
+    <div class="headline"></div>
+    <form class="form-simple" id="frmMotivo">
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="motivofrm">
+                <span>Motivo cancelación</span>
+                <input type="text" name="motivo" id="motivo"  placeholder="Motivo cancelación" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Cancelar</a>
+                    <button type="submit" class="btn light-blue waves-effect margin-right-5 saveMotivo"><i class="mdi mdi-check"></i>Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="modal2" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Calendario</b>
+    <div class="headline"></div>
+    @using (Html.BeginForm("SaveCalendario", "AutorizacionView", FormMethod.Post, new { @class = "form-simple", id = "FrmCalendario" }))
+    {
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="AgregarCalendario">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Cancelar</a>
+                    <button type="submit" class="btn orange waves-effect margin-right-5 savecal" id-solicitud="@ViewBag.Id_Solicitud"><i class="mdi mdi-content-save"></i>Guardar</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="modal3" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">Requerimiento</b>
+    <div class="headline"></div>
+    @using (Html.BeginForm("SaveRequerimiento", "AutorizacionView", FormMethod.Post, new { @class = "form-simple", id = "FrmRequerimiento" }))
+    {
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="AgregarRequerimiento">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Cancelar</a>
+                    <button type="submit" class="btn green waves-effect margin-right-5 saveRequ" id-solicitud="@ViewBag.Id_Solicitud"><i class="mdi mdi-content-save"></i>Guardar</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="modal4" class="modal " style="background-color: #fff; border: 2px solid #3399FF; max-height: 90% !important; margin-top: 30px">
+    <b class="center-align blue-text margin-left-right-10">resultados</b>
+    <div class="headline"></div>
+    <form class="form-simple" id="frmEviden">
+        <div class="modal-content">
+            <div id="motivofrm">
+                <span>Evidencia</span>
+                <div class="col s12 m4 l4">
+                    <div class="row">
+                        <div class="col l4 m12 s12">
+                            <div class="form-group">
+                                <div id="errorBlockResponsables"></div>
+                            </div>
+                            <input type="file" id="photo" />
+                            <input type="hidden" id="foto" />
+                        </div>
+
+                        <div class="col l4 m12 s12">
+                            <div class="form-group">
+                                <div id="errorBlockResponsables"></div>
+                            </div>
+                            <input type="file" id="photo1" />
+                            <input type="hidden" id="foto1" />
+                        </div>
+
+                        <div class="col l4 m12 s12">
+                            <div class="form-group">
+                                <div id="errorBlockResponsables"></div>
+                            </div>
+                            <input type="file" id="photo2" />
+                            <input type="hidden" id="foto2" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l12 m12 s12">
+                            <input type="text" id="resultados" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row margin-0">
+                <div class="col s12 m12 l12">
+                    <a class="btn btn-danger guardaevi modal-close" style="margin-right:10px;"><i class="mdi mdi-close"></i>Aceptar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal  modal-fixed-footer" style="width:600px; height:400px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title ">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+<div id="ModalAlert1" class="modal  modal-fixed-footer" style="width:600px; height:400px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title ">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        var Id_Solicitud = "";
+        $(document).ready(function () {
+            ComboSucursal();
+            $("#ModalAlert").modal();
+            var img1 = "";
+            var imagen1 = " ";
+
+            $('.datepicker').val("");
+            $(".cancelar-eventos").off('click');
+            $(".cancelar-eventos").on('click', function (e) {
+                $('#ModalAlert').off("click", ".md-accept");
+            });
+
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo descripcion debe llevar mínimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
+
+        });
+
+        $("#inicio").datepicker({
+            showOtherMonths: true
+        });
+
+        $("#FrmRequerimiento").off("click", "#CargarArchivo");
+        $("#FrmRequerimiento").on("click", "#CargarArchivo", function (e) {
+            e.preventDefault();
+            var formdata = new FormData();
+            var fileInput = document.getElementById('fileInputArchivo');
+            var archivo = $('#fileInputArchivo').val();
+            var extension = archivo.substring(archivo.lastIndexOf(".")).toLowerCase();
+            if (fileInput.value.trim() == "") {
+                ConfigModal($('#ModalAlert'), "Información", "No ha seleccionado ningun archivo, intente nuevamente!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }
+            else if (extension != ".pdf") {
+                $('#ruta').val("");
+                $("#nbArchivo").val("");
+                ConfigModal($('#ModalAlert'), "Información", "El archivo que intenta subir no corresponde con el tipo de archivo solicitado!!", 3)//para crear la ventana flotante
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $("#ModalAlert").modal('open');
+            }else {
+
+                for (i = 0; i < fileInput.files.length; i++) {
+                    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                }
+
+                $(".loading-subir").css('display', 'block')
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '@Url.Action("Cargarfile", "AutorizacionView")');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function (result) {
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var obj = JSON.parse(xhr.responseText);
+
+                        if (obj.success) {
+                            $("#nbArchivo").val("");
+                            ConfigModal($('#ModalAlert'), "Acción", obj.mensaje, 1)//para crear la ventana flotante
+                            $("#ruta").val(obj.FileT);
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                        else if (obj.success == false && obj.mensaje != "") {
+                            ConfigModal($('#ModalAlert'), "Información", obj.mensaje, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                            $(".loading-subir").css('display', 'none')
+                        }
+                    }
+                    $(".loading-subir").css('display', 'none')
+                }
+            }
+
+            return false;
+
+        })
+
+        //--- EDITAR PERSONA ---
+        @*$("#TablaEdificiosAuth").off('click', '.Autoriza');
+        $("#TablaEdificiosAuth").on('click', '.Autoriza', function (e) {
+            e.preventDefault();
+            var Id_Solicitud = $(this).attr("id-item");
+            $('#New_UpdateEdificio').load('@Url.Action("_Formulario", "EdificiosView")', { Id_Solicitud }, function (response, status, xhr) {
+                if (status == "success") {
+                    guardaredificio();
+                    ComboSucursal();
+                    limpiar();
+
+                }
+            });
+            ancla = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(ancla).offset().top
+            }, 1000);
+        });*@
+
+        limpiar();
+        Buscar();
+        function limpiar() {
+            $("#TablaEdificiosAuth").off('click', ".limpiar");
+            $("#TablaEdificiosAuth").on('click', ".limpiar", function (e) {
+                $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                    if (status == "success") {
+                        Buscar();
+                    }
+
+                });
+            });
+        }
+
+        Buscar();
+        function Buscar() {
+            $("#filtroBusqueda").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                    $(".loading-personas").addClass("loading-show").removeClass("loading");
+                    var filtroBusqueda = $("#filtroBusqueda").val();
+                    $("#TablaEdificios").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', { filtroBusqueda }, function (response, status, xhr) {
+                        if (status == "success") {
+                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                            $(".loading-personas").addClass("loading").removeClass("loading-show");
+                        }
+                    });
+                }
+            });
+
+            $("#TablaEdificios").off("click", ".buscarSoli");
+            $("#TablaEdificios").on("click", ".buscarSoli", function (e) {
+                $("#TablaEdificios #tblEdificios").addClass("loading-background");
+                $(".loading-personas").addClass("loading-show").removeClass("loading");
+                    var filtroBusqueda = $("#filtroBusqueda").val();
+                $("#TablaEdificios").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', { filtroBusqueda }, function (response, status, xhr) {
+                        if (status == "success") {
+                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
+                            $(".loading-personas").addClass("loading").removeClass("loading-show");
+                        }
+                    });
+            });
+        }
+
+        $("#TablaEdificiosAuth").off('click', '.agregacalen');
+        $("#TablaEdificiosAuth").on('click', '.agregacalen', function (e) {
+            e.preventDefault();
+             Id_Solicitud = $(this).attr("id-item");
+            $('#AgregarCalendario').load('@Url.Action("_FormularioCalendario", "AutorizacionView")', function (response, status, xhr) {
+                    if (status == "success") {
+
+                    }
+                });
+                $("#modal2").modal({
+                    dismissible: false,
+                });
+                $("#modal2").modal('open');
+        });
+
+        $("#FrmCalendario").off('click', '.savecal');
+        $("#FrmCalendario").on('click', '.savecal', function (e) {
+            e.preventDefault();
+            if ($("#FrmCalendario").valid()) {
+                EliminarComaMontosFormulario($("#FrmCalendario"));
+                var frmValues = $("#FrmCalendario").serialize();
+                //var idAlumno = $(this).attr("id-alumno");
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveCalendario", "AutorizacionView")',
+                    cache: false,
+                    data: frmValues + "&Id_Solicitud=" + Id_Solicitud,
+                    success: function (result) {
+                        if (result.success) {
+                            $('#mensaje-error-model1').text("");
+                            $('#modal2').modal('close');
+                            ConfigModal($('#ModalAlert1'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
+                            $("#ModalAlert1").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert1").modal('open');
+                            ConfiguracionFecha();
+                        } else {
+                            $('#mensaje-error-model1').text(result.mensajefound);
+                        }
+                    }
+
+                });
+            }
+
+
+        });
+
+        //-------------------- requerimiento ------------------------
+
+        $("#TablaEdificiosAuth").off('click', '.agregareq');
+        $("#TablaEdificiosAuth").on('click', '.agregareq', function (e) {
+            e.preventDefault();
+             Id_Solicitud = $(this).attr("id-item");
+            $('#AgregarRequerimiento').load('@Url.Action("_FormularioRequerimiento", "AutorizacionView")', function (response, status, xhr) {
+                    if (status == "success") {
+
+                    }
+                });
+                $("#modal3").modal({
+                    dismissible: false,
+                });
+                $("#modal3").modal('open');
+        });
+
+        $("#FrmRequerimiento").off('click', '.saveRequ');
+        $("#FrmRequerimiento").on('click', '.saveRequ', function (e) {
+            e.preventDefault();
+            if ($("#FrmRequerimiento").valid()) {
+                EliminarComaMontosFormulario($("#FrmRequerimiento"));
+                var frmValues = $("#FrmRequerimiento").serialize();
+                var ruta = $("#ruta").val();
+                //var idAlumno = $(this).attr("id-alumno");
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveRequerimiento", "AutorizacionView")',
+                    cache: false,
+                    data: frmValues + "&ruta=" + ruta + "&Id_Solicitud=" + Id_Solicitud,
+                    success: function (result) {
+                        if (result.success) {
+                            $('#mensaje-error-model1').text("");
+                            $('#modal3').modal('close');
+                            ConfigModal($('#ModalAlert1'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
+                            $("#ModalAlert1").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert1").modal('open');
+                            ConfiguracionFecha();
+                        } else {
+                            $('#mensaje-error-model1').text(result.mensajefound);
+                        }
+                    }
+
+                });
+            }
+        });
+
+        $("#TablaEdificiosAuth").off('click', '.realizado');
+        $("#TablaEdificiosAuth").on('click', '.realizado', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea finalizar la solicitud?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                $("#modal4").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('close');
+                $("#modal4").modal('open');
+
+                    $("#frmEviden").off('click', '.guardaevi');
+                    $("#frmEviden").on("click", ".guardaevi", function (e) {
+                        e.preventDefault();
+                        var ruta = $("#foto").val();
+                        var ruta1 = $("#foto1").val();
+                        var ruta2 = $("#foto2").val();
+                        var resultadotexto = $("#resultados").val();
+                        if (ruta == "" && ruta1 == "" && ruta2 == "" && resultadotexto == "" ) {
+                            ConfigModal($('#ModalAlert'), "", "¡debe carpturar almenos una imagen y el resultado!", 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                        }
+                        else {
+
+
+                            $.ajax({
+                                url: '@Url.Action("SaveEvidencia", "AutorizacionView")',
+                                data: { ruta, ruta1, ruta2, Id_Solicitud, resultadotexto },
+                                type: "POST",
+                                success: function (result) {//obtiene el resultado json
+                                    $(".guardarEdificio").attr("disabled", false);
+                                    if (result.success) {//si es true el resultado
+                                        $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                                            if (status == "success") {
+                                               
+                                            }
+                                        });
+                                        $('#mensaje-error-model').text("");
+                                        ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                                        $("#ModalAlert").modal({
+                                            dismissible: false,
+                                        });
+                                        $("#ModalAlert").modal('open');
+                                        $("#modal4").modal('close');
+                                        GenerarPdf(Id_Solicitud);
+                                    }
+                                    else if (result.mensajefound != "") {
+                                        //$("#ModalAlert").text(result.mensajefound);
+                                        ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                                        $("#ModalAlert").modal({
+                                            dismissible: false,
+                                        });
+                                        $("#ModalAlert").modal('open');
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+        @*$("#TablaEdificiosAuth").off('click', '.realizado');
+        $("#TablaEdificiosAuth").on('click', '.realizado', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea finalizar la solicitud?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("Realizado", "AutorizacionView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                        GenerarPdf(Id_Solicitud);
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                //guardarpersona();
+                limpiar();
+        });*@
+
+        function GenerarPdf(id) {
+            var url = "@Url.Action("Print", "EdificiosView")?id=" + id;
+            window.open(url);
+        }
+
+        $("#TablaEdificiosAuth").off('click', '.Autoriza');
+        $("#TablaEdificiosAuth").on('click', '.Autoriza', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea autorizar la solicitud?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("Autorizar", "AutorizacionView")',
+                        data: { Id_Solicitud },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+        $("#TablaEdificiosAuth").off('click', '.Cancelar');
+        $("#TablaEdificiosAuth").on('click', '.Cancelar', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var Id_Solicitud = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea cancelar la solicitud?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                $("#modal1").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('close');
+                $("#modal1").modal('open');
+
+                    $("#frmMotivo").off('click', '.saveMotivo');
+                    $("#frmMotivo").on('click', '.saveMotivo', function (e) {
+                        var motivo = $("#motivo").val();
+                         $.ajax({
+                            url: '@Url.Action("Cancelar", "AutorizacionView")',
+                             data: { Id_Solicitud,motivo } ,
+                            type: "POST",
+                            success: function (result) {
+                                if (result.success) {
+                                    $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
+                                        if (status == "success") {
+                                        }
+                                    });
+                                }
+                                else {
+                                    $(".md-accept").addClass("md-btn-success");
+                                    ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                    $("#ModalAlert").modal('open');
+                                    $('#ModalAlert').off("click", ".md-accept");
+                                    $('#ModalAlert').on("click", ".md-accept", function () {
+                                        $("#ModalAlert").modal('close');
+                                    })
+                                }
+                            }
+                        });
+
+                    });
+
+                })
+                //guardarpersona();
+                limpiar();
+            });
+
+        function CargarReglasGeneralFormuario() {
+                var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse(formulario);
+
+                jQuery.extend(jQuery.validator.messages, {
+                    minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                    maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+                });
+
+        }
+
+        function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Em_Cve_Empresa", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetSucursalesByEmpresa", "EdificiosView")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+
+             ConfigPictures();
+        function ConfigPictures() {
+            ////PATH IMAGENES
+
+            if ($("#foto").val() == null || $("#foto").val() == "") {
+                img1 = "~/Upload/Empresa/default.png";
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            } else {
+                img1 = $("#foto").val();
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            }
+
+
+            $("#photo").fileinput({
+                language: "es",
+                uploadUrl: '@Url.Action("CargarLogo", "AutorizacionView")', // server upload action
+                uploadAsync: true,
+                showCaption: false,
+                maxFileCount: 1,
+                maxFilesNum: 1,
+                validateInitialCount: true,
+                overwriteInitial: false,
+                autoReplace: true,
+                showPreview: true,
+                allowedFileExtensions: ["png", "jpg"],
+                initialPreview: [
+                    '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                ],
+                dropZoneTitle: "Seleccione el archivo",
+                elErrorContainer: "#errorBlockResponsables",
+                browseClass: "btn btn1 btn-floating green padding-0",
+                browseLabel: '',
+                browseIcon: '<i class="mdi mdi-plus mdi-24px" > </i>',
+                removeClass: "btn btn1 btn-floating btn-danger red eliminarfoto",
+                removeLabel: "",
+                removeIcon: '<i class="mdi mdi-delete"></i>',
+                uploadClass: "btn btn1 btn-floating btn-success blue padding-0",
+                uploadLabel: "",
+                uploadIcon: '<i class="mdi mdi-cloud-upload"></i>',
+                msgFilesTooMany: 'Excede el límite máximo permitido</b>.',
+                fileActionSettings: {
+                    indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                    indicatorSuccessTitle: 'Subido',
+                    indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                    indicatorErrorTitle: 'Subir Error',
+                    indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                    indicatorLoadingTitle: 'Subiendo ...',
+                    removeIcon: '<i class="mdi mdi-delete"></i>',
+                    removeClass: 'btn btn-danger',
+                    removeTitle: 'Quitar Archivo',
+                },
+                layoutTemplates: {
+                    footer: '<div class="file-thumbnail-footer">\n' +
+                        '    <div class="file-caption-name" style="width:{width}">{caption}</div>\n' +
+                        '    {actions}\n' +
+                        '</div>',
+                    main2: '<div class="col s12 m12 l12">' +
+                        '{preview}' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4">' +
+                        ' {browse} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 center">' +
+                        ' {upload} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 right-align">' +
+                        ' {remove} ' +
+                        '</div>',
+                    preview: '<div class="file-preview {class}">' +
+                        '    <div class="{dropClass}">' +
+                        '    <div class="file-preview-thumbnails">' +
+                        '    </div>' +
+                        '    <div class="clearfix"></div>' +
+                        '    <div class="file-preview-status text-center text-success"></div>' +
+                        '    <div class="kv-fileinput-error" style="cursor:pointer;"></div>' +
+                        '    </div>' +
+                        '</div>',
+                    btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Eliminar Archivo" >{icon}{label}</button>',
+                    btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Cargar Archivo" >{icon}{label}</a>',
+                    btnBrowse: '<div tabindex="500" class="{css} "  title="{title}" title="Agregar Archivo"  >{icon}{label}</div>',
+                    actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>',
+                    actionDelete: '<button type="button" class="kv-file-remove {removeClass} "  title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                    actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n'
+                }
+
+            });
+
+
+            $('#photo').on('fileuploaded', function (event, data, previewId, index) {
+                $("#foto").val(JSON.stringify(data.response.savedFileName));
+                $(".valid-img").html("");
+            });
+            $("#photo").on("change", function (e) {
+                e.preventDefault();
+                img1 = "";
+                imagen1 = ""
+                if ($("#foto").val() == null || $("#foto").val() == "") {
+                    img1 = "~/Upload/Empresa/default.png";
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                } else {
+                    img1 = $("#foto").val();
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                }
+                $('#photo').fileinput('refresh', {
+                    initialPreview: [
+                        '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                    ],
+                    fileActionSettings: {
+                        indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                        indicatorSuccessTitle: 'Subido',
+                        indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                        indicatorErrorTitle: 'Subir Error',
+                        indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                        indicatorLoadingTitle: 'Subiendo ...',
+                        removeIcon: '<i class="mdi mdi-delete"></i>',
+                        removeClass: 'btn btn-danger',
+                        removeTitle: 'Quitar Archivo',
+                    }
+
+                });
+                $("#photo").val("");
+            });
+        }
+
+         ConfigPictures1();
+        function ConfigPictures1() {
+            ////PATH IMAGENES
+
+            if ($("#foto1").val() == null || $("#foto1").val() == "") {
+                img1 = "~/Upload/Empresa/default.png";
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            } else {
+                img1 = $("#foto1").val();
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            }
+
+
+            $("#photo1").fileinput({
+                language: "es",
+                uploadUrl: '@Url.Action("CargarLogo1", "AutorizacionView")', // server upload action
+                uploadAsync: true,
+                showCaption: false,
+                maxFileCount: 1,
+                maxFilesNum: 1,
+                validateInitialCount: true,
+                overwriteInitial: false,
+                autoReplace: true,
+                showPreview: true,
+                allowedFileExtensions: ["png", "jpg"],
+                initialPreview: [
+                    '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                ],
+                dropZoneTitle: "Seleccione el archivo",
+                elErrorContainer: "#errorBlockResponsables",
+                browseClass: "btn btn1 btn-floating green padding-0",
+                browseLabel: '',
+                browseIcon: '<i class="mdi mdi-plus mdi-24px" > </i>',
+                removeClass: "btn btn1 btn-floating btn-danger red eliminarfoto",
+                removeLabel: "",
+                removeIcon: '<i class="mdi mdi-delete"></i>',
+                uploadClass: "btn btn1 btn-floating btn-success blue padding-0",
+                uploadLabel: "",
+                uploadIcon: '<i class="mdi mdi-cloud-upload"></i>',
+                msgFilesTooMany: 'Excede el límite máximo permitido</b>.',
+                fileActionSettings: {
+                    indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                    indicatorSuccessTitle: 'Subido',
+                    indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                    indicatorErrorTitle: 'Subir Error',
+                    indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                    indicatorLoadingTitle: 'Subiendo ...',
+                    removeIcon: '<i class="mdi mdi-delete"></i>',
+                    removeClass: 'btn btn-danger',
+                    removeTitle: 'Quitar Archivo',
+                },
+                layoutTemplates: {
+                    footer: '<div class="file-thumbnail-footer">\n' +
+                        '    <div class="file-caption-name" style="width:{width}">{caption}</div>\n' +
+                        '    {actions}\n' +
+                        '</div>',
+                    main2: '<div class="col s12 m12 l12">' +
+                        '{preview}' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4">' +
+                        ' {browse} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 center">' +
+                        ' {upload} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 right-align">' +
+                        ' {remove} ' +
+                        '</div>',
+                    preview: '<div class="file-preview {class}">' +
+                        '    <div class="{dropClass}">' +
+                        '    <div class="file-preview-thumbnails">' +
+                        '    </div>' +
+                        '    <div class="clearfix"></div>' +
+                        '    <div class="file-preview-status text-center text-success"></div>' +
+                        '    <div class="kv-fileinput-error" style="cursor:pointer;"></div>' +
+                        '    </div>' +
+                        '</div>',
+                    btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Eliminar Archivo" >{icon}{label}</button>',
+                    btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Cargar Archivo" >{icon}{label}</a>',
+                    btnBrowse: '<div tabindex="500" class="{css} "  title="{title}" title="Agregar Archivo"  >{icon}{label}</div>',
+                    actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>',
+                    actionDelete: '<button type="button" class="kv-file-remove {removeClass} "  title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                    actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n'
+                }
+
+            });
+
+
+            $('#photo1').on('fileuploaded', function (event, data, previewId, index) {
+                $("#foto1").val(JSON.stringify(data.response.savedFileName));
+                $(".valid-img").html("");
+            });
+            $("#photo1").on("change", function (e) {
+                e.preventDefault();
+                img1 = "";
+                imagen1 = ""
+                if ($("#foto1").val() == null || $("#foto1").val() == "") {
+                    img1 = "~/Upload/Empresa/default.png";
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                } else {
+                    img1 = $("#foto1").val();
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                }
+                $('#photo1').fileinput('refresh', {
+                    initialPreview: [
+                        '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                    ],
+                    fileActionSettings: {
+                        indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                        indicatorSuccessTitle: 'Subido',
+                        indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                        indicatorErrorTitle: 'Subir Error',
+                        indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                        indicatorLoadingTitle: 'Subiendo ...',
+                        removeIcon: '<i class="mdi mdi-delete"></i>',
+                        removeClass: 'btn btn-danger',
+                        removeTitle: 'Quitar Archivo',
+                    }
+
+                });
+                $("#photo1").val("");
+            });
+        }
+
+         ConfigPictures2();
+        function ConfigPictures2() {
+            ////PATH IMAGENES
+
+            if ($("#foto2").val() == null || $("#foto2").val() == "") {
+                img1 = "~/Upload/Empresa/default.png";
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            } else {
+                img1 = $("#foto2").val();
+                imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+            }
+
+
+            $("#photo2").fileinput({
+                language: "es",
+                uploadUrl: '@Url.Action("CargarLogo2", "AutorizacionView")', // server upload action
+                uploadAsync: true,
+                showCaption: false,
+                maxFileCount: 1,
+                maxFilesNum: 1,
+                validateInitialCount: true,
+                overwriteInitial: false,
+                autoReplace: true,
+                showPreview: true,
+                allowedFileExtensions: ["png", "jpg"],
+                initialPreview: [
+                    '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                ],
+                dropZoneTitle: "Seleccione el archivo",
+                elErrorContainer: "#errorBlockResponsables",
+                browseClass: "btn btn1 btn-floating green padding-0",
+                browseLabel: '',
+                browseIcon: '<i class="mdi mdi-plus mdi-24px" > </i>',
+                removeClass: "btn btn1 btn-floating btn-danger red eliminarfoto",
+                removeLabel: "",
+                removeIcon: '<i class="mdi mdi-delete"></i>',
+                uploadClass: "btn btn1 btn-floating btn-success blue padding-0",
+                uploadLabel: "",
+                uploadIcon: '<i class="mdi mdi-cloud-upload"></i>',
+                msgFilesTooMany: 'Excede el límite máximo permitido</b>.',
+                fileActionSettings: {
+                    indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                    indicatorSuccessTitle: 'Subido',
+                    indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                    indicatorErrorTitle: 'Subir Error',
+                    indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                    indicatorLoadingTitle: 'Subiendo ...',
+                    removeIcon: '<i class="mdi mdi-delete"></i>',
+                    removeClass: 'btn btn-danger',
+                    removeTitle: 'Quitar Archivo',
+                },
+                layoutTemplates: {
+                    footer: '<div class="file-thumbnail-footer">\n' +
+                        '    <div class="file-caption-name" style="width:{width}">{caption}</div>\n' +
+                        '    {actions}\n' +
+                        '</div>',
+                    main2: '<div class="col s12 m12 l12">' +
+                        '{preview}' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4">' +
+                        ' {browse} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 center">' +
+                        ' {upload} ' +
+                        '</div>' +
+                        '<div class="col s4 m4 l4 right-align">' +
+                        ' {remove} ' +
+                        '</div>',
+                    preview: '<div class="file-preview {class}">' +
+                        '    <div class="{dropClass}">' +
+                        '    <div class="file-preview-thumbnails">' +
+                        '    </div>' +
+                        '    <div class="clearfix"></div>' +
+                        '    <div class="file-preview-status text-center text-success"></div>' +
+                        '    <div class="kv-fileinput-error" style="cursor:pointer;"></div>' +
+                        '    </div>' +
+                        '</div>',
+                    btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Eliminar Archivo" >{icon}{label}</button>',
+                    btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css} tooltipped"{status} data-position="top" data-delay="50" data-tooltip="Cargar Archivo" >{icon}{label}</a>',
+                    btnBrowse: '<div tabindex="500" class="{css} "  title="{title}" title="Agregar Archivo"  >{icon}{label}</div>',
+                    actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>',
+                    actionDelete: '<button type="button" class="kv-file-remove {removeClass} "  title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                    actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n'
+                }
+
+            });
+
+
+            $('#photo2').on('fileuploaded', function (event, data, previewId, index) {
+                $("#foto2").val(JSON.stringify(data.response.savedFileName));
+                $(".valid-img").html("");
+            });
+            $("#photo2").on("change", function (e) {
+                e.preventDefault();
+                img1 = "";
+                imagen1 = ""
+                if ($("#foto2").val() == null || $("#foto2").val() == "") {
+                    img1 = "~/Upload/Empresa/default.png";
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                } else {
+                    img1 = $("#foto2").val();
+                    imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
+                }
+                $('#photo2').fileinput('refresh', {
+                    initialPreview: [
+                        '<img src="' + imagen1 + '" class="file-preview-image" alt="" title="">'
+                    ],
+                    fileActionSettings: {
+                        indicatorSuccess: '<i class="mdi mdi-check-circle green-text  mdi-36px"></i>',
+                        indicatorSuccessTitle: 'Subido',
+                        indicatorError: '<i class="mdi mdi-alert-circle mdi-36px"></i>',
+                        indicatorErrorTitle: 'Subir Error',
+                        indicatorLoading: '<i class="mdi mdi-reload animated rotateIn  icon-3x"></i>',
+                        indicatorLoadingTitle: 'Subiendo ...',
+                        removeIcon: '<i class="mdi mdi-delete"></i>',
+                        removeClass: 'btn btn-danger',
+                        removeTitle: 'Quitar Archivo',
+                    }
+
+                });
+                $("#photo2").val("");
+            });
+        }
+
+        guardaevidencia();
+        function guardaevidencia() {
+            $("#frmMotivo").off('click', '.guardaevi');
+            $("#frmMotivo").on("click", ".guardaevi", function (e) {
+                e.preventDefault();
+                var ruta = $("#foto").val();
+                var ruta1 = $("#foto1").val();
+                var ruta2 = $("#foto2").val();
+                var resultadotexto = $("#resultado").val();
+                $.ajax({
+                    url: '@Url.Action("SaveEvidencia", "AutorizacionView")',
+                    data: { ruta, ruta1, ruta2, Id_Solicitud, resultadotexto },
+                    type: "POST",
+                    success: function (result) {//obtiene el resultado json
+                        $(".guardarEdificio").attr("disabled", false);
+                        if (result.success) {//si es true el resultado
+                            $('#mensaje-error-model').text("");
+                            ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                        }
+                        else if (result.mensajefound != "") {
+                            //$("#ModalAlert").text(result.mensajefound);
+                            ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
+                            $("#ModalAlert").modal({
+                                dismissible: false,
+                            });
+                            $("#ModalAlert").modal('open');
+                        }
+                    }
+                });
+            });
+
+        }
+
+        $("#inicio").rules("remove");
+        $("#inicio").rules("add", {
+            required: true,
+            regex: "\d{4}-\d{2}-\d{2}",
+
+            messages: {
+                required: "El campo fecha de inicio es requerido.",
+            }
+        });
+
+           //$('#numHoras').rules("remove");
+                //$('#numHoras').rules("add", {
+                //    required: true,
+                //    regex: "/[^0-9]/g",
+                //    messages: {
+                //        required: "Por favor Ingrese un número mayor a 0.",
+                //    }
+                //});
+
+        $("#Fin").rules("remove");
+        $("#Fin").rules("add", {
+             required: true,
+        regex: "\d{4}-\d{2}-\d{2}",
+
+            messages: {
+            required: "El campo fecha de fin es requerido.",
+            }
+        });
+
+        $(function () {
+            $("#inicio").datepicker();
+            $("#inicio").datepicker("option", "dateFormat", 'dd-mm-yy');
+        });
+
+            //====================== PAGINACIONES ===========================
+
+            //paginación personas
+            function FltOnBeginPer(obj) {
+                $("#TablaEdificiosAuth #tblEdificiosAuth").addClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+            }
+
+            function FltOnCompletePer(obj) {
+                $("#TablaEdificiosAuth #tblEdificiosAuth").removeClass("loading-background");
+                var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+            }
+
+    </script>
+}
+

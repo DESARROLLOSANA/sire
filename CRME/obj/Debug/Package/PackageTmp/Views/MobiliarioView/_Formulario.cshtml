@@ -1,0 +1,110 @@
+﻿
+@model CRME.Models.inventario_mobiliario
+@*@model CRME.Models.Personas*@
+
+@{
+
+}
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nuevo mobiliario</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Editar mobiliario</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmEmpresa" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.inv_mobiliario_ID)
+    @* ----------------Datos de personales----------------*@
+    <div class="row">        
+        <div class="col s12 m12 l12">
+            <div class="row">
+                <div class="col s12 m3 l3 input-field" id="tipMob">
+                   @* <div class="input-field margin-top-0" id="tipMob">*@
+                        @Html.Action("ComboTipo", "MobiliarioView", new { tipo_mobiliario_ID = Model.tipo_mobiliario_ID })
+                   
+                </div>
+                <div class="col s12 m3 l3 input-field">
+                    <b class="">Color:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el color", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m3 l3 input-field">
+                    <b class="">Caracteristicas:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese las caracteristicas", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m3 l3 input-field">
+                    <b class="">Precio:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el precio", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m3 l3 input-field" id="proveedor">
+                        @Html.Action("ComboProveedor", "MobiliarioView", new { proveedor_ID = Model.proveedor_ID } )
+                </div>
+                <div class="col s12 m3 l3 input-field">
+                    <b class="">Folio de factura:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.folio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el folio de la factura", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.folio, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m3 l3 input-field">
+                    <b class="">Fecha de factura:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.fecha_folio, new { htmlAttributes = new { @class = "Validate datepicker", @type = "date", @Placeholder = "", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.fecha_folio, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+                <div class="col s12 m3 l3 input-field" id="empresa">                   
+                      @Html.Action("ComboEmpresa", "MobiliarioView", new { Em_Cve_Empresa = Model.Em_Cve_Empresa })
+                </div>
+            </div>           
+        </div>
+    </div>
+   
+
+    @* ---------------Botones----------------*@
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","MobiliarioView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <button type="button" class="btn blue darken-4 waves-effect guardarEmpresa" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

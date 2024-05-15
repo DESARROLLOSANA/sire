@@ -46,6 +46,9 @@ namespace CRME.Models
 
         public int Pu_Cve_Puesto { get; set; }
 
+        [StringLength(260)]
+        public string foto { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cat_fechamodificado_cargador> cat_fechamodificado_cargador { get; set; }
 
@@ -78,7 +81,7 @@ namespace CRME.Models
         }
         public virtual void SetPassword(string pass)
         {
-            pass = BCrypt.Net.BCrypt.HashPassword(password, 13);
+            password = BCrypt.Net.BCrypt.HashPassword(pass, 13);
         }
         #endregion
     }

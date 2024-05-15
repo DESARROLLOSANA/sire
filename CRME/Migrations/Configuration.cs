@@ -10,6 +10,7 @@ namespace CRME.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(CRME.Models.SIRE_Context context)

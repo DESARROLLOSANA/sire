@@ -1,0 +1,6 @@
+﻿@model CRME.Models.Puestos
+
+@*<div class="col s12 m4 l4 input-field">*@
+<b class="">Puestos:</b>
+@Html.DropDownListFor(model => model.Pu_Cve_Puesto, new SelectList(ViewBag.Pu_Cve_Puesto, "Value", "Text"), "-- Puestos --", htmlAttributes: new { @class = "select classic" })
+@*</div>*@

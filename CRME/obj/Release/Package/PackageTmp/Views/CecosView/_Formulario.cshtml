@@ -1,0 +1,96 @@
+﻿@model CRME.Models.Ce_cos
+
+@{
+
+}
+@if (ViewBag.edit != 1)
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Nuevo centro de costos</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row margin-10">
+        <div class="col l6 m6 s11 titlecircle">
+            <b>Editar centro de costos</b>
+        </div>
+        <div class="col l6 m6 s1 separator">
+        </div>
+    </div>
+}
+@using (Html.BeginForm("#", "#", FormMethod.Post, new { @class = "", id = "FrmEmpresa" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Ceco_ID)
+    @* ----------------Datos de personales----------------*@
+    <div class="row">
+
+        <div class="col s12 m12 l12">
+            <div class="row">
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Nombre Centro de costos:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.EditorFor(model => model.Ceco_Descripcion, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese el nombre del centro de costos", @maxlength = 100, @Style = "margin-bottom:0px !important;" } })
+                        @Html.ValidationMessageFor(model => model.Ceco_Descripcion, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col s12 m6 l6 input-field">
+                    <b class="">Empresa</b>
+                    <div class="input-field margin-top-0">
+                        @if (@Model.Em_Cve_Empresa == 0)
+                        {
+                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa1, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.Em_Cve_Empresa1, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Em_Cve_Empresa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col s12 m6 l6 input-field">
+
+                    @if (ViewBag.edit == 1)
+                    {
+                        <b class="">Codigo</b>
+                        <div class="input-field margin-top-0">
+                            @Html.EditorFor(model => model.Ceco_Cve_Ceco, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "Ingrese clave ", @maxlength = 100, @Style = "margin-bottom:0px !important;", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Ceco_Cve_Ceco, "", new { @class = "text-danger" })
+                            <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
+                        </div>
+                    }
+
+
+
+                </div>
+
+
+            </div>
+
+            
+        </div>
+    </div>
+   
+    @* ---------------Botones----------------*@
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <div class="row">
+                <div class="col push-l6 l6 push-m4 m8 s12 right-align">
+                    <a class="btn red darken-4 waves-effect" href="@Url.Action("Index","CecosView")"><i class="mdi mdi-close hide-on-small-and-down"></i> Cancelar</a>
+                    <button type="button" class="btn blue darken-4 waves-effect guardarEmpresa" style="margin-left: 10px"><i class="mdi mdi-content-save hide-on-small-and-down"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

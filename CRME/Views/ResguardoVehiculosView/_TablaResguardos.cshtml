@@ -1,0 +1,140 @@
+﻿
+@using PagedList.Mvc
+@model PagedList.IPagedList<CRME.Models.Resguardos_Lista_Vehiculos>
+@{ string strorden = ""; string iconorder = "";}
+
+
+<div class="row margin-10">
+    <div class="col l6 m6 s12 titlecircle pnl-encabezado">
+        <b>Resguardo de Vehículos</b>
+    </div>
+    <div class="col l6 m6 hide-on-small-and-down separator">
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m4 l4 input-field">
+        <a class="btn light-blue darken-4 waves-effect nuevores white-text" href="@Url.Action("VisualizarResguardo","ResguardoVehiculosView")"><i class="mdi mdi-plus"></i> Nuevo resguardo</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m6 l6 input-field center-align">
+        <input type="text" name="busqueda" id="filtroBusquedaA" Value="@ViewBag.filtro" placeholder="# economico, Tipo, Placas, Ubicación, Departamento, Asignado" />
+    </div>
+    <div class="col s12 m4 l4 input-field">
+        <button class="btn light-blue darken-4 waves-effect buscarSoli white-text"><i class="mdi mdi-magnify"></i> Buscar</button>
+        <button class="btn light-blue darken-4 waves-effect limpiar" style="margin-left: 25px" title="Limpiar Filtro"><i class="mdi mdi-filter-remove"></i></button>
+    </div>
+    <div class="col s12 m2 l2 input-field">
+        <button class="btn light-blue darken-4 waves-effect excel" title="Exportar a excel"><i class="mdi mdi-file-excel"></i></button>
+    </div>
+</div>
+<div id="contentTablaResguardos">
+    <div class="row" style="min-height:350px; max-height:350px; overflow-y:auto !important;">
+        <div class="col l12 m12 s12">
+            <table class="margin-top-25 striped highlight light-blue">
+                <thead class="table-header-blue">
+                    <tr class="table-header-tr-blue">
+                        @*mdi-arrow-down*@
+                        @{ strorden = ViewBag.order == "Resguardo_vehiculo_ID" ? "Resguardo_vehiculo_IDdesc" : "Resguardo_vehiculo_ID";
+                            iconorder = ViewBag.order == "Resguardo_vehiculo_ID" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Resguardo_vehiculo_IDdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>"; }
+                        <td class="center permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) #</td>
+                        @*Fecha de resguardo*@
+                        @{ strorden = ViewBag.order == "Fecha" ? "Fechadesc" : "Fecha";
+                            iconorder = ViewBag.order == "Fecha" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Fechadesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Fecha de resguardo</td>
+                        @*Numero economico*@
+                        @{ strorden = ViewBag.order == "Numero_economico" ? "Numero_economicodesc" : "Numero_economico";
+                            iconorder = ViewBag.order == "numero_economico" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Numero_economicodesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Número economico</td>                      
+                        @*Tipo*@
+                        @{ strorden = ViewBag.order == "Tipo" ? "Tipodesc" : "Tipo";
+                            iconorder = ViewBag.order == "Tipo" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Tipodesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Tipo</td>
+                        @*Placas *@
+                        @{ strorden = ViewBag.order == "Placas" ? "Placasdesc" : "Placas";
+                            iconorder = ViewBag.order == "Placas" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Placasdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Placas</td>
+                        @*ubicacion*@
+                        @{ strorden = ViewBag.order == "Ubicacion" ? "Ubicaciondesc" : "Ubicacion";
+                            iconorder = ViewBag.order == "Ubicacion" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Ubicaciondesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Ubicacion</td>
+                        @*departamento*@
+                        @{ strorden = ViewBag.order == "Departamento" ? "Departamentodesc" : "Departamento";
+                            iconorder = ViewBag.order == "Departamento" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Departamentodesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Departamento</td>
+                        @*Persona asignada: *@
+                        @{ strorden = ViewBag.order == "Nombres" ? "Nombresdesc" : "Nombres";
+                            iconorder = ViewBag.order == "Nombres" ? "<i class=\"mdi mdi-sort-ascending\"></i>" : ViewBag.order == "Nombresdesc" ? "<i class=\"mdi mdi-sort-descending\"></i>" : "<i class=\"mdi mdi-sort\"></i>";}
+                        <td class="center hide-on-med-and-down permiteOrdenar" data-order="@strorden">@Html.Raw(iconorder) Persona asiganda</td>
+
+                        <td class="center hide-on-med-and-down">Detalles</td>
+                        <td class="center hide-on-med-and-down">Estado</td>
+                    </tr>
+                </thead>
+                <tbody class="table-body-blue">
+                    @if (Model.Count == 0)
+                    {
+                        <tr class="table-body">
+                            <td colspan="10" class="center">
+                                <b>No se encontraron coincidencias</b>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            @*Editar esta parte *@
+                <tr class="table-body">
+                    <td class="right-align">@item.Resguardo_vehiculo_ID</td>
+                    <td class="left-align">@item.Fecha.ToShortDateString()</td>
+                    <td class="left-align">@item.Numero_economico</td>
+                    <td class="left-align">@item.Tipo</td>
+                    <td class="left-align">@item.Placas</td>
+                    <td class="left-align">@item.Ubicacion</td>
+                    <td class="left-align">@item.Departamento</td>
+                    <td class="left-align">@item.Nombres</td>
+                    <td class="center-align">
+                        <a class="editarPersona" data-position="bottom" data-delay="50" title="Ver resguardo # @item.Resguardo_vehiculo_ID" data-tooltip="Ver Resguardo # @item.Resguardo_vehiculo_ID" style="cursor:pointer;" href="@Url.Action("VisualizarResguardo","ResguardoVehiculosView", new { idresguardo = item.Resguardo_vehiculo_ID})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
+                    </td>
+                    <td class="left-align">@item.Estatus</td>
+                    <!-- <td class="left-align" style="color: #0000FF">@item.Estatus</td>-->
+
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center-align">
+            @if (Model != null)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("_TablaResguardos", new { page, strorden })
+                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                    {
+                        Display = PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = true,
+                        DisplayItemSliceAndTotal = false,
+                        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+                        ItemSliceAndTotalFormat = "Mostrando los elementos {0} a {1} de {2}.",
+                        LinkToIndividualPageFormat = "{0}",
+                    }, new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "TablaResguardoMobiliario",
+                        OnComplete = "FltOnCompletePer",
+                        OnBegin = "FltOnBeginPer"
+                    }
+                )
+            )
+            }
+        </div>
+    </div>
+    @*<div class="row">
+            <div class="col push-l6 l6 push-m6 m6 s12 right-align input-field">
+                <button class="btn orange darken-4 waves-effect enviarSoli white-text"><i class="mdi mdi-send"></i> Enviar</button>
+            </div>
+        </div>*@
+</div>

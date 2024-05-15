@@ -35,7 +35,7 @@ namespace CRME.Controllers
             string Controlador = "AccesoView";
             cat_sistemas usuario = db.cat_sistemas.FirstOrDefault(x => x.username == login.Usuario);
             //result = await AutenticateUser(login);
-            ViewBag.HiddenMenu = 1;
+            //ViewBag.HiddenMenu = 1;
             if (usuario == null)
             {
                 cat_sistemas.FakeHash();
@@ -55,12 +55,13 @@ namespace CRME.Controllers
                 {
                     ModelState.AddModelError("Password", "El Usuario esta inactivo.");
                 }
-                else if (usuario.perfil_ID == 2)
-                {
-                    ModelState.AddModelError("Password", "el Usuario no tiene acceso");
-                }
+                //else if (usuario.perfil_ID == 2)
+                //{
+                //    ModelState.AddModelError("Password", "el Usuario no tiene acceso");
+                //}
                 else
                 {
+                    
                     ModelState.AddModelError("Password", "La contraseña es incorrecta.");
                 }
             }

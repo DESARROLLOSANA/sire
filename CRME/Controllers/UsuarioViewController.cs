@@ -57,7 +57,6 @@ namespace CRME.Controllers
                         Usuario.foto = "~/Upload/Usuarios/" + pathCat;
                         Usuario.estatus_ID = 1;
                         Usuario.SetPassword(usuario.password);
-                        Usuario.De_Cve_Departamento = usuario.De_Cve_Departamento;
                         Usuario.Pu_Cve_Puesto = usuario.Pu_Cve_Puesto;
                         Usuario.correo = usuario.correo;
 

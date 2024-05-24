@@ -56,7 +56,10 @@ namespace CRME.Controllers
                         var pathCat = serializerCat.Deserialize<string>(usuario.foto);
                         Usuario.foto = "~/Upload/Usuarios/" + pathCat;
                         Usuario.estatus_ID = 1;
-                        Usuario.SetPassword(usuario.password);                                               
+                        Usuario.SetPassword(usuario.password);
+                        Usuario.De_Cve_Departamento = usuario.De_Cve_Departamento;
+                        Usuario.Pu_Cve_Puesto = usuario.Pu_Cve_Puesto;
+                        Usuario.correo = usuario.correo;
 
                         db.cat_sistemas.Add(Usuario);
                         
@@ -205,12 +208,17 @@ namespace CRME.Controllers
                 Usuarios.password = "QWERTY123*";
                 ViewBag.idEstatus = new SelectList(db.Cat_Estatus.ToList(), "Id", "Estatus", Usuarios.estatus_ID);
                 ViewBag.idPerfil = new SelectList(db.cat_perfiles.ToList(), "perfil_ID", "perfil", Usuarios.perfil_ID);
+                ViewBag.idPuesto = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion", Usuarios.Pu_Cve_Puesto);
+                ViewBag.idDepart = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Usuarios.empresa_ID);
+                //ViewBag.idEmpres = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Usuarios.Em)
                 //ViewBag.idGenero = new SelectList(db.CatGeneros.ToList(), "idGenero", "nbGenero", Usuarios.Personas.idGenero);
             }
             else
             {
                 ViewBag.idEstatus = new SelectList(db.Cat_Estatus.ToList(), "Id", "Estatus");                
                 ViewBag.idPerfil = new SelectList(db.cat_perfiles.ToList(), "perfil_ID", "perfil");
+                ViewBag.idPuesto = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion");
+                ViewBag.idDepart = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
             }
 
 

@@ -42,9 +42,12 @@ namespace CRME.Models
 
         public int? perfil_ID { get; set; }
 
+        public int? empresa_ID { get; set; }
+
         public int? estatus_ID { get; set; }
 
         public int Pu_Cve_Puesto { get; set; }
+        
 
         [StringLength(260)]
         public string foto { get; set; }

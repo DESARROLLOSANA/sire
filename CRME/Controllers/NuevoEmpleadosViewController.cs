@@ -82,9 +82,14 @@ namespace CRME.Controllers
                             empre.materno = Empresas.materno;
 
                             empre.nombre_completo = Empresas.nombres + " " + Empresas.paterno + " " + Empresas.materno;
-                            empre.idNivelEstudio = 1;
-                            empre.Pu_Cve_Puesto = 1;
+                            empre.idNivelEstudio = Empresas.idNivelEstudio;
+                            empre.Pu_Cve_Puesto = Empresas.Pu_Cve_Puesto;
                             empre.estatus_ID = 1;
+                            empre.correo = Empresas.correo;
+                            empre.Dp_Cve_Departamento = Empresas.Dp_Cve_Departamento;
+                            empre.Em_Cve_Empresa = Empresas.Em_Cve_Empresa;
+                            empre.Sc_Cve_Sucursal = Empresas.Sc_Cve_Sucursal;
+                            empre.RFC = Empresas.RFC;
                         
                             db.cat_usuarios.Add(empre);
                             if (db.SaveChanges() > 0)
@@ -122,10 +127,15 @@ namespace CRME.Controllers
                             Empre.materno = Empresas.materno;
                             Empre.nombre_completo = Empresas.nombres + " " + Empresas.paterno + " " + Empresas.materno;
 
-                            Empre.idNivelEstudio = 1;
-                            Empre.Pu_Cve_Puesto = 1;
+                            Empre.idNivelEstudio = Empresas.idNivelEstudio;
+                            Empre.correo = Empresas.correo;
+                            Empre.Pu_Cve_Puesto = Empresas.Pu_Cve_Puesto;
+                            Empre.Dp_Cve_Departamento = Empresas.Dp_Cve_Departamento;
+                            Empre.Em_Cve_Empresa = Empresas.Em_Cve_Empresa;
+                            Empre.Sc_Cve_Sucursal = Empresas.Sc_Cve_Sucursal;
+                            Empre.RFC = Empresas.RFC;
 
-                    db.Entry(Empre).State = EntityState.Modified;
+                            db.Entry(Empre).State = EntityState.Modified;
                             if (db.SaveChanges() > 0)
                             {
                                 success = true;
@@ -167,13 +177,23 @@ namespace CRME.Controllers
             {
                 ViewBag.edit = 1;
                 Empresas = db.cat_usuarios.Find(inv_linea_ID);
+                ViewBag.puesto = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion", Empresas.Pu_Cve_Puesto);
+                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Empresas.Dp_Cve_Departamento);
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
+                ViewBag.sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Empresas.Sc_Cve_Sucursal);
+                ViewBag.nvlest = new SelectList(db.NivelAcademico.ToList(), "idNivelEstudio", "desNivelEstudio", Empresas.idNivelEstudio);
                 //añadir controlador de listas
                 //ViewBag.idGenero = new SelectList(db.CatGeneros.ToList(), "idGenero", "nbGenero");
                 //ViewBag.plan = new SelectList(items3, "Value", "Text", Empresas.nombre_plan);
             }
-            //else
-            //{
-            //}
+            else
+            {
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.departamento = new SelectList("", "Dp_Cve_Departamento", "Dp_Descripcion");
+                ViewBag.puesto = new SelectList("", "Pu_Cve_Puesto", "Pu_Descripcion");
+                ViewBag.sucursal = new SelectList("", "Sc_Cve_Sucursal", "Sc_Descripcion");
+                ViewBag.nvlest = new SelectList(db.NivelAcademico.ToList(), "idNivelEstudio", "desNivelEstudio");
+            }
 
             return PartialView(Empresas);
         }
@@ -248,7 +268,38 @@ namespace CRME.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetSucursalByEmpresa(int Em_Cve_Empresa)
+        {
+            var sucursal = db.Sucursal
+                .Where(x => x.Estatus == true && x.Em_Cve_Empresa == Em_Cve_Empresa)
+                .Select(x => new { Value = x.Sc_Cve_Sucursal, Text = x.Sc_Descripcion })
+                .ToList();
 
+            return Json(sucursal, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetDepartamentosByEmpresa(int Sc_Cve_Sucursal)
+        {
+            var departamento = db.Departamentos
+                .Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal)
+                .Select(x => new { Value = x.Dp_Cve_Departamento, Text = x.Dp_Descripcion })
+                .ToList();
+
+            return Json(departamento, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetpuestoByEmpresa(int Dp_Cve_Departamento)
+        {
+            var puesto = db.Puestos
+                .Where(x => x.Estatus == true && x.Dp_Cve_Departamento == Dp_Cve_Departamento)
+                .Select(x => new { Value = x.Pu_Cve_Puesto, Text = x.Pu_Descripcion })
+                .ToList();
+
+            return Json(puesto, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

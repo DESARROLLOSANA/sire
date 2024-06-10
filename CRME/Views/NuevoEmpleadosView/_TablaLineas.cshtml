@@ -33,6 +33,9 @@
                     <tr class="table-header-tr-blue">
                         <td class="center">#</td>
                         <td class="center hide-on-small-only">Nombre completo</td>
+                        <td class="center hide-on-small-only">Correo</td>
+                        <td class="center hide-on-small-only">Empresa</td>
+                        <td class="center hide-on-small-only">Departamento</td>
                         <td class="center hide-on-small-only">Estatus</td>
                         <td class="center">Opciones</td>
                     </tr>
@@ -53,10 +56,13 @@
                             <tr class="table-body">
                                 <td class="left-align" style="text-transform: uppercase;">@Html.DisplayFor(modelItem => item.usuario_ID)</td>
                                 <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.nombre_completo)</td>
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.correo)</td>
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Empresa.Find(item.Em_Cve_Empresa).Em_Descripcion)</td>
+                                <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Departamentos.Find(item.Dp_Cve_Departamento).Dp_Descripcion)</td>
 
                                 @if (item.estatus_ID == 1)
                                 {
-                                    <td class="center hide-on-small-only" style="">Laborando</td>
+                                    <td class="center hide-on-small-only" style="">Activo</td>
                                 }
                                 else
                                 {

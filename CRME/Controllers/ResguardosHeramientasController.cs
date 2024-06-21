@@ -44,7 +44,7 @@ namespace CRME.Controllers
         }
 
 
-        public ActionResult SaveResguardo(long[] idAlumno, int id_recibe, int Id_entrega, int id_recibeco )
+        public ActionResult SaveResguardo(long[] idAlumno, int id_recibe, int Id_entrega, int temporalidad, int tiempo, int cantidad, int id_recibeco )
          {
 
             var serializerCat = new JavaScriptSerializer();
@@ -86,6 +86,10 @@ namespace CRME.Controllers
                         resguar.recibe_usuario_ID = id_recibe;
                         resguar.recibe_cousuario_ID = id_recibeco;
                         resguar.entrega_usuario_ID = Id_entrega;
+                        resguar.temporalidad = temporalidad;
+                        resguar.tipo = tiempo;
+                        resguar.cantidad = cantidad;
+                        resguar.fechaperiodo = DateTime.Now;
 
                         resguar.estatus_ID = 2;
 
@@ -168,58 +172,16 @@ namespace CRME.Controllers
 
                 var resguardo = db.Database.SqlQuery<Resguardos_lista_Em>("Sp_Get_Resguardo_EM").ToList();
 
-                //if (string.IsNullOrEmpty(filtro))
-                //{
-                //    #region condiones de ordenado              
-                //    if (orden == "Resguardo_Mobiliario_ID" || string.IsNullOrEmpty(orden))
-                //    {
-                //        orden = "Resguardo_Mobiliario_ID";
-                //        lista = resguardo.OrderBy(c => c.Resguardo_Mobiliario_ID).ToList();
-                //    }
-                //    else if (orden == "Resguardo_Mobiliario_IDdesc")
-                //        lista = resguardo.OrderByDescending(c => c.Resguardo_Mobiliario_ID).ToList();
-                //    else if (orden == "Fecha")
-                //        lista = resguardo.OrderBy(c => c.Fecha).ToList();
-                //    else if (orden == "Fechadesc")
-                //        lista = resguardo.OrderByDescending(c => c.Fecha).ToList();
-                //    else if (orden == "Cod_inventario")
-                //        lista = resguardo.OrderBy(c => c.Cod_inventario).ToList();
-                //    else if (orden == "Cod_inventariodesc")
-                //        lista = resguardo.OrderByDescending(c => c.Cod_inventario).ToList();
-                //    else if (orden == "Mobiliario")
-                //        lista = resguardo.OrderBy(c => c.Mobiliario).ToList();
-                //    else if (orden == "Mobiliariodesc")
-                //        lista = resguardo.OrderByDescending(c => c.Mobiliario).ToList();
+                if (string.IsNullOrEmpty(filtro))
+                {
+                    lista = resguardo.ToList();                    
+                }
+                else
+                {
+                    lista = resguardo.Where(x => x.Nombres.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
 
-                //    else if (orden == "Color")
-                //        lista = resguardo.OrderBy(c => c.Color).ToList();
-                //    else if (orden == "Colordesc")
-                //        lista = resguardo.OrderByDescending(c => c.Color).ToList();
-
-                //    else if (orden == "Ubicacion")
-                //        lista = resguardo.OrderBy(c => c.Ubicacion).ToList();
-                //    else if (orden == "Ubicaciondesc")
-                //        lista = resguardo.OrderByDescending(c => c.Ubicacion).ToList();
-
-                //    else if (orden == "Departamento")
-                //        lista = resguardo.OrderBy(c => c.Departamento).ToList();
-                //    else if (orden == "Departamentodesc")
-                //        lista = resguardo.OrderByDescending(c => c.Departamento).ToList();
-
-                //    else if (orden == "Nombres")
-                //        lista = resguardo.OrderBy(c => c.Nombres).ToList();
-                //    else if (orden == "Nombresdesc")
-                //        lista = resguardo.OrderByDescending(c => c.Nombres).ToList();
-
-                //    ViewBag.order = orden;
-                //    #endregion
-                //}
-                //else
-                //{
-                lista = resguardo.ToList();
-
-                //    ViewBag.filtro = filtro;
-                //}
+                    ViewBag.filtro = filtro;
+                }
                 return PartialView(lista.ToPagedList(pageNumber, pageSize));
             }
             catch
@@ -228,13 +190,21 @@ namespace CRME.Controllers
             }
         }
 
-        public ActionResult _TablaHerramientas( int? Dp_Cve_Departamento)
+        public ActionResult _TablaHerramientas( int? Dp_Cve_Departamento, string filtro)
         {
             const int pageSize = 50000;            
             List<Equipo_Menor> conductores = new List<Equipo_Menor>();
             if (Dp_Cve_Departamento != null)
             {
-                conductores = db.Equipo_Menor.Where(x => x.Dp_Cve_Departamento == Dp_Cve_Departamento && x.estatus_ID == 1).ToList();
+                if(string.IsNullOrEmpty(filtro))
+                {
+                    conductores = db.Equipo_Menor.Where(x => x.Dp_Cve_Departamento == Dp_Cve_Departamento && x.estatus_ID == 1).ToList();
+                }
+                else
+                {
+                    conductores = db.Equipo_Menor.Where(x => x.Dp_Cve_Departamento == Dp_Cve_Departamento && x.estatus_ID == 1 && x.Descripcion.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();                    
+                }
+                
             }
             else
             {
@@ -273,33 +243,33 @@ namespace CRME.Controllers
             if (creado == 1)
             {
                 // Aqui se debe cambiar por "Resguardos Mobiliario"
-                var ruta = "~/Upload/Temporales/Descargas/" + "Resguardos mobiliario - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx";
-                return File(Url.Content(ruta), excelContentType, "Resguardos mobiliario - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx");
+                var ruta = "~/Upload/Temporales/Descargas/" + "Resguardos Equipo menor - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx";
+                return File(Url.Content(ruta), excelContentType, "Resguardos Equipo menor - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx");
             }
             // Aqui se debe cambiar por "Resguardos Mobiliario"
-            if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Resguardos Mobiliario - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx")))
+            if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Resguardos Equipo menor - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx")))
             {
-                System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Resguardos Mobiliario - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx"));
+                System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Resguardos Equipo menor - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx"));
             }
 
-            string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Resguardos mobiliario - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx"));
+            string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Resguardos Equipo menor - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx"));
             //FileStream stream = System.IO.File.Create(savedFileName);
             using (FileStream stream = new FileStream(savedFileName, FileMode.Create))
             {
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Resguardos_Lista_mobiliario_excel>("Sp_Get_Resguardos_mobiliario_excel").ToList();
+                    var productos = db.Database.SqlQuery<Resguardos_lista_Em>("Sp_Get_Resguardo_EM").ToList();
 
                     using (var libro = new ExcelPackage())
                     {
 
-                        var worksheet = libro.Workbook.Worksheets.Add("Resguardos Mobiliario");
+                        var worksheet = libro.Workbook.Worksheets.Add("Resguardos Equipo menor");
                         #region titulo para poner la razon social de la empresa
-                        worksheet.Cells["D3:J3"].Merge = true;
-                        worksheet.Cells["D3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
-                        var cell = worksheet.Cells["D3"];
+                        worksheet.Cells["C3:I3"].Merge = true;
+                        worksheet.Cells["C3:I3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C3:I3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        var cell = worksheet.Cells["C3"];
                         cell.IsRichText = true;     // Cell contains RichText rather than basic values
 
 
@@ -310,24 +280,24 @@ namespace CRME.Controllers
                         title.Color = ColorTranslator.FromHtml("#44546A");
                         #endregion
                         #region titulo para el reporte
-                        worksheet.Cells["D4:J4"].Merge = true;
-                        worksheet.Cells["D4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        worksheet.Cells["C4:I4"].Merge = true;
+                        worksheet.Cells["C4:I4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C4:I4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Color.SetColor(Color.Blue);
 
-                        var cellrs = worksheet.Cells["D4"];
+                        var cellrs = worksheet.Cells["C4"];
                         cellrs.IsRichText = true;     // Cell contains RichText rather than basic values
                                                       //cell.Style.WrapText = true; // Required to honor new lines
 
-                        var titlers = cellrs.RichText.Add("Resguardos de Mobiliario");
+                        var titlers = cellrs.RichText.Add("Resguardos de Equipo menor");
                         titlers.Bold = true;
                         titlers.FontName = "Calibri";
                         titlers.Size = 15;
                         titlers.Color = ColorTranslator.FromHtml("#44546A");
                         #endregion
                         #region llenado de la informacion
-                        worksheet.Cells["B6"].LoadFromCollection(productos, PrintHeaders: true);
+                        worksheet.Cells["C6"].LoadFromCollection(productos, PrintHeaders: true);
                         for (var col = 1; col < productos.Count + 1; col++)
                         {
                             worksheet.Column(col).AutoFit();
@@ -350,7 +320,7 @@ namespace CRME.Controllers
                         //get the image from disk                        
                         var excelImage2 = worksheet.Drawings.AddPicture("logo empresa", logo2);
                         //add the image to row 20, column E
-                        excelImage2.From.Column = 10;
+                        excelImage2.From.Column = 8;
                         //excelImage2.From.Column = 9;
                         excelImage2.From.Row = 0;
                         excelImage2.SetSize(150, 80);
@@ -359,7 +329,7 @@ namespace CRME.Controllers
                         excelImage2.From.RowOff = Pixel2MTU(2);
                         #endregion
 
-                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 2, toRow: productos.Count + 6, toColumn: 12), "Resguardos");
+                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 3, toRow: productos.Count + 6, toColumn: 8), "Resguardos");
                         tabla.ShowHeader = true;
                         tabla.TableStyle = TableStyles.Light6;
                         libro.Workbook.Properties.Company = "Ciclo ambiental";
@@ -401,6 +371,20 @@ namespace CRME.Controllers
             ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
             ViewBag.sucursal = new SelectList("", "Sc_Cve_Sucursal", "Sc_Descripcion");
             ViewBag.departamento = new SelectList("", "Dp_Cve_Departamento", "Dp_Descripcion");
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Value = "1", Text = "Indefinido" });
+            items.Add(new SelectListItem { Value = "2", Text = "Temporal" });
+
+            List<SelectListItem> items2 = new List<SelectListItem>();
+            items2.Add(new SelectListItem { Value = "1", Text = "DIA" });
+            items2.Add(new SelectListItem { Value = "2", Text = "MES" });
+            items2.Add(new SelectListItem { Value = "3", Text = "AÑO" });
+            //items.Add(new SelectListItem { Value = "Corbase", Text = "Corbase" });
+            //items.Add(new SelectListItem { Value = "Kanasín", Text = "Kanasín" });
+
+            ViewBag.Tempralidad = new SelectList(items, "Value", "Text");
+            ViewBag.Tiempo = new SelectList(items2, "Value", "Text");
             return PartialView(resguardoMob);
 
         }
@@ -420,7 +404,7 @@ namespace CRME.Controllers
 
             //var MOB = db.inventario_mobiliario.Find(idequipoMob);
             //var LAP = db.inventario_laptop.Find(idequipoLAP);
-
+            var resguardo = db.cat_resguardo_herramientas.FirstOrDefault(X=> X.resguardo_mobiliario_ID == id);
             //int empresa = MOB.Em_Cve_Empresa;
 
             //int empresa = LAP.Em_Cve_Empresa;
@@ -428,7 +412,19 @@ namespace CRME.Controllers
             //if(empresa == 1)
             //{
             //aqui debo cambiar el nombre del archivo para que se la responsiva de mobiliiario sana
-            reporte.FileName = Server.MapPath("~/Reportes/ResponsivaEm.rpt");
+
+            if(resguardo.temporalidad == 1)
+            {
+                reporte.FileName = Server.MapPath("~/Reportes/ResponsivaEm.rpt"); // segundo formato 
+            }
+            else
+            {
+                reporte.FileName = Server.MapPath("~/Reportes/ResponsivaEmTemp.rpt"); // segundo formato 
+            }
+            
+
+           // reporte.FileName = Server.MapPath("~/Reportes/ResponsivaEmtemp.rpt"); // segundo formato
+                                                                                  
             //reporte.FileName = Server.MapPath("/Reportes/RespoonsivaEcolsur.rpt");
             //}
             //else if(empresa == 2)

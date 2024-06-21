@@ -39,6 +39,7 @@
                         <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~","")"></a>
                         <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
                         <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
+                        @*<a href="@Url.Action("Index","PermisosView")"><span class="blue-text"><i class="small mdi mdi-cog"></i></span></a>*@
                     }
                     else
                     {
@@ -46,7 +47,7 @@
                         <span class="blue-text name">John Doe</span>
                         <a href="@Url.Action("Salir", "AccesoView")"><span class="blue-text"><i class="small mdi mdi-logout"></i>Cerrar sesion</span></a>
                     }
-                    
+
                 </div>
             </li>
             <li>

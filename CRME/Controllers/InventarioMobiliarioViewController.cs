@@ -76,8 +76,8 @@ namespace CRME.Controllers
                         //combox
                         empre.proveedor_ID = Empresas.proveedor_ID;
                         empre.fecha_folio = Empresas.fecha_folio;
-                        empre.ubicacion = Empresas.ubicacion;
-                        empre.departamento = Empresas.departamento;
+                        empre.Sc_Cve_Sucursal = Empresas.Sc_Cve_Sucursal;
+                        empre.Dp_Cve_Departamento = Empresas.Dp_Cve_Departamento;
 
                         //datos definidos por el sistema
                         empre.estatus_ID = 1;
@@ -138,8 +138,8 @@ namespace CRME.Controllers
                         //combox
                         Empre.proveedor_ID = Empresas.proveedor_ID;
                         Empre.fecha_folio = Empresas.fecha_folio;
-                        Empre.ubicacion = Empresas.ubicacion;
-                        Empre.departamento = Empresas.departamento;
+                        //Empre.ubicacion = Empresas.ubicacion;
+                        //Empre.departamento = Empresas.departamento;
                         
                         //añadidos
                         Empre.estatus_ID = Empresas.estatus_ID;
@@ -197,7 +197,7 @@ namespace CRME.Controllers
         {  //codigo para agregar y editar usuarios
             //UsuariosPersonas Personas = new UsuariosPersonas();
             inventario_mobiliario Empresas = new inventario_mobiliario();
-           // Personas Persona = new Personas();
+            // Personas Persona = new Personas();
 
             if (inv_mobiliario_ID != null)
             {
@@ -205,122 +205,23 @@ namespace CRME.Controllers
                 Empresas = db.inventario_mobiliario.Find(inv_mobiliario_ID);
                 //añadir controlador de listas
                 //ViewBag.idGenero = new SelectList(db.CatGeneros.ToList(), "idGenero", "nbGenero");     
-
-                List<SelectListItem> items2 = new List<SelectListItem>();
-                items2.Add(new SelectListItem { Value = "Caucel", Text = "Caucel" });
-                items2.Add(new SelectListItem { Value = "Ecolsur", Text = "Ecolsur" });
-                items2.Add(new SelectListItem { Value = "Ecolsur Cancún", Text = "Ecolsur Cancún" });
-                items2.Add(new SelectListItem { Value = "Kanasín", Text = "Kanasín" });
-                items2.Add(new SelectListItem { Value = "Oficina matriz", Text = "Oficina matriz" });
-                items2.Add(new SelectListItem { Value = "Operaciones", Text = "Operaciones" });
-                items2.Add(new SelectListItem { Value = "Relleno sanitario", Text = "Relleno sanitario" });
-                items2.Add(new SelectListItem { Value = "SAU", Text = "SAU" });
-                items2.Add(new SelectListItem { Value = "Uman", Text = "Uman" });
-                //ViewBag.estatus_adendum = new SelectList( "Con adendum", "Sin adendum");
-
-                if (Empresas.ubicacion != null)
-                {
-                    ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text", Empresas.ubicacion);
-                }
-                else
-                {
-                    ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text");
-                }
-
-
-                List<SelectListItem> items3 = new List<SelectListItem>();
-                items3.Add(new SelectListItem { Value = "Administración", Text = "Administración" });
-                items3.Add(new SelectListItem { Value = "Almacen", Text = "Almacen" });
-                items3.Add(new SelectListItem { Value = "Atencion a clientes", Text = "Atencion a clientes" });
-                items3.Add(new SelectListItem { Value = "Caja", Text = "Caja" });
-                items3.Add(new SelectListItem { Value = "Calidad", Text = "Calidad" });
-                //ViewBag.estatus_adendum = new SelectList( "Con adendum", "Sin adendum");
-                ViewBag.departamento1 = new SelectList(items3, "Value", "Text", Empresas.departamento);
-
-                if (Empresas.departamento != null)
-                {
-                    ViewBag.departamento1 = new SelectList(items3.ToList(), "Value", "Text", Empresas.departamento);
-                }
-                else
-                {
-                    ViewBag.departamento1 = new SelectList(items3.ToList(), "Value", "Text");
-                }
-
-
-                if (Empresas.proveedor_ID != 0)
-                {
-                    ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
-                }
-                else
-                {
-                    ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor");
-                }
-
-                //añadidos
-                
-
-
-                if (Empresas.tipo_mobiliario_ID != 0)
-                {
-                    ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
-                }
-                else
-                {
-                    ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario");
-                }
-
-                if (Empresas.estatus_ID != 0)
-                {
-                    ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);
-                }
-                else
-                {
-                    ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus");
-                }
-
-
-                if (Empresas.Em_Cve_Empresa != 0)
-                {
-                    ViewBag.lista_empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
-                }
-                else
-                {
-                    ViewBag.lista_empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
-                }
-
+                ViewBag.sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Empresas.Sc_Cve_Sucursal);
+                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamentos", "Dp_Descripcion", Empresas.Dp_Cve_Departamento);
+                ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
+                ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
+                ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
             }
 
             else
             {
-                List<SelectListItem> items2 = new List<SelectListItem>();
-                items2.Add(new SelectListItem { Value = "Caucel", Text = "Caucel" });
-                items2.Add(new SelectListItem { Value = "Ecolsur", Text = "Ecolsur" });
-                items2.Add(new SelectListItem { Value = "Ecolsur Cancún", Text = "Ecolsur Cancún" });
-                items2.Add(new SelectListItem { Value = "Kanasín", Text = "Kanasín" });
-                items2.Add(new SelectListItem { Value = "Oficina matriz", Text = "Oficina matriz" });
-                items2.Add(new SelectListItem { Value = "Operaciones", Text = "Operaciones" });
-                items2.Add(new SelectListItem { Value = "Relleno sanitario", Text = "Relleno sanitario" });
-                items2.Add(new SelectListItem { Value = "SAU", Text = "SAU" });
-                items2.Add(new SelectListItem { Value = "Uman", Text = "Uman" });
-                //ViewBag.estatus_adendum = new SelectList( "Con adendum", "Sin adendum");
-                ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text");
+                ViewBag.sucursal = new SelectList("", "Sc_Cve_Sucursal", "Sc_Descripcion");
+                ViewBag.departamento = new SelectList("", "Dp_Cve_Departamento", "Dp_Descripcion");
+                ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
+                ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
+                ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
 
-
-                List<SelectListItem> items3 = new List<SelectListItem>();
-                items3.Add(new SelectListItem { Value = "Administración", Text = "Administración" });
-                items3.Add(new SelectListItem { Value = "Almacen", Text = "Almacen" });
-                items3.Add(new SelectListItem { Value = "Atencion a clientes", Text = "Atencion a clientes" });
-                items3.Add(new SelectListItem { Value = "Caja", Text = "Caja" });
-                items3.Add(new SelectListItem { Value = "Calidad", Text = "Calidad" });
-                ViewBag.departamento1 = new SelectList(items3, "Value", "Text");
-
-                //añadido
-                ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor");
-                //ViewBag.tipo_mobiliario_ID = new SelectList(db.inventario_tipo_mobiliario.ToList(), "tipo_mobiliario_ID", "mobiliario");
-                ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario");
-                ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus");
-
-                ViewBag.lista_empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
             }
 
             return PartialView(Empresas);
@@ -464,9 +365,7 @@ namespace CRME.Controllers
             else
             {
                 var lista = db.inventario_mobiliario.Where(x => x.tipo.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim()) || x.folio.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.ubicacion.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.departamento.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
+                   || x.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim()) || x.folio.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
 
                 ViewBag.filtro = filtro;
 
@@ -501,6 +400,28 @@ namespace CRME.Controllers
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpGet]
+        public ActionResult GetSucursalByEmpresa(int Em_Cve_Empresa)
+        {
+            var sucursal = db.Sucursal
+                .Where(x => x.Estatus == true && x.Em_Cve_Empresa == Em_Cve_Empresa)
+                .Select(x => new { Value = x.Sc_Cve_Sucursal, Text = x.Sc_Descripcion })
+                .ToList();
+
+            return Json(sucursal, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetDepartamentosByEmpresa(int Sc_Cve_Sucursal)
+        {
+            var departamento = db.Departamentos
+                .Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal)
+                .Select(x => new { Value = x.Dp_Cve_Departamento, Text = x.Dp_Descripcion })
+                .ToList();
+
+            return Json(departamento, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

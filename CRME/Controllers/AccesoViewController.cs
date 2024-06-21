@@ -165,7 +165,7 @@ namespace CRME.Controllers
 
             if (!string.IsNullOrEmpty(correo))
             {
-                // la consulta deve ser SELECT desMedioContacto FROM [dbo].[MediosContactos] WHERE idPersona= (SELECT idPersona from UsuariosPersonas WHERE UsuariosPersonas.nbUsuario = 'variable')
+                // la consulta debe ser SELECT desMedioContacto FROM [dbo].[MediosContactos] WHERE idPersona= (SELECT idPersona from UsuariosPersonas WHERE UsuariosPersonas.nbUsuario = 'variable')
                 usuarios = db.cat_sistemas.FirstOrDefault(x => x.username == correo);
             }
 

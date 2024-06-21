@@ -16,6 +16,7 @@ namespace CRME.Models
         public string serie { get; set; }
         public string modelo { get; set; }
         public string condicion { get; set; }
+        public string estado { get; set; }
 
     }
 }

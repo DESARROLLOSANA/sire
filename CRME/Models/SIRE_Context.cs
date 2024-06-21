@@ -78,7 +78,25 @@ namespace CRME.Models
         public virtual DbSet<cat_resguardo_herramientas> cat_resguardo_herramientas { get; set; }
         public virtual DbSet<Unidad_Medida> Unidad_Medida { get; set; }
 
+        //TABLAS DEL SGC
 
+        public virtual DbSet<Procesos> Procesos { get; set; }
+        public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
+        public virtual DbSet<cat_indicadores> cat_indicadores { get; set; }
+        public virtual DbSet<cat_periodos> cat_periodos { get; set; }
+        public virtual DbSet<Control_Interno> Control_Interno { get; set; }
+        public virtual DbSet<Auditoria_Interna> Auditoria_Interna { get; set; }
+        public virtual DbSet<Acciones_correctivas> Acciones_correctivas { get; set; }
+        public virtual DbSet<ArchivosOrganigrama> ArchivosOrganigrama { get; set; }
+        public virtual DbSet<Doc_apoyo> Doc_apoyo { get; set; }
+        public virtual DbSet<Permisos> Permisos { get; set; }
+        public virtual DbSet<EstadosAC> EstadosAC { get; set; }
+        public virtual DbSet<Mope> Mope { get; set; }
+        public virtual DbSet<modulos> modulos { get; set; }
+        public virtual DbSet<cat_perm> cat_perms { get; set; }
+        public virtual DbSet<actualizaciones> actualizaciones { get; set; }
+        public virtual DbSet<SolicitudActualizaciones> SolicitudActualizaciones { get; set; }
+        public virtual DbSet<Correos_Calidad> Correos_Calidad { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

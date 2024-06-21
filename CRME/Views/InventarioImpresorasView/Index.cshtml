@@ -230,6 +230,39 @@
                 limpiar();
             });
 
+
+         exportar();
+        function exportar() {
+            $("#TablaEmpresas").off('click', ".excel");
+            $("#TablaEmpresas").on('click', ".excel", function (e) {
+                e.preventDefault();
+            //$(".loading-descargar").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ExportarExcel", "InventarioImpresorasView")',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    //$(".loading-descargar").css("display", "none");
+                    if (result.success) {
+                        window.location.href = '@Url.Action("ExportarExcel", "InventarioImpresorasView")' + '/?Creado=' + 1;;
+                    }
+                    //} else {
+                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
+                    //    $("#ModalAlert").modal({
+                    //        dismissible: false,
+                    //    });
+                    //    $("#ModalAlert").modal('open');
+                    //}
+                }
+            });
+
+            });
+
+        }
+
+
         function CargarReglasGeneralFormuario() {
             var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(formulario);

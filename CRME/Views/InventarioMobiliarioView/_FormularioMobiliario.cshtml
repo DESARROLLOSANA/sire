@@ -97,7 +97,7 @@ else
             <div class="row">
 
                 <div class="col s12 m6 l6 input-field">
-                    <b class="">Precio</b>
+                    <b class="">Precio:</b>
                     <div class="input-field margin-top-0">
                         @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "Validate form-simple", @Placeholder = "$", @Style = "margin-bottom:0px !important;" } })
                         @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
@@ -145,63 +145,35 @@ else
             <div class="row">
 
                 <div class="col s12 m6 l6 input-field">
-                    <b class="">Ubicación:</b>
+                    <b class="">Empresa:</b>
                     <div class="input-field margin-top-0">
-                        @if (ViewBag.edit != 1)
-                        {
-
-                            @Html.DropDownListFor(model => model.ubicacion, new SelectList(ViewBag.ubicacion1, "Value", "Text"), "-- Selecciona la Ubicacion --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        else
-                        {
-                            @Html.DropDownListFor(model => model.ubicacion, new SelectList(ViewBag.ubicacion1, "Value", "Text"), "--ubicacion--", htmlAttributes: new { @class = "select classic" })
-                        }
-                        @Html.ValidationMessageFor(model => model.ubicacion, "", new { @class = "text-danger" })
+                        @Html.DropDownList("Em_Cve_Empresa", new SelectList(ViewBag.empresa, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
+                        @Html.ValidationMessageFor(model => model.Em_Cve_Empresa, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                     </div>
                 </div>
 
                 <div class="col s12 m6 l6 input-field">
-                    <b class="">Departamento:</b>
+                    <b class="">Sucursal:</b>
                     <div class="input-field margin-top-0">
-
-                        @if (ViewBag.edit != 1)
-                        {
-
-                            @Html.DropDownListFor(model => model.departamento, new SelectList(ViewBag.departamento1, "Value", "Text"), "--Selecciona el departamento --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        else
-                        {
-                            @Html.DropDownListFor(model => model.departamento, new SelectList(ViewBag.departamento1, "Value", "Text"), "--Selecciona el departamento --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
-
-
+                        @Html.DropDownList("Sc_Cve_Sucursal", new SelectList(ViewBag.sucursal, "Value", "Text"), "-- Sucursal --", htmlAttributes: new { @class = "select classic" })
+                        @Html.ValidationMessageFor(model => model.Sc_Cve_Sucursal, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                     </div>
                 </div>
             </div>
 
-
             <div class="row">
-
                 <div class="col s12 m6 l6 input-field">
-                    <b class="">Empresa:</b>
+                    <b class="">Departamento:</b>
                     <div class="input-field margin-top-0">
 
-                        @if (ViewBag.edit != 1)
-                        {
-
-                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.lista_empresa, "Value", "Text"), "--Selecciona la empresa a la que pertenecera el mobiliario --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        else
-                        {
-                            @Html.DropDownListFor(model => model.Em_Cve_Empresa, new SelectList(ViewBag.lista_empresa, "Value", "Text"), "--Selecciona la empresa a la que pertenecera el mobiliario --", htmlAttributes: new { @class = "select classic" })
-                        }
-                        @Html.ValidationMessageFor(model => model.Em_Cve_Empresa, "", new { @class = "text-danger" })
-
-
+                        @Html.DropDownList("Dp_Cve_Departamento", new SelectList(ViewBag.departamento, "Value", "Text"), "-- Departamento --", htmlAttributes: new { @class = "select classic" })
+                        @Html.ValidationMessageFor(model => model.Dp_Cve_Departamento, "", new { @class = "text-danger" })
+                        <div id="mensaje-error-model" class="text-danger" style="font-size:15px"></div>
                     </div>
                 </div>
-
+            </div>
                 <div class="col s12 m6 l6 input-field">
                     <div class="input-field margin-top-0">
                         @if (ViewBag.edit == 1)
@@ -213,8 +185,6 @@ else
                     </div>
                 </div>
             </div>
-
-        </div>
     </div>
 
     <div class="row">

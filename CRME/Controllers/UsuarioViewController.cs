@@ -19,11 +19,11 @@ namespace CRME.Controllers
         private SIRE_Context db = new SIRE_Context();
         public ActionResult Index()
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Index", "AccesoView");
-            //}
-            //ViewBag.HiddenMenu = 1;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "AccesoView");
+            }
+            ViewBag.HiddenMenu = 1;
             return View();
         }
         public ActionResult SaveUsuarios(cat_sistemas usuario)
@@ -56,7 +56,12 @@ namespace CRME.Controllers
                         var pathCat = serializerCat.Deserialize<string>(usuario.foto);
                         Usuario.foto = "~/Upload/Usuarios/" + pathCat;
                         Usuario.estatus_ID = 1;
-                        Usuario.SetPassword(usuario.password);                                               
+                        Usuario.SetPassword(usuario.password);
+                        Usuario.Pu_Cve_Puesto = usuario.Pu_Cve_Puesto;
+                        Usuario.Dp_Cve_Departamento = usuario.Dp_Cve_Departamento;
+                        Usuario.Em_Cve_Empresa = usuario.Em_Cve_Empresa;
+                        Usuario.Sc_Cve_Sucursal = usuario.Sc_Cve_Sucursal;
+                        Usuario.correo = usuario.correo;
 
                         db.cat_sistemas.Add(Usuario);
                         
@@ -116,6 +121,11 @@ namespace CRME.Controllers
                         Usuario.apellido_materno = usuario.apellido_materno;
                         Usuario.username = usuario.username;
                         Usuario.perfil_ID = usuario.perfil_ID;
+                        Usuario.Pu_Cve_Puesto = usuario.Pu_Cve_Puesto;
+                        Usuario.Dp_Cve_Departamento = usuario.Dp_Cve_Departamento;
+                        Usuario.Em_Cve_Empresa = usuario.Em_Cve_Empresa;
+                        Usuario.Sc_Cve_Sucursal = usuario.Sc_Cve_Sucursal;
+                        Usuario.correo = usuario.correo;
                         if (Usuario.foto == usuario.foto)
                         {
                             Usuario.foto = usuario.foto;
@@ -205,12 +215,20 @@ namespace CRME.Controllers
                 Usuarios.password = "QWERTY123*";
                 ViewBag.idEstatus = new SelectList(db.Cat_Estatus.ToList(), "Id", "Estatus", Usuarios.estatus_ID);
                 ViewBag.idPerfil = new SelectList(db.cat_perfiles.ToList(), "perfil_ID", "perfil", Usuarios.perfil_ID);
+                ViewBag.puesto = new SelectList(db.Puestos.ToList(), "Pu_Cve_Puesto", "Pu_Descripcion", Usuarios.Pu_Cve_Puesto);
+                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Usuarios.Dp_Cve_Departamento);
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Usuarios.Em_Cve_Empresa);
+                ViewBag.sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Usuarios.Sc_Cve_Sucursal);
                 //ViewBag.idGenero = new SelectList(db.CatGeneros.ToList(), "idGenero", "nbGenero", Usuarios.Personas.idGenero);
             }
             else
             {
                 ViewBag.idEstatus = new SelectList(db.Cat_Estatus.ToList(), "Id", "Estatus");                
                 ViewBag.idPerfil = new SelectList(db.cat_perfiles.ToList(), "perfil_ID", "perfil");
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.departamento = new SelectList("", "Dp_Cve_Departamento", "Dp_Descripcion");
+                ViewBag.puesto = new SelectList("", "Pu_Cve_Puesto", "Pu_Descripcion");
+                ViewBag.sucursal = new SelectList("", "Sc_Cve_Sucursal", "Sc_Descripcion");
             }
 
 
@@ -330,6 +348,40 @@ namespace CRME.Controllers
             }
             return Json(new { success = success }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetSucursalByEmpresa(int Em_Cve_Empresa)
+        {
+            var sucursal = db.Sucursal
+                .Where(x => x.Estatus == true && x.Em_Cve_Empresa == Em_Cve_Empresa)
+                .Select(x => new { Value = x.Sc_Cve_Sucursal, Text = x.Sc_Descripcion })
+                .ToList();
+
+            return Json(sucursal, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetDepartamentosByEmpresa(int Sc_Cve_Sucursal)
+        {
+            var departamento = db.Departamentos
+                .Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal)
+                .Select(x => new { Value = x.Dp_Cve_Departamento, Text = x.Dp_Descripcion })
+                .ToList();
+
+            return Json(departamento, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetpuestoByEmpresa(int Dp_Cve_Departamento)
+        {
+            var puesto = db.Puestos
+                .Where(x => x.Estatus == true && x.Dp_Cve_Departamento == Dp_Cve_Departamento)
+                .Select(x => new { Value = x.Pu_Cve_Puesto, Text = x.Pu_Descripcion })
+                .ToList();
+
+            return Json(puesto, JsonRequestBehavior.AllowGet);
+        }
+        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

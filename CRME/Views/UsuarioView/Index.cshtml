@@ -14,8 +14,8 @@
                 <h5>Administración de usuarios</h5>
             </div>
             @*<div class="col l3 m3 s12 input-field right-align">
-                <a class="btn orange darken-4 waves-effect" href="@Url.Action("Index","PanelView")"><i class="mdi mdi-menu hide-on-small-and-down"></i> MENÚ</a>
-            </div>*@
+                    <a class="btn orange darken-4 waves-effect" href="@Url.Action("Index","PanelView")"><i class="mdi mdi-menu hide-on-small-and-down"></i> MENÚ</a>
+                </div>*@
         </div>
 
         <div id="New_UpdatePersona">
@@ -75,7 +75,7 @@
         });
         //--- PARA AGREGAR FECHA ---
 
-        
+
         function date() {
             $('.datepicker').pickadate({
                 selectMonths: true,
@@ -95,10 +95,10 @@
 
                 },
                 min:new Date()
-                
+
 
             });
-            
+
         }
 
         //--- GUARDAR PERSONA ---
@@ -157,10 +157,6 @@
             });
         }
 
-      
-
-       
-
         //--- EDITAR PERSONA ---
         $("#TablaPersonas").off('click', '.editarPersona');
         $("#TablaPersonas").on('click', '.editarPersona', function (e) {
@@ -183,7 +179,7 @@
         });
 
 
- 
+
 
         limpiar();
         Buscar();
@@ -194,7 +190,7 @@
                     if (status == "success") {
                         Buscar();
                     }
-                    
+
                 });
             });
         }
@@ -219,7 +215,7 @@
             $("#TablaPersonas").on("click", ".buscarSoli", function (e) {
                 $("#TablaPersonas #tblPersonas").addClass("loading-background");
                 $(".loading-personas").addClass("loading-show").removeClass("loading");
-                    var filtroBusqueda = $("#filtroBusqueda").val();       
+                    var filtroBusqueda = $("#filtroBusqueda").val();
                     $("#TablaPersonas").load('@Url.Action("_TablaUsuarios", "UsuarioView")', { filtroBusqueda }, function (response, status, xhr) {
                         if (status == "success") {
                             $("#TablaPersonas #tblPersonas").removeClass("loading-background");
@@ -227,9 +223,9 @@
                         }
                     });
             });
-            
+
         }
-      
+
 
 
 
@@ -362,9 +358,9 @@
                     minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
                     maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
                 });
-                
-                $('#nbUsuario').rules("remove")
-                $('#nbUsuario').rules("add", {
+
+                $('#correo').rules("remove")
+                $('#correo').rules("add", {
                     required: true,
                     email: true,
                     regex: "[A-Za-z0-9._%+-]+@@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
@@ -397,9 +393,9 @@
                         }
                     });
                 }
-            
-               
-               
+
+
+
 
                 $('#pwdContrasenia1').rules("remove")
                 $('#pwdContrasenia1').rules("add", {
@@ -587,7 +583,91 @@
                     });
                 });
 
-            }
+        }
+
+        ComboSucursales();
+        function ComboSucursales() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Em_Cve_Empresa", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetSucursalByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+
+        ComboSucursal();
+        function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Sc_Cve_Sucursal", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetDepartamentosByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Sc_Cve_Sucursal: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Dp_Cve_Departamento").empty();
+                        $("#Dp_Cve_Departamento").append('<option value=""> -- Seleccione un departamento -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Dp_Cve_Departamento").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+
+        ComboDepartamento();
+        function ComboDepartamento() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Dp_Cve_Departamento", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetpuestoByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Dp_Cve_Departamento: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Pu_Cve_Puesto").empty();
+                        $("#Pu_Cve_Puesto").append('<option value=""> -- Seleccione un puesto -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Pu_Cve_Puesto").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
 
             //====================== PAGINACIONES ===========================
             //paginación personas
@@ -600,6 +680,6 @@
                 $("#TablaPersonas #tblPersonas").removeClass("loading-background");
                 var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
             }
-        
+
     </script>
 }

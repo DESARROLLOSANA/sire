@@ -624,6 +624,129 @@ namespace CRME.Controllers
         }
 
 
+        //// aqui se introduce el metodo para generar el excel
+        public ActionResult ExportarExcel(int? creado)
+        {
+            bool success = false;
+            string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            if (creado == 1)
+            {
+                // Aqui se debe cambiar por "Resguardos Mobiliario"
+                var ruta = "~/Upload/Temporales/Descargas/" + "Inventario Vehiculos - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx";
+                return File(Url.Content(ruta), excelContentType, "Inventario Vehiculos - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx");
+            }
+            // Aqui se debe cambiar por "Resguardos Mobiliario"
+            if (System.IO.File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Inventario Vehiculos - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx")))
+            {
+                System.IO.File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Inventario Vehiculos - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx"));
+            }
+
+            string savedFileName = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Temporales/Descargas/" + "Inventario Vehiculos - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx"));
+            //FileStream stream = System.IO.File.Create(savedFileName);
+            using (FileStream stream = new FileStream(savedFileName, FileMode.Create))
+            {
+                try
+                {
+
+                    var productos = db.Database.SqlQuery<Inventario_Lista_Vehiculo_Excel>("Sp_Get_Vehiculos_Excel").ToList();
+
+                    using (var libro = new ExcelPackage())
+                    {
+
+                        var worksheet = libro.Workbook.Worksheets.Add("Inventario Vehiculos");
+                        #region titulo para poner la razon social de la empresa
+                        worksheet.Cells["D3:J3"].Merge = true;
+                        worksheet.Cells["D3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["D3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        var cell = worksheet.Cells["D3"];
+                        cell.IsRichText = true;     // Cell contains RichText rather than basic values
+
+
+                        var title = cell.RichText.Add("SIRE - ");
+                        title.Bold = true;
+                        title.FontName = "Calibri";
+                        title.Size = 15;
+                        title.Color = ColorTranslator.FromHtml("#44546A");
+                        #endregion
+                        #region titulo para el reporte
+                        worksheet.Cells["D4:J4"].Merge = true;
+                        worksheet.Cells["D4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["D4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        //worksheet.Cells["D4:I4"].Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
+                        //worksheet.Cells["D4:I4"].Style.Border.Bottom.Color.SetColor(Color.Blue);
+
+                        var cellrs = worksheet.Cells["D4"];
+                        cellrs.IsRichText = true;     // Cell contains RichText rather than basic values
+                                                      //cell.Style.WrapText = true; // Required to honor new lines
+
+                        var titlers = cellrs.RichText.Add("Inventario de Vehiculos");
+                        titlers.Bold = true;
+                        titlers.FontName = "Calibri";
+                        titlers.Size = 15;
+                        titlers.Color = ColorTranslator.FromHtml("#44546A");
+                        #endregion
+                        #region llenado de la informacion
+                        worksheet.Cells["D6"].LoadFromCollection(productos, PrintHeaders: true);
+                        for (var col = 1; col < productos.Count + 1; col++)
+                        {
+                            worksheet.Column(col).AutoFit();
+                        }
+                        #endregion
+                        #region incrutacion de imagen
+                        Image logo = Image.FromFile(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/cicloAmb.png"));
+
+                        //get the image from disk                        
+                        var excelImage = worksheet.Drawings.AddPicture("logo ciclo", logo);
+                        //add the image to row 20, column E
+                        excelImage.From.Column = 1;
+                        excelImage.From.Row = 0;
+                        excelImage.SetSize(150, 80);
+                        // 2x2 px space for better alignment
+                        excelImage.From.ColumnOff = Pixel2MTU(2);
+                        excelImage.From.RowOff = Pixel2MTU(2);
+
+                        Image logo2 = Image.FromFile(System.Web.Hosting.HostingEnvironment.MapPath("~/Upload/Sistema/cicloAmb.png"));
+                        //get the image from disk                        
+                        var excelImage2 = worksheet.Drawings.AddPicture("logo empresa", logo2);
+                        //add the image to row 20, column E
+                        excelImage2.From.Column = 8;
+                        //excelImage2.From.Column = 9;
+                        excelImage2.From.Row = 0;
+                        excelImage2.SetSize(150, 80);
+                        // 2x2 px space for better alignment
+                        excelImage2.From.ColumnOff = Pixel2MTU(2);
+                        excelImage2.From.RowOff = Pixel2MTU(2);
+                        #endregion
+
+                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 4, toRow: productos.Count + 6, toColumn: 8), "Resguardos");
+                        tabla.ShowHeader = true;
+                        tabla.TableStyle = TableStyles.Light5;
+                        libro.Workbook.Properties.Company = "Ciclo ambiental";
+                        libro.Workbook.Properties.Keywords = "Excel";
+                        libro.SaveAs(stream);
+                        success = true;
+
+                    }
+                    stream.Close();
+                    stream.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    stream.Close();
+                    stream.Dispose();
+                }
+                // return File(Url.Content(ruta), excelContentType, "Resguardos laptops - " + DateTime.Now.ToShortDateString() + ".xlsx");
+            }
+            return Json(new { success = success });
+        }
+        public int Pixel2MTU(int pixels)
+        {
+            int mtus = pixels * 9525;
+            return mtus;
+        }
+
+
+
         //metodo no necesario
         public JsonResult CargarLogo()
         {

@@ -726,7 +726,7 @@ namespace CRME.Controllers
                         #endregion
 
 
-                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 3, toRow: conductores.Count + 6, toColumn: 11), "inventario");
+                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 3, toRow: conductores.Count + 6, toColumn: 12), "inventario");
                         tabla.ShowHeader = true;
                         tabla.TableStyle = TableStyles.Light5;
                         libro.Workbook.Properties.Company = "Ciclo ambiental";

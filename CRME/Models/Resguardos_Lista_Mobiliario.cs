@@ -30,9 +30,9 @@ namespace CRME.Models
 		
 		//public string Departamento { get; set; }
 		public DateTime? fecha_folio { get; set; }
+
 		//public string Recibio { get; set; }
 		public string entrega { get; set; }
-
 
 	}
 }

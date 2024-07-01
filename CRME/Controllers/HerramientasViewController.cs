@@ -599,7 +599,7 @@ namespace CRME.Controllers
             {
                 try
                 {
-                   
+
                     List<listaExcelEM> conductores = new List<listaExcelEM>();
                     if (Id_UM == null && Id_medida == null && nom == "" && Id_condicion == null
                         && Em_Cve_Empresa == null && Sc_Cve_Sucursal == null && Dp_Cve_Departamento == null)
@@ -617,21 +617,21 @@ namespace CRME.Controllers
                     }
                     else if (nom != null && nom != "")
                     {//busqueda´por nombre
-                        conductores = db.Database.SqlQuery<listaExcelEM>("sp_get_inventario_excel_descripcion @descrip",
-                            new SqlParameter("@descrip","%" + nom + "%")).ToList();
+                        conductores = db.Database.SqlQuery<listaExcelEM>("sp_get_inventario_excel_descripcion @descrip", //PENDIENTE!!
+                            new SqlParameter("@descrip", "%" + nom + "%")).ToList();
 
                         //conductores = SP_Reporte.Instancia.ReporteNombreExcel(nom);
                     }
                     else if (Id_medida != null)
                     {//busqueda por codigo
-                       
+
                         conductores = db.Database.SqlQuery<listaExcelEM>("sp_get_inventario_excel_medida @medida",
                             new SqlParameter("@medida", Id_medida)).ToList();
                         //conductores = SP_Reporte.Instancia.ReportCodigoExcel(cod);
                     }
                     else if (Id_condicion != null)
                     {//busqueda por codigo
-                       
+
                         conductores = db.Database.SqlQuery<listaExcelEM>("sp_get_inventario_excel_condicion @condicion",
                             new SqlParameter("@condicion", Id_condicion)).ToList();
                         //conductores = SP_Reporte.Instancia.ReportCodigoExcel(cod);
@@ -646,7 +646,7 @@ namespace CRME.Controllers
                     else if (Sc_Cve_Sucursal != null)
                     {//busqueda por codigo
 
-                        conductores = db.Database.SqlQuery<listaExcelEM>("sp_get_inventario_excel_sucursal @Sc_Cve_Sucursal",
+                        conductores = db.Database.SqlQuery<listaExcelEM>("sp_get_inventario_excel_sucursal @Sc_Cve_Sucursal", //PENDIENTE
                             new SqlParameter("@Sc_Cve_Sucursal", Sc_Cve_Sucursal)).ToList();
                         //conductores = SP_Reporte.Instancia.ReportCodigoExcel(cod);
                     }
@@ -662,10 +662,10 @@ namespace CRME.Controllers
 
                         var worksheet = libro.Workbook.Worksheets.Add("Inventario equipo menor");
                         #region titulo para poner la razon social de la empresa
-                        worksheet.Cells["D3:J3"].Merge = true;
-                        worksheet.Cells["D3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
-                        var cell = worksheet.Cells["D3"];
+                        worksheet.Cells["C3:N3"].Merge = true;
+                        worksheet.Cells["C3:N3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C3:N3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        var cell = worksheet.Cells["C3"];
                         cell.IsRichText = true;     // Cell contains RichText rather than basic values
 
 
@@ -676,13 +676,13 @@ namespace CRME.Controllers
                         title.Color = ColorTranslator.FromHtml("#2196f3");
                         #endregion
                         #region titulo para el reporte
-                        worksheet.Cells["D4:J4"].Merge = true;
-                        worksheet.Cells["D4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        worksheet.Cells["C4:N4"].Merge = true;
+                        worksheet.Cells["C4:N4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C4:N4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Color.SetColor(Color.Blue);
 
-                        var cellrs = worksheet.Cells["D4"];
+                        var cellrs = worksheet.Cells["C4"];
                         cellrs.IsRichText = true;     // Cell contains RichText rather than basic values
                                                       //cell.Style.WrapText = true; // Required to honor new lines
 
@@ -716,7 +716,7 @@ namespace CRME.Controllers
                         //get the image from disk                        
                         var excelImage2 = worksheet.Drawings.AddPicture("logo empresa", logo2);
                         //add the image to row 20, column E
-                        excelImage2.From.Column = 10;
+                        excelImage2.From.Column = 13;
                         //excelImage2.From.Column = 9;
                         excelImage2.From.Row = 0;
                         excelImage2.SetSize(150, 80);
@@ -726,7 +726,7 @@ namespace CRME.Controllers
                         #endregion
 
 
-                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 3, toRow: conductores.Count + 6, toColumn: 11), "inventario");
+                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 3, toRow: conductores.Count + 6, toColumn: 14), "inventario");
                         tabla.ShowHeader = true;
                         tabla.TableStyle = TableStyles.Light5;
                         libro.Workbook.Properties.Company = "Ciclo ambiental";

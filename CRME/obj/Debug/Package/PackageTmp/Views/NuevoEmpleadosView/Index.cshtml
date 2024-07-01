@@ -232,7 +232,92 @@
                 //validatePass();
                 //ConfigPictures();
                 limpiar();
+        });
+
+
+                ComboSucursales();
+        function ComboSucursales() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Em_Cve_Empresa", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetSucursalByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Em_Cve_Empresa: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Sc_Cve_Sucursal").empty();
+                        $("#Sc_Cve_Sucursal").append('<option value=""> -- Seleccione una sucursal -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Sc_Cve_Sucursal").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
             });
+        }
+
+        ComboSucursal();
+        function ComboSucursal() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Sc_Cve_Sucursal", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetDepartamentosByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Sc_Cve_Sucursal: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Dp_Cve_Departamento").empty();
+                        $("#Dp_Cve_Departamento").append('<option value=""> -- Seleccione un departamento -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Dp_Cve_Departamento").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
+
+        ComboDepartamento();
+        function ComboDepartamento() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#Dp_Cve_Departamento", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetpuestoByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Dp_Cve_Departamento: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Pu_Cve_Puesto").empty();
+                        $("#Pu_Cve_Puesto").append('<option value=""> -- Seleccione un puesto -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Pu_Cve_Puesto").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
+        }
 
         function CargarReglasGeneralFormuario() {
             var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");

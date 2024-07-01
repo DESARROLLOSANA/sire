@@ -1,7 +1,7 @@
 ﻿@using CustomHelpers
 
 @{
-    ViewBag.Title = "Usuarios";
+    ViewBag.Title = "Notificaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -11,19 +11,11 @@
     <div class="col l12 m12 s12">
         <div class="row">
             <div class="col l9 m9 s12">
-                <h5>Administración de usuarios</h5>
+                <h5>Notificaciones</h5>
             </div>
-            @*<div class="col l3 m3 s12 input-field right-align">
-                    <a class="btn orange darken-4 waves-effect" href="@Url.Action("Index","PanelView")"><i class="mdi mdi-menu hide-on-small-and-down"></i> MENÚ</a>
-                </div>*@
         </div>
-
-        <div id="New_UpdatePersona">
-            @Html.Action("_Formulario", "UsuarioView")
-        </div>
-
-        <div id="TablaPersonas">
-            @Html.Action("_TablaUsuarios", "UsuarioView")
+        <div id="TablaEmpresas">
+            @Html.Action("_TablaNotificacion", "NotificacionesView")
         </div>
         <div class="row">
             <div class="col l12 m12 s12">
@@ -39,9 +31,8 @@
     </div>
 </div>
 
-<!-- Modal Structure -->
-<div id="ModalAlert" class="modal modal-fixed-footer" style="width:400px; height:200px;">
-    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:120px" /></div>
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:300px; height:240px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/SIRE_FINAL.png" style="width:40px" /></div>
     <div class="modal-content md-content">
         <h5 class="md-title">Título</h5>
         <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
@@ -53,82 +44,40 @@
 </div>
 
 @section scripts{
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#ModalAlert").modal();
-            var img1 = "";
-            var imagen1 = " ";
-            $('.datepicker').val("");
+
             $(".cancelar-eventos").off('click');
             $(".cancelar-eventos").on('click', function (e) {
                 $('#ModalAlert').off("click", ".md-accept");
             });
-
-            pass();
-            validatePass();
-            jQuery.extend(jQuery.validator.messages, {
-                minlength: jQuery.validator.format("El campo nombre debe llevar mínimo {0} caracteres."),
-                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
-            });
-
-            date();
         });
-        //--- PARA AGREGAR FECHA ---
 
-
-        function date() {
-            $('.datepicker').pickadate({
-                selectMonths: true,
-                selectYears: 100,
-                monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-                weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-                today: '',
-                clear: 'Limpiar',
-                close: 'Cerrar',
-                format: 'dd/mm/yyyy',
-                onStart: function () {
-                    //this.set('select', $('#Pp_FechaInicio').val()); //Value por defecto al cargar el picker.
-                    $('.datepicker').val($('.datepicker').val());
-
-                },
-                min:new Date()
-
-
-            });
-
-        }
-
-        //--- GUARDAR PERSONA ---
-        guardarpersona();
+         guardarpersona();
         function guardarpersona() {
 
-            $("#FrmUsuario").off('click', '.guardarPersona');
-            $("#FrmUsuario").on("click", ".guardarPersona", function (e) {
+            $("#FrmEmpresa").off('click', '.guardarEmpresa');
+            $("#FrmEmpresa").on("click", ".guardarEmpresa", function (e) {
                 //alert(" ");
                 e.preventDefault();
-                $(".guardarPersona").attr("disabled", true);
+                $(".guardarEmpresa").attr("disabled", true);
                 CargarReglasGeneralFormuario();
-                if ($("#FrmUsuario").valid()) {
-                    var frmValues = $("#FrmUsuario").serialize();
+                if ($("#FrmEmpresa").valid()) {
+                    var frmValues = $("#FrmEmpresa").serialize();
                     $.ajax({
-                        url: '@Url.Action("SaveUsuarios", "UsuarioView")',
+                        url: '@Url.Action("SaveCondicion", "FamiliaView")',
                         data: frmValues,
                         type: "POST",
                         success: function (result) {//obtiene el resultado json
-                            $(".guardarPersona").attr("disabled", false);
+                            $(".guardarEmpresa").attr("disabled", false);
                             if (result.success) {//si es true el resultado
                                 $('#mensaje-error-model').text("");
-                                $("#New_UpdatePersona").load('@Url.Action("_Formulario", "UsuarioView")', function (response, status, xhr) {
+                                $("#New_UpdateEmpresa").load('@Url.Action("_FormularioFamilia", "FamiliaView")', function (response, status, xhr) {
                                     if (status == "success") {
                                         guardarpersona();
-                                        validatePass();
                                         ConfigPictures();
-                                        date();
-                                        limpiar();
-                                        $('.datepicker').val("");
+                                        //limpiar();
                                     }
                                 });
                                 ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)//para crear la ventana flotante
@@ -136,13 +85,12 @@
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                                $("#TablaPersonas").load('@Url.Action("_TablaUsuarios", "UsuarioView")', function (response, status, xhr) {
+                                $("#TablaEmpresas").load('@Url.Action("_TablaFamilia", "FamiliaView")', function (response, status, xhr) {
                                     if (status == "success") {
                                     }
                                 });
                             }
                             else if (result.mensajefound != "") {
-                                //$("#ModalAlert").text(result.mensajefound);
                                 ConfigModal($('#ModalAlert'), "",result.mensajefound , 3)//para crear la ventana flotante
                                 $("#ModalAlert").modal({
                                     dismissible: false,
@@ -152,41 +100,23 @@
                         }
                     });
                 } else {
-                    $(".guardarPersona").attr("disabled", false);
+                    $(".guardarEmpresa").attr("disabled", false);
                 }
             });
         }
 
-        comboPto();
-        function comboPto() {
-            $("#Dp_Cve_Departamento").change(function () {
-              //  var id = $("#idZona").val();
-                var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
-
-                $("#puesto").load('@Url.Action("ComboPuesto", "EmpleadosView")', { Dp_Cve_Departamento }, function (response, status, xhr) {
-                    if (status == "success") {
-                        comboSucursal();
-                        comboDepto();
-
-                    }
-                });
-            });
-        }
-
-
-
         //--- EDITAR PERSONA ---
-        $("#TablaPersonas").off('click', '.editarPersona');
-        $("#TablaPersonas").on('click', '.editarPersona', function (e) {
+        $("#TablaEmpresas").off('click', '.editarEmpresa');
+        $("#TablaEmpresas").on('click', '.editarEmpresa', function (e) {
             e.preventDefault();
-            var idUsuario = $(this).attr("id-item");
-            $('#New_UpdatePersona').load('@Url.Action("_Formulario", "UsuarioView")', { idUsuario }, function (response, status, xhr) {
+            var Id_Condicion = $(this).attr("id-item");
+            $('#New_UpdateEmpresa').load('@Url.Action("_FormularioFamilia", "FamiliaView")', { Id_Condicion }, function (response, status, xhr) {
                 if (status == "success") {
                     guardarpersona();
-                    date();
-                    validatePass();
+                    //date();
+                    //validatePass();
                     ConfigPictures();
-                    limpiar();
+                    //limpiar();
 
                 }
             });
@@ -196,62 +126,11 @@
             }, 1000);
         });
 
-
-
-
-        limpiar();
-        Buscar();
-        function limpiar() {
-            $("#TablaPersonas").off('click', ".limpiar");
-            $("#TablaPersonas").on('click', ".limpiar", function (e) {
-                $("#TablaPersonas").load('@Url.Action("_TablaUsuarios", "UsuarioView")', function (response, status, xhr) {
-                    if (status == "success") {
-                        Buscar();
-                    }
-
-                });
-            });
-        }
-
-
-        Buscar();
-        function Buscar() {
-            $("#filtroBusqueda").keyup(function (e) {
-                if (e.keyCode == 13) {
-                    $("#TablaPersonas #tblPersonas").addClass("loading-background");
-                    $(".loading-personas").addClass("loading-show").removeClass("loading");
-                    var filtroBusqueda = $("#filtroBusqueda").val();
-                    $("#TablaPersonas").load('@Url.Action("_TablaUsuarios", "UsuarioView")', { filtroBusqueda }, function (response, status, xhr) {
-                        if (status == "success") {
-                            $("#TablaPersonas #tblPersonas").removeClass("loading-background");
-                            $(".loading-personas").addClass("loading").removeClass("loading-show");
-                        }
-                    });
-                }
-            });
-            $("#TablaPersonas").off("click", ".buscarSoli");
-            $("#TablaPersonas").on("click", ".buscarSoli", function (e) {
-                $("#TablaPersonas #tblPersonas").addClass("loading-background");
-                $(".loading-personas").addClass("loading-show").removeClass("loading");
-                    var filtroBusqueda = $("#filtroBusqueda").val();
-                    $("#TablaPersonas").load('@Url.Action("_TablaUsuarios", "UsuarioView")', { filtroBusqueda }, function (response, status, xhr) {
-                        if (status == "success") {
-                            $("#TablaPersonas #tblPersonas").removeClass("loading-background");
-                            $(".loading-personas").addClass("loading").removeClass("loading-show");
-                        }
-                    });
-            });
-
-        }
-
-
-
-
-            $("#TablaPersonas").off('click', '.eliminarPersona');
-            $("#TablaPersonas").on('click', '.eliminarPersona', function (e) {
+        $("#TablaEmpresas").off('click', '.eliminarEmpresa');
+        $("#TablaEmpresas").on('click', '.eliminarEmpresa', function (e) {
                 //alert(" ");
                 e.preventDefault();
-                var idUsuario = $(this).attr("id-item");
+                var Em_Cve_Empresa = $(this).attr("id-item");
                 ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea eliminar el registro?", 4);
                 $("#ModalAlert").modal({
                     dismissible: false,
@@ -261,8 +140,8 @@
                 $('#ModalAlert').on("click", ".md-accept", function () {
 
                     $.ajax({
-                        url: '@Url.Action("DeleteUsuario", "UsuarioView")',
-                        data: { idUsuario },
+                        url: '@Url.Action("DeleteUsuario", "FamiliaView")',
+                        data: { Em_Cve_Empresa },
                         type: "POST",
                         success: function (result) {
                             if (result.success) {
@@ -273,7 +152,7 @@
                                 $('#ModalAlert').on("click", ".md-accept", function () {
                                     $("#ModalAlert").modal('close');
                                 })
-                                $("#TablaPersonas").load('@Url.Action("_TablaUsuarios", "UsuarioView")', function (response, status, xhr) {
+                                $("#TablaEmpresas").load('@Url.Action("_TablaFamilia", "FamiliaView")', function (response, status, xhr) {
                                     if (status == "success") {
                                     }
                                 });
@@ -297,156 +176,45 @@
                 limpiar();
             });
 
+        function CargarReglasGeneralFormuario() {
+            var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(formulario);
 
+            jQuery.extend(jQuery.validator.messages, {
+                minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
+                maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
+            });
 
-
-
-            pass();
-            function pass() {
-                if ($("#idUsuario").val() == 0) {
-                    $("#nbUsuario").val("");
-                    $("#password").val("");
-                }
-            }
-
-
-
-
-
-            validatePass();
-            function validatePass() {
-
-                $("#password").on("change", function () {
-                    var pwd = $("#password").val();
-                    var pwd1 = $("#pwdContrasenia1").val();
-                    if (pwd == pwd1 && pwd !="") {
-                        $("#mensaje-success-pass").text("Contraseña valida");
-                        $("#mensaje-error-pass").text("");
-                        $(".guardarPersona").attr("disabled", false);
-                        return true;
-                    } else {
-                        $("#mensaje-error-pass").text("Las contraseñas no coinciden");
-                        $("#mensaje-success-pass").text("");
-                        $(".guardarPersona").attr("disabled", true);
-                        return false;
-
-                    }
-                });
-
-                $("#pwdContrasenia1").on("change", function () {
-                    var pwd = $("#password").val();
-                    var pwd1 = $("#pwdContrasenia1").val();
-                    if (pwd == pwd1 && pwd !="") {
-                        $("#mensaje-success-pass").text("Contraseña valida");
-                        $("#mensaje-error-pass").text("");
-                        $(".guardarPersona").attr("disabled", false);
-                        return true;
-                    } else {
-                        $("#mensaje-error-pass").text("Las contraseñas no coinciden");
-                        $("#mensaje-success-pass").text("");
-                        $(".guardarPersona").attr("disabled", true);
-                        return false;
-                    }
-                });
-
-            }
-
-
-
-
-
-            function validar(e) { // 1
-                tecla = (document.all) ? e.keyCode : e.which; // 2
-                if (tecla == 8) return true;
-                if (tecla == 9) return true;// 3
-                patron = /[0-9a-zA-Z._\-$@@$!%*?&/#]/; // 4
-                te = String.fromCharCode(tecla); // 5
-                return patron.test(te); // 6
-            }
-
-
-
-
-
-            function CargarReglasGeneralFormuario() {
-                var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");
-                $.validator.unobtrusive.parse(formulario);
-
-                jQuery.extend(jQuery.validator.messages, {
-                    minlength: jQuery.validator.format("El campo nombre debe llevar minimo {0} caracteres."),
-                    maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
-                });
-
-                $('#correo').rules("remove")
-                $('#correo').rules("add", {
-                    required: true,
-                    email: true,
-                    regex: "[A-Za-z0-9._%+-]+@@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
-                    messages: {
-                        required: "El campo correo electrónico es requerido.",
-                        email: "Por favor ingrese correo electrónico válido",
-                        regex: "Por favor ingrese correo electrónico válido",
-                    }
-                });
-
-                $('#Personas_nbCompleto').rules("remove")
-                $('#Personas_nbCompleto').rules("add", {
-                    required: true,
-                    //email: true,
-                    regex: "[A-za'-'\s]*$",
-                    messages: {
-                        required: "El campo nombre solo acepta letras.",
-                        //email: "Por favor ingrese correo electrónico válido",
-                        regex: "Por favor ingrese nombre completo",
-                    }
-                });
-
-                var foto = $("#foto").val();
-                if (foto == "") {
-                    $('#rutaPathImagen').rules("remove")
-                    $('#rutaPathImagen').rules("add", {
-                        required: true,
-                        messages: {
-                            required: "El foto de perfil es requerida.",
-                        }
-                    });
-                }
-
-
-
-
-                $('#pwdContrasenia1').rules("remove")
-                $('#pwdContrasenia1').rules("add", {
+            var foto = $("#Personas_pathFoto").val();
+            if (foto == "") {
+                $('#rutaPathImagen').rules("remove")
+                $('#rutaPathImagen').rules("add", {
                     required: true,
                     messages: {
-                        required: "El campo repetir contraseña es requerido.",
+                        required: "El logo de la empresa es requerida.",
                     }
                 });
-
             }
+        }
 
-
-
-
-            ConfigPictures();
+         ConfigPictures();
             function ConfigPictures() {
                 ////PATH IMAGENES
 
-                if ($("#foto").val() == null || $("#foto").val() == "") {
-                    //$("#ModelosFotos_0__pathFoto").val("~/Upload/Articulos/default.png");
-                    img1 = "~/Upload/Usuarios/default.png";
+                if ($("#Em_logo").val() == null || $("#Em_logo").val() == "") {
+                    img1 = "~/Upload/Empresa/default.png";
                     imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                 } else {
-                    img1 = $("#foto").val();
+                    img1 = $("#Em_logo").val();
                     imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                 }
 
 
                 $("#rutaPathImagen").fileinput({
-                    maxImageWidth: 3000,
-                    maxImageHeight: 3000,
+                    maxImageWidth: 600,
+                    maxImageHeight: 600,
                     language: "es",
-                    uploadUrl: '@Url.Action("CargarLogo", "UsuarioView")', // server upload action
+                    uploadUrl: '@Url.Action("CargarLogo", "EmpresasView")', // server upload action
                     uploadAsync: true,
                     showCaption: false,
                     maxFileCount: 1,
@@ -525,23 +293,18 @@
 
 
                 $('#rutaPathImagen').on('fileuploaded', function (event, data, previewId, index) {
-                    $("#foto").val(JSON.stringify(data.response.savedFileName));
+                    $("#Em_logo").val(JSON.stringify(data.response.savedFileName));
                     $(".valid-img").html("");
                 });
-                // $('#rutaPathImagen').on('filepreupload', function (event, data, previewId, index) {
-                //$("#rutaPathImagen").value = "";
-                // });
-
                 $("#rutaPathImagen").on("change", function (e) {
                     e.preventDefault();
-                    //$("#rutaPathImagen").value = "";
                     img1 = "";
                     imagen1 = ""
-                    if ($("#Personas_pathFoto").val() == null || $("#Personas_pathFoto").val() == "") {
-                        img1 = "~/Upload/Usuarios/default.png";
+                    if ($("#Em_logo").val() == null || $("#Em_logo").val() == "") {
+                        img1 = "~/Upload/Empresa/default.png";
                         imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                     } else {
-                        img1 = $("#foto").val();
+                        img1 = $("#Em_logo").val();
                         imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
                     }
                     $('#rutaPathImagen').fileinput('refresh', {
@@ -566,20 +329,20 @@
 
                 //...............eliminar imagen del servidor........
 
-                $("#New_UpdatePersona").on("click", ".eliminarfoto", function (e) {
+                $("#New_UpdateEmpresa").on("click", ".eliminarfoto", function (e) {
                     e.preventDefault();
-                    var path = $("#foto").val();
+                    var path = $("#Em_logo").val();
                     $.ajax({
-                        url: '@Url.Action("EliminarLogo", "UsuarioView")',
+                        url: '@Url.Action("EliminarLogo", "EmpresasView")',
                         data: { path},
                         type: "POST",
                         success: function (result) {
                             $("#rutaPathImagen").val("");
-                            $("#foto").val("");
+                            $("#Em_logo").val("");
                         }
                     });
 
-                    img1 = "~/Upload/Usuarios/default.png";
+                    img1 = "~/Upload/Empresa/default.png";
                     imagen1 = '@Url.Content("~")' + img1.replace('~/', '');
 
                     $('#rutaPathImagen').fileinput('refresh', {
@@ -603,17 +366,192 @@
 
             }
 
-            //====================== PAGINACIONES ===========================
-            //paginación personas
-            function FltOnBeginPer(obj) {
-                $("#TablaPersonas #tblPersonas").addClass("loading-background");
-                var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        @*ordenar();
+        function ordenar() {
+            $(".permiteOrdenar").click(function (){
+               var orden = $(this).data("order");
+                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { orden }, function (response, status, xhr) {
+                    ordenar();
+                    });
+                });
             }
 
-            function FltOnCompletePer(obj) {
-                $("#TablaPersonas #tblPersonas").removeClass("loading-background");
-                var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
-            }
+        // ---- BUSCAR ----
+       limpiar();
+        function limpiar() {
+            $("#TablaResguardoLaptop").off('click', ".limpiar");
+            $("#TablaResguardoLaptop").on('click', ".limpiar", function (e) {
+                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', function (response, status, xhr) {
+                    if (status == "success") {
+                        Buscar();
+                        ordenar();
+                    }
+                });
+
+            });
+
+        }
+
+        exportar();
+        function exportar() {
+            $("#TablaResguardoLaptop").off('click', ".excel");
+            $("#TablaResguardoLaptop").on('click', ".excel", function (e) {
+                e.preventDefault();
+            //$(".loading-descargar").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ExportarExcel", "ResguardosView")',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    //$(".loading-descargar").css("display", "none");
+                    if (result.success) {
+                        window.location.href = '@Url.Action("ExportarExcel", "ResguardosView")' + '/?Creado=' + 1;;
+                    }
+                    //} else {
+                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
+                    //    $("#ModalAlert").modal({
+                    //        dismissible: false,
+                    //    });
+                    //    $("#ModalAlert").modal('open');
+                    //}
+                }
+            });
+
+            });
+
+        }
+
+        Buscar();
+        function Buscar() {
+            $("#filtroBusquedaA").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var filtro = $("#filtroBusquedaA").val();
+                    $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { filtro }, function (response, status, xhr) {
+                        if (status == "success") {
+                            Buscar();
+                            ordenar();
+
+                        }
+                    });
+                }
+            });
+
+            $("#TablaResguardoLaptop").off("click", ".buscarSoli");
+            $("#TablaResguardoLaptop").on("click", ".buscarSoli", function (e) {
+
+                var filtro = $("#filtroBusquedaA").val();
+                $("#TablaResguardoLaptop").load('@Url.Action("_TablaReguardos", "ResguardosView")', { filtro }, function (response, status, xhr) {
+                        if (status == "success") {
+                            Buscar();
+                            ordenar();
+                        }
+                    });
+            });
+
+        }*@
+
+        //document.getElementById("#filtroBusquedaFe").title = "New tooltip"
+
+        @*enviar();
+        function enviar()
+        {
+            $("#TablaAlumnos").off("click", ".enviarSoli");
+            $("#TablaAlumnos").on("click", ".enviarSoli", function (e) {
+                var idAlumno = [];
+                $(".chek:checked").each(function () {
+                        var id = $(this).attr("id-item");
+                        idAlumno.push(id)
+                    });
+                if (idAlumno == 0) {
+                    ConfigModal($('#ModalAlert'), "ALERTA", "Debe al menos seleccionar un alumno", 3)
+                    $("#ModalAlert").modal({
+                        dismissible: false,
+                    });
+                    $("#ModalAlert").modal('open');
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Action("EnviarSolicitud", "AlumnoView")',
+                        data: { idAlumno },
+                        type: "POST",
+                        success: function (result) {//obtiene el resultado json
+
+                            if (result.success) {//si es true el resultado
+
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito", 1)//para crear la ventana flotante
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                            else {
+                                ConfigModal($('#ModalAlert'), "ALERTA", "Ocurrio un error al guardar los datos", 3)
+                                $("#ModalAlert").modal({
+                                    dismissible: false,
+                                });
+                                $("#ModalAlert").modal('open');
+                            }
+                        }
+                    });
+                }
+            });
+        }*@
+        //date();
+        //function date() {
+        //    $('#filtroBusquedaFe').pickadate({
+        //        selectMonths: true,
+        //        selectYears: 100,
+        //        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        //        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        //        weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        //        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        //        weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+        //        today: '',
+        //        clear: 'Limpiar',
+        //        close: 'Cerrar',
+        //        format: 'dd/mm/yyyy',
+        //        onStart: function () {
+        //            //this.set('select', $('#Pp_FechaInicio').val()); //Value por defecto al cargar el picker.
+        //            $('#filtroBusquedaFe').val($('#filtroBusquedaFe').val());
+        //        },
+        //       // min: new Date()
+        //    });
+        //}
+
+        //====================== PAGINACIONES ===========================
+        //paginación personas
+        //function FltOnBeginPer(obj) {
+        //    $("#TablaResguardoLaptop #contentTablaResguardos").addClass("loading-background");
+        //    var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        //    ordenar();
+        //    Buscar();
+        //}
+
+        //function FltOnCompletePer(obj) {
+        //    $("#TablaResguardoLaptop #contentTablaResguardos").removeClass("loading-background");
+        //    var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        //    ordenar();
+        //    Buscar();
+        //}
+
+
+
+        //====================== PAGINACIONES ===========================
+        //paginación personas
+
+        function FltOnBeginPer(obj) {
+            $("#TablaEmpresas #contenttblPersonas").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaEmpresas #contenttblPersonas").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+        }
 
     </script>
 }
+
+

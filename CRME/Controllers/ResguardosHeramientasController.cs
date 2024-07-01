@@ -259,7 +259,7 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Resguardos_lista_Em>("Sp_Get_Resguardo_EM").ToList();
+                    var productos = db.Database.SqlQuery<Resguardos_lista_Em_Excel>("Sp_Get_Resguardo_EM_Excel").ToList();
 
                     using (var libro = new ExcelPackage())
                     {

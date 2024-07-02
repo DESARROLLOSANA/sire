@@ -131,7 +131,6 @@ namespace CRME.Controllers
                 if (db.SaveChanges() > 0)
                 {
                     success = true;
-
                 }
             }
             catch (Exception ex)
@@ -206,7 +205,8 @@ namespace CRME.Controllers
                 {
                     lista = resguardo.Where(x => x.Nombres.ToUpper().Contains(filtro.ToUpper().Trim())
                     || x.Cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim()) || x.Mobiliario.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Color.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
+                    || x.Color.ToUpper().Contains(filtro.ToUpper().Trim()) || x.Ubicacion.ToUpper().Contains(filtro.ToUpper().Trim())
+                    || x.Departamento.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
 
                     ViewBag.filtro = filtro;
                 }

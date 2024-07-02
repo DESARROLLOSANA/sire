@@ -647,26 +647,26 @@
             // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
             // presente actualmente o agregado dinámicamente.
             $(document).on("change", "#Dp_Cve_Departamento", function () {
-                 // Se obtiene el valor seleccionado en el dropdown "Empresa"
-                 var selectedEmpresaId = $(this).val();
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
 
-                 // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
-                 $.ajax({
-                     url: '@Url.Action("GetpuestoByEmpresa", "UsuarioView")',
-                     type: 'GET',
-                     data: { Dp_Cve_Departamento: selectedEmpresaId },
-                     dataType: 'json',
-                     success: function (data) {
-                          // Se eliminan las opciones actuales del dropdown "Sucursal"
-                          $("#Pu_Cve_Puesto").empty();
-                          $("#Pu_Cve_Puesto").append('<option value=""> -- Seleccione un puesto -- </option>');
-                          // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
-                          $.each(data, function (index, item) {
-                              $("#Pu_Cve_Puesto").append('<option value="' + item.Value + '">' + item.Text + '</option>');
-                          });
-                      }
-                  });
-           );
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                $.ajax({
+                    url: '@Url.Action("GetpuestoByEmpresa", "UsuarioView")',
+                    type: 'GET',
+                    data: { Dp_Cve_Departamento: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Pu_Cve_Puesto").empty();
+                        $("#Pu_Cve_Puesto").append('<option value=""> -- Seleccione un puesto -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Pu_Cve_Puesto").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });
+            });
         }
 
             //====================== PAGINACIONES ===========================

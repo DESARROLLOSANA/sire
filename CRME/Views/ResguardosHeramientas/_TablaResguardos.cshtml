@@ -33,11 +33,13 @@
         <div class="col l12 m12 s12">
             <table class="margin-top-25 striped highlight light-blue">
                 <thead class="table-header-blue">
-                    <tr class="table-header-tr-blue">                                       
-                        <td class="center permiteOrdenar"> #</td>                                
-                        <td class="center hide-on-med-and-down permiteOrdenar">Co-responsable</td>
-                        <td class="center hide-on-med-and-down permiteOrdenar"> Asignado</td>
-                        <td class="center hide-on-med-and-down">Detalles</td>                       
+                    <tr class="table-header-tr-blue">
+                        <td class="center permiteOrdenar"> Id resguardo</td>
+                        <td class="center hide-on-med-and-down permiteOrdenar">Asignado</td>
+                        <td class="center hide-on-med-and-down permiteOrdenar"> Co-responsable</td>
+                        <td class="center hide-on-med-and-down permiteOrdenar"> entrega</td>
+                        <td class="center hide-on-med-and-down permiteOrdenar"> Tipo resguardo</td>
+                        <td class="center hide-on-med-and-down">Detalles</td>
                     </tr>
                 </thead>
                 <tbody class="table-body-blue">
@@ -58,9 +60,29 @@
                     <td class="right-align">@item.Resguardo_Mobiliario_ID</td>
                     <td class="center-align">@item.Nombres</td>
                     <td class="center-align">@item.nombresco</td>
+                    <td class="center-align">@item.entrega</td>
+                    @{var temporalidad = "";
+                        if(item.Temporalidad == 1)
+                        {
+                            temporalidad = "Indefinido";
+                        }
+                        else if (item.Temporalidad == 2)
+                        {
+                            temporalidad = "Temporal";
+                        }
+                        else
+                        {
+                            temporalidad = "No configurado";
+                        }
+                    }
+                    <td class="center-align">@temporalidad</td>
                     <td class="center-align">
-                        <a class="editarPersona" data-position="bottom" data-delay="50" title="Ver resguardo # @item.Resguardo_Mobiliario_ID" data-tooltip="Ver Resguardo # @item.Resguardo_Mobiliario_ID" style="cursor:pointer;" href="@Url.Action("VisualizarResguardo","ResguardosHeramientas", new { idresguardo = item.Resguardo_Mobiliario_ID})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
-                    </td>                    
+                        @if (item.estado == 2)
+                        {
+                            <a class="editarPersona" data-position="bottom" data-delay="50" title="Ver resguardo # @item.Resguardo_Mobiliario_ID" data-tooltip="Ver Resguardo # @item.Resguardo_Mobiliario_ID" style="cursor:pointer;" href="@Url.Action("VisualizarResguardo","ResguardosHeramientas", new { idresguardo = item.Resguardo_Mobiliario_ID})" id-vend=""><i class="small mdi mdi-eye" style="color:red"></i></a>
+                        }                    
+
+                    </td>
 
                 </tr>
                         }

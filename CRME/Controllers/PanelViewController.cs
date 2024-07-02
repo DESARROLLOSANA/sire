@@ -15,6 +15,7 @@ namespace CRME.Controllers
                 return RedirectToAction("Index", "AccesoView");
             }
             ViewBag.HiddenMenu = 1;
+            
             return View();
         }
     }

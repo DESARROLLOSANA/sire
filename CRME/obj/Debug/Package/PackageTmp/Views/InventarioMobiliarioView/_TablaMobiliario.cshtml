@@ -61,8 +61,8 @@
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.cod_inventario)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.folio)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.fecha_folio)</td>
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.ubicacion)</td>
-                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => item.departamento)</td>
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Sucursal.Find(item.Sc_Cve_Sucursal).Sc_Descripcion)</td>
+                    <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.Departamentos.Find(item.Dp_Cve_Departamento).Dp_Descripcion)</td>
                     <td class="center hide-on-small-only" style="">@Html.DisplayFor(modelItem => db.cat_estatus_inv.Find(item.estatus_ID).estatus)</td>
                     <td class="center">
                         <a href="#ancla" class="editarEmpresa" data-position="bottom" data-delay="50" title="Editar" data-tooltip="Editar" style="cursor:pointer;" id-item="@item.inv_mobiliario_ID" id-vend=""><i class="mdi mdi-pencil mdi-24px yellow-text"></i></a>&nbsp;&nbsp;

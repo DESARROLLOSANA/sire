@@ -254,51 +254,6 @@
                 maxlength: jQuery.validator.format("Porfavor ingrese caracteres no mayores a {0}.")
             });
 
-            //var foto = $("#Personas_pathFoto").val();
-            //if (foto == "") {
-            //    $('#rutaPathImagen').rules("remove")
-            //    $('#rutaPathImagen').rules("add", {
-            //        required: true,
-            //        messages: {
-            //            required: "El logo de la empresa es requerida.",
-            //        }
-            //    });
-            //}
-        }
-
-        
-     @*
-        exportar();
-        function exportar() {
-            $("#TablaResguardoLaptop").off('click', ".excel");
-            $("#TablaResguardoLaptop").on('click', ".excel", function (e) {
-                e.preventDefault();
-            //$(".loading-descargar").css("display", "block");
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("ExportarExcel", "ResguardosView")',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    //$(".loading-descargar").css("display", "none");
-                    if (result.success) {
-                        window.location.href = '@Url.Action("ExportarExcel", "ResguardosView")' + '/?Creado=' + 1;;
-                    }
-                    //} else {
-                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
-                    //    $("#ModalAlert").modal({
-                    //        dismissible: false,
-                    //    });
-                    //    $("#ModalAlert").modal('open');
-                    //}
-                }
-            });
-
-            });
-
-        }
-     *@
 
         //====================== PAGINACIONES ===========================
         //paginación personas

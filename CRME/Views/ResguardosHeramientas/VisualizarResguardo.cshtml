@@ -158,7 +158,7 @@
                                 //if ($("#ModalAlert").modal('close')) {
                                     window.location = "/ResguardosHeramientas/index";
                                 //}
-                               
+
                             } else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
                                 $("#ModalAlert").modal({
@@ -229,13 +229,78 @@ function ComboDepartamento() {
             });
         }
 
+                ComboTemporalidad();
+        function ComboTemporalidad() {
+            // Utilizar la delegación de eventos con .on() para vincular el evento change
+            // a cualquier elemento dentro del documento con el selector #Em_Cve_Empresa,
+            // presente actualmente o agregado dinámicamente.
+            $(document).on("change", "#cvtemporalidad", function () {
+                // Se obtiene el valor seleccionado en el dropdown "Empresa"
+                var selectedEmpresaId = $(this).val();
+                var x = document.getElementById("coresp");
+                var y = document.getElementById("duracion");
+
+                if (selectedEmpresaId == 2) {
+                    x.style.display = "none";
+                    y.style.display = "block";
+                } else {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    //$("#cvpduracion").select.item("");
+                    $("#cvpduracion").val("");
+                    $("#Cantidad").value = 0;
+                }
+
+                // Se realiza una llamada AJAX para obtener las "Sucursales" basadas en el Id de "Empresa" seleccionado
+                @*$.ajax({
+                    url: '@Url.Action("GetdepartamentosBySucursal", "ResguardosHeramientas")',
+                    type: 'GET',
+                    data: { Sc_Cve_Sucursal: selectedEmpresaId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Se eliminan las opciones actuales del dropdown "Sucursal"
+                        $("#Dp_Cve_Departamento").empty();
+                        $("#Dp_Cve_Departamento").append('<option value=""> -- Seleccione un area -- </option>');
+                        // Se agregan las nuevas opciones al dropdown "Sucursal" basadas en los datos recibidos
+                        $.each(data, function (index, item) {
+                            $("#Dp_Cve_Departamento").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    }
+                });*@
+            });
+        }
+
+        limpiar();
+        function limpiar() {
+            $("#FrmDatosResguardo").off('click', '.limpiar');
+            $("#FrmDatosResguardo").on('click', '.limpiar', function (e) {
+                if ($("#Dp_Cve_Departamento").val() != "") {                
+                    var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
+                    $("#filtroBusquedaA").val("");
+                    $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento }, function (response, status, xhr) {
+                    if (status == "success") {                     
+                        chekear();
+                        }
+                    });
+                }
+                else {
+                    ConfigModal($('#ModalAlert'), "ALERTA", "Debe seleccionar una area", 3)
+                    $("#ModalAlert").modal({
+                        dismissible: false,
+                    });
+                    $("#ModalAlert").modal('open');
+                }
+            });
+        }
+
         cargar();
         function cargar() {
             $("#FrmDatosResguardo").off('click', '.cargadatos');
             $("#FrmDatosResguardo").on('click', '.cargadatos', function (e) {
                 if ($("#Dp_Cve_Departamento").val() != "") {
+                var filtro = $("#filtroBusquedaA").val();
                 var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
-                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento }, function (response, status, xhr) {
+                    $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento, filtro }, function (response, status, xhr) {
                     if (status == "success") {
                         selTodos();
                         }
@@ -266,7 +331,7 @@ function ComboDepartamento() {
             });
         }
 
-       
+
         var idem = "";
 
         var idAlumno = [];
@@ -285,22 +350,22 @@ function ComboDepartamento() {
             }
 
         });
-      
+
         agrega();
         function agrega() {
             $("#TablaResguardoMobiliario .chek:checked").each(function () {
                // var id = $(this).attr("id-item");
                 //for (var i = 0; i <= idAlumno.length; i++) {
-                var id = $(this).attr("id-item");                                            
+                var id = $(this).attr("id-item");
                 //    if (idAlumno[i] == id) {
                 //        $(this).prop("checked", true);
                 //    }
                 //}
                 idAlumno.push(id)
             });
-            
+
         }
-        
+
         quita();
         function quita() {
             $("#TablaResguardoMobiliario .chek:not(:checked)").each(function () {
@@ -317,19 +382,30 @@ function ComboDepartamento() {
             });
         }
 
-        
-        
+
+
 
         guardar();
-        function guardar() {           
+        function guardar() {
             $("#FrmDatosResguardo").off('click', '.guardarResguardo');
             $("#FrmDatosResguardo").on('click', '.guardarResguardo', function (e) {
                 e.preventDefault();
                 if ($("#FrmDatosResguardo").valid()) {
                     var frmValues = $("#FrmDatosResguardo").serialize();
                     var id_recibe = $("#id_recibe").val();
-                    var id_recibeco = $("#id_recibeCo").val();
+                    var id_recibeco = 0;
                     var Id_entrega = $("#Id_entrega").val();
+                    var temporalidad = $("#cvtemporalidad").val();
+                    var tiempo = 0;
+                    var cantidad =0;
+
+                    if ($("#cvtemporalidad").val() == 1) {
+                        id_recibeco = $("#id_recibeCo").val();
+                    }
+                    else {
+                         tiempo = $("#cvpduracion").val();
+                         cantidad = $("#Cantidad").val();
+                    }
 
                     if (idAlumno == 0) {
                         ConfigModal($('#ModalAlert'), "ALERTA", "Debe al menos seleccionar un registro", 3)
@@ -338,13 +414,13 @@ function ComboDepartamento() {
                         });
                         $("#ModalAlert").modal('open');
                     }
-                    else {                       
+                    else {
                         $.ajax({
                             type: "POST",
                             url: '@Url.Action("SaveResguardo", "ResguardosHeramientas")',
                             cache: false,
                             //data: id_recibe + "&Id_entrega=" + Id_entrega + "&id_recibeco=" + id_recibeco + "&idAlumno=" + idAlumno,// "&idAlumno=" + idAlumno,
-                            data: { id_recibe ,Id_entrega, id_recibeco ,idAlumno},// "&idAlumno=" + idAlumno,
+                            data: { id_recibe, Id_entrega, id_recibeco, temporalidad, tiempo, cantidad ,idAlumno},// "&idAlumno=" + idAlumno,
                             //data: JSON.stringify({ id_recibe: id_recibe, idAlumno: idAlumno }),
                             //contentType: "application/json; charset=utf-8",
                             success: function (result) {
@@ -357,7 +433,7 @@ function ComboDepartamento() {
                                     dismissible: false,
                                 });
                                 $("#ModalAlert").modal('open');
-                              
+
                                 window.location = "/ResguardosHeramientas/index";
                             } else if (result.mensajefound != "") {
                                 ConfigModal($('#ModalAlert'), "", result.mensajefound, 3)//para crear la ventana flotante
@@ -386,9 +462,81 @@ function ComboDepartamento() {
                     }
                 }
             });
+        }      
+
+        Buscar();
+        function Buscar() {
+            $("#filtroBusquedaA").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var filtro = $("#filtroBusquedaA").val();
+                    var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento,filtro }, function (response, status, xhr) {
+                    if (status == "success") {
+                        selTodos();
+                        }
+                    });
+                }
+            });
+
+            $("#FrmDatosResguardo").off('click', '.buscarSoli');
+            $("#FrmDatosResguardo").on('click', '.buscarSoli', function (e) {
+
+               var filtro = $("#filtroBusquedaA").val();
+               var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento,filtro }, function (response, status, xhr) {
+                    if (status == "success") {
+                        selTodos();
+                        }
+                    });
+            });
         }
 
+         @*Buscar();
+        function Buscar() {
+            $("#filtroBusquedaA").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var filtro = $("#filtroBusquedaA").val();
+                    var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
+                    $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento, filtro }, function (response, status, xhr) {
+                        if (status == "success") {
+                            Buscar();
 
+
+                        }
+                    });
+                }
+            });
+
+            $("#TablaResguardoMobiliario").off("click", ".buscarSoli");
+            $("#TablaResguardoMobiliario").on("click", ".buscarSoli", function (e) {
+
+                var filtro = $("#filtroBusquedaA").val();
+                var Dp_Cve_Departamento = $("#Dp_Cve_Departamento").val();
+                $("#TablaResguardoMobiliario").load('@Url.Action("_TablaHerramientas", "ResguardosHeramientas")', { Dp_Cve_Departamento, filtro }, function (response, status, xhr) {
+                        if (status == "success") {
+                            Buscar();
+
+                        }
+                    });
+            });
+
+        }*@
+
+         // ---- BUSCAR ----
+
+
+        function FltOnBeginPer(obj) {
+            $("#TablaResguardoMobiliario #contentTablaResguardosMobiliario").addClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading-show").removeClass("loading");
+            Buscar();
+        }
+
+        function FltOnCompletePer(obj) {
+            $("#TablaResguardoMobiliario #contentTablaResguardosMobiliario").removeClass("loading-background");
+            var $oncomplete = $('.loading-personas').addClass("loading").removeClass("loading-show");
+
+            Buscar();
+        }
 
 
     </script>

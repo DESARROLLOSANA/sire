@@ -27,5 +27,13 @@
         public string observaciones { get; set; }
 
         public int? estatus_ID { get; set; }
+
+        public int temporalidad { get; set; }
+
+        public int cantidad { get; set; }
+
+        public int tipo { get; set; }
+
+        public DateTime fechaperiodo { get; set; }
     }
 }

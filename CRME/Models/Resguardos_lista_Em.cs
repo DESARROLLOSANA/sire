@@ -10,6 +10,9 @@ namespace CRME.Models
 		public int? Resguardo_Mobiliario_ID { get; set; }
 		public string Nombres { get; set; }
 		public string nombresco { get; set; }
-		public string entrega { get; set; }		
+		public string entrega { get; set; }
+		public int Temporalidad { get; set; }
+		public int estado { get; set; }
+
 	}
 }

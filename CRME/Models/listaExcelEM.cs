@@ -10,13 +10,15 @@ namespace CRME.Models
         public string Cod_Inventario { get; set; }
         public string Sucursal { get; set; }
         public string Descripcion { get; set; }
-        public string unidad_medida { get; set; }
-        public string medida { get; set; }
-        public string marca { get; set; }
-        public string serie { get; set; }
-        public string modelo { get; set; }
-        public string condicion { get; set; }
-        public string estado { get; set; }
+        public string Unidad_Medida { get; set; }
+        public string Medida { get; set; }
+        public string Marca { get; set; }
+        public string Serie { get; set; }
+        public string Modelo { get; set; }
+        public string Condicion { get; set; }
+        public string Estado { get; set; }
+        public string Folio { get; set; }
+        public string Recibio { get; set; }
 
     }
 }

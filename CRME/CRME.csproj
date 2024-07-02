@@ -297,6 +297,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoViewController.cs" />
     <Compile Include="Controllers\AutorizacionViewController.cs" />
+    <Compile Include="Controllers\CambiarFPViewController.cs" />
     <Compile Include="Controllers\CargaDescargaViewController.cs" />
     <Compile Include="Controllers\CecosViewController.cs" />
     <Compile Include="Controllers\CondicionViewController.cs" />
@@ -321,6 +322,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedidasViewController.cs" />
     <Compile Include="Controllers\MobiliarioViewController.cs" />
+    <Compile Include="Controllers\NotificacionesViewController.cs" />
     <Compile Include="Controllers\NuevoEmpleadosViewController.cs" />
     <Compile Include="Controllers\PanelInvViewController.cs" />
     <Compile Include="Controllers\PanelViewController.cs" />
@@ -401,6 +403,7 @@
     <Compile Include="Models\Control_Interno.cs" />
     <Compile Include="Models\Correos_Calidad.cs" />
     <Compile Include="Models\Cuestionario.cs" />
+    <Compile Include="Models\Datos_Notificacion.cs" />
     <Compile Include="Models\Doc_apoyo.cs" />
     <Compile Include="Models\Equipo_Menor.cs" />
     <Compile Include="Models\Estados.cs" />
@@ -428,6 +431,7 @@
     <Compile Include="Models\Programacion.cs" />
     <Compile Include="Models\Requerimiento.cs" />
     <Compile Include="Models\Resguardos_lista_Em.cs" />
+    <Compile Include="Models\Resguardos_lista_Em_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Impresoras.cs" />
@@ -490,6 +494,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResponsivaEmsambles.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaEmTemp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsivaEmTemp.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\ResponsivaImpSana1.cs">
@@ -894,6 +904,11 @@
     <Content Include="Views\UnidadMedidaView\_TablaMedidas.cshtml" />
     <Content Include="Views\UnidadMedidaView\Index.cshtml" />
     <Content Include="Views\ResguardosHeramientas\_TablaHerramientas.cshtml" />
+    <Content Include="Views\NotificacionesView\Index.cshtml" />
+    <Content Include="Views\NotificacionesView\_TablaNotificacion.cshtml" />
+    <Content Include="Views\CambiarFPView\Index.cshtml" />
+    <Content Include="Views\CambiarFPView\_Formulario.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\_TablaResguardo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -924,6 +939,10 @@
     <EmbeddedResource Include="Reportes\ResponsivaEmsambles.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ResponsivaEmsambles.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaEmTemp.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaEmTemp.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ResponsivaImpSana.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

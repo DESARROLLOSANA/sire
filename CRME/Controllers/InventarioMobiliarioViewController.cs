@@ -89,13 +89,29 @@ namespace CRME.Controllers
                         string[] ultimos = conver.Split('/', ' ', ':', '0');
                         char[] maspruba = conver.ToCharArray();
 
+                    var primerravez = db.inventario_mobiliario.ToList();
+
+                    if (primerravez.Count == 0)
+                    {
+                        Empresa etiqueta = db.Empresa.Find(empre.Em_Cve_Empresa);
+                        //se añade la cadena generada como codigo de inventario
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + ultimos[5] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        string temporal = etiqueta.Em_Descripcion.Replace(" ", "");
+                        empre.cod_inventario = temporal.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(1);
+                    }
+                    else
+                    {
                         inventario_mobiliario modificador = db.inventario_mobiliario.OrderByDescending(x => x.inv_mobiliario_ID).First();
                         Empresa etiqueta = db.Empresa.Find(empre.Em_Cve_Empresa);
-                    //se añade la cadena generada como codigo de inventario
-                    //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + ultimos[5] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
-                    //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
-                        string temporal = etiqueta.Em_Descripcion.Replace(" ","");
+                        //se añade la cadena generada como codigo de inventario
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + ultimos[5] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        string temporal = etiqueta.Em_Descripcion.Replace(" ", "");
                         empre.cod_inventario = temporal.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                    }
+
+                       
 
 
                     db.inventario_mobiliario.Add(empre);
@@ -205,7 +221,7 @@ namespace CRME.Controllers
                 //añadir controlador de listas
                 //ViewBag.idGenero = new SelectList(db.CatGeneros.ToList(), "idGenero", "nbGenero");     
                 ViewBag.sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Empresas.Sc_Cve_Sucursal);
-                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamentos", "Dp_Descripcion", Empresas.Dp_Cve_Departamento);
+                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Empresas.Dp_Cve_Departamento);
                 ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
                 ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
                 ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);

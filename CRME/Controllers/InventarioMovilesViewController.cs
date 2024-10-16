@@ -252,7 +252,7 @@ namespace CRME.Controllers
 
 
         // aqui se introduce el metodo para generar el excel
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -275,7 +275,16 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Inventario_Lista_Moviles_Excel>("Sp_Get_Inventario_Moviles_excel").ToList();
+                    //var productos = db.Database.SqlQuery<Inventario_Lista_Moviles_Excel>("Sp_Get_Inventario_Moviles_excel").ToList();
+                    List<Inventario_Lista_Moviles_Excel> productos = new List<Inventario_Lista_Moviles_Excel>();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<Inventario_Lista_Moviles_Excel>("Sp_Get_Inventario_Moviles_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<Inventario_Lista_Moviles_Excel>("Sp_Get_Inventario_Moviles_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
 
                     using (var libro = new ExcelPackage())
                     {

@@ -205,10 +205,16 @@ namespace CRME.Controllers
                 }
                 else
                 {
-                    lista = resguardo.Where(x => x.Nombres.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Numero_economico.ToUpper().Contains(filtro.ToUpper().Trim()) || x.Tipo.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Placas.ToUpper().Contains(filtro.ToUpper().Trim()) || x.Ubicacion.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Departamento.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
+                    var filtroUpper = filtro.ToUpper().Trim();
+
+                     lista = resguardo.Where(x =>
+                        (x.Nombres ?? string.Empty).ToUpper().Contains(filtroUpper) ||
+                        (x.Numero_economico ?? string.Empty).ToUpper().Contains(filtroUpper) ||
+                        (x.Tipo ?? string.Empty).ToUpper().Contains(filtroUpper) ||
+                        (x.Placas ?? string.Empty).ToUpper().Contains(filtroUpper) ||
+                        (x.Ubicacion ?? string.Empty).ToUpper().Contains(filtroUpper) ||
+                        (x.Departamento ?? string.Empty).ToUpper().Contains(filtroUpper)
+                    ).ToList();
 
                     ViewBag.filtro = filtro;
                 }
@@ -219,7 +225,7 @@ namespace CRME.Controllers
                 return PartialView();
             }
         }
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -241,8 +247,17 @@ namespace CRME.Controllers
             {
                 try
                 {
- 
-                    var productos = db.Database.SqlQuery<Resguardos_Lista_Vehiculos_Excel>("Sp_Get_Resguardos_Vehiculos_excel").ToList();
+
+                    List<Resguardos_Lista_Vehiculos_Excel> productos = new List<Resguardos_Lista_Vehiculos_Excel>();
+                    productos = db.Database.SqlQuery<Resguardos_Lista_Vehiculos_Excel>("Sp_Get_Resguardos_Vehiculos_excel").ToList();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Vehiculos_Excel>("Sp_Get_Resguardos_Vehiculos_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Vehiculos_Excel>("Sp_Get_Resguardos_Vehiculos_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
 
                     using (var libro = new ExcelPackage())
                     {
@@ -312,7 +327,7 @@ namespace CRME.Controllers
                         excelImage2.From.RowOff = Pixel2MTU(2);
                         #endregion
 
-                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 2, toRow: productos.Count + 6, toColumn: 12), "Resguardos");
+                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 2, toRow: productos.Count + 6, toColumn: 10), "Resguardos");
                         tabla.ShowHeader = true;
                         tabla.TableStyle = TableStyles.Light6;
                         libro.Workbook.Properties.Company = "Ciclo ambiental";
@@ -366,9 +381,11 @@ namespace CRME.Controllers
             {
                 List<SelectListItem> items2 = new List<SelectListItem>();
                 items2.Add(new SelectListItem { Value = "Operaciones", Text = "Operaciones" });
-                items2.Add(new SelectListItem { Value = "Camprestre", Text = "Camprestre" });
+                items2.Add(new SelectListItem { Value = "Ciclo Ambiental", Text = "Ciclo Ambiental" });
                 items2.Add(new SelectListItem { Value = "Corbase", Text = "Corbase" });
                 items2.Add(new SelectListItem { Value = "Kanasín", Text = "Kanasín" });
+                items2.Add(new SelectListItem { Value = "Ecolsur-Mid", Text = "Ecolsur MID" });
+                items2.Add(new SelectListItem { Value = "Ecolsur-CUN", Text = "Ecolsur CUN" });
                 ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text");
 
                 List<SelectListItem> items3 = new List<SelectListItem>();

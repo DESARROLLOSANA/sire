@@ -7,7 +7,7 @@ namespace CRME.Models
 {
 	public class Inventario_Impresoras_Excel
 	{
-	 public int Registro { get; set; }
+	 public int Numero_Entrada { get; set; }
 	 public string Serie { get; set; }
 	 public string Marca { get; set; }
 	 public string Modelo { get; set; }

@@ -249,7 +249,7 @@ namespace CRME.Controllers
             //obtener lista de usuarios
             List<Solicitud_Mtto> Edificios = new List<Solicitud_Mtto>();
 
-            Edificios = db.Solicitud_Mtto.Where(x => x.Id_Estado == 1 || x.Id_Estado == 3).OrderBy(x => x.Id_Solicitud).ToList();
+            Edificios = db.Solicitud_Mtto.Where(x => x.Id_Estado == 1 || x.Id_Estado == 3 || x.Id_Estado == 4).OrderBy(x => x.Id_Solicitud).ToList();
             if (!string.IsNullOrEmpty(filtroBusqueda))
             {
                 Edificios = Edificios.Where(x => x.Sm_Descripcion.ToUpper().Contains(filtroBusqueda.ToUpper().Trim())).ToList();

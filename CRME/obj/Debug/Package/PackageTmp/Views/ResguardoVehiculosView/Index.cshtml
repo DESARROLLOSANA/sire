@@ -72,17 +72,16 @@
             $("#TablaResguardoMobiliario").off('click', ".excel");
             $("#TablaResguardoMobiliario").on('click', ".excel", function (e) {
                 e.preventDefault();
+                var filtro = $("#filtroBusquedaA").val();
             //$(".loading-descargar").css("display", "block");
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("ExportarExcel", "ResguardoVehiculosView")',
-                cache: false,
-                contentType: false,
-                processData: false,
+                data: {filtro},
                 success: function (result) {
                     //$(".loading-descargar").css("display", "none");
                     if (result.success) {
-                        window.location.href = '@Url.Action("ExportarExcel", "ResguardoVehiculosView")' + '/?Creado=' + 1;;
+                        window.location.href = '@Url.Action("ExportarExcel", "ResguardoVehiculosView")' + '/?Creado=' + 1 + '&filtro=' + filtro;
                     }
                     //} else {
                     //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
@@ -97,31 +96,6 @@
             });
 
         }
-
-        @*$(".excel").click(function (e) {
-            e.preventDefault();
-            //$(".loading-descargar").css("display", "block");
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("ExportarExcel", "ResguardosView")',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    //$(".loading-descargar").css("display", "none");
-                    if (result.success) {
-                        window.location.href = '@Url.Action("ExportarExcel", "ResguardosView")' + '/?Creado=' + 1;;
-                    }
-                    //} else {
-                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
-                    //    $("#ModalAlert").modal({
-                    //        dismissible: false,
-                    //    });
-                    //    $("#ModalAlert").modal('open');
-                    //}
-                }
-            });
-        });*@
 
         Buscar();
         function Buscar() {

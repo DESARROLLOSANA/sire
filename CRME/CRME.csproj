@@ -409,6 +409,7 @@
     <Compile Include="Models\Estados.cs" />
     <Compile Include="Models\EstadosAC.cs" />
     <Compile Include="Models\Familia.cs" />
+    <Compile Include="Models\Inventario_Emsamble_Excel.cs" />
     <Compile Include="Models\Inventario_Impresoras_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Laptops_Excel.cs" />

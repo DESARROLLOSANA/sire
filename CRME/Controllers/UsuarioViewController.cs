@@ -245,8 +245,11 @@ namespace CRME.Controllers
             Usuarios = db.cat_sistemas.Where(x => x.estatus_ID == 1).OrderBy(x => x.nombre).ToList();
             if (!string.IsNullOrEmpty(filtroBusqueda))
             {
-                Usuarios = Usuarios.Where(x => x.nombre.ToUpper().Contains(filtroBusqueda.ToUpper().Trim()) || x.apellido_paterno.ToUpper().Contains(filtroBusqueda.ToUpper().Trim())
-                || x.apellido_materno.ToUpper().Contains(filtroBusqueda.ToUpper().Trim())).ToList();
+            Usuarios = Usuarios.Where(x =>
+                (x.nombre?.ToUpper() ?? "").Contains(filtroBusqueda.ToUpper().Trim()) ||
+                (x.apellido_paterno?.ToUpper() ?? "").Contains(filtroBusqueda.ToUpper().Trim()) ||
+                (x.apellido_materno?.ToUpper() ?? "").Contains(filtroBusqueda.ToUpper().Trim())
+            ).ToList();
             }
             ViewBag.filtro = filtroBusqueda;
             return PartialView(Usuarios.ToPagedList(pageNumber, pageSize));

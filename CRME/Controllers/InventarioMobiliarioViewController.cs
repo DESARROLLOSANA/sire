@@ -243,7 +243,7 @@ namespace CRME.Controllers
         }
 
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -266,7 +266,7 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Inventario_Lista_Excel>("Sp_Get_Inventario_mobiliario_excel").ToList();
+                    var productos = db.Database.SqlQuery<Inventario_Lista_Excel>("Sp_Get_Inventario_mobiliario_excel @filtro", new SqlParameter("@filtro", filtro)).ToList();
 
                     using (var libro = new ExcelPackage())
                     {
@@ -327,7 +327,7 @@ namespace CRME.Controllers
                         //get the image from disk                        
                         var excelImage2 = worksheet.Drawings.AddPicture("logo empresa", logo2);
                         //add the image to row 20, column E
-                        excelImage2.From.Column = 6;
+                        excelImage2.From.Column = 9;
                         //excelImage2.From.Column = 9;
                         excelImage2.From.Row = 0;
                         excelImage2.SetSize(150, 80);
@@ -379,8 +379,21 @@ namespace CRME.Controllers
             }
             else
             {
-                var lista = db.inventario_mobiliario.Where(x => x.tipo.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim()) || x.folio.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
+                var existe = db.inventario_tipo_mobiliario.Any(tm => tm.mobiliario == filtro);
+
+                var lista = (from im in db.inventario_mobiliario
+                             join tm in db.inventario_tipo_mobiliario on im.tipo_mobiliario_ID equals tm.tipo_mobiliario_ID
+                             join sc in db.Sucursal on im.Sc_Cve_Sucursal equals sc.Sc_Cve_Sucursal
+                             join dp in db.Departamentos on im.Dp_Cve_Departamento equals dp.Dp_Cve_Departamento
+                             where im.tipo.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.folio.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.color.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || tm.mobiliario.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || dp.Dp_Descripcion.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || sc.Sc_Descripcion.ToUpper().Contains(filtro.ToUpper().Trim())
+                             select im).ToList();
 
                 ViewBag.filtro = filtro;
 

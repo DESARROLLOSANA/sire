@@ -732,7 +732,7 @@ namespace CRME.Controllers
             #endregion
         }
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -754,7 +754,15 @@ namespace CRME.Controllers
             {
                 try
                 {
-                    var productos = db.Database.SqlQuery<lista_Inv_Unidades_excel>("Sp_Get_Inventario_unidades_excel").ToList();
+                    List<lista_Inv_Unidades_excel> productos = new List<lista_Inv_Unidades_excel>();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<lista_Inv_Unidades_excel>("Sp_Get_Inventario_unidades_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<lista_Inv_Unidades_excel>("Sp_Get_Inventario_unidades_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
 
                     using (var libro = new ExcelPackage())
                     {

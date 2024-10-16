@@ -1781,7 +1781,6 @@ C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\bin\es\Microsoft.Owin.Security.
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.Migrations.CambiosenCat_Usuarios.resources
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.Migrations.cambiocat_usuariosrfc.resources
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.csproj.GenerateResource.cache
@@ -1789,3 +1788,4 @@ C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.csproj.CoreCompi
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.csproj.CopyComplete
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.dll
 C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.pdb
+C:\Users\Soporte-Sana\Documents\GitHub\sire\CRME\obj\Debug\CRME.csproj.AssemblyReference.cache

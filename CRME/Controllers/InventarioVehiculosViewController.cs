@@ -625,7 +625,7 @@ namespace CRME.Controllers
 
 
         //// aqui se introduce el metodo para generar el excel
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -648,7 +648,7 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Inventario_Lista_Vehiculo_Excel>("Sp_Get_Vehiculos_Excel").ToList();
+                    var productos = db.Database.SqlQuery<Inventario_Lista_Vehiculo_Excel>("Sp_Get_Vehiculos_Excel @filtro", new SqlParameter("@filtro", filtro)).ToList();
 
                     using (var libro = new ExcelPackage())
                     {

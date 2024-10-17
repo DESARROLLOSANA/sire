@@ -378,27 +378,6 @@
             }, 1000);
         });
 
-
-        @*Buscar();
-        limpiar();
-        function limpiar() {
-            $("#botones").off('click', ".limpiar");
-            $("#botones").on('click', ".limpiar", function (e) {
-                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "HerramientasView")', function (response, status, xhr) {
-                    if (status == "success") {
-                        Buscar();
-                    }
-
-                });
-                $("#Filtros").load('@Url.Action("filtros", "HerramientasView")', function (response, status, xhr) {
-                    if (status == "success") {
-                        Buscar();
-                    }
-
-                });
-            });
-        }*@
-
         Buscar();
         function Buscar() { // esta es la funcion donde se usa teclas
             $('#btnBuscarum').on('click', function () {
@@ -515,6 +494,7 @@
 
 
         }
+
         BuscarNombre();
         function BuscarNombre() { // esta es la funcion donde se usa teclas
             $("#filtronombre").keyup(function (e) {
@@ -545,18 +525,6 @@
             });
 
         }
-
-         @*excel();
-        function excel()
-            {
-            $("#botones").off("click", ".excelVer");
-            $("#botones").on("click", ".excelVer", function (e) {
-
-                 var url = '@Url.Action("ExportToExcel", "HerramientasView")';
-                window.location = url;
-
-                });
-        }*@
 
         exportar();
         function exportar() {
@@ -591,57 +559,6 @@
             });
 
         }
-
-        @*Buscar();
-        function Buscar() {
-            $("#filtroBusqueda").keyup(function (e) {
-                if (e.keyCode == 13) {
-                    $("#TablaEdificios #tblEdificios").addClass("loading-background");
-                    $(".loading-personas").addClass("loading-show").removeClass("loading");
-                    var filtroBusqueda = $("#filtroBusqueda").val();
-                    $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "HerramientasView")', { filtroBusqueda }, function (response, status, xhr) {
-                        if (status == "success") {
-                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
-                            $(".loading-personas").addClass("loading").removeClass("loading-show");
-                        }
-                    });
-                }
-            });
-            $("#TablaEdificios").off("click", ".buscarSoli");
-            $("#TablaEdificios").on("click", ".buscarSoli", function (e) {
-                $("#TablaEdificios #tblEdificios").addClass("loading-background");
-                $(".loading-personas").addClass("loading-show").removeClass("loading");
-                    var filtroBusqueda = $("#filtroBusqueda").val();
-                $("#TablaEdificios").load('@Url.Action("_TablaEdificios", "HerramientasView")', { filtroBusqueda }, function (response, status, xhr) {
-                        if (status == "success") {
-                            $("#TablaEdificios #tblEdificios").removeClass("loading-background");
-                            $(".loading-personas").addClass("loading").removeClass("loading-show");
-                        }
-                    });
-            });
-
-        }*@
-
-         @*//--- EDITAR PERSONA ---
-        $("#TablaEdificios").off('click', '.editarEmpresa');
-        $("#TablaEdificios").on('click', '.editarEmpresa', function (e) {
-            e.preventDefault();
-            var Em_Cve_Empresa = $(this).attr("id-item");
-            $('#New_UpdateEmpresa').load('@Url.Action("_Formulario", "HerramientasView")', { Em_Cve_Empresa }, function (response, status, xhr) {
-                if (status == "success") {
-                    guardarpersona();
-                    //date();
-                    //validatePass();
-                    ConfigPictures();
-                    //limpiar();
-
-                }
-            });
-            ancla = $(this).attr('href');
-            $('html, body').animate({
-                scrollTop: $(ancla).offset().top
-            }, 1000);
-        });*@
 
         $("#TablaEdificios").off('click', '.eliminarEdificio');
         $("#TablaEdificios").on('click', '.eliminarEdificio', function (e) {

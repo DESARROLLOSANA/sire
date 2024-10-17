@@ -275,7 +275,7 @@ namespace CRME.Controllers
             return PartialView(Empresas);
         }
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -298,7 +298,7 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Inventario_Lista_Lineas_Excel>("Sp_Get_Inventario_Lineas_excel").ToList();
+                  var productos = db.Database.SqlQuery<Inventario_Lista_Lineas_Excel>("Sp_Get_Inventario_Lineas_excel @filtro", new SqlParameter("@filtro", filtro)).ToList();
 
                     using (var libro = new ExcelPackage())
                     {
@@ -395,10 +395,6 @@ namespace CRME.Controllers
             int mtus = pixels * 9525;
             return mtus;
         }
-
-
-
-
 
 
         //metodo listo

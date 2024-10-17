@@ -185,19 +185,18 @@
             $("#TablaEmpresas").off('click', ".excel");
             $("#TablaEmpresas").on('click', ".excel", function (e) {
                 e.preventDefault();
+                var filtro = $("#filtroBusquedaA").val();
             //$(".loading-descargar").css("display", "block");
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("ExportarExcel", "InventarioLineasView")',
-                cache: false,
-                contentType: false,
-                processData: false,
+                data: { filtro },
                 success: function (result) {
                     //$(".loading-descargar").css("display", "none");
                     if (result.success) {
                         window.location.href = '@Url.Action("ExportarExcel", "InventarioLineasView")' + '/?Creado=' + 1;;
                     }
-                    //} else {
+                    // else {
                     //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
                     //    $("#ModalAlert").modal({
                     //        dismissible: false,
@@ -206,7 +205,6 @@
                     //}
                 }
             });
-
             });
 
         }

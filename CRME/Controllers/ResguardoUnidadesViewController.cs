@@ -229,7 +229,7 @@ namespace CRME.Controllers
 
 
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -252,8 +252,15 @@ namespace CRME.Controllers
                 try
                 {
 
-                    //var productos = db.Database.SqlQuery<Resguardos_Lista_Unidades_excel>("Sp_Get_Resguardos_Unidades_excel").ToList();
-                    var productos = db.Database.SqlQuery<Resguardos_Lista_Unidades_excel>("Sp_Get_Resguardos_Unidades_excel").ToList();
+                    List<Resguardos_Lista_Unidades_excel> productos = new List<Resguardos_Lista_Unidades_excel>();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Unidades_excel>("Sp_Get_Resguardos_Unidades_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Unidades_excel>("Sp_Get_Resguardos_Unidades_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
 
                     using (var libro = new ExcelPackage())
                     {
@@ -377,6 +384,7 @@ namespace CRME.Controllers
                 items1.Add(new SelectListItem { Value = "Comercial", Text = "Comercial" });
                 items1.Add(new SelectListItem { Value = "Domiciliar", Text = "Domiciliar" });
                 items1.Add(new SelectListItem { Value = "Umán", Text = "Umán" });
+                items1.Add(new SelectListItem { Value = "Cancún", Text = "Cancún" });
                 ViewBag.tabla_areas = new SelectList(items1, "Value", "Text");
             }
 

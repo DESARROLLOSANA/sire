@@ -272,7 +272,7 @@ namespace CRME.Controllers
                 return PartialView();
             }
         }
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -295,7 +295,15 @@ namespace CRME.Controllers
                 try
                 {
  
-                    var productos = db.Database.SqlQuery<Resguardos_Lista_Ensambles_Excel>("Sp_Get_Resguardos_Ensambles_excel").ToList();
+                    List<Resguardos_Lista_Ensambles_Excel> productos = new List<Resguardos_Lista_Ensambles_Excel>();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Ensambles_Excel>("Sp_Get_Resguardos_Ensambles_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Ensambles_Excel>("Sp_Get_Resguardos_Ensambles_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
 
                     using (var libro = new ExcelPackage())
                     {

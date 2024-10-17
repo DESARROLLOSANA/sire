@@ -99,7 +99,7 @@
         <div class="col s12 center-align">
             @if (Model != null)
             {
-                @Html.PagedListPager(Model, page => Url.Action("_TablaReguardos", new { page, strorden })
+                @Html.PagedListPager(Model, page => Url.Action("_TablaReguardos", new { page, strorden, ViewBag.filtro })
                     , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
                     {
                         Display = PagedListDisplayMode.IfNeeded,

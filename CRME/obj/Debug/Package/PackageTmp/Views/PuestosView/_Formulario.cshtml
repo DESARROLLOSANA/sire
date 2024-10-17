@@ -44,21 +44,27 @@ else
                 </div>
             </div>
             <div class="row">
+
                 <div class="col s12 m4 l4 input-field">
-                    <div class="row" id="empresa">
-                        @Html.Action("ComboEmpresa", "PuestosView")
-                    </div>                    
+                    <b class="">Empresa:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.DropDownList("Em_Cve_Empresa", new SelectList(ViewBag.empresa, "Value", "Text"), "-- Empresa --", htmlAttributes: new { @class = "select classic" })
+                    </div>
                 </div>
                 <div class="col s12 m4 l4 input-field">
-                    <div class="row" id="sucursal">
-                        @Html.Action("ComboSucursal", "PuestosView")
-                    </div>                    
+                    <b class="">Sucursal:</b>
+                    <div class="input-field margin-top-0">
+                        @Html.DropDownList("Sc_Cve_Sucursal", new SelectList(ViewBag.sucursal, "Value", "Text"), "-- Sucursal --", htmlAttributes: new { @class = "select classic" })
+                    </div>
                 </div>
                 <div class="col s12 m4 l4 input-field">
-                    <div class="row" id="departamento">
-                        @Html.Action("ComboDepartamento", "PuestosView")
-                    </div>                    
+                    <b class="">Departamento:</b>
+                    <div class="input-field margin-top-0">
+
+                        @Html.DropDownList("Dp_Cve_Departamento", new SelectList(ViewBag.departamento, "Value", "Text"), "-- Departamento --", htmlAttributes: new { @class = "select classic" })
+                    </div>
                 </div>
+
             </div>
                 @*<div class="row">
             <div class="col s12 m12 l12 input-field">

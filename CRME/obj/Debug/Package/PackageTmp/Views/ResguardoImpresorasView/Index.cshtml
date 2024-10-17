@@ -72,13 +72,12 @@
             $("#TablaResguardoMobiliario").off('click', ".excel");
             $("#TablaResguardoMobiliario").on('click', ".excel", function (e) {
                 e.preventDefault();
+                var filtro = $("#filtroBusquedaA").val();
             //$(".loading-descargar").css("display", "block");
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("ExportarExcel", "ResguardoImpresorasView")',
-                cache: false,
-                contentType: false,
-                processData: false,
+                data: { filtro },
                 success: function (result) {
                     //$(".loading-descargar").css("display", "none");
                     if (result.success) {

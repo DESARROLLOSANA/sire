@@ -42,16 +42,17 @@ namespace CRME.Controllers
             ViewBag.HiddenMenu = 1;
             return View();
         }
+
         public ActionResult SavePuesto(Puestos puesto)
         {
             var serializerCat = new JavaScriptSerializer();
             bool success = false;
             string mensajefound = "";
-            var found = db.Puestos.FirstOrDefault(x => x.Pu_Descripcion == puesto.Pu_Descripcion);
+            var found = db.Puestos.FirstOrDefault(x => x.Pu_Descripcion == puesto.Pu_Descripcion && x.Dp_Cve_Departamento == puesto.Dp_Cve_Departamento);
 
             if (found != null)
             {
-                mensajefound = "¡Ya existe una sucursal que coincide con el ingresado!";
+                mensajefound = "¡Ya existe un puesto que coincide con el ingresado!";
             }
             else
             {
@@ -138,15 +139,22 @@ namespace CRME.Controllers
                 ViewBag.edit = 1;
                 puestos = db.Puestos.Find(Pu_Cve_Puesto);
 
-                var departamento = db.Departamentos.FirstOrDefault(x => x.Dp_Cve_Departamento == puestos.Dp_Cve_Departamento);
-                var sucursal = db.Sucursal.FirstOrDefault(x => x.Sc_Cve_Sucursal == departamento.Sc_Cve_Sucursal);
-                var empresa = db.Empresa.FirstOrDefault(x => x.Em_Cve_Empresa == sucursal.Em_Cve_Empresa || x.Em_Cve_Empresa == departamento.Em_Cve_Sucursal);
+                //var departamento = db.Departamentos.FirstOrDefault(x => x.Dp_Cve_Departamento == puestos.Dp_Cve_Departamento);
+                //var sucursal = db.Sucursal.FirstOrDefault(x => x.Sc_Cve_Sucursal == departamento.Sc_Cve_Sucursal);
+                //var empresa = db.Empresa.FirstOrDefault(x => x.Em_Cve_Empresa == sucursal.Em_Cve_Empresa || x.Em_Cve_Empresa == departamento.Em_Cve_Sucursal);
 
-                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true && x.Em_Cve_Empresa == empresa.Em_Cve_Empresa).ToList(), "Em_Cve_Empresa", "Em_Descripcion");
-                ComboEmpresa(empresa.Em_Cve_Empresa);
-                ComboSucursal(empresa.Em_Cve_Empresa, sucursal.Sc_Cve_Sucursal);
-                ComboDepartamento(empresa.Em_Cve_Empresa, sucursal.Sc_Cve_Sucursal, puestos.Dp_Cve_Departamento);
+
+                //ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true && x.Em_Cve_Empresa == empresa.Em_Cve_Empresa).ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
             }            
+            else
+            {
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
+                ViewBag.departamento = new SelectList("", "Dp_Cve_Departamento", "Dp_Descripcion");
+                ViewBag.sucursal = new SelectList("", "Sc_Cve_Sucursal", "Sc_Descripcion");
+            }
 
             return PartialView(puestos);
         }
@@ -160,51 +168,7 @@ namespace CRME.Controllers
 
             return PartialView(lista.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult ComboEmpresa(int? Em_Cve_Empresa)
-        {
-            if(Em_Cve_Empresa != null)
-            {
-                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true).ToList(), "Em_Cve_Empresa", "Em_Descripcion", Em_Cve_Empresa);
-            }
-            else
-            {
-                ViewBag.Em_Cve_Empresa = new SelectList(db.Empresa.Where(x => x.Estatus == true).ToList(), "Em_Cve_Empresa", "Em_Descripcion");
-            }
-            
-            return View();
-        }
-        public ActionResult ComboSucursal(int? Em_Cve_Empresa,int? Sc_Cve_Sucursal)
-        {
-            if (Sc_Cve_Sucursal != null)
-            {
-                ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal).ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Sc_Cve_Sucursal);
-            }
-            else
-            {
-                ViewBag.Sc_Cve_Sucursal = new SelectList(db.Sucursal.Where(x => x.Estatus == true && x.Em_Cve_Empresa == Em_Cve_Empresa).ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion");
-            }
-            return View();
-        }
-        public ActionResult ComboDepartamento(int? Em_Cve_Empresa, int? Sc_Cve_Empresa, int? Dp_cve_Departamento)
-        {
-            //if(Dp_cve_Departamento != null)
-            //{
-            //    ViewBag.Dp_cve_Departamento = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Dp_Cve_Departamento == Dp_cve_Departamento).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
-            //}
-            //else
-            //{
-                if (Em_Cve_Empresa != null && Sc_Cve_Empresa != null)
-                {
-                    ViewBag.depa = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Em_Cve_Sucursal == Em_Cve_Empresa && x.Sc_Cve_Sucursal == Sc_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Dp_cve_Departamento);
-                }
-                else
-                {
-                    ViewBag.depa = new SelectList(db.Departamentos.Where(x => x.Estatus == true && x.Em_Cve_Sucursal == Em_Cve_Empresa).ToList(), "Dp_Cve_Departamento", "Dp_Descripcion");
-                }
-           // }
-           
-            return View();
-        }
+       
         public ActionResult DeletePuesto(long? Pu_Cve_Puesto)
         {
             bool success = false; ;
@@ -229,6 +193,30 @@ namespace CRME.Controllers
             }
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetSucursalByEmpresa(int Em_Cve_Empresa)
+        {
+            var sucursal = db.Sucursal
+                .Where(x => x.Estatus == true && x.Em_Cve_Empresa == Em_Cve_Empresa)
+                .Select(x => new { Value = x.Sc_Cve_Sucursal, Text = x.Sc_Descripcion })
+                .ToList();
+
+            return Json(sucursal, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetDepartamentosByEmpresa(int Sc_Cve_Sucursal)
+        {
+            var departamento = db.Departamentos
+                .Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal)
+                .Select(x => new { Value = x.Dp_Cve_Departamento, Text = x.Dp_Descripcion })
+                .ToList();
+
+            return Json(departamento, JsonRequestBehavior.AllowGet);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

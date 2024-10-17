@@ -31,7 +31,7 @@
         int total = 0;
         for (int i = 1; i <= 3; i++)
         {
-            var lista = db.cat_resguardo_herramientas.Where(x => x.temporalidad == 2 && x.tipo == i).Select(X => new { id = X.resguardo_mobiliario_ID, fecha = X.fechaperiodo, cantiad = X.cantidad }).Distinct();
+            var lista = db.cat_resguardo_herramientas.Where(x => x.temporalidad == 2 && x.tipo == i && x.estatus_ID == 2).Select(X => new { id = X.resguardo_mobiliario_ID, fecha = X.fechaperiodo, cantiad = X.cantidad }).Distinct();
             foreach (var y in lista)
             {
                 DateTime RESGUARDO = y.fecha;
@@ -91,7 +91,11 @@
                     @if (Auth.Usuario.foto != null)
                     {
                         <a href="#!user"><img class="circle" style="border:solid" src="@Auth.Usuario.foto.Replace("~","")"></a>
-                        <span class="blue-text name">@Auth.Usuario.nombre.ToUpper()  @Auth.Usuario.apellido_paterno.ToUpper()  @Auth.Usuario.apellido_materno.ToUpper()</span>
+                        <span class="blue-text name">
+                            @(string.IsNullOrEmpty(Auth.Usuario.nombre) ? "" : Auth.Usuario.nombre.ToUpper())
+                            @(string.IsNullOrEmpty(Auth.Usuario.apellido_paterno) ? "" : Auth.Usuario.apellido_paterno.ToUpper())
+                            @(string.IsNullOrEmpty(Auth.Usuario.apellido_materno) ? "" : Auth.Usuario.apellido_materno.ToUpper())
+                        </span>
                         <a href="@Url.Action("Salir", "AccesoView")" title="Cerrar sesion"><span class="blue-text"><i class="small mdi mdi-logout"></i></span></a>
                         <a href="@Url.Action("Index", "NotificacionesView")"><i class="blue-text small mdi mdi-bell"></i><span class="red-text" style="font-size:11px">@alerta</span></a>
                         

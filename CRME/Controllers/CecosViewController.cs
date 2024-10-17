@@ -52,7 +52,7 @@ namespace CRME.Controllers
 
             if (found != null)
             {
-                mensajefound = "¡Ya existe una sucursal que coincide con el ingresado!";
+                mensajefound = "¡Ya existe un centro de costo que coincide con el ingresado!";
 
             }
             else

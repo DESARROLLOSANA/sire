@@ -732,7 +732,7 @@ namespace CRME.Controllers
             #endregion
         }
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -754,17 +754,25 @@ namespace CRME.Controllers
             {
                 try
                 {
-                    var productos = db.Database.SqlQuery<lista_Inv_Unidades_excel>("Sp_Get_Inventario_unidades_excel").ToList();
+                    List<lista_Inv_Unidades_excel> productos = new List<lista_Inv_Unidades_excel>();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<lista_Inv_Unidades_excel>("Sp_Get_Inventario_unidades_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<lista_Inv_Unidades_excel>("Sp_Get_Inventario_unidades_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
 
                     using (var libro = new ExcelPackage())
                     {
 
                         var worksheet = libro.Workbook.Worksheets.Add("Inventario unidades");
                         #region titulo para poner la razon social de la empresa
-                        worksheet.Cells["D3:J3"].Merge = true;
-                        worksheet.Cells["D3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
-                        var cell = worksheet.Cells["D3"];
+                        worksheet.Cells["C3:J3"].Merge = true;
+                        worksheet.Cells["C3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        var cell = worksheet.Cells["C3"];
                         cell.IsRichText = true;     // Cell contains RichText rather than basic values
 
 
@@ -775,13 +783,13 @@ namespace CRME.Controllers
                         title.Color = ColorTranslator.FromHtml("#44546A");
                         #endregion
                         #region titulo para el reporte
-                        worksheet.Cells["D4:J4"].Merge = true;
-                        worksheet.Cells["D4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        worksheet.Cells["C4:J4"].Merge = true;
+                        worksheet.Cells["C4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Color.SetColor(Color.Blue);
 
-                        var cellrs = worksheet.Cells["D4"];
+                        var cellrs = worksheet.Cells["C4"];
                         cellrs.IsRichText = true;     // Cell contains RichText rather than basic values
                                                       //cell.Style.WrapText = true; // Required to honor new lines
 
@@ -815,7 +823,7 @@ namespace CRME.Controllers
                         //get the image from disk                        
                         var excelImage2 = worksheet.Drawings.AddPicture("logo empresa", logo2);
                         //add the image to row 20, column E
-                        excelImage2.From.Column = 10;
+                        excelImage2.From.Column = 9;
                         //excelImage2.From.Column = 9;
                         excelImage2.From.Row = 0;
                         excelImage2.SetSize(150, 80);

@@ -17,6 +17,7 @@ namespace CRME.Models
             cat_fechamodificado_laptop = new HashSet<cat_fechamodificado_laptop>();
             cat_fechamodificado_movil = new HashSet<cat_fechamodificado_movil>();
             cat_fechamodificado_nobreak = new HashSet<cat_fechamodificado_nobreak>();
+            Permisos = new HashSet<Permisos>();
         }
 
         [Key]
@@ -34,6 +35,7 @@ namespace CRME.Models
         [StringLength(15)]
         public string username { get; set; }
 
+        //[Required(ErrorMessage = "Ingrese un correo valido")]
         [StringLength(150)]
         public string correo { get; set; }
 
@@ -42,12 +44,15 @@ namespace CRME.Models
 
         public int? perfil_ID { get; set; }
 
-        public int? empresa_ID { get; set; }
+        public int? Em_Cve_Empresa { get; set; }
 
         public int? estatus_ID { get; set; }
 
         public int Pu_Cve_Puesto { get; set; }
-        
+
+        public int Dp_Cve_Departamento { get; set; }
+
+        public int Sc_Cve_Sucursal { get; set; }
 
         [StringLength(260)]
         public string foto { get; set; }
@@ -69,7 +74,8 @@ namespace CRME.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cat_fechamodificado_nobreak> cat_fechamodificado_nobreak { get; set; }
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Permisos> Permisos { get; set; }
         public virtual cat_perfiles cat_perfiles { get; set; }
 
         #region Metodos

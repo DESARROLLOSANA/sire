@@ -234,6 +234,56 @@
                 limpiar();
         });
 
+        $("#TablaEmpresas").off('click', '.habilitarEmpresa');
+        $("#TablaEmpresas").on('click', '.habilitarEmpresa', function (e) {
+                //alert(" ");
+                e.preventDefault();
+                var inv_linea_ID = $(this).attr("id-item");
+                ConfigModal($("#ModalAlert"), "Confirmación", "¿Desea habilitar el registro?", 4);
+                $("#ModalAlert").modal({
+                    dismissible: false,
+                });
+                $('#ModalAlert').modal('open');
+                $('#ModalAlert').off("click", ".md-accept");
+                $('#ModalAlert').on("click", ".md-accept", function () {
+
+                    $.ajax({
+                        url: '@Url.Action("HabilitarUsuario", "NuevoEmpleadosView")',
+                        data: { inv_linea_ID },
+                        //data: { Em_Cve_Empresa },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                $(".md-accept").addClass("md-btn-success green");
+                                ConfigModal($('#ModalAlert'), "", "Operación realizada con éxito.", 1)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                                $("#TablaEmpresas").load('@Url.Action("_TablaLineas", "NuevoEmpleadosView")', function (response, status, xhr) {
+                                    if (status == "success") {
+                                    }
+                                });
+                            }
+                            else {
+                                $(".md-accept").addClass("md-btn-success");
+                                ConfigModal($('#ModalAlert'), "Alerta", result.mensajefound, 3)
+                                $("#ModalAlert").modal('open');
+                                $('#ModalAlert').off("click", ".md-accept");
+                                $('#ModalAlert').on("click", ".md-accept", function () {
+                                    $("#ModalAlert").modal('close');
+                                })
+                            }
+                        }
+                    });
+                })
+                guardarpersona();
+                date();
+                //validatePass();
+                //ConfigPictures();
+                limpiar();
+        });
 
                 ComboSucursales();
         function ComboSucursales() {
@@ -318,6 +368,39 @@
                 });
             });
         }
+
+        exportar();
+        function exportar() {
+            $("#TablaEmpresas").off('click', ".excel");
+            $("#TablaEmpresas").on('click', ".excel", function (e) {
+                e.preventDefault();
+            //$(".loading-descargar").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ExportarExcel", "NuevoEmpleadosView")',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    //$(".loading-descargar").css("display", "none");
+                    if (result.success) {
+                        window.location.href = '@Url.Action("ExportarExcel", "NuevoEmpleadosView")' + '/?Creado=' + 1;;
+                    }
+                    //} else {
+                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
+                    //    $("#ModalAlert").modal({
+                    //        dismissible: false,
+                    //    });
+                    //    $("#ModalAlert").modal('open');
+                    //}
+                }
+            });
+
+            });
+
+        }
+
+
 
         function CargarReglasGeneralFormuario() {
             var formulario = $("#FrmUsuario").removeData("validator").removeData("unobtrusiveValidation");

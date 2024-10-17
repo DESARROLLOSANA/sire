@@ -59,6 +59,7 @@ namespace CRME.Models
         public virtual DbSet<Cat_Estatus> Cat_Estatus { get; set; }
         public virtual DbSet<NivelAcademico> NivelAcademico { get; set; }
 
+        // neuvas tablas mtto solicitud
         public virtual DbSet<Solicitud_Mtto> Solicitud_Mtto { get; set; }
         public virtual DbSet<Tipo_Solicitud> Tipo_Solicitud { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
@@ -77,11 +78,11 @@ namespace CRME.Models
         public virtual DbSet<cat_resguardo_herramientas> cat_resguardo_herramientas { get; set; }
         public virtual DbSet<Unidad_Medida> Unidad_Medida { get; set; }
 
-        //Nuevas tablas para SGC
+        //TABLAS DEL SGC
 
         public virtual DbSet<Procesos> Procesos { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
-        public virtual DbSet<cat_indicadores> cat_Indicadores { get; set; }
+        public virtual DbSet<cat_indicadores> cat_indicadores { get; set; }
         public virtual DbSet<cat_periodos> cat_periodos { get; set; }
         public virtual DbSet<Control_Interno> Control_Interno { get; set; }
         public virtual DbSet<Auditoria_Interna> Auditoria_Interna { get; set; }
@@ -96,6 +97,7 @@ namespace CRME.Models
         public virtual DbSet<actualizaciones> actualizaciones { get; set; }
         public virtual DbSet<SolicitudActualizaciones> SolicitudActualizaciones { get; set; }
         public virtual DbSet<Correos_Calidad> Correos_Calidad { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Departamentos>()

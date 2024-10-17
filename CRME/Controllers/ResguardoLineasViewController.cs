@@ -173,10 +173,14 @@ namespace CRME.Controllers
                 }
                 else
                 {
-                    lista = resguardo.Where(x => x.Cuenta.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Telefono.ToUpper().Contains(filtro.ToUpper().Trim()) || x.Nombre_plan.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Renta_sin_iva.ToUpper().Contains(filtro.ToUpper().Trim()) || x.Ubicacion.ToUpper().Contains(filtro.ToUpper().Trim())
-                    || x.Departamento.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
+                    lista = resguardo
+                            .Where(x => (x.Cuenta != null && x.Cuenta.ToUpper().Contains(filtro.ToUpper().Trim()))
+                                     || (x.Telefono != null && x.Telefono.ToUpper().Contains(filtro.ToUpper().Trim()))
+                                     || (x.Nombre_plan != null && x.Nombre_plan.ToUpper().Contains(filtro.ToUpper().Trim()))
+                                     || (x.Renta_sin_iva != null && x.Renta_sin_iva.ToUpper().Contains(filtro.ToUpper().Trim()))
+                                     || (x.Ubicacion != null && x.Ubicacion.ToUpper().Contains(filtro.ToUpper().Trim()))
+                                     || (x.Departamento != null && x.Departamento.ToUpper().Contains(filtro.ToUpper().Trim())))
+                            .ToList();
 
                     ViewBag.filtro = filtro;
                 }
@@ -188,9 +192,9 @@ namespace CRME.Controllers
                 return PartialView();
             }
         }
-       
-        
-        public ActionResult ExportarExcel(int? creado)
+
+
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -212,9 +216,18 @@ namespace CRME.Controllers
             {
                 try
                 {
- 
-                    //var productos = db.Database.SqlQuery<Resguardos_Lista_mobiliario_excel>("Sp_Get_Resguardos_mobiliario_excel").ToList();
-                    var productos = db.Database.SqlQuery<Resguardos_Lista_Lineas_Excel>("Sp_Get_Resguardos_Lineas_excel").ToList();
+
+                    //var productos = db.Database.SqlQuery<Resguardos_Lista_Impresoras_Excel>("Sp_Get_Resguardos_Impresoras_excel").ToList();
+                    List<Resguardos_Lista_Lineas_Excel> productos = new List<Resguardos_Lista_Lineas_Excel>();
+                    if (filtro == null || filtro == "")
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Lineas_Excel>("Sp_Get_Resguardos_Lineas_excel").ToList();
+                    }
+                    else
+                    {
+                        productos = db.Database.SqlQuery<Resguardos_Lista_Lineas_Excel>("Sp_Get_Resguardos_Lineas_excel_filtro @filtro", new SqlParameter("@filtro", filtro)).ToList();
+                    }
+
 
                     using (var libro = new ExcelPackage())
                     {
@@ -286,7 +299,7 @@ namespace CRME.Controllers
 
                         var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 2, toRow: productos.Count + 6, toColumn: 12), "Resguardos");
                         tabla.ShowHeader = true;
-                        tabla.TableStyle = TableStyles.Light6;
+                        tabla.TableStyle = TableStyles.Light5;
                         libro.Workbook.Properties.Company = "Ciclo ambiental";
                         libro.Workbook.Properties.Keywords = "Excel";
                         libro.SaveAs(stream);
@@ -301,7 +314,7 @@ namespace CRME.Controllers
                     stream.Close();
                     stream.Dispose();
                 }
-
+                // return File(Url.Content(ruta), excelContentType, "Resguardos laptops - " + DateTime.Now.ToShortDateString() + ".xlsx");
             }
             return Json(new { success = success });
         }

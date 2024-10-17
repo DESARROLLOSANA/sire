@@ -1,0 +1,49 @@
+﻿@using CustomHelpers
+
+@{
+    ViewBag.Title = "Cambiar Foto y Contraseña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<a name="ancla" id="ancla"></a>
+<div class="row form-general margin-top-10">
+    <div class="col l12 m12 s12">
+        <div class="row">
+            <div class="col l9 m9 s12">
+                <h5>Administración de usuarios</h5>
+            </div>
+            @*<div class="col l3 m3 s12 input-field right-align">
+                    <a class="btn orange darken-4 waves-effect" href="@Url.Action("Index","PanelView")"><i class="mdi mdi-menu hide-on-small-and-down"></i> MENÚ</a>
+                </div>*@
+        </div>
+
+        <div id="New_UpdatePersona">
+            @Html.Action("_Formulario", "CambiarFPView")
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="loading loding-personas">
+                    <div class="row center">
+                        <div class="col s12 m12 l12">
+                            @Html.Image("~/Upload/Sistema/Loading_02.gif", "Loading", new { @class = "responsive-img center" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="ModalAlert" class="modal modal-fixed-footer" style="width:400px; height:200px;">
+    <div class="md-header center"><img src="~/Upload/Sistema/Logo.png" style="width:120px" /></div>
+    <div class="modal-content md-content">
+        <h5 class="md-title">Título</h5>
+        <span><i class="md-icono mdi mdi-36px"></i><span><span class="md-message">Mensaje</span></span></span>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-red btn-flat md-btn-danger hide md-cancel cancelar-eventos">Cancelar</a>
+        <a href="javascript:void(0)" class="modal-action waves-effect waves-green btn-flat md-btn-success md-accept">Aceptar</a>
+    </div>
+</div>

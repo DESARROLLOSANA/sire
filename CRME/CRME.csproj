@@ -353,13 +353,9 @@
     <Compile Include="Helpers\CssFixRewriteUrlTransform.cs" />
     <Compile Include="Helpers\CustomHelpers.cs" />
     <Compile Include="Helpers\HelpersController.cs" />
-    <Compile Include="Migrations\202406101713335_Cambios en Cat_Usuarios.cs" />
-    <Compile Include="Migrations\202406101713335_Cambios en Cat_Usuarios.Designer.cs">
-      <DependentUpon>202406101713335_Cambios en Cat_Usuarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202406101816059_cambio cat_usuarios rfc.cs" />
-    <Compile Include="Migrations\202406101816059_cambio cat_usuarios rfc.Designer.cs">
-      <DependentUpon>202406101816059_cambio cat_usuarios rfc.cs</DependentUpon>
+    <Compile Include="Migrations\202411061915042_tablasSRH.cs" />
+    <Compile Include="Migrations\202411061915042_tablasSRH.Designer.cs">
+      <DependentUpon>202411061915042_tablasSRH.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Acciones_correctivas.cs" />
@@ -370,6 +366,8 @@
     <Compile Include="Models\Auditoria.cs" />
     <Compile Include="Models\Auditoria_Interna.cs" />
     <Compile Include="Models\Calendario.cs" />
+    <Compile Include="Models\Candidatos.cs" />
+    <Compile Include="Models\Cat_EdoCivil.cs" />
     <Compile Include="Models\Cat_Estatus.cs" />
     <Compile Include="Models\cat_estatus_inv.cs" />
     <Compile Include="Models\cat_fechamodificado_cargador.cs" />
@@ -378,6 +376,8 @@
     <Compile Include="Models\cat_fechamodificado_laptop.cs" />
     <Compile Include="Models\cat_fechamodificado_movil.cs" />
     <Compile Include="Models\cat_fechamodificado_nobreak.cs" />
+    <Compile Include="Models\Cat_Genero.cs" />
+    <Compile Include="Models\Cat_Horario.cs" />
     <Compile Include="Models\cat_indicadores.cs" />
     <Compile Include="Models\cat_km_actuales_vehiculos.cs" />
     <Compile Include="Models\cat_km_proximo_vehiculos.cs" />
@@ -400,15 +400,23 @@
     <Compile Include="Models\cat_usuarios.cs" />
     <Compile Include="Models\Ce_cos.cs" />
     <Compile Include="Models\Condicion.cs" />
+    <Compile Include="Models\Contactos_Empleado.cs" />
     <Compile Include="Models\Control_Interno.cs" />
     <Compile Include="Models\Correos_Calidad.cs" />
     <Compile Include="Models\Cuestionario.cs" />
     <Compile Include="Models\Datos_Notificacion.cs" />
+    <Compile Include="Models\Documentacion_Emp.cs" />
     <Compile Include="Models\Doc_apoyo.cs" />
     <Compile Include="Models\Equipo_Menor.cs" />
     <Compile Include="Models\Estados.cs" />
     <Compile Include="Models\EstadosAC.cs" />
     <Compile Include="Models\Familia.cs" />
+    <Compile Include="Models\Faniliares.cs" />
+    <Compile Include="Models\Fecha_Entrevista.cs" />
+    <Compile Include="Models\Funciones_Puesto.cs" />
+    <Compile Include="Models\Herramientas_Personal.cs" />
+    <Compile Include="Models\Historial_Emp.cs" />
+    <Compile Include="Models\Indicador_Puesto.cs" />
     <Compile Include="Models\Inventario_Emsamble_Excel.cs" />
     <Compile Include="Models\Inventario_Impresoras_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Excel.cs" />
@@ -426,11 +434,17 @@
     <Compile Include="Models\Medida.cs" />
     <Compile Include="Models\modulos.cs" />
     <Compile Include="Models\Mope.cs" />
+    <Compile Include="Models\Origen_Reclutamiento.cs" />
+    <Compile Include="Models\Parentesco.cs" />
+    <Compile Include="Models\Perfil_Puesto.cs" />
     <Compile Include="Models\periodo_medicion.cs" />
     <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Procesos.cs" />
     <Compile Include="Models\Programacion.cs" />
+    <Compile Include="Models\Puesto_Cargo.cs" />
+    <Compile Include="Models\Relacion_Puesto.cs" />
     <Compile Include="Models\Requerimiento.cs" />
+    <Compile Include="Models\Req_Personal.cs" />
     <Compile Include="Models\Resguardos_lista_Em.cs" />
     <Compile Include="Models\Resguardos_lista_Em_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles.cs" />
@@ -475,12 +489,16 @@
     <Compile Include="Models\Resguardos_Lista_Vehiculos_Excel.cs" />
     <Compile Include="Models\Resguardo_Lista_Ensambles.cs" />
     <Compile Include="Models\Resguardo_Lista_Unidades_excel.cs" />
+    <Compile Include="Models\Responsabilidades.cs" />
     <Compile Include="Models\SIRE_Context.cs" />
     <Compile Include="Models\SolicitudActualizaciones.cs" />
+    <Compile Include="Models\Solicitudes_Excel.cs" />
     <Compile Include="Models\Solicitud_Mtto.cs" />
+    <Compile Include="Models\Solicitud_Personal.cs" />
     <Compile Include="Models\Subfamilia.cs" />
     <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\TipoDocumento.cs" />
+    <Compile Include="Models\Tipo_Contratacion.cs" />
     <Compile Include="Models\Tipo_Solicitud.cs" />
     <Compile Include="Models\Unidad_Medida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -923,11 +941,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202406101713335_Cambios en Cat_Usuarios.resx">
-      <DependentUpon>202406101713335_Cambios en Cat_Usuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202406101816059_cambio cat_usuarios rfc.resx">
-      <DependentUpon>202406101816059_cambio cat_usuarios rfc.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202411061915042_tablasSRH.resx">
+      <DependentUpon>202411061915042_tablasSRH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\IndicadoresGraficaLineas.rdlc" />
     <EmbeddedResource Include="Reportes\IndicadoresGraficaBarras.rdlc" />

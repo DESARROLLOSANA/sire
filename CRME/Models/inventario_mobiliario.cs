@@ -37,11 +37,9 @@ namespace CRME.Models
         [Required]
         public int? proveedor_ID { get; set; }
 
-        [StringLength(60)]
-        public string ubicacion { get; set; }
+        public int Sc_Cve_Sucursal { get; set; }
 
-        [StringLength(60)]
-        public string departamento { get; set; }
+        public int Dp_Cve_Departamento { get; set; }
 
         public int? estatus_ID { get; set; }
 

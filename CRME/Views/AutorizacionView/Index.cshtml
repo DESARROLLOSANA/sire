@@ -264,6 +264,39 @@
 
         })
 
+
+        //--- Genera Excel ----
+
+         exportar();
+        function exportar() {
+            $("#TablaEdificiosAuth").off('click', ".exportar");
+            $("#TablaEdificiosAuth").on('click', ".exportar", function (e) {
+                e.preventDefault();
+                var filtro = $("#filtroBusquedaA").val();
+            //$(".loading-descargar").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ExportarExcel", "AutorizacionView")',
+                data: { filtro },
+                success: function (result) {
+                    //$(".loading-descargar").css("display", "none");
+                    if (result.success) {
+                        window.location.href = '@Url.Action("ExportarExcel", "AutorizacionView")' + '/?Creado=' + 1;;
+                    }
+                    //} else {
+                    //    ConfigModal($('#ModalAlert'), "Informaión" , "Ocurrió un problema con la descarga, Intente más tarde", 3)//para crear la ventana flotante
+                    //    $("#ModalAlert").modal({
+                    //        dismissible: false,
+                    //    });
+                    //    $("#ModalAlert").modal('open');
+                    //}
+                }
+            });
+
+            });
+
+        }
+
         //--- EDITAR PERSONA ---
         @*$("#TablaEdificiosAuth").off('click', '.Autoriza');
         $("#TablaEdificiosAuth").on('click', '.Autoriza', function (e) {
@@ -469,7 +502,7 @@
                                     if (result.success) {//si es true el resultado
                                         $("#TablaEdificiosAuth").load('@Url.Action("_TablaEdificiosAuth", "AutorizacionView")', function (response, status, xhr) {
                                             if (status == "success") {
-                                               
+
                                             }
                                         });
                                         $('#mensaje-error-model').text("");

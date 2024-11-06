@@ -297,6 +297,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoViewController.cs" />
     <Compile Include="Controllers\AutorizacionViewController.cs" />
+    <Compile Include="Controllers\CambiarFPViewController.cs" />
     <Compile Include="Controllers\CargaDescargaViewController.cs" />
     <Compile Include="Controllers\CecosViewController.cs" />
     <Compile Include="Controllers\CondicionViewController.cs" />
@@ -321,6 +322,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedidasViewController.cs" />
     <Compile Include="Controllers\MobiliarioViewController.cs" />
+    <Compile Include="Controllers\NotificacionesViewController.cs" />
     <Compile Include="Controllers\NuevoEmpleadosViewController.cs" />
     <Compile Include="Controllers\PanelInvViewController.cs" />
     <Compile Include="Controllers\PanelViewController.cs" />
@@ -351,99 +353,21 @@
     <Compile Include="Helpers\CssFixRewriteUrlTransform.cs" />
     <Compile Include="Helpers\CustomHelpers.cs" />
     <Compile Include="Helpers\HelpersController.cs" />
-    <Compile Include="Migrations\202304281620481_actualiza base.cs" />
-    <Compile Include="Migrations\202304281620481_actualiza base.Designer.cs">
-      <DependentUpon>202304281620481_actualiza base.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306022333090_columnafoto.cs" />
-    <Compile Include="Migrations\202306022333090_columnafoto.Designer.cs">
-      <DependentUpon>202306022333090_columnafoto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306051604486_dropcolum.cs" />
-    <Compile Include="Migrations\202306051604486_dropcolum.Designer.cs">
-      <DependentUpon>202306051604486_dropcolum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306052150245_columnausu.cs" />
-    <Compile Include="Migrations\202306052150245_columnausu.Designer.cs">
-      <DependentUpon>202306052150245_columnausu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306052152148_columusu.cs" />
-    <Compile Include="Migrations\202306052152148_columusu.Designer.cs">
-      <DependentUpon>202306052152148_columusu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306052243444_auditoria.cs" />
-    <Compile Include="Migrations\202306052243444_auditoria.Designer.cs">
-      <DependentUpon>202306052243444_auditoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306061905296_catalogoestatus.cs" />
-    <Compile Include="Migrations\202306061905296_catalogoestatus.Designer.cs">
-      <DependentUpon>202306061905296_catalogoestatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307062021024_tablas_solicitud_mtto.cs" />
-    <Compile Include="Migrations\202307062021024_tablas_solicitud_mtto.Designer.cs">
-      <DependentUpon>202307062021024_tablas_solicitud_mtto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307062024055_tablas_mtto.cs" />
-    <Compile Include="Migrations\202307062024055_tablas_mtto.Designer.cs">
-      <DependentUpon>202307062024055_tablas_mtto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308011525030_columnamotivo.cs" />
-    <Compile Include="Migrations\202308011525030_columnamotivo.Designer.cs">
-      <DependentUpon>202308011525030_columnamotivo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308022252161_colunasolicitudid.cs" />
-    <Compile Include="Migrations\202308022252161_colunasolicitudid.Designer.cs">
-      <DependentUpon>202308022252161_colunasolicitudid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308101547443_tablaCalendario.cs" />
-    <Compile Include="Migrations\202308101547443_tablaCalendario.Designer.cs">
-      <DependentUpon>202308101547443_tablaCalendario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308101912227_delcalen.cs" />
-    <Compile Include="Migrations\202308101912227_delcalen.Designer.cs">
-      <DependentUpon>202308101912227_delcalen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308101914220_addcalen.cs" />
-    <Compile Include="Migrations\202308101914220_addcalen.Designer.cs">
-      <DependentUpon>202308101914220_addcalen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308101932011_delcale.cs" />
-    <Compile Include="Migrations\202308101932011_delcale.Designer.cs">
-      <DependentUpon>202308101932011_delcale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308101933091_addcale.cs" />
-    <Compile Include="Migrations\202308101933091_addcale.Designer.cs">
-      <DependentUpon>202308101933091_addcale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308102324428_columnaidcalen.cs" />
-    <Compile Include="Migrations\202308102324428_columnaidcalen.Designer.cs">
-      <DependentUpon>202308102324428_columnaidcalen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308111620504_delreq.cs" />
-    <Compile Include="Migrations\202308111620504_delreq.Designer.cs">
-      <DependentUpon>202308111620504_delreq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308111621566_addreq.cs" />
-    <Compile Include="Migrations\202308111621566_addreq.Designer.cs">
-      <DependentUpon>202308111621566_addreq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202309082002431_resultadocolum.cs" />
-    <Compile Include="Migrations\202309082002431_resultadocolum.Designer.cs">
-      <DependentUpon>202309082002431_resultadocolum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202401082217055_tablash.cs" />
-    <Compile Include="Migrations\202401082217055_tablash.Designer.cs">
-      <DependentUpon>202401082217055_tablash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202401082239408_tablasem.cs" />
-    <Compile Include="Migrations\202401082239408_tablasem.Designer.cs">
-      <DependentUpon>202401082239408_tablasem.cs</DependentUpon>
+    <Compile Include="Migrations\202411061915042_tablasSRH.cs" />
+    <Compile Include="Migrations\202411061915042_tablasSRH.Designer.cs">
+      <DependentUpon>202411061915042_tablasSRH.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Acciones_correctivas.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\actualizaciones.cs" />
     <Compile Include="Models\Archivos.cs" />
+    <Compile Include="Models\ArchivosOrganigrama.cs" />
     <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\Auditoria_Interna.cs" />
     <Compile Include="Models\Calendario.cs" />
+    <Compile Include="Models\Candidatos.cs" />
+    <Compile Include="Models\Cat_EdoCivil.cs" />
     <Compile Include="Models\Cat_Estatus.cs" />
     <Compile Include="Models\cat_estatus_inv.cs" />
     <Compile Include="Models\cat_fechamodificado_cargador.cs" />
@@ -452,11 +376,16 @@
     <Compile Include="Models\cat_fechamodificado_laptop.cs" />
     <Compile Include="Models\cat_fechamodificado_movil.cs" />
     <Compile Include="Models\cat_fechamodificado_nobreak.cs" />
+    <Compile Include="Models\Cat_Genero.cs" />
+    <Compile Include="Models\Cat_Horario.cs" />
+    <Compile Include="Models\cat_indicadores.cs" />
     <Compile Include="Models\cat_km_actuales_vehiculos.cs" />
     <Compile Include="Models\cat_km_proximo_vehiculos.cs" />
     <Compile Include="Models\cat_mantenimiento_vehiculos.cs" />
     <Compile Include="Models\cat_observaciones_movil.cs" />
     <Compile Include="Models\cat_perfiles.cs" />
+    <Compile Include="Models\cat_periodos.cs" />
+    <Compile Include="Models\cat_perm.cs" />
     <Compile Include="Models\cat_proveedores.cs" />
     <Compile Include="Models\cat_resguardos_cargadores.cs" />
     <Compile Include="Models\cat_resguardos_equipos.cs" />
@@ -471,10 +400,25 @@
     <Compile Include="Models\cat_usuarios.cs" />
     <Compile Include="Models\Ce_cos.cs" />
     <Compile Include="Models\Condicion.cs" />
+    <Compile Include="Models\Contactos_Empleado.cs" />
+    <Compile Include="Models\Control_Interno.cs" />
+    <Compile Include="Models\Correos_Calidad.cs" />
     <Compile Include="Models\Cuestionario.cs" />
+    <Compile Include="Models\Datos_Notificacion.cs" />
+    <Compile Include="Models\Documentacion_Emp.cs" />
+    <Compile Include="Models\Doc_apoyo.cs" />
     <Compile Include="Models\Equipo_Menor.cs" />
     <Compile Include="Models\Estados.cs" />
+    <Compile Include="Models\EstadosAC.cs" />
     <Compile Include="Models\Familia.cs" />
+    <Compile Include="Models\Faniliares.cs" />
+    <Compile Include="Models\Fecha_Entrevista.cs" />
+    <Compile Include="Models\Funciones_Puesto.cs" />
+    <Compile Include="Models\Herramientas_Personal.cs" />
+    <Compile Include="Models\Historial_Emp.cs" />
+    <Compile Include="Models\Indicador_Puesto.cs" />
+    <Compile Include="Models\Inventario_Emsamble_Excel.cs" />
+    <Compile Include="Models\Inventario_Impresoras_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Laptops_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Lineas_Excel.cs" />
@@ -482,14 +426,27 @@
     <Compile Include="Models\Inventario_Lista_Moviles_Excel.cs" />
     <Compile Include="Models\Inventario_Lista_Unidades_Excel.cs" />
     <Compile Include="Models\Inventario_lista_vehiculos.cs" />
+    <Compile Include="Models\Inventario_Lista_Vehiculo_Excel.cs" />
     <Compile Include="Models\listaExcelEM.cs" />
+    <Compile Include="Models\lista_cat_usuarios_excel.cs" />
     <Compile Include="Models\Lista_Cecos.cs" />
     <Compile Include="Models\lista_Inv_Unidades_excel.cs" />
     <Compile Include="Models\Medida.cs" />
+    <Compile Include="Models\modulos.cs" />
+    <Compile Include="Models\Mope.cs" />
+    <Compile Include="Models\Origen_Reclutamiento.cs" />
+    <Compile Include="Models\Parentesco.cs" />
+    <Compile Include="Models\Perfil_Puesto.cs" />
     <Compile Include="Models\periodo_medicion.cs" />
+    <Compile Include="Models\Permisos.cs" />
+    <Compile Include="Models\Procesos.cs" />
     <Compile Include="Models\Programacion.cs" />
+    <Compile Include="Models\Puesto_Cargo.cs" />
+    <Compile Include="Models\Relacion_Puesto.cs" />
     <Compile Include="Models\Requerimiento.cs" />
+    <Compile Include="Models\Req_Personal.cs" />
     <Compile Include="Models\Resguardos_lista_Em.cs" />
+    <Compile Include="Models\Resguardos_lista_Em_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles.cs" />
     <Compile Include="Models\Resguardos_Lista_Ensambles_Excel.cs" />
     <Compile Include="Models\Resguardos_Lista_Impresoras.cs" />
@@ -532,10 +489,16 @@
     <Compile Include="Models\Resguardos_Lista_Vehiculos_Excel.cs" />
     <Compile Include="Models\Resguardo_Lista_Ensambles.cs" />
     <Compile Include="Models\Resguardo_Lista_Unidades_excel.cs" />
+    <Compile Include="Models\Responsabilidades.cs" />
     <Compile Include="Models\SIRE_Context.cs" />
+    <Compile Include="Models\SolicitudActualizaciones.cs" />
+    <Compile Include="Models\Solicitudes_Excel.cs" />
     <Compile Include="Models\Solicitud_Mtto.cs" />
+    <Compile Include="Models\Solicitud_Personal.cs" />
     <Compile Include="Models\Subfamilia.cs" />
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\TipoDocumento.cs" />
+    <Compile Include="Models\Tipo_Contratacion.cs" />
     <Compile Include="Models\Tipo_Solicitud.cs" />
     <Compile Include="Models\Unidad_Medida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -550,6 +513,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResponsivaEmsambles.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ResponsivaEmTemp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsivaEmTemp.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\ResponsivaImpSana1.cs">
@@ -954,6 +923,11 @@
     <Content Include="Views\UnidadMedidaView\_TablaMedidas.cshtml" />
     <Content Include="Views\UnidadMedidaView\Index.cshtml" />
     <Content Include="Views\ResguardosHeramientas\_TablaHerramientas.cshtml" />
+    <Content Include="Views\NotificacionesView\Index.cshtml" />
+    <Content Include="Views\NotificacionesView\_TablaNotificacion.cshtml" />
+    <Content Include="Views\CambiarFPView\Index.cshtml" />
+    <Content Include="Views\CambiarFPView\_Formulario.cshtml" />
+    <Content Include="Views\ResguardoMobiliarioView\_TablaResguardo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -967,71 +941,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304281620481_actualiza base.resx">
-      <DependentUpon>202304281620481_actualiza base.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306022333090_columnafoto.resx">
-      <DependentUpon>202306022333090_columnafoto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306051604486_dropcolum.resx">
-      <DependentUpon>202306051604486_dropcolum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306052150245_columnausu.resx">
-      <DependentUpon>202306052150245_columnausu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306052152148_columusu.resx">
-      <DependentUpon>202306052152148_columusu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306052243444_auditoria.resx">
-      <DependentUpon>202306052243444_auditoria.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306061905296_catalogoestatus.resx">
-      <DependentUpon>202306061905296_catalogoestatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307062021024_tablas_solicitud_mtto.resx">
-      <DependentUpon>202307062021024_tablas_solicitud_mtto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307062024055_tablas_mtto.resx">
-      <DependentUpon>202307062024055_tablas_mtto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308011525030_columnamotivo.resx">
-      <DependentUpon>202308011525030_columnamotivo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308022252161_colunasolicitudid.resx">
-      <DependentUpon>202308022252161_colunasolicitudid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308101547443_tablaCalendario.resx">
-      <DependentUpon>202308101547443_tablaCalendario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308101912227_delcalen.resx">
-      <DependentUpon>202308101912227_delcalen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308101914220_addcalen.resx">
-      <DependentUpon>202308101914220_addcalen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308101932011_delcale.resx">
-      <DependentUpon>202308101932011_delcale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308101933091_addcale.resx">
-      <DependentUpon>202308101933091_addcale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308102324428_columnaidcalen.resx">
-      <DependentUpon>202308102324428_columnaidcalen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308111620504_delreq.resx">
-      <DependentUpon>202308111620504_delreq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308111621566_addreq.resx">
-      <DependentUpon>202308111621566_addreq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309082002431_resultadocolum.resx">
-      <DependentUpon>202309082002431_resultadocolum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202401082217055_tablash.resx">
-      <DependentUpon>202401082217055_tablash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202401082239408_tablasem.resx">
-      <DependentUpon>202401082239408_tablasem.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202411061915042_tablasSRH.resx">
+      <DependentUpon>202411061915042_tablasSRH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\IndicadoresGraficaLineas.rdlc" />
     <EmbeddedResource Include="Reportes\IndicadoresGraficaBarras.rdlc" />
@@ -1044,6 +955,10 @@
     <EmbeddedResource Include="Reportes\ResponsivaEmsambles.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ResponsivaEmsambles.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ResponsivaEmTemp.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResponsivaEmTemp.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ResponsivaImpSana.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

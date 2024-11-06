@@ -7,7 +7,7 @@ namespace CRME.Models
 {
     public class Inventario_Lista_Excel
     {
-        public int? inv_mobiliario_ID { get; set; }
+        public int? Numero_Entrada { get; set; }
         public string mobiliario { get; set; }
         public string tipo { get; set; }
         public string Cod_inventario { get; set; }

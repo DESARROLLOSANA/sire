@@ -306,7 +306,7 @@ namespace CRME.Controllers
 
 
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -329,7 +329,7 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Inventario_Lista_Laptops_Excel>("Sp_Get_Inventario_Ensambles_excel").ToList();
+                    var productos = db.Database.SqlQuery<Inventario_Emsamble_Excel>("Sp_Get_Inventario_Ensambles_excel @filtro", new SqlParameter("@filtro", filtro)).ToList();
 
                     using (var libro = new ExcelPackage())
                     {
@@ -367,7 +367,7 @@ namespace CRME.Controllers
                         titlers.Color = ColorTranslator.FromHtml("#44546A");
                         #endregion
                         #region llenado de la informacion
-                        worksheet.Cells["B6"].LoadFromCollection(productos, PrintHeaders: true);
+                        worksheet.Cells["D6"].LoadFromCollection(productos, PrintHeaders: true);
                         for (var col = 1; col < productos.Count + 1; col++)
                         {
                             worksheet.Column(col).AutoFit();
@@ -399,7 +399,7 @@ namespace CRME.Controllers
                         excelImage2.From.RowOff = Pixel2MTU(2);
                         #endregion
 
-                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 2, toRow: productos.Count + 6, toColumn: 11), "Resguardos");
+                        var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 6, fromCol: 4, toRow: productos.Count + 6, toColumn: 9), "Resguardos");
                         tabla.ShowHeader = true;
                         tabla.TableStyle = TableStyles.Light6;
                         libro.Workbook.Properties.Company = "Ciclo ambiental";

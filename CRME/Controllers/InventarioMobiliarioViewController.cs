@@ -45,7 +45,6 @@ namespace CRME.Controllers
         }
 
 
-        // public ActionResult SaveEmpresa(inventario_lineas inventario_lineas)
         public ActionResult SaveEmpresa(inventario_mobiliario Empresas)
         {
             //Empresa empresas = new Empresa();
@@ -76,8 +75,8 @@ namespace CRME.Controllers
                         //combox
                         empre.proveedor_ID = Empresas.proveedor_ID;
                         empre.fecha_folio = Empresas.fecha_folio;
-                        empre.ubicacion = Empresas.ubicacion;
-                        empre.departamento = Empresas.departamento;
+                        empre.Sc_Cve_Sucursal = Empresas.Sc_Cve_Sucursal;
+                        empre.Dp_Cve_Departamento = Empresas.Dp_Cve_Departamento;
 
                         //datos definidos por el sistema
                         empre.estatus_ID = 1;
@@ -90,13 +89,29 @@ namespace CRME.Controllers
                         string[] ultimos = conver.Split('/', ' ', ':', '0');
                         char[] maspruba = conver.ToCharArray();
 
+                    var primerravez = db.inventario_mobiliario.ToList();
+
+                    if (primerravez.Count == 0)
+                    {
+                        Empresa etiqueta = db.Empresa.Find(empre.Em_Cve_Empresa);
+                        //se añade la cadena generada como codigo de inventario
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + ultimos[5] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        string temporal = etiqueta.Em_Descripcion.Replace(" ", "");
+                        empre.cod_inventario = temporal.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(1);
+                    }
+                    else
+                    {
                         inventario_mobiliario modificador = db.inventario_mobiliario.OrderByDescending(x => x.inv_mobiliario_ID).First();
                         Empresa etiqueta = db.Empresa.Find(empre.Em_Cve_Empresa);
-                    //se añade la cadena generada como codigo de inventario
-                    //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + ultimos[5] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
-                    //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
-                        string temporal = etiqueta.Em_Descripcion.Replace(" ","");
+                        //se añade la cadena generada como codigo de inventario
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + ultimos[5] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        //empre.cod_inventario = etiqueta.Em_Descripcion.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                        string temporal = etiqueta.Em_Descripcion.Replace(" ", "");
                         empre.cod_inventario = temporal.ToUpper() + maspruba[8] + maspruba[9] + "-MB" + Convert.ToString(modificador.inv_mobiliario_ID + 1);
+                    }
+
+                       
 
 
                     db.inventario_mobiliario.Add(empre);
@@ -138,8 +153,8 @@ namespace CRME.Controllers
                         //combox
                         Empre.proveedor_ID = Empresas.proveedor_ID;
                         Empre.fecha_folio = Empresas.fecha_folio;
-                        Empre.ubicacion = Empresas.ubicacion;
-                        Empre.departamento = Empresas.departamento;
+                        //Empre.ubicacion = Empresas.ubicacion;
+                        //Empre.departamento = Empresas.departamento;
                         
                         //añadidos
                         Empre.estatus_ID = Empresas.estatus_ID;
@@ -197,7 +212,7 @@ namespace CRME.Controllers
         {  //codigo para agregar y editar usuarios
             //UsuariosPersonas Personas = new UsuariosPersonas();
             inventario_mobiliario Empresas = new inventario_mobiliario();
-           // Personas Persona = new Personas();
+            // Personas Persona = new Personas();
 
             if (inv_mobiliario_ID != null)
             {
@@ -205,129 +220,30 @@ namespace CRME.Controllers
                 Empresas = db.inventario_mobiliario.Find(inv_mobiliario_ID);
                 //añadir controlador de listas
                 //ViewBag.idGenero = new SelectList(db.CatGeneros.ToList(), "idGenero", "nbGenero");     
-
-                List<SelectListItem> items2 = new List<SelectListItem>();
-                items2.Add(new SelectListItem { Value = "Caucel", Text = "Caucel" });
-                items2.Add(new SelectListItem { Value = "Ecolsur", Text = "Ecolsur" });
-                items2.Add(new SelectListItem { Value = "Ecolsur Cancún", Text = "Ecolsur Cancún" });
-                items2.Add(new SelectListItem { Value = "Kanasín", Text = "Kanasín" });
-                items2.Add(new SelectListItem { Value = "Oficina matriz", Text = "Oficina matriz" });
-                items2.Add(new SelectListItem { Value = "Operaciones", Text = "Operaciones" });
-                items2.Add(new SelectListItem { Value = "Relleno sanitario", Text = "Relleno sanitario" });
-                items2.Add(new SelectListItem { Value = "SAU", Text = "SAU" });
-                items2.Add(new SelectListItem { Value = "Uman", Text = "Uman" });
-                //ViewBag.estatus_adendum = new SelectList( "Con adendum", "Sin adendum");
-
-                if (Empresas.ubicacion != null)
-                {
-                    ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text", Empresas.ubicacion);
-                }
-                else
-                {
-                    ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text");
-                }
-
-
-                List<SelectListItem> items3 = new List<SelectListItem>();
-                items3.Add(new SelectListItem { Value = "Administración", Text = "Administración" });
-                items3.Add(new SelectListItem { Value = "Almacen", Text = "Almacen" });
-                items3.Add(new SelectListItem { Value = "Atencion a clientes", Text = "Atencion a clientes" });
-                items3.Add(new SelectListItem { Value = "Caja", Text = "Caja" });
-                items3.Add(new SelectListItem { Value = "Calidad", Text = "Calidad" });
-                //ViewBag.estatus_adendum = new SelectList( "Con adendum", "Sin adendum");
-                ViewBag.departamento1 = new SelectList(items3, "Value", "Text", Empresas.departamento);
-
-                if (Empresas.departamento != null)
-                {
-                    ViewBag.departamento1 = new SelectList(items3.ToList(), "Value", "Text", Empresas.departamento);
-                }
-                else
-                {
-                    ViewBag.departamento1 = new SelectList(items3.ToList(), "Value", "Text");
-                }
-
-
-                if (Empresas.proveedor_ID != 0)
-                {
-                    ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
-                }
-                else
-                {
-                    ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor");
-                }
-
-                //añadidos
-                
-
-
-                if (Empresas.tipo_mobiliario_ID != 0)
-                {
-                    ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
-                }
-                else
-                {
-                    ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario");
-                }
-
-                if (Empresas.estatus_ID != 0)
-                {
-                    ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);
-                }
-                else
-                {
-                    ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus");
-                }
-
-
-                if (Empresas.Em_Cve_Empresa != 0)
-                {
-                    ViewBag.lista_empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
-                }
-                else
-                {
-                    ViewBag.lista_empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
-                }
-
+                ViewBag.sucursal = new SelectList(db.Sucursal.ToList(), "Sc_Cve_Sucursal", "Sc_Descripcion", Empresas.Sc_Cve_Sucursal);
+                ViewBag.departamento = new SelectList(db.Departamentos.ToList(), "Dp_Cve_Departamento", "Dp_Descripcion", Empresas.Dp_Cve_Departamento);
+                ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
+                ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
+                ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
             }
 
             else
             {
-                List<SelectListItem> items2 = new List<SelectListItem>();
-                items2.Add(new SelectListItem { Value = "Caucel", Text = "Caucel" });
-                items2.Add(new SelectListItem { Value = "Ecolsur", Text = "Ecolsur" });
-                items2.Add(new SelectListItem { Value = "Ecolsur Cancún", Text = "Ecolsur Cancún" });
-                items2.Add(new SelectListItem { Value = "Kanasín", Text = "Kanasín" });
-                items2.Add(new SelectListItem { Value = "Oficina matriz", Text = "Oficina matriz" });
-                items2.Add(new SelectListItem { Value = "Operaciones", Text = "Operaciones" });
-                items2.Add(new SelectListItem { Value = "Relleno sanitario", Text = "Relleno sanitario" });
-                items2.Add(new SelectListItem { Value = "SAU", Text = "SAU" });
-                items2.Add(new SelectListItem { Value = "Uman", Text = "Uman" });
-                //ViewBag.estatus_adendum = new SelectList( "Con adendum", "Sin adendum");
-                ViewBag.ubicacion1 = new SelectList(items2, "Value", "Text");
+                ViewBag.sucursal = new SelectList("", "Sc_Cve_Sucursal", "Sc_Descripcion");
+                ViewBag.departamento = new SelectList("", "Dp_Cve_Departamento", "Dp_Descripcion");
+                ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor", Empresas.proveedor_ID);
+                ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario", Empresas.tipo_mobiliario_ID);
+                ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus", Empresas.estatus_ID);
+                ViewBag.empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion", Empresas.Em_Cve_Empresa);
 
-
-                List<SelectListItem> items3 = new List<SelectListItem>();
-                items3.Add(new SelectListItem { Value = "Administración", Text = "Administración" });
-                items3.Add(new SelectListItem { Value = "Almacen", Text = "Almacen" });
-                items3.Add(new SelectListItem { Value = "Atencion a clientes", Text = "Atencion a clientes" });
-                items3.Add(new SelectListItem { Value = "Caja", Text = "Caja" });
-                items3.Add(new SelectListItem { Value = "Calidad", Text = "Calidad" });
-                ViewBag.departamento1 = new SelectList(items3, "Value", "Text");
-
-                //añadido
-                ViewBag.proveedor = new SelectList(db.cat_proveedores.ToList(), "proveedor_ID", "proveedor");
-                //ViewBag.tipo_mobiliario_ID = new SelectList(db.inventario_tipo_mobiliario.ToList(), "tipo_mobiliario_ID", "mobiliario");
-                ViewBag.tipo_mobiliario = new SelectList(db.inventario_tipo_mobiliario.OrderBy(x => x.mobiliario).Where(x => x.estatus_ID == 1).ToList(), "tipo_mobiliario_ID", "mobiliario");
-                ViewBag.estatus = new SelectList(db.cat_estatus_inv.ToList(), "estatus_ID", "estatus");
-
-                ViewBag.lista_empresa = new SelectList(db.Empresa.ToList(), "Em_Cve_Empresa", "Em_Descripcion");
             }
 
             return PartialView(Empresas);
         }
 
 
-        public ActionResult ExportarExcel(int? creado)
+        public ActionResult ExportarExcel(int? creado, string filtro)
         {
             bool success = false;
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -350,17 +266,17 @@ namespace CRME.Controllers
                 try
                 {
 
-                    var productos = db.Database.SqlQuery<Inventario_Lista_Excel>("Sp_Get_Inventario_mobiliario_excel").ToList();
+                    var productos = db.Database.SqlQuery<Inventario_Lista_Excel>("Sp_Get_Inventario_mobiliario_excel @filtro", new SqlParameter("@filtro", filtro)).ToList();
 
                     using (var libro = new ExcelPackage())
                     {
 
                         var worksheet = libro.Workbook.Worksheets.Add("Inventario Mobiliario");
                         #region titulo para poner la razon social de la empresa
-                        worksheet.Cells["D3:J3"].Merge = true;
-                        worksheet.Cells["D3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
-                        var cell = worksheet.Cells["D3"];
+                        worksheet.Cells["C3:J3"].Merge = true;
+                        worksheet.Cells["C3:J3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C3:J3"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        var cell = worksheet.Cells["C3"];
                         cell.IsRichText = true;     // Cell contains RichText rather than basic values
 
 
@@ -371,13 +287,13 @@ namespace CRME.Controllers
                         title.Color = ColorTranslator.FromHtml("#44546A");
                         #endregion
                         #region titulo para el reporte
-                        worksheet.Cells["D4:J4"].Merge = true;
-                        worksheet.Cells["D4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Cells["D4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
+                        worksheet.Cells["C4:J4"].Merge = true;
+                        worksheet.Cells["C4:J4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        worksheet.Cells["C4:J4"].Style.VerticalAlignment = ExcelVerticalAlignment.Bottom;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
                         //worksheet.Cells["D4:I4"].Style.Border.Bottom.Color.SetColor(Color.Blue);
 
-                        var cellrs = worksheet.Cells["D4"];
+                        var cellrs = worksheet.Cells["C4"];
                         cellrs.IsRichText = true;     // Cell contains RichText rather than basic values
                                                       //cell.Style.WrapText = true; // Required to honor new lines
 
@@ -411,7 +327,7 @@ namespace CRME.Controllers
                         //get the image from disk                        
                         var excelImage2 = worksheet.Drawings.AddPicture("logo empresa", logo2);
                         //add the image to row 20, column E
-                        excelImage2.From.Column = 10;
+                        excelImage2.From.Column = 9;
                         //excelImage2.From.Column = 9;
                         excelImage2.From.Row = 0;
                         excelImage2.SetSize(150, 80);
@@ -463,10 +379,21 @@ namespace CRME.Controllers
             }
             else
             {
-                var lista = db.inventario_mobiliario.Where(x => x.tipo.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim()) || x.folio.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.ubicacion.ToUpper().Contains(filtro.ToUpper().Trim())
-                   || x.departamento.ToUpper().Contains(filtro.ToUpper().Trim())).ToList();
+                var existe = db.inventario_tipo_mobiliario.Any(tm => tm.mobiliario == filtro);
+
+                var lista = (from im in db.inventario_mobiliario
+                             join tm in db.inventario_tipo_mobiliario on im.tipo_mobiliario_ID equals tm.tipo_mobiliario_ID
+                             join sc in db.Sucursal on im.Sc_Cve_Sucursal equals sc.Sc_Cve_Sucursal
+                             join dp in db.Departamentos on im.Dp_Cve_Departamento equals dp.Dp_Cve_Departamento
+                             where im.tipo.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.folio.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.color.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || im.cod_inventario.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || tm.mobiliario.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || dp.Dp_Descripcion.ToUpper().Contains(filtro.ToUpper().Trim())
+                                   || sc.Sc_Descripcion.ToUpper().Contains(filtro.ToUpper().Trim())
+                             select im).ToList();
 
                 ViewBag.filtro = filtro;
 
@@ -501,6 +428,28 @@ namespace CRME.Controllers
             return Json(new { success = success, mensajefound }, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpGet]
+        public ActionResult GetSucursalByEmpresa(int Em_Cve_Empresa)
+        {
+            var sucursal = db.Sucursal
+                .Where(x => x.Estatus == true && x.Em_Cve_Empresa == Em_Cve_Empresa)
+                .Select(x => new { Value = x.Sc_Cve_Sucursal, Text = x.Sc_Descripcion })
+                .ToList();
+
+            return Json(sucursal, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetDepartamentosByEmpresa(int Sc_Cve_Sucursal)
+        {
+            var departamento = db.Departamentos
+                .Where(x => x.Estatus == true && x.Sc_Cve_Sucursal == Sc_Cve_Sucursal)
+                .Select(x => new { Value = x.Dp_Cve_Departamento, Text = x.Dp_Descripcion })
+                .ToList();
+
+            return Json(departamento, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

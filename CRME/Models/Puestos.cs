@@ -14,8 +14,13 @@ namespace CRME.Models
         [StringLength(150)]
         public string Pu_Descripcion { get; set; }
 
-        public int? Dp_Cve_Departamento { get; set; }
-        
+        public int? Dp_Cve_Departamento { get; set; } // revisen este tema
+
+        public int Plantilla { get; set; }
+        public decimal Salario_Min { get; set; }
+        public decimal Salario_Max { get; set; }
+        public int Id_PerPuesto { get; set; }
+
         [Required]
         [StringLength(50)]
         public string Oper_Alta { get; set; }

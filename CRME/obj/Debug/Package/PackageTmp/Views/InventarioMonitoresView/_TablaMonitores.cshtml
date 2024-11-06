@@ -77,7 +77,7 @@
         <div class="col s12 center-align">
             @if (Model != null)
             {
-                @Html.PagedListPager(Model, page => Url.Action("_TablaMonitores", new { page })
+                @Html.PagedListPager(Model, page => Url.Action("_TablaMonitores", new { page, ViewBag.filtro })
                     , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
                     {
                         Display = PagedListDisplayMode.IfNeeded,

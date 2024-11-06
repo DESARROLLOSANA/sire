@@ -16,10 +16,10 @@
 
         public int proceso { get; set; }
 
-        [StringLength(30)]
+        [StringLength(1000)]
         public string indicador { get; set; }
 
-        [StringLength(30)]
+        [StringLength(1000)]
         public string form_cal { get; set;  }
 
         public float res_esp { get; set; }

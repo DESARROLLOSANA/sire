@@ -59,6 +59,7 @@ namespace CRME.Models
         public virtual DbSet<Cat_Estatus> Cat_Estatus { get; set; }
         public virtual DbSet<NivelAcademico> NivelAcademico { get; set; }
 
+        // neuvas tablas mtto solicitud
         public virtual DbSet<Solicitud_Mtto> Solicitud_Mtto { get; set; }
         public virtual DbSet<Tipo_Solicitud> Tipo_Solicitud { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
@@ -77,11 +78,11 @@ namespace CRME.Models
         public virtual DbSet<cat_resguardo_herramientas> cat_resguardo_herramientas { get; set; }
         public virtual DbSet<Unidad_Medida> Unidad_Medida { get; set; }
 
-        //Nuevas tablas para SGC
+        //TABLAS DEL SGC
 
         public virtual DbSet<Procesos> Procesos { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
-        public virtual DbSet<cat_indicadores> cat_Indicadores { get; set; }
+        public virtual DbSet<cat_indicadores> cat_indicadores { get; set; }
         public virtual DbSet<cat_periodos> cat_periodos { get; set; }
         public virtual DbSet<Control_Interno> Control_Interno { get; set; }
         public virtual DbSet<Auditoria_Interna> Auditoria_Interna { get; set; }
@@ -96,6 +97,29 @@ namespace CRME.Models
         public virtual DbSet<actualizaciones> actualizaciones { get; set; }
         public virtual DbSet<SolicitudActualizaciones> SolicitudActualizaciones { get; set; }
         public virtual DbSet<Correos_Calidad> Correos_Calidad { get; set; }
+
+        //TABLAS DEL SRH
+
+        public virtual DbSet<Responsabilidades> Responsabilidades { get; set; }
+        public virtual DbSet<Req_Personal> Req_Personal { get; set; }
+        public virtual DbSet<Relacion_Puesto> Relacion_Puesto { get; set; }
+        public virtual DbSet<Perfil_Puesto> Perfil_Puesto { get; set; }
+        public virtual DbSet<Origen_Reclutamiento> Origen_Reclutamiento { get; set; }
+        public virtual DbSet<Indicador_Puesto> Indicador_Puesto { get; set; }
+        public virtual DbSet<Historial_Emp> Historial_Emp { get; set; }
+        public virtual DbSet<Herramientas_Personal> Herramientas_Personal { get; set; }
+        public virtual DbSet<Funciones_Puesto> Funciones_Puesto { get; set; }
+        public virtual DbSet<Fecha_Entrevista> Fecha_Entrevista { get; set; }
+        public virtual DbSet<Cat_Horario> Cat_Horario { get; set; }
+        public virtual DbSet<Tipo_Contratacion> Tipo_Contratacion { get; set; }
+        public virtual DbSet<Cat_Genero> Cat_Genero { get; set; }
+        public virtual DbSet<Cat_EdoCivil> Cat_EdoCivil { get; set; }
+        public virtual DbSet<Documentacion_Emp> Documentacion_Emp { get; set; }
+        public virtual DbSet<Faniliares> Faniliares { get; set; }
+        public virtual DbSet<Parentesco> Parentesco { get; set; }
+        public virtual DbSet<Candidatos> Candidatos { get; set; }
+        public virtual DbSet<Contactos_Empleado> Contactos_Empleado { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Departamentos>()
